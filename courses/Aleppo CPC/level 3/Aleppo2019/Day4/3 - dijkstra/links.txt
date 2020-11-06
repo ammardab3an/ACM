@@ -1,0 +1,6 @@
+1- dijkstra
+https://www.spoj.com/problems/SHOP/
+
+2- easy
+https://www.spoj.com/problems/EZDIJKST/
+

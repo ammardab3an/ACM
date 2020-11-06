@@ -1,0 +1,8 @@
+https://www.spoj.com/problems/MIXTURES/
+https://www.spoj.com/problems/KNAPSACK/
+https://www.spoj.com/problems/ELIS/
+https://www.spoj.com/problems/MCOINS/
+https://www.spoj.com/problems/ASSIGN/
+https://www.spoj.com/problems/DIEHARD/
+https://codeforces.com/problemset/problem/225/C
+https://codeforces.com/problemset/problem/431/C

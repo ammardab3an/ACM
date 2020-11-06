@@ -1,0 +1,366 @@
+.ace_he_tooltip {
+  background-color: #46535e;
+  background-image: -webkit-linear-gradient(top, transparent, rgba(0,0,0,0.1));
+  background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.1));
+  border: 1px solid #808080;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  color: #fff;
+  max-width: 100%;
+  padding: 3px 4px;
+  position: fixed;
+  z-index: 999999;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: default;
+  white-space: pre;
+  word-wrap: break-word;
+  line-height: normal;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  pointer-events: none;
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sub-editor {
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
+}
+.sub-editor .editor-header {
+  background: #f8f8f8;
+  padding: 7px 10px 7px 20px;
+  border: 1px solid #d9deea;
+  border-left: 0;
+  border-right: 0;
+  height: 30px;
+  line-height: 30px;
+  text-align: left;
+}
+.sub-editor .editor-header .mobile-clear {
+  clear: both;
+  display: none;
+}
+.sub-editor .editor-header .editor-settings-button-container {
+  width: 35px;
+  height: 30px;
+  margin-left: 5px;
+}
+.sub-editor .editor-header .editor-settings-button {
+  width: 35px;
+  height: 20px;
+  padding: 5px 0;
+  cursor: pointer;
+  color: #9ca3a8;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  outline: 0;
+}
+.sub-editor .editor-header .editor-settings-button:hover {
+  background: #e5e7e8;
+}
+.sub-editor .editor-header .editor-lang-select {
+  background: #fff;
+  color: #46535e;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  padding: 0 5px 1px 5px;
+  outline: 0;
+  border-color: #e5e7e8;
+  width: 220px;
+}
+.sub-editor .editor-header .editor-save-trigger {
+  margin-right: 5px;
+  text-decoration: none;
+  line-height: 20px;
+  margin-top: 5px;
+  padding: 0 10px;
+}
+.sub-editor .editor-header .editor-save-trigger:hover {
+  text-decoration: underline;
+}
+.sub-editor .editor-header .setting-expand-box {
+  position: relative;
+  top: 0;
+  right: -2px;
+  z-index: 100;
+  float: right;
+  text-align: left;
+  background-color: #fff;
+  color: #46535e;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0px 1px 10px 0 rgba(156,163,168,0.7);
+  -moz-box-shadow: 0px 1px 10px 0 rgba(156,163,168,0.7);
+  box-shadow: 0px 1px 10px 0 rgba(156,163,168,0.7);
+  font-size: 13px;
+  min-width: 200px;
+}
+.sub-editor .editor-header .setting-expand-box .down-arrow {
+  position: absolute;
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #fff;
+  top: -9px;
+  right: 10px;
+}
+.sub-editor .editor-header .setting-expand-box ul {
+  list-style-type: none;
+  padding: 5px 5px 10px 5px;
+  min-width: 75px;
+}
+.sub-editor .editor-header .setting-expand-box ul a {
+  color: #46535e;
+  text-decoration: none;
+}
+.sub-editor .editor-header .setting-expand-box ul li {
+  padding: 0 8px;
+}
+.sub-editor .editor-header .setting-expand-box ul li:hover {
+  background-color: #4c9cdf;
+  color: #fff;
+}
+.sub-editor .editor-header .setting-expand-box ul .active {
+  color: #09f;
+}
+.sub-editor .editor-header .setting-expand-box ul .editor-options {
+  line-height: 22px;
+}
+.sub-editor .editor-header .setting-expand-box ul .editor-options a:hover {
+  color: #09f;
+}
+.sub-editor .editor-header .setting-expand-box ul .editor-divider {
+  padding: 5px;
+  border-bottom: 1px dotted #e5e7e8;
+  margin-bottom: 10px;
+}
+.sub-editor .code-editor .ace-crimson-editor .ace_gutter {
+  background: #f8f8f8 !important;
+}
+.sub-editor .code-editor .ace-monokai .ace_gutter {
+  background: #2f3129 !important;
+}
+.sub-editor .code-editor .ace_editor {
+  word-spacing: 0;
+}
+.sub-editor .code-editor .editor-lang-select {
+  float: right;
+}
+.sub-editor .code-editor .cursor-position {
+  position: relative;
+  z-index: 100;
+  float: right;
+  top: -20px;
+  right: 20px;
+  font-size: 12px;
+}
+.sub-editor .code-editor .keybindings-text {
+  position: relative;
+  z-index: 100;
+}
+.sub-editor .code-editor .keybindings-text span {
+  position: absolute;
+  float: right;
+  top: -20px;
+  right: 60px;
+  height: 14px;
+  text-transform: capitalize;
+  color: #f4797f;
+  background-color: rgba(0,0,0,0.9);
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.sub-editor .sub-editor-footer {
+  background: #f8f8f8;
+  border-top: 1px solid #d9deea;
+  padding: 20px;
+}
+.sub-editor .sub-editor-footer .sub-editor-buttons-container {
+  margin-top: 20px;
+  float: left;
+}
+.sub-editor .sub-editor-footer .sub-editor-buttons-container button {
+  text-transform: uppercase;
+}
+.sub-editor .sub-editor-footer .sub-editor-buttons-container .compile-test-button {
+  margin-right: 10px;
+}
+.sub-editor .sub-editor-footer .sub-editor-buttons-container .other-bot-user-select {
+  min-width: 250px;
+  float: left;
+  font-size: 13px;
+}
+.sub-editor .sub-editor-footer .sub-editor-buttons-container .play-game-button {
+  margin-top: 3px;
+  margin-left: 10px;
+}
+.sub-editor .sub-editor-footer .custom-input {
+  width: 100%;
+  max-width: 100%;
+  height: 120px;
+  box-sizing: border-box;
+  border: 1px solid #e5e7e8;
+  border-radius: 3px;
+}
+.sub-editor .sub-editor-footer .autocomplete-suggestion {
+  position: relative;
+  top: -15px;
+}
+.sub-editor .autocomplete-text {
+  font-style: italic;
+  font-size: 11px;
+  font-weight: 600;
+  padding-top: 5px;
+  line-height: 15px;
+  color: #9ca3a8;
+}
+.sub-editor .sub-editor-credits-footer {
+  background: #f8f8f8;
+  border-top: 1px solid #d9deea;
+  padding: 7px 20px;
+}
+.sub-editor .sub-editor-credits-footer .poweredby-text span span {
+  background-color: rgba(156,163,168,0.498);
+  line-height: 13px;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 0px 2px;
+}
+@media screen and (max-width: 600px) {
+  .editor-header {
+    height: 80px !important;
+  }
+  .mobile-clear {
+    display: block !important;
+  }
+  .editor-settings-button-container {
+    margin: 12px 0px 4px 0px !important;
+  }
+  .editor-lang-select {
+    float: left !important;
+    margin: 12px 0px 10px 0px !important;
+  }
+  .editor-save-trigger {
+    display: none;
+  }
+  .go-full-screen {
+    display: none;
+  }
+}
+.assessment-sub-editor {
+  box-shadow: none;
+  border: 1px solid #d9deea;
+  border-top: 0;
+}
+.assessment-sub-editor.fullscreen-editor {
+  top: 48px;
+  z-index: 990;
+}
+.assessment-sub-editor .code-editor .editor-lang-select {
+  float: left;
+}
+.react-modal-overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 1002;
+  background-color: rgba(0,0,0,0.95);
+  overflow: hidden;
+}
+.react-modal-overlay .react-modal-container {
+  width: 80%;
+  margin: auto;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 260px;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.react-modal-overlay .react-modal-container.small-modal {
+  max-width: 520px;
+}
+.react-modal-overlay .react-modal-container.regular-modal {
+  max-width: 720px;
+}
+.react-modal-overlay .react-modal-container.large-modal {
+  max-width: 830px;
+}
+.react-modal-overlay .react-modal-container .modal-footer,
+.react-modal-overlay .react-modal-container .modal-content,
+.react-modal-overlay .react-modal-container .modal-header {
+  padding: 0 20px;
+}
+.react-modal-overlay .react-modal-container .modal-close {
+  position: absolute;
+  top: -7px;
+  right: -20px;
+  color: #9ca3a8;
+  line-height: 0;
+  opacity: 0.8;
+}
+.react-modal-overlay .react-modal-container .modal-close:before {
+  font-size: 30px;
+  content: "\D7";
+  font-weight: 600;
+}
+.fullscreen-editor {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 10010;
+  background-color: #fff;
+  overflow-x: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  box-shadow: 0 0 2px 1px rgba(0,0,0,0.1);
+}
+.fullscreen-problem-description {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #fafafa;
+  z-index: 990;
+  margin: 0;
+  overflow: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 15px 20px 15px;
+}
+.assessment-problem-description.fullscreen-problem-description {
+  top: 48px;
+  padding: 20px 15px;
+}
+.assessment-problem-description.fullscreen-problem-description .flow-help {
+  display: none;
+}
+.disable-vertical-scroll {
+  overflow-y: hidden;
+}
+.initialize-editor {
+  padding: 5px;
+  background: #fff;
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+/*# sourceMappingURL=sub-editor.js.map*/

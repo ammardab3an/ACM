@@ -1,0 +1,3462 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0084)https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script id="_pusher_dependencies1" src="./1 - fun with bits_files/xhr.min.js.download" type="text/javascript" charset="UTF-8" async=""></script>
+        <meta name="theme-color" content="#323754">
+        
+        <meta name="description" content=" 
+At times, bit-manipulations come as a very handy tool for simplifying the problem, improve efficiency. Bit-manipulations is a kind of low level optimization tool. Today, lets see some bitwise operations ...
+ HackerEarth is a global hub of 2M+ developers. We also help companies fast-track their growth through our best-in-class technical recruitment software and innovation management platform.">
+        <link rel="canonical" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">
+        <meta name="msvalidate.01" content="1BF418E510B5A17A2D71685C571BF4EB">
+
+        
+        <iframe src="javascript:false" title="" style="width: 0px; height: 0px; border: 0px; display: none;" src="./1 - fun with bits_files/saved_resource.html"></iframe><script src="./1 - fun with bits_files/all.js.download" async=""></script><script src="./1 - fun with bits_files/cb=gapi.loaded_1" async=""></script><script src="./1 - fun with bits_files/cb=gapi(1).loaded_0" async=""></script><script type="text/javascript" async="" src="./1 - fun with bits_files/recaptcha__en.js.download"></script><script type="text/javascript" async="" src="./1 - fun with bits_files/plusone.js.download" gapi_processed="true"></script><script id="twitter-wjs" src="./1 - fun with bits_files/widgets.js.download"></script><script id="facebook-jssdk" src="./1 - fun with bits_files/all.js(1).download"></script><script type="text/javascript" async="" src="./1 - fun with bits_files/mixpanel-2-latest.min.js.download"></script><script src="./1 - fun with bits_files/2586902.js.download" type="text/javascript" id="hs-analytics"></script><script src="./1 - fun with bits_files/conversations-embed.js.download" type="text/javascript" id="hubspot-messages-loader" ungated-for="" data-loader="hs-scriptloader" data-hsjs-portal="2586902" data-hsjs-env="prod"></script><script async="" src="./1 - fun with bits_files/timeme.min-2.js.download"></script><script async="" src="./1 - fun with bits_files/adpxlana-va_spa2.1.js.download"></script><script src="./1 - fun with bits_files/802574803157043" async=""></script><script async="" src="./1 - fun with bits_files/fbevents.js.download"></script><script async="" src="./1 - fun with bits_files/qevents.js.download"></script><script type="text/javascript" async="" src="./1 - fun with bits_files/f.txt"></script><script type="text/javascript" async="" src="./1 - fun with bits_files/uwt.js.download"></script><script type="text/javascript" async="" src="./1 - fun with bits_files/insight.min.js.download"></script><script async="" src="./1 - fun with bits_files/gtm.js.download"></script><script async="" src="./1 - fun with bits_files/analytics.js.download"></script><script>
+          (function() {
+              if (window.BOOMR && window.BOOMR.version) {
+                  return;
+              }
+              var dom, doc, where, iframe = document.createElement("iframe"),
+                  win = window;
+
+              function boomerangSaveLoadTime(e) {
+                  win.BOOMR_onload = (e && e.timeStamp) || new Date().getTime();
+              }
+              if (win.addEventListener) {
+                  win.addEventListener("load", boomerangSaveLoadTime, false);
+              } else if (win.attachEvent) {
+                  win.attachEvent("onload", boomerangSaveLoadTime);
+              }
+
+              iframe.src = "javascript:false";
+              iframe.title = "";
+              iframe.role = "presentation";
+              (iframe.frameElement || iframe).style.cssText = "width:0;height:0;border:0;display: none;";
+              where = document.getElementsByTagName("script")[0];
+              where.parentNode.insertBefore(iframe, where);
+
+              try {
+                  doc = iframe.contentWindow.document;
+              } catch (e) {
+                  dom = document.domain;
+                  iframe.src = "javascript:var d=document.open();d.domain='" + dom + "';void(0);";
+                  doc = iframe.contentWindow.document;
+              }
+              doc.open()._l = function() {
+                  var js = this.createElement("script");
+                  if (dom) this.domain = dom;
+                  js.id = "boomr-if-as";
+                  js.src = "https://s.go-mpulse.net/boomerang/" +
+                      "QKZWA-3BVYP-7W6XK-6HKWZ-EFFZ4";
+                  BOOMR_lstart = new Date().getTime();
+                  this.body.appendChild(js);
+              };
+              doc.write('<body onload="document._l();">');
+              doc.close();
+          })();
+        </script>
+        
+
+
+        
+<meta name="google-site-verification" content="ozqyeStBcz4eehbY9Ohb_IUQcA4y8BKzzDCT-H1QPPc">
+
+
+        
+        
+        <!-- google analytics start -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-34729975-1', 'auto');
+            ga('require', 'displayfeatures');
+            
+            ga('send', 'pageview');
+        </script>
+        <!-- google analytics end -->
+        
+        
+
+        
+        
+        <!-- Google Tag Manager -->
+        <script>
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PBHB3B9');
+        </script>
+        <!-- End Google Tag Manager -->
+        
+        
+
+        <title>   Fun With Bits : Print all subsets of a set  | HackerEarth  </title>
+
+        
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<!-- Facebook tags -->
+<meta property="fb:app_id" content="190817380995032">
+<meta property="og:title" content="Fun With Bits : Print all subsets of a set - Bhavesh Munot">
+<meta property="og:image" content="https://he-s3.s3.amazonaws.com/media/avatars/bhavesh_munot/resized/200/f26dba7dp.jpg">
+<meta property="og:description" content="At times, bit-manipulations come as a very handy tool for simplifying the problem, improve efficiency. Bit-manipulations is a kind of low level optimization tool. Today, lets see some bitwise operations and cool some cool snippets too which involves bits-manipulations. Are ...">
+<meta property="og:url" content="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">
+<meta property="og:site_name" content="HackerEarth">
+<meta property="og:type" content="website">
+<!-- end Facbook tags -->
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@HackerEarth">
+<meta name="twitter:url" content="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">
+<meta name="twitter:title" content="Fun With Bits : Print all subsets of a set">
+<!-- end Twitter tags -->
+
+        
+        <link rel="shortcut icon" href="./1 - fun with bits_files/HE_identity.png" type="image/x-icon">
+        
+
+        <link rel="stylesheet" href="./1 - fun with bits_files/base_common_combined.css">
+        <link rel="stylesheet" href="./1 - fun with bits_files/tipTip.css">
+        <link rel="stylesheet" href="./1 - fun with bits_files/offline-theme-slide.css">
+        <link rel="stylesheet" href="./1 - fun with bits_files/font-awesome.min.css">
+        <link rel="stylesheet" href="./1 - fun with bits_files/opensans.css">
+        <link rel="stylesheet" href="./1 - fun with bits_files/unicons.css">
+
+        
+
+
+
+        
+<link rel="stylesheet" type="text/css" href="./1 - fun with bits_files/polls.css">
+<link rel="stylesheet" type="text/css" href="./1 - fun with bits_files/pagedown.css">
+<link rel="stylesheet" type="text/css" href="./1 - fun with bits_files/notes.css">
+<link rel="stylesheet" type="text/css" href="./1 - fun with bits_files/nice_threadedcomments.css">
+<link href="./1 - fun with bits_files/prettify.css" type="text/css" rel="stylesheet">
+
+
+        <!-- Make the static variable available for all js files -->
+        <script>
+            var STATIC_URL = "https://static-fastly.hackerearth.com/static/";
+        </script>
+
+        <!-- Store CSRF_COOKIE -->
+        <script>
+            var CSRF_COOKIE_USED = "True";
+            var CSRF_COOKIE = "OWxOTDMflcutUcI7UDfxxDMB5IjwQhBYkciIe8OFskuKZoiZjYxKIkDbAlxf6t29";
+        </script>
+
+        
+
+    <script src="./1 - fun with bits_files/f(1).txt"></script><script charset="utf-8" src="./1 - fun with bits_files/button.e96bb6acc0f8bda511c0c46a84ee18e4.js.download"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#1d3c78;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style><script src="./1 - fun with bits_files/comments_ajaxify.js.download" crossorigin="anonymous"></script><script src="./1 - fun with bits_files/realtime.js.download" crossorigin="anonymous"></script><script src="./1 - fun with bits_files/moment.min.js.download" crossorigin="anonymous"></script><script src="./1 - fun with bits_files/moment_locale.min.js.download" crossorigin="anonymous"></script><script src="./1 - fun with bits_files/voting.js.download" crossorigin="anonymous"></script><script src="./1 - fun with bits_files/livestamp.min.js.download" crossorigin="anonymous"></script></head>
+
+    <body><div id="MathJax_Message" style="display: none;"></div><style type="text/css">html.hs-messages-widget-open.hs-messages-mobile,html.hs-messages-widget-open.hs-messages-mobile body{height:100%!important;overflow:hidden!important;position:relative!important}html.hs-messages-widget-open.hs-messages-mobile body{margin:0!important}#hubspot-messages-iframe-container{display:initial!important;z-index:2147483647;position:fixed!important;bottom:0!important;right:0!important}#hubspot-messages-iframe-container.internal{z-index:1016}#hubspot-messages-iframe-container.internal iframe{min-width:108px}#hubspot-messages-iframe-container .shadow{display:initial!important;z-index:-1;position:absolute;width:0;height:0;bottom:0;right:0;content:""}#hubspot-messages-iframe-container .shadow.internal{display:none!important}#hubspot-messages-iframe-container .shadow.active{width:400px;height:400px;background:radial-gradient(ellipse at bottom right,rgba(29,39,54,.16) 0,rgba(29,39,54,0) 72%)}#hubspot-messages-iframe-container iframe{display:initial!important;width:100%!important;height:100%!important;border:none!important;position:absolute!important;bottom:0!important;right:0!important;background:transparent!important}</style>
+        
+<link rel="stylesheet" href="./1 - fun with bits_files/notification_toast.css">
+<div class="notification-toast-container notification-top-center regular">
+    <div class="notification-errors">
+        <p id="notification-auth-error" class="error-item hidden no-margin">
+            <span class="fa fa-times less-margin-right"></span>Ensure that you are logged in and have the required permissions to access the test.
+        </p>
+        <p id="notification-server-error" class="error-item hidden no-margin">
+            <span class="fa fa-times less-margin-right"></span>A server error has occurred. Please refresh the page or try after some time.
+        </p>
+        <p id="notification-error" class="error-item hidden no-margin">
+            <span class="fa fa-times less-margin-right"></span>An error has occurred. Please refresh the page or try after some time.
+        </p>
+        <p id="notification-custom-error" class="error-item hidden no-margin"></p>
+        
+    </div>
+</div>
+<script type="text/javascript" src="./1 - fun with bits_files/notification-toast.js.download" crossorigin="anonymous" defer=""></script>
+        
+        
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBHB3B9"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        
+        
+
+        <!-- Placeholder for any alert message on the site -->
+        
+        <div id="alert-message-holder">
+            
+
+            <!-- put a dummy message box so that it can be used when cloning
+                 and adding more -->
+            
+        <div class="alert-message hidden">
+                <div class="message float-left"></div>
+                <div class="cross-holder float-left"><span class="small-cross sprites"></span></div>
+                <div class="clear"></div>
+            </div></div> <!-- end alert-message-holder -->
+
+        <!-- Placeholder for any error message on the site -->
+        
+        <div id="error-message-holder">
+            
+
+            <!-- put a dummy message box so that it can be used when cloning
+                 and adding more -->
+            <div class="error-message hidden">
+                <div class="message float-left"></div>
+                <div class="cross-holder float-left"><span class="small-cross sprites"></span></div>
+                <div class="clear"></div>
+            </div>
+        </div> <!-- end error-message-holder -->
+        
+        
+
+        
+    <div id="top-prompt-container" class="hidden prompt-container"></div>
+    <div id="right-prompt-container" class="hidden prompt-container"></div>
+    <div id="center-modal-prompt-container" class="hidden prompt-container"></div>
+    
+    
+        
+        <header class="header">
+            <i class="fa fa-bars mobile-menu-btn"></i>
+            <nav class="navigation">
+                
+                <a href="https://www.hackerearth.com/" class="logo logo-h-terminal  no-underline float-left track-header-logo"></a>
+                
+
+                
+                <ul class="nav-bar no-padding float-left tablet-hide">
+                    <!-- challenges page -->
+                    <li id="challenges" class="nav-bar-menu "><a class="track-header-challenges" href="https://www.hackerearth.com/challenges/">CHALLENGES</a></li>
+                    <!-- hackathons page -->
+                    
+                    <!-- practice page -->
+                    <li id="problems" class="nav-bar-menu "><a class="track-header-problems" href="https://www.hackerearth.com/practice/">PRACTICE</a></li>
+                    <!-- companies page -->
+                    <li id="companies" class="nav-bar-menu "><a class="track-header-companies" href="https://www.hackerearth.com/companies/">COMPANIES</a></li>
+                </ul>
+                <ul class="nav-bar right-nav-bar no-padding float-right tablet-hide">
+                    
+                    
+                    <li id="searchbar">
+                        <div id="search-icon-container" class="float-left">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <input id="searchbar-input" class="float-left" type="text" value="" name="q" autocomplete="off" spellcheck="false" placeholder="Search developers, problems, etc" ajax1="/search/AJAX/search/" ajax2="/search/search-results/">
+                        <div id="search-dropdown"></div>
+                    </li>
+                    
+                    
+
+                    <li id="header-circle" class="">
+                        <a class="tool-tip notification-icon" href="https://www.hackerearth.com/circles/">
+                            <img src="./1 - fun with bits_files/circle-header.png" alt="circle" class="margin-top-8 header-circle-img">
+                        </a>
+                    </li>
+
+                    
+
+                    
+
+
+                    
+
+                    
+
+                    
+                    <li class="nav-bar-menu login-menu-btn"><a target="login-modal" class="track-header-login show-modal">LOGIN</a></li>
+                    <li class="nav-bar-menu signup-menu-btn"><a target="login-modal" class="track-header-signup show-modal show-signup-in-modal">SIGN UP</a></li>
+                    
+
+                    <div class="clear"></div>
+                </ul> <!-- nav-bar -->
+                <div class="clear"></div>
+                
+            </nav> <!-- navigation -->
+
+            <i class="fa fa-filter challenge-filter-btn hidden"></i>
+
+        </header> <!-- header -->
+        
+    
+     <style>
+  #gdpr-modal {
+    position: absolute;
+    bottom: 0;
+  }
+</style>
+<div id="gdpr-modal" class="modal-window smaller-modal hidden">
+  
+
+<style>
+  #gdpr-modal-content {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  #gdpr-modal-content .modal-header {
+    padding: 50px 55px 35px 55px;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  #gdpr-modal-content .modal-footer {
+    padding: 25px 55px 90px;
+  }
+
+  #gdpr-modal-content .modal-content {
+    padding: 0 55px 5px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  #gdpr-modal-content .modal-footer .checkbox-row {
+    font-size: 16px;
+    display: inline-flex;
+  }
+
+  #gdpr-modal-content a {
+    color: #0099ff;
+  }
+  
+  #gdpr-modal-content .button.disabled {
+    background: #f5f6f6 !important;
+  }
+</style>
+
+<div id="gdpr-modal-content">
+  
+<div class="modal-header">HackerEarth’s Privacy Policy and Terms of Service</div>
+  <div class="modal-content">
+      We care about your data privacy. HackerEarth uses the information that you provide to contact you about relevant content, products, and services. <br> <br>
+
+      Our <a href="https://www.hackerearth.com/privacy/" target="_blank">Privacy Policy</a> and <a href="https://www.hackerearth.com/terms-of-service/" target="_blank">Terms of Service</a> will help you understand that you are in control of your data at HackerEarth.
+  </div>
+  <div class="modal-footer">
+    <div class="margin-bottom-15 regular checkbox-row">
+      <input type="checkbox" name="gdpr-tnc">
+      I have read and I agree.
+    </div>
+    <div class="">
+      <input type="submit" name="submit" value="Proceed" class="button btn-blue fontawesome btn-largest disabled large" id="gdpr-submit">
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+    
+
+    
+    
+    <div class="top-banner">
+        <p class="banner-text login-banner dark">
+        
+         Signup and get free access to 100+ Tutorials and Practice Problems <a class="button btn-orange-bright inline-block medium-margin-left show-modal " target="login-modal">Start Now</a>
+        
+        </p>
+    </div>
+    
+    
+
+    
+
+    <div id="comment-share-modal" class="modal-window small-modal">
+        <div class="modal-header">
+            Comment permalink
+        </div>
+        <div class="modal-content">
+            <div class="comment-share-wrapper align-center">
+                <textarea class="comment-share-text" type="textbox" rows="4" readonly="readonly" onclick="this.select();"></textarea>
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+    
+    <!-- live events widget -->
+    <div id="live-events-trigger-data">
+
+
+
+<div id="live-events-container" class="live-events" style="display: none;">
+    <div class="green-color pagelet-hover" id="live-events-placeholder" ajax="/AJAX/live_events_widget/" target="live-events-loading">
+        <span>Live Events</span>
+        <span id="live-events-widget-count">0</span>
+    </div>
+    <!-- This div is used for spacing between top and bottom borders while scrolling.-->
+    <div id="live-events-loading">
+    </div>
+</div>
+
+</div>
+    
+
+    <!-- This is the center page which has a fixed width of 1100px -->
+    
+<div class="responsive-page denim-gray-texture">
+    <div class="responsive-container">
+        <div class="page-data">
+            <div class="left medium-margin">
+                <div class="notes-header content weight-600 large" id="notes-left-container">
+                    <a href="https://www.hackerearth.com/practice/notes/"><i class="fa fa-long-arrow-left"></i> Notes</a>
+                    
+            </div> <!--heading-2 -->
+            <div class="clear"></div>
+
+            
+
+
+
+
+<div class="note-container">
+    <div class="note-title-container content">
+        
+        
+        <div class="notes-vote regular align-center light">
+            <span class="polls">
+                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up light show-modal inline-block " target="login-modal"><i class="fa fa-caret-up fa-lg fa-3x"></i></a>
+                <br>
+                <span class="polls-count only-positive inline-block dark">26 </span>
+            </span>
+        </div> <!-- end of notes-vote -->
+        
+        
+
+        
+
+        <div class="notes-item standard-margin-left">
+            <div class="notes-title">
+             Fun With Bits : Print all subsets of a set
+            </div>
+            <div class="notes-description">
+                    
+                    <div class="less-margin tags-list">
+                    
+                        
+                        
+                        <div class="note-tags dark smaller float-left medium-margin-right"> Bit</div>
+                        
+                        
+                        
+                        <div class="note-tags dark smaller float-left medium-margin-right"> Bit-manipulation</div>
+                        
+                        
+                        
+                        <div class="note-tags dark smaller float-left medium-margin-right"> Bit-shift</div>
+                        
+                        
+                        
+                        <div class="note-tags dark smaller float-left medium-margin-right"> Set</div>
+                        
+                        
+                        
+                        <div class="note-tags dark smaller float-left medium-margin-right"> Subset</div>
+                        
+                        
+                        
+                        <div class="note-tags dark smaller float-left medium-margin-right"> Subset-sum</div>
+                        
+                        
+                    
+                        </div> <!-- tags-list -->
+                    
+                    
+                    <div class="clear"></div>
+
+            </div> <!-- notes-description -->
+        </div><!-- notes-tem -->
+    </div> <!-- note-title-container -->
+
+    <hr class="hr-dashed">
+
+    <div class="regular darker note-body content">
+        <p>At times, bit-manipulations come as a very handy tool for simplifying the problem, improve efficiency. Bit-manipulations is a kind of low level optimization tool.</p>
+<p>Today, lets see some bitwise operations and cool some cool snippets too which involves bits-manipulations.
+Are you a lover of short codes? You will like this. And to end our discussion, we will see how to print all possible subsets of a set. Also from this we can solve subset sum problem too.</p>
+<p>Ready?</p>
+<p>To start our discussion, lets focus on the basic operations. If you already know this, you can skip this part.</p>
+<h2>Basic Operations</h2>
+<p><strong>1. Bitwise AND</strong></p>
+<p>0 &amp; 0 = 0</p>
+<p>0 &amp; 1 = 0</p>
+<p>1 &amp; 0 = 0</p>
+<p>1 &amp; 1 = 1</p>
+<p>i.e. as long as both bits are not SET, the outcome will always be zero (false).</p>
+<p>So lets say, we want: 5 &amp; 6
+ 5 -&gt; 101 and 6 -&gt; 110</p>
+<p>101</p>
+<p>&amp; </p>
+<p>110</p>
+<p>===</p>
+<p>100 -&gt; 4</p>
+<p>Hence the answer 4.
+You got it, right? Easy one.</p>
+<p>Similarly,</p>
+<p><strong>2. Bitwise OR</strong></p>
+<p>0 &amp; 0 = 0</p>
+<p>0 &amp; 1 = 1</p>
+<p>1 &amp; 0 = 1</p>
+<p>1 &amp; 1 = 1</p>
+<p>i.e. as long as any one of the bits is SET, the outcome will be one (true).</p>
+<p><strong>3. Bitwise XOR</strong></p>
+<p>0 &amp; 0 = 0</p>
+<p>0 &amp; 1 = 1</p>
+<p>1 &amp; 0 = 1</p>
+<p>1 &amp; 1 = 0</p>
+<p>i.e. whenever we see the same bits, answer goes zero (false), one (true) otherwise.</p>
+<p>The basic operations other than AND, OR, XOR are Left shift and Right shift.</p>
+<ol>
+<li>Left Shifting
+This shifts the bit-pattern of any number to left by specified positions.
+E.g. 5&lt;&lt;1 i.e. (101)&lt;&lt;1 and after shifting the pattern, we get 1010 i.e. 10, you see the last zero? Yes zeros get appended in left shift.</li>
+</ol>
+<p>Similarly,
+2. Right Shifting:
+This shifts the bit-pattern of number to right by specified positions.
+E.g. 5&gt;&gt;1 i.e. (101)&gt;&gt;1 and after shifting the pattern, we get 10 i.e. 2, you see that the rightmost '1' got disappeared?</p>
+<hr>
+<p>Having done the base work, lets move ahead to see some interesting things.</p>
+<h2>Bit Masking</h2>
+<p>Masking : Hiding</p>
+<p>Yes, we can hide the value of bit. In simple words, using bit masking we can set, reset any bit from a number.
+There are 2 methods to hide the data.</p>
+<p><strong>1. OR with 1</strong></p>
+<p>No matter what the given bit is, once you OR it with 1, it will always be 1. So, this way, you can hide i.e. mask the actual data of given bit.</p>
+<p><strong>2. AND with 0</strong></p>
+<p>Similarly, No matter what the given bit is, once you AND it with 0, it will always be 0. So, this way also, you can hide i.e. mask the actual data of given bit.</p>
+<p>Ok, you must have got what the Bit-Masking is I think.</p>
+<p>Now we will see some really useful operations using bits.</p>
+<p><strong>1. Multiplying a number by 2 ---&gt; Left Shift the number by 1.</strong></p>
+<p>We know that numbers are stored in binary inside computer. Also we know left shifting appends zeros at the end.
+Can we not use these two facts to multiply a number by 2. Figure out how?
+Yes, just left shift the number by 1 and we get the answer.</p>
+<p>Here is an exercise for you. Can you generalized this to multiply a number by any power of 2? i.e. 2, 4, 8 ...
+I think you do this within few seconds, right?</p>
+<p><strong>2. Division by 2 ---&gt; Right Shift the number by 1</strong></p>
+<p>Similar to the multiplication.
+For odd numbers, it gives Floor value of the answer. </p>
+<p><strong>3. Finding powers of 2 --&gt; Left shift 1 by (exponent)</strong></p>
+<p>Powers of 2 are 1, 2, 4, 8, ... and in binary if we see, 1, 10, 100, 1000, ...
+Also, if see it in different perspective, can we not use what we have learnt already.
+See how.
+1 = 1
+2 = 1 * 2
+4 = 1 * 2 * 2
+8 = 1 * 2 * 2 * 2
+.
+.
+.
+It means this is just multiplying 2, for given number of times with 1.
+To find 4th power of 2, multiply 2, 4 times.
+i.e. (1&lt;&lt;4).</p>
+<p>So, for nth power of 2, the answer is (1 left shift by n).</p>
+<p><strong>4. Check if number is power of 2 ---&gt; ans = (n&amp;(n-1) == 0).</strong></p>
+<p>If we observe, all powers of 2 have only one bit SET (right-most one) and all other are RESET.
+And all numbers which are one less than any power of 2 (power&gt;=1) , have all bits SET.
+E.g. 8 and 7, 1000 and 111
+E.g, 16 and 15, 10000 and 1111
+No other numbers have such property.
+So, Now can you come of with some idea to check if that number n is a power of 2?
+Ok, hint is, make use of (n-1) too.</p>
+<p>Oh, yes!
+We need to just and them, and if we get the result to be 0, then that is a power of 2, not otherwise.</p>
+<p><strong>5. Convert the decimal number to binary ---&gt; Loop and print number&amp;1.</strong></p>
+<p>We know that numbers are stored in binary. Why convert them by our own method? Instead make use of that thing.
+We have a number say n. Now if we AND that number with 1, what will we get? The status of right-most bit, right?
+Then we will right shift the number by 1, again AND it with 1, we will again get right-most bit which will actually be second last in original number.
+Then right shift original number by 2, AND with 1, get the status.
+Right shift number by 3, AND with 1, get the status.... and so on.</p>
+<p>We just need to print this in reversed order now and this is our binary representation, is this not?</p>
+<p>I think now you have got the gist of bit-wise operations. 
+So, I think it is enough explanation. Now I will give you the direct solutions of problems, fine?</p>
+<p><strong>6. Check if number is even or odd ---&gt; AND with 1</strong></p>
+<p>We just need to check the status of last bit.</p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">if</span><span class="pun">(</span><span class="pln">n</span><span class="pun">&amp;</span><span class="lit">1</span><span class="pun">==</span><span class="lit">0</span><span class="pun">):</span><span class="pln">
+    EVEN
+</span><span class="kwd">else</span><span class="pun">:</span><span class="pln">
+    ODD</span></code></pre>
+<p><strong>7. Get the status of xth (1-based indexing) bit from right in number n. ---&gt; AND with 1 shifted to xth bit.</strong></p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">if</span><span class="pun">(</span><span class="pln">n</span><span class="pun">&amp;(</span><span class="lit">1</span><span class="pun">&lt;&lt;</span><span class="pln">x</span><span class="pun">-</span><span class="lit">1</span><span class="pun">)==</span><span class="lit">0</span><span class="pun">):</span><span class="pln">
+    RESET
+</span><span class="kwd">else</span><span class="pun">:</span><span class="pln">
+    SET</span></code></pre>
+<p>Arithmetic operators have higher priority than bit-wise shifting. So, (x-1) will be evaluated first and then 1&lt;&lt;(that_ans).</p>
+<p><strong>8.  SET the xth bit in number ---&gt; XOR with 1 shifted to xth bit</strong></p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">n </span><span class="pun">=</span><span class="pln"> n </span><span class="pun">|</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">&lt;&lt;</span><span class="pln">x</span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span></code></pre>
+<p><strong>9. Toggle the xth bit in number ---&gt;  XOR with 1 shifted to xth bit</strong></p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">n </span><span class="pun">=</span><span class="pln"> n </span><span class="pun">^</span><span class="pln"> </span><span class="pun">(</span><span class="lit">1</span><span class="pun">&lt;&lt;</span><span class="pln">x</span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span></code></pre>
+<p><strong>10. Check if two numbers are equal ---&gt; XOR them</strong></p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">if</span><span class="pun">(</span><span class="pln">a</span><span class="pun">^</span><span class="pln">b</span><span class="pun">==</span><span class="lit">0</span><span class="pun">):</span><span class="pln">
+    EQUAL
+</span><span class="kwd">else</span><span class="pun">:</span><span class="pln">
+    NOTEQUAL</span></code></pre>
+<p>I have a problem in my mind. Want to hear it? Here it is --
+Given array of n elements where every number occurs in pair i.e. even number of times except one. Find that number.
+Let me know once you solve it.</p>
+<p><strong>11. Did you know this:</strong></p>
+<p>If we have 3 number a, b and c where <code>c = a ^ b</code>,
+then XORing any 2 numbers gives the 3rd.</p>
+<p>This is the trick used in swapping two numbers. Have a look at it <a href="http://www.hackerearth.com/notes/swapping-without-a-temporary-variable-take-care/">here</a> and try to map these two points.</p>
+<p><strong>12. Do you know the concept of XOR Doubly Linked List?</strong></p>
+<p>Let me tell you in short:
+XOR Doubly Linked List is a variation of Doubly Linked List which uses a lesser memory per node than original version.
+Doubly Linked List stores addresses of previous and next nodes. But XOR doubly linked list uses the property of XOR discussed above and hence needs only one address field per node.
+Google it for more.</p>
+<p><strong>13. RESET the right-most SET bit in a number n</strong></p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">n </span><span class="pun">=</span><span class="pln"> n</span><span class="pun">&amp;(</span><span class="pln">n</span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span></code></pre>
+<p><strong>14. Check how many bit the number is! Bit-length</strong></p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">len </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pln">
+</span><span class="kwd">while</span><span class="pun">(</span><span class="pln">n</span><span class="pun">):</span><span class="pln">
+    len </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+    n </span><span class="pun">&gt;&gt;=</span><span class="pln"> </span><span class="lit">1</span></code></pre>
+<p><strong>15. Counting number of set bits</strong></p>
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">cnt </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pln">
+</span><span class="kwd">while</span><span class="pun">(</span><span class="pln">n</span><span class="pun">):</span><span class="pln">
+    cnt </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+    n </span><span class="pun">&amp;=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">n</span><span class="pun">-</span><span class="lit">1</span><span class="pun">)</span></code></pre>
+<p><em></em><em>16. A little difficult problem of *finding all subsets of a set</em> can be solved very easily with bit-wise operations.*</p>
+<p>Lets say, Set has n elements.
+We will use the bits of numbers to show the presence of element in set.
+The key is - If xth bit in number is SET i.e. 1, then xth element in given set is present in current subset.
+Got it?
+We will loop from 0 to (2 raised to n) -1, and for each number num, we will check the SET bits in it and take corresponding elements.
+In each iteration, we will have one subset.</p>
+<p>At the end we will have <strong>all 2^n subsets of set.</strong> Once you have a subset, you can find the sum of that subset if asked.</p>
+<p>Implement it now for fun and practice.</p>
+<p>This is it.
+I think I should stop here. I will keep adding more bit-tricks to this post whenever I come to know. Comment them if you know any.</p>
+<p>Let me know if you liked this post.</p>
+<p>Have look at other posts by me <a href="https://www.hackerearth.com/notes/u/bhavesh_munot/">here</a>.</p>
+<p>Thank you!</p>
+    </div> <!-- end note-body -->
+
+    
+    <div class="social-share medium-margin content">
+        <!-- fb, twitter, g+ buttons -->
+        <!-- the urls are messed up because they were changed post launch -->
+        <div class="fb-like float-left medium-margin-right fb_iframe_widget" data-href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" data-font="lucida grande" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=&amp;container_width=0&amp;font=lucida%20grande&amp;href=https%3A%2F%2Fwww.hackerearth.com%2Fpractice%2Fnotes%2Ffun-with-bits-print-all-subsets-of-a-set%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=100"><span style="vertical-align: bottom; width: 61px; height: 20px;"><iframe name="f3a44ef144477e4" width="100px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" title="fb:like Facebook Social Plugin" src="./1 - fun with bits_files/like.html" style="border: none; visibility: visible; width: 61px; height: 20px;" class=""></iframe></span></div>
+        <div class="float-left medium-margin-right"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" class="twitter-share-button twitter-share-button-rendered twitter-tweet-button" style="position: static; visibility: visible; width: 60px; height: 20px;" title="Twitter Tweet Button" src="./1 - fun with bits_files/tweet_button.5b0c4d3ea3997aa2c22eac39be510646.en.html" data-url="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/"></iframe></div>
+        <div class="float-left"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 32px; height: 20px;"><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 32px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1549664048425" name="I0_1549664048425" src="./1 - fun with bits_files/fastbutton.html" data-gapiattached="true" title="G+"></iframe></div></div>
+        <!-- end of social buttons -->
+        <div class="clear"></div>
+    </div> <!-- social-share -->
+    
+
+    
+    <div id="comments-320-251" class="pagelet-inview comments standard-margin" ajax="/comment-action/load-comments/251/320/with-voting/with-sort/" target="comments-320-251" loaded="2">
+
+
+
+
+<div id="comment-realtime-error" class="yellow-banner weight-600 dark less-margin-2-bottom regular hidden"></div>
+<div class="comments-list" realtime="true">
+    
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="./1 - fun with bits_files/nice_threadedcomments.css">
+
+
+<div class="threadedComments">
+
+    <div class="content comment-count">
+        
+        <div id="comment-count-320-251" class="regular dark bold caps float-left"> Comments (15) </div>
+        
+
+        
+        <div class="comment-sort-filter">
+            
+            
+            
+            
+                <a ajax="/comment-action/load-comments/251/320/with-voting/with-sort/" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="load-pagelet link-13 medium-margin-left float-left " target="comments-320-251"><i class="fa fa-refresh less-margin"></i></a>
+            
+            <a id="sort-comments-by-date" ajax="/comment-action/load-comments/251/320/with-voting/none/" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="load-pagelet link-13 hidden" target="comments-320-251"></a>
+            <a id="sort-comments-by-votes" ajax="/comment-action/load-comments/251/320/with-voting/with-sort/" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="load-pagelet link-13 hidden" target="comments-320-251"></a>
+            
+            <span class="sort-filter float-right">
+                <span class="light caps bold">Sort By:</span>
+                <label for="sort-filter">
+                    <select id="sort-filter" class="dark small">
+                        <option value="Submitted">Date</option>
+                        <option selected="selected" value="Upvotes">Relevance</option>
+                    </select>
+                </label>
+            </span>
+            
+            
+            
+            
+        <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        
+
+    </div> <!-- content -->
+
+    
+    <div class="less-margin-2">
+        <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="link-13 dark show-modal content " target="login-modal">Login/Signup to Comment</a>
+    </div>
+    
+    
+    <div id="c-320-251" class="content view-comments-content">
+        
+        <!-- fetch comment_content_object to reduce query count -->
+        
+            
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c19278">
+                <div id="comment-container-19278" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@vibhavyawalkar" target="_blank">
+                            <img src="./1 - fun with bits_files/photo.jpg" alt="vibhavyawalkar" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container child-exists " style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@vibhavyawalkar">
+                                    Vibhav Yawalkar
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">4 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>I think the same method can be used to find all the substrings of a given string. Right?</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-19278" class="comment-statement-form"></div>
+                        <div id="users-suggestion-19278"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    1 vote
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/vibhavyawalkar/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c19278" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment last" id="c19280">
+                <div id="comment-container-19280" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@bhavesh_munot" target="_blank">
+                            <img src="./1 - fun with bits_files/f26dba7dp.jpg" alt="bhavesh_munot" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container child-exists " style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@bhavesh_munot">
+                                    Bhavesh Munot
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+<div class="comment-user-admin smaller light float-left less-margin-left tool-tip">
+    <i class="fa fa-bolt"></i> Author
+</div>
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">4 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>No! If you say sub-sequences, then yes. Sub-strings need to be contiguous but sub-sequences or subsets need not be. You got the difference, right? All sub-strings are sub-sequences but vice-versa is not true.</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-19280" class="comment-statement-form"></div>
+                        <div id="users-suggestion-19280"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    1 vote
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/bhavesh_munot/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c19280" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment last" id="c52867">
+                <div id="comment-container-52867" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@shuboy2014" target="_blank">
+                            <img src="./1 - fun with bits_files/5904aedimg_20180505_180601.jpg" alt="shuboy2014" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@shuboy2014">
+                                    Shubham Aggarwal
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">3 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>@Bhavesh can you provide me link of question for point 16 ?</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-52867" class="comment-statement-form"></div>
+                        <div id="users-suggestion-52867"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    1 vote
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/shuboy2014/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c52867" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+                </li>
+                </ul>
+            
+                </li>
+                </ul>
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c19279">
+                <div id="comment-container-19279" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@sheldor_cooper" target="_blank">
+                            <img src="./1 - fun with bits_files/33106d9hiro.jpg" alt="sheldor_cooper" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@sheldor_cooper">
+                                    hola
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">4 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>thank u sir...!!! very informative note..!!!</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-19279" class="comment-statement-form"></div>
+                        <div id="users-suggestion-19279"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/sheldor_cooper/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c19279" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+        
+            
+            
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c19789">
+                <div id="comment-container-19789" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@rajeevkgp" target="_blank">
+                            <img src="./1 - fun with bits_files/f876b87challenge_accepted.jpg" alt="rajeevkgp" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container child-exists " style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@rajeevkgp">
+                                    Rajeev Kumar
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">4 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>8. SET the xth bit in number ---&gt; XOR with 1 shifted to xth bit<br>Here, XOR should be OR</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-19789" class="comment-statement-form"></div>
+                        <div id="users-suggestion-19789"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/rajeevkgp/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c19789" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment last" id="c57212">
+                <div id="comment-container-57212" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@bhavesh_munot" target="_blank">
+                            <img src="./1 - fun with bits_files/f26dba7dp.jpg" alt="bhavesh_munot" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@bhavesh_munot">
+                                    Bhavesh Munot
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+<div class="comment-user-admin smaller light float-left less-margin-left tool-tip">
+    <i class="fa fa-bolt"></i> Author
+</div>
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">3 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>Yes, thanks for pointing it out.<br>I have assumed it to be 0 already and hence XORing it also does the job.</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-57212" class="comment-statement-form"></div>
+                        <div id="users-suggestion-57212"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/bhavesh_munot/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c57212" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+                </li>
+                </ul>
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c20520">
+                <div id="comment-container-20520" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@harshsingh05" target="_blank">
+                            <img src="./1 - fun with bits_files/picture" alt="harshsingh05" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container child-exists " style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@harshsingh05">
+                                    Harsh Kumar
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">4 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>in converting decimal to binary..the number should be right shifted and not left shifted right??</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-20520" class="comment-statement-form"></div>
+                        <div id="users-suggestion-20520"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/harshsingh05/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c20520" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment last" id="c20566">
+                <div id="comment-container-20566" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@bhavesh_munot" target="_blank">
+                            <img src="./1 - fun with bits_files/f26dba7dp.jpg" alt="bhavesh_munot" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@bhavesh_munot">
+                                    Bhavesh Munot
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+<div class="comment-user-admin smaller light float-left less-margin-left tool-tip">
+    <i class="fa fa-bolt"></i> Author
+</div>
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">4 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>Yeah, thank you for pointing it out!</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-20566" class="comment-statement-form"></div>
+                        <div id="users-suggestion-20566"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/bhavesh_munot/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c20566" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+                </li>
+                </ul>
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c27845">
+                <div id="comment-container-27845" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@Karan2116" target="_blank">
+                            <img src="./1 - fun with bits_files/a90142e20141224_132433.jpg" alt="Karan2116" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container child-exists " style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@Karan2116">
+                                    Karan Kapoor
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">4 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>for setting the bit.. it should be n = n | (1 &lt;&lt;(x-1) ) instead of n ^ =  (1&lt;&lt;(x-1))</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-27845" class="comment-statement-form"></div>
+                        <div id="users-suggestion-27845"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/Karan2116/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c27845" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment last" id="c57211">
+                <div id="comment-container-57211" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@bhavesh_munot" target="_blank">
+                            <img src="./1 - fun with bits_files/f26dba7dp.jpg" alt="bhavesh_munot" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@bhavesh_munot">
+                                    Bhavesh Munot
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+<div class="comment-user-admin smaller light float-left less-margin-left tool-tip">
+    <i class="fa fa-bolt"></i> Author
+</div>
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">3 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>Yes, You are right.<br>I have assumed it to be 0 already and hence XORing it also does the job.<br>Thanks.</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-57211" class="comment-statement-form"></div>
+                        <div id="users-suggestion-57211"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/bhavesh_munot/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c57211" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+                </li>
+                </ul>
+            
+        
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c35420">
+                <div id="comment-container-35420" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@rajbirs12" target="_blank">
+                            <img src="./1 - fun with bits_files/picture(1)" alt="rajbirs12" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@rajbirs12">
+                                    Rajbir Singh
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">3 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>thank you for such nice explanation.. :)<br></p>
+                            
+                        </div>
+                        <div id="comment-statement-form-35420" class="comment-statement-form"></div>
+                        <div id="users-suggestion-35420"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/rajbirs12/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c35420" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+        
+            
+            
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c56160">
+                <div id="comment-container-56160" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@KrishMunot" target="_blank">
+                            <img src="./1 - fun with bits_files/12dde80img-20140915-wa0003 - copy_overlay.jpg" alt="KrishMunot" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@KrishMunot">
+                                    Krish Munot
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">3 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>Thanks a lot for such an enlightening post! :) </p>
+                            
+                        </div>
+                        <div id="comment-statement-form-56160" class="comment-statement-form"></div>
+                        <div id="users-suggestion-56160"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/KrishMunot/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c56160" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+        
+            
+            
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c63082">
+                <div id="comment-container-63082" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@subhamkp" target="_blank">
+                            <img src="./1 - fun with bits_files/c98b298skp.jpg" alt="subhamkp" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@subhamkp">
+                                    Subham Kamalapuri
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">3 years ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>thanks sir</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-63082" class="comment-statement-form"></div>
+                        <div id="users-suggestion-63082"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/subhamkp/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c63082" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+        
+            
+            
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c135181">
+                <div id="comment-container-135181" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@srinee19" target="_blank">
+                            <img src="./1 - fun with bits_files/photo(1).jpg" alt="srinee19" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@srinee19">
+                                    Amogha Ramakantha
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">a year ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>Very useful. Thank you !</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-135181" class="comment-statement-form"></div>
+                        <div id="users-suggestion-135181"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/srinee19/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c135181" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+        
+            
+            
+            
+
+            
+
+            
+            <ul>
+            
+
+            
+            <li class="active-comment " id="c135182">
+                <div id="comment-container-135182" class="comment-container">
+                    
+                    <div class="float-left comment-user-image">
+                        
+                        <a href="https://www.hackerearth.com/@srinee19" target="_blank">
+                            <img src="./1 - fun with bits_files/photo(1).jpg" alt="srinee19" width="30" height="30" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        
+                    </div> <!-- comment-user-image -->
+                    
+
+                    <div class="float-left less-margin-left comment-info-container" style="width:93%">
+                        
+                        <div class="comment-user-info float-left">
+                            
+                            
+                                <a class="" href="https://www.hackerearth.com/@srinee19">
+                                    Amogha Ramakantha
+                                </a>
+                            
+                            
+                        </div> <!-- comment-user-info -->
+                        
+
+                        
+
+
+
+                        
+
+                        
+                        <div class="smaller light float-left less-margin-left" style="margin-top: 3px;">a year ago</div>
+                        
+
+                        <div class="clear"></div>
+
+                        
+                        <div class="comment-statement">
+                            
+                            <p>Please write more articles like this.</p>
+                            
+                        </div>
+                        <div id="comment-statement-form-135182" class="comment-statement-form"></div>
+                        <div id="users-suggestion-135182"></div>
+                        
+
+                        
+                        <div class="comment-actions smaller">
+                        
+                        <div class="float-left poll-link">
+                            
+                                <span class="polls-comment align-center inline-block float-right">
+                                
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="anon-polls-up upvote show-modal inline-block " target="login-modal">
+                                    <i class="fa fa-caret-up fa-lg fa-2x"></i>
+                                    <span class="polls-count only-positive light inline-block less-margin-left">
+					    
+					    0 votes
+					    
+				    </span>
+                                </a>
+                                
+                                </span>
+                            
+                        </div>
+                        
+                        
+                            <!-- Reply to comment -->
+                            <div class="float-left reply-link smaller less-margin-left">
+                               <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="show-modal light hover-link" target="login-modal">Reply</a>
+                            </div>
+                            <!-- Private message -->
+                            
+                            <div class="float-left private-message-link less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/messages/compose/srinee19/" target="_blank">Message</a>
+                            </div>
+                            
+                            <div class="float-left smaller share-comment less-margin-left">
+                                <span class="dot"><i class="fa fa-circle"></i></span>
+                                <a class="light" href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/?scroll-id=comments-320-251&amp;scroll-trigger=inview#c135182" target="_blank" title="Copy comment link">Permalink</a>
+                            </div>
+                            <div class="clear"></div>
+                        
+                        </div>
+                        
+                    </div> <!-- comment-info-container -->
+                    <div class="clear"></div>
+                </div>
+            
+            
+                </li>
+                </ul>
+            
+        
+
+        
+        
+    </div> <!-- content -->
+    
+</div> <!-- threadedComments -->
+
+
+
+
+    <div id="post-comment-url" class="hidden">
+        
+            /comment-action/AJAX/post/with-voting/
+        
+    </div>
+    
+    
+    
+</div> <!-- comments -->
+
+
+
+
+
+
+
+</div>
+    
+</div> <!-- end notes-container -->
+
+        </div><!-- left -->
+
+        <div class="right medium-margin">
+            <div class="right-box">
+                <div class="title"><i class="fa fa-magic less-margin-bottom"></i> Author</div>
+                <hr class="hr-dashed">
+                        
+                <div class="content">
+                    <div class="notes-user-info ">
+                        <a href="https://www.hackerearth.com/@bhavesh_munot" class="profile-pic inline-block medium-margin-right v-align-top">
+                            <img src="./1 - fun with bits_files/f26dba7dp(1).jpg" alt="bhavesh_munot" width="80" height="80" onerror="if(typeof handle_avatar_error==&#39;function&#39;){handle_avatar_error(this);}">
+                        </a>
+                        <div class="inline-block user-info light small">
+                            <a href="https://www.hackerearth.com/@bhavesh_munot" class="inline-block large dark weight-600 hover-link">Bhavesh Munot</a>
+                            
+                            <div class="user-job-info ellipsis" title="System Software Engineer at Nvidia"><i class="fa fa-briefcase small"></i> System Software Engineer at Nvidia</div>
+                            
+                            
+                            <div><i class="fa fa-map-marker small"></i> College Station, TX, United States</div>
+                            
+                            <div><a href="https://www.hackerearth.com/practice/notes/u/bhavesh_munot/" class="light weight-600"><i class="fa fa-file-text-o small"></i> 9 notes</a></div>
+                        </div> <!-- user-info -->
+                    </div> <!-- notes-user-info -->
+                </div> <!-- content -->
+            </div> <!-- right-box -->
+
+            <div class="right-box" id="9ec143b"><div class="title">Trending Notes</div>
+<hr class="hr-dashed">
+<div class="content">
+    
+    <div class="less-margin-2">
+        <a href="https://www.hackerearth.com/practice/notes/divyanshu12/python-diaries-chapter-3/"> Python Diaries Chapter 3 Map | Filter |  For-else | List Comprehension</a>
+        <div class="small">written by Divyanshu Bansal</div>
+    </div>
+    
+    <div class="less-margin-2">
+        <a href="https://www.hackerearth.com/practice/notes/askpk123/bokeh-interactive-visualization-library-use-graph-with-django-template/"> Bokeh | Interactive Visualization Library | Use Graph with Django Template</a>
+        <div class="small">written by Prateek Kumar</div>
+    </div>
+    
+    <div class="less-margin-2">
+        <a href="https://www.hackerearth.com/practice/notes/askpk123/bokeh-interactive-visualization-library-graph-plotting/"> Bokeh | Interactive Visualization Library | Graph Plotting</a>
+        <div class="small">written by Prateek Kumar</div>
+    </div>
+    
+    <div class="less-margin-2">
+        <a href="https://www.hackerearth.com/practice/notes/divyanshu12/python-diaries-chapter-2/"> Python Diaries chapter 2</a>
+        <div class="small">written by Divyanshu Bansal</div>
+    </div>
+    
+    <div class="less-margin-2">
+        <a href="https://www.hackerearth.com/practice/notes/divyanshu12/python-diaries-chapter-1/">  Python Diaries chapter 1</a>
+        <div class="small">written by Divyanshu Bansal</div>
+    </div>
+    
+    <a href="https://www.hackerearth.com/practice/notes/" class="small float-right">more ... </a>
+    <div class="clear"></div>
+</div> <!-- content -->
+</div>
+
+        </div> <!-- right -->
+        <div class="clear"></div>
+
+    </div> <!-- responsive-container -->
+</div> <!-- responsive-page -->
+
+
+    <!-- include modal window for login/signup -->
+    
+        
+
+<div id="login-modal" class="modal-window smaller-modal hidden">
+    <div class="modal-header">
+        <div class="login-form align-center larger heading">Log in</div>
+        <div class="signup-form-div hidden align-center larger heading">Sign Up</div>
+        <div class="password-reset hidden align-center larger heading">Reset Password</div>
+    </div>
+    <div class="modal-content">
+
+        <div class="login-form">
+            
+                
+
+
+<div class="modal-social-login align-center">
+    
+    
+    <a url="/zeus/facebook/login/?display=popup&amp;next=%2Fsocial-login-complete%2F%3Forigin_protocol%3Dhttps%26origin_host%3Dwww.hackerearth.com%26redirect%3D/practice/notes/fun-with-bits-print-all-subsets-of-a-set/&amp;update=facebook&amp;source=practice&amp;purpose=login" title="Facebook" class="button btn-facebook btn-medium show-popup inline-block margin-top-8 less-margin-right less-margin-bottom" minimal="true" style="width: 41%">
+    
+    <i class="fa fa-facebook"></i> <span class="regular less-margin-left">Log in with Facebook</span>
+    </a>
+
+    
+    <a url="/zeus/github/login/?next=%2Fsocial-login-complete%2F%3Forigin_protocol%3Dhttps%26origin_host%3Dwww.hackerearth.com%26redirect%3D/practice/notes/fun-with-bits-print-all-subsets-of-a-set/&amp;update=github&amp;source=practice&amp;purpose=login" title="Github" class="button btn-github btn-medium show-popup inline-block margin-top-8 less-margin-right" minimal="true" style="width: 43%">
+    
+    <i class="fa fa-github"></i> <span class="regular less-margin-left">Log in with Github</span>
+    </a>
+
+    
+    <a url="/zeus/google/login/?next=%2Fsocial-login-complete%2F%3Forigin_protocol%3Dhttps%26origin_host%3Dwww.hackerearth.com%26redirect%3D/practice/notes/fun-with-bits-print-all-subsets-of-a-set/&amp;update=google&amp;source=practice&amp;purpose=login" title="Google" class="button btn-google btn-medium show-popup margin-top-8 less-margin-right sign-up-btn-modified" minimal="true" style="display: block">
+    
+    <img src="./1 - fun with bits_files/google_logo.png" alt="Google" style="vertical-align: middle"> 
+    <span class="regular medium-margin-left roboto-font-family">Sign in with Google</span>
+    </a>
+    
+
+    <div class="clear"></div>
+</div>
+<div class="align-center standard-margin word-with-line-head">
+    <div class="word-with-line inline-block">
+        <span class="large light">or</span>
+    </div>
+</div>
+
+            
+            <form id="modal-login-form" name="login-form" method="POST" class="ajax-form medium-margin" ajax="/AJAX/login/">
+                
+
+
+
+
+    
+
+        
+
+        
+        <div class="wrapper small-wrapper">
+            
+            <input id="id_login" name="login" placeholder="Username or Email" type="text" required="">
+        </div>
+        <div class="wrapper small-wrapper">
+            <input id="id_password" name="password" placeholder="Password" type="password" required="">
+        </div>
+        
+    
+    <input type="hidden" name="next" value="/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">
+     <div>
+         <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="link-3 show-hide-many float-right" show="password-reset" hide="login-form">Forgot Password?</a>
+        <div class="clear"></div>
+    </div>
+    <div class="align-center medium-margin">
+        <input type="submit" name="submit" clicked="Logging In.." value="Log in " class="button btn-blue fontawesome btn-largest weight-600 large">
+    </div>
+
+    
+    <script type="text/javascript">
+        try{
+            grecaptcha.render('nocaptcha-recaptcha', {
+                'sitekey' : ''
+            });
+        }
+        catch(err){}
+    </script>
+    
+
+
+
+            </form>
+            
+            <div class="align-center dark regular standard-margin dont-have-account">
+                Don't have an account? <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="link-13 show-hide-many regular" show="signup-form-div" hide="login-form"> Sign up</a>
+            </div>
+            
+        </div>
+
+        <div class="signup-form-div hidden">
+            
+                
+
+
+<div class="modal-social-signup align-center">
+    
+    
+    <a id="social-login-button-fb" url="/zeus/facebook/login/?display=popup&amp;next=%2Fsocial-login-complete%2F%3Forigin_protocol%3Dhttps%26origin_host%3Dwww.hackerearth.com%26redirect%3D/practice/notes/fun-with-bits-print-all-subsets-of-a-set/&amp;update=facebook&amp;source=practice&amp;purpose=signup" title="Facebook" class="button btn-facebook btn-medium show-popup inline-block margin-top-8 less-margin-right hidden" minimal="true" style="display: none;">
+    
+    <i class="fa fa-facebook"></i> <span class="regular weight-600 less-margin-left">Facebook</span>
+    </a>
+    <a class="button btn-facebook btn-medium inline-block margin-top-8 less-margin-right less-margin-bottom social-login-button social-login-button-fb show-modal" target="gdpr-modal">
+    <i class="fa fa-facebook"></i> <span class="regular less-margin-left">Sign up with Facebook</span>
+    </a>
+
+    
+    <a id="social-login-button-github" url="/zeus/github/login/?next=%2Fsocial-login-complete%2F%3Forigin_protocol%3Dhttps%26origin_host%3Dwww.hackerearth.com%26redirect%3D/practice/notes/fun-with-bits-print-all-subsets-of-a-set/&amp;update=github&amp;source=practice&amp;purpose=signup" title="Github" class="button btn-github btn-medium inline-block margin-top-8 less-margin-right show-popup hidden" minimal="true" style="display: none;">
+    
+    <i class="fa fa-github"></i> <span class="regular weight-600 less-margin-left">Github</span>
+    </a>
+    <a class="button btn-github btn-medium inline-block margin-top-8 less-margin-right social-login-button social-login-button-github show-modal" target="gdpr-modal">
+    <i class="fa fa-github"></i> <span class="regular less-margin-left">Sign up with Github</span>
+    </a>
+
+    
+    <a id="social-login-button-g" url="/zeus/google/login/?next=%2Fsocial-login-complete%2F%3Forigin_protocol%3Dhttps%26origin_host%3Dwww.hackerearth.com%26redirect%3D/practice/notes/fun-with-bits-print-all-subsets-of-a-set/&amp;update=google&amp;source=practice&amp;purpose=signup" title="Google" class="button btn-google btn-medium inline-block margin-top-8 less-margin-right show-popup hidden" minimal="true" style="display: none;">
+    
+    <i class="fa fa-google-plus"></i> <span class="regular weight-600 less-margin-left">Google</span>
+    </a>
+    <a class="button btn-google btn-medium margin-top-8 less-margin-right social-login-button social-login-button-g show-modal sign-up-btn-modified" style="display: block" target="gdpr-modal">
+    <img src="./1 - fun with bits_files/google_logo.png" alt="Google" style="vertical-align: middle"> 
+    <span class="regular medium-margin-left roboto-font-family">Sign up with Google</span>
+    </a>
+    
+
+    <div class="clear"></div>
+</div>
+<div class="align-center standard-margin word-with-line-head">
+    <div class="word-with-line inline-block">
+        <span class="large light">or</span>
+    </div>
+</div>
+
+            
+            
+            <form id="modal-signup-form" name="signup-form" method="POST" class="ajax-form medium-margin" ajax="/AJAX/hackerearth/signup/?source=practice&amp;next=/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">
+            
+                
+
+
+
+    
+        
+
+        
+        <div class="wrapper small-wrapper float-left">
+            <input id="id_first_name" maxlength="30" name="first_name" placeholder="First Name" type="text" required="">
+        </div>
+
+        <div class="wrapper small-wrapper float-right">
+            <input id="id_last_name" maxlength="30" name="last_name" placeholder="Last Name" type="text">
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="wrapper small-wrapper">
+            <input id="id_email" maxlength="75" name="email" placeholder="Email" type="text" required="">
+        </div>
+        <div class="wrapper small-wrapper">
+            <input id="id_password" name="password" placeholder="Password" type="password" required="" aria-autocomplete="list">
+        </div>
+    
+
+    <div class="align-center medium-margin">
+        <button id="signup-start-now" class="button btn-blue fontawesome btn-largest weight-600 large disabled" target="gdpr-modal">Start Now</button>
+    </div>
+
+    <style>
+  #gdpr-modal {
+    position: absolute;
+    bottom: 0;
+  }
+</style>
+<div id="gdpr-modal" class="modal-window smaller-modal hidden">
+  
+
+<style>
+  #gdpr-modal-content {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  #gdpr-modal-content .modal-header {
+    padding: 50px 55px 35px 55px;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  #gdpr-modal-content .modal-footer {
+    padding: 25px 55px 90px;
+  }
+
+  #gdpr-modal-content .modal-content {
+    padding: 0 55px 5px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  #gdpr-modal-content .modal-footer .checkbox-row {
+    font-size: 16px;
+    display: inline-flex;
+  }
+
+  #gdpr-modal-content a {
+    color: #0099ff;
+  }
+  
+  #gdpr-modal-content .button.disabled {
+    background: #f5f6f6 !important;
+  }
+</style>
+
+<div id="gdpr-modal-content">
+  
+<div class="modal-header">HackerEarth’s Privacy Policy and Terms of Service</div>
+  <div class="modal-content">
+      We care about your data privacy. HackerEarth uses the information that you provide to contact you about relevant content, products, and services. <br> <br>
+
+      Our <a href="https://www.hackerearth.com/privacy/" target="_blank">Privacy Policy</a> and <a href="https://www.hackerearth.com/terms-of-service/" target="_blank">Terms of Service</a> will help you understand that you are in control of your data at HackerEarth.
+  </div>
+  <div class="modal-footer">
+    <div class="margin-bottom-15 regular checkbox-row">
+      <input type="checkbox" name="gdpr-tnc">
+      I have read and I agree.
+    </div>
+    <div class="">
+      <input type="submit" name="submit" value="Proceed" class="button btn-blue fontawesome btn-largest disabled large" id="gdpr-submit">
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+            </form>
+            <div class="align-center dark regular standard-margin dont-have-account">
+                Have an account? <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" class="link-13 show-hide-many regular" show="login-form" hide="signup-form-div"> Log in</a>
+            </div>
+        </div>
+
+        <div class="password-reset hidden">
+            <form name="password-reset" method="POST" class="ajax-form" ajax="/AJAX/password/reset/?next=/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">
+                
+
+
+
+
+    
+    <p class="dark large"> A password reset link will be sent to the following email id</p>
+    
+    <div class="wrapper">
+        
+        <input id="id_email" name="email" placeholder="Email" size="30" type="text" required="">
+    </div>
+    
+    <div class="align-center medium-margin">
+        <input type="submit" name="submit" clicked="Sending.." value="Send Password Reset Link" class="button btn-blue btn-largest weight-600 large">
+    </div>
+
+
+            </form>
+        </div>
+
+    </div>
+    <div class="gdpr-modal-content hidden">
+        
+
+<style>
+  #gdpr-modal-content {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  #gdpr-modal-content .modal-header {
+    padding: 50px 55px 35px 55px;
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  #gdpr-modal-content .modal-footer {
+    padding: 25px 55px 90px;
+  }
+
+  #gdpr-modal-content .modal-content {
+    padding: 0 55px 5px;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  #gdpr-modal-content .modal-footer .checkbox-row {
+    font-size: 16px;
+    display: inline-flex;
+  }
+
+  #gdpr-modal-content a {
+    color: #0099ff;
+  }
+  
+  #gdpr-modal-content .button.disabled {
+    background: #f5f6f6 !important;
+  }
+</style>
+
+<div id="gdpr-modal-content">
+  
+<div class="modal-header">HackerEarth’s Privacy Policy and Terms of Service</div>
+  <div class="modal-content">
+      We care about your data privacy. HackerEarth uses the information that you provide to contact you about relevant content, products, and services. <br> <br>
+
+      Our <a href="https://www.hackerearth.com/privacy/" target="_blank">Privacy Policy</a> and <a href="https://www.hackerearth.com/terms-of-service/" target="_blank">Terms of Service</a> will help you understand that you are in control of your data at HackerEarth.
+  </div>
+  <div class="modal-footer">
+    <div class="margin-bottom-15 regular checkbox-row">
+      <input type="checkbox" name="gdpr-tnc">
+      I have read and I agree.
+    </div>
+    <div class="">
+      <input type="submit" name="submit" value="Proceed" class="button btn-blue fontawesome btn-largest disabled large" id="gdpr-submit">
+    </div>
+  </div>
+</div>
+
+    </div>
+</div>
+
+    
+
+    <!-- override this block where we do not want the footer -->
+    
+    
+        
+                
+
+
+
+
+
+<div class="footer-large">
+    <div class="content align-center">
+        <div class="footer-sub-container">
+            <div class="section">
+                <a class="footer-link" href="https://www.hackerearth.com/team/" target="_blank">About Us</a>
+            </div>
+            <div class="section">
+                <a class="footer-link" href="https://www.hackerearth.com/sprint/" target="_blank">Innovation Management</a>
+            </div>
+            <div class="section">
+                <a class="footer-link" href="https://www.hackerearth.com/recruit/" target="_blank">Technical Recruitment</a>
+            </div>
+            <div class="section">
+                <a class="footer-link" href="https://www.hackerearth.com/university/" target="_blank">University Program</a>
+            </div>
+            <div class="section">
+                <a class="footer-link" href="https://www.hackerearth.com/docs/wiki/developers/solution-guide/" target="_blank">Developers Wiki</a>
+            </div>
+            <div class="section">
+                <a class="footer-link" href="http://blog.hackerearth.com/" target="_blank">Blog</a>
+            </div>
+            <div class="section">
+                <a class="footer-link" href="https://www.hackerearth.com/press/" target="_blank">Press</a>
+            </div>
+            <div class="section">
+                <a class="footer-link" href="https://www.hackerearth.com/companies/hackerearth/jobs/" target="_blank">Careers</a>
+            </div>
+            <div class="section">
+                <a class="footer-link" href="https://www.hackerearth.com/reach-us/" target="_blank">Reach Us</a>
+            </div>
+            
+        </div>
+    </div> <!-- content -->
+    <div class="clear"></div>
+    <div class="footer-bottom-container lighter small">
+        <div class="footer-bottom">
+            
+            <img src="./1 - fun with bits_files/HE_identity.png">
+            
+            <div class="float-right">
+                <span>
+                    <span>Site Language: </span>
+                    <select id="global-locale-switcher" class="nice-select" ajax_url="/users/update-locale-setting/" page_url="/practice/notes/fun-with-bits-print-all-subsets-of-a-set/" onchange="changeUserLocale(this, &#39;en-us&#39;, false)">
+                        
+                        
+                        <option value="ru" url="/ru/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">русский язык</option>
+                        
+                        
+                        
+                        <option value="fr" url="/fr/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">Français</option>
+                        
+                        
+                        
+                        <option value="zh" url="/zh/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">中文</option>
+                        
+                        
+                        
+                        <option value="en-us" selected="selected" url="/en-us/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">English</option>
+                        
+                        
+                        
+                        <option value="pt-br" url="/pt-br/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">Português</option>
+                        
+                        
+                        
+                        <option value="ja" url="/ja/practice/notes/fun-with-bits-print-all-subsets-of-a-set/">日本語</option>
+                        
+                        
+                    </select>
+                </span>
+                <span class="separator">|</span>
+                <span><a href="https://www.hackerearth.com/terms-of-service/">Terms and Conditions</a></span>
+                <span class="separator">|</span>
+                <span><a href="https://www.hackerearth.com/privacy/">Privacy</a></span>
+                <span class="separator">|</span>
+                <span class="align-right float-right">© 2019 HackerEarth</span>
+            </div>
+        </div>
+    </div><!-- footer-bottom-container -->
+</div>
+
+        
+    
+    
+
+    <div class="expand-box" id="recruiter-box" style="display: none;">
+        <div class="down-arrow"></div>
+        <ul class="no-margin">
+            
+            
+            
+            <a href="https://www.hackerearth.com/logout/?next=/practice/notes/fun-with-bits-print-all-subsets-of-a-set/"><li>Logout</li></a>
+        </ul>
+    </div>
+
+    
+
+    <!-- Include notifications box -->
+    
+
+
+
+<div class="expand-box" id="notifications-box" style="display: none;">
+    <div class="down-arrow"></div>
+    <div class="notifications-title-container">
+        <div class="float-left weight-600">Notifications</div>
+        <div class="float-right">
+            <a href="https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/#" ajax="https://www.hackerearth.com/notifications/AJAX/mark-all-read/" class="notif-mark-all-read link smaller clicky-ajax">Mark All as Read</a>
+        </div>
+        <div class="clear"></div>
+    </div> <!-- notifications-title-container -->
+
+    <div class="notifications-container nice-scrollbar" id="notifications-container" style="overflow: hidden; outline: none;" tabindex="0">
+    </div> <!-- notifications-container -->
+
+    <div class="smaller caps weight-600 align-center less-margin-2 less-margin-2-bottom">
+        <a class="link" href="https://www.hackerearth.com/notifications/">View All Notifications</a>
+    </div>
+<div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr" style="width: 7px; z-index: 10; background: rgb(238, 238, 238); cursor: default; position: absolute; top: 1px; left: -7px; height: 0px; opacity: 1; display: none;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 7px; height: 0px; background-color: rgb(204, 204, 204); border: none; background-clip: padding-box; border-radius: 0px;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 7px; z-index: 10; background: rgb(238, 238, 238); top: -6px; left: 0px; position: absolute; opacity: 1; cursor: default; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 7px; width: 0px; background-color: rgb(204, 204, 204); border: none; background-clip: padding-box; border-radius: 0px;"></div></div></div> <!-- notifications-box -->
+
+
+    <!-- Load notification icon with unread count -->
+    <div id="header-notif-icon-trigger" class="load-pagelet hidden" target="header-notif-icon" ajax="/notifications/pagelets/header-notif-icon-count/" show-loader="false"></div>
+
+    
+    <!-- Load live events widget -->
+    <div id="live-events-trigger" class="load-pagelet hidden" target="live-events-trigger-data" ajax="/AJAX/live_events_widget_count/" show-loader="false"></div>
+    
+
+    
+    
+    
+
+    
+
+    
+    
+
+        
+        
+
+        <!-- Store any json returned for bigpipe -->
+        <div id="bigpipe-json" class="hidden">
+            {"9ec143b": "/recommendation/pagelets/trending-card/?sensual=True"}
+        </div>
+
+        <!-- Store any json returned for bigpipe -->
+        <div id="user-prompt-json" class="hidden">
+            
+        </div>
+
+        <!-- Store any html returned for feedback popup -->
+        <div id="user-feedback-popup" class="hidden"></div>
+
+
+        <!-- realtime host -->
+        <div id="realtime-host" class="hidden">realtime.hackerearth.com</div>
+        <!-- realtime port -->
+        <div id="realtime-port" class="hidden">80</div>
+
+        <!-- client name for updating parts of page in realtime -->
+        <div id="pusher-channel-name-0" class="hidden">7e1b226ce1c690b2546e9221d3357c0b26476939</div>
+        
+
+        
+            <div id="common-notification">
+            </div>
+        
+        <!-- pusher app key -->
+        <div id="pusher-app-key" class="hidden">58a29e5cae2309f04b28</div>
+
+        <!-- pusher auth url -->
+        <div id="pusher-auth-url" class="hidden">/realtime/pusher/auth/</div>
+
+        <!-- ping url for user presence -->
+        <div id="ghost-ping-url" class="hidden" ajax="/ghost/ping/"></div>
+
+        
+        
+
+        <!-- url to get active lab features -->
+        
+        <!-- All the scripts go here -->
+        <script>
+            var CURRENT_PATH = "https://www.hackerearth.com/practice/notes/fun-with-bits-print-all-subsets-of-a-set/";
+            var HISTORY = '';
+
+            // Make code constants available globally in JS
+            var MAP_LANG_TO_NAME = {"SCALA_2118": "Scala 2.11.8", "LUA": "Lua", "PASCAL": "Pascal", "CSHARP": "C#", "CPP": "C++", "PYTHON3": "Python 3", "POSTGRESQL": "PostgreSQL", "KOTLIN": "Kotlin", "SCALA": "Scala", "PERL": "Perl", "HASKELL": "Haskell", "D": "D", "CPP14": "C++14", "R": "R(RScript)", "CPP11": "C++11", "GO": "Go", "RUBY": "Ruby", "BASH": "Bash", "GROOVY": "Groovy", "LOLCODE": "LOLCODE", "LISP": "Lisp", "Text": "Text", "WHENEVER": "Whenever", "MYSQL": "MySQL", "OBJECTIVEC": "Objective-C", "PHP": "PHP", "JAVASCRIPT_UI": "JavaScript", "PYTHON": "Python", "JAVASCRIPT": "JavaScript(Rhino)", "SWIFT_4_1": "Swift-4.1", "vp": "N/A", "TEXTFILE": "Text", "JAVA8": "Java 8", "JAVASCRIPT_NODE": "JavaScript(Node.js)", "RACKET": "Racket", "HTML": "HTML", "SWIFT": "Swift", "RUST": "Rust", "FSHARP": "F#", "C": "C", "TYPESCRIPT": "TypeScript", "ORACLE_DB": "Oracle_Db", "OCAML": "OCaml", "OCTAVE": "Octave", "CLOJURE": "Clojure", "BEFUNGE": "Befunge", "CSS": "CSS", "ERLANG": "Erlang", "JAVA": "Java", "LISP_SBCL": "Lisp (SBCL)", "JULIA": "Julia", "VB": "Visual Basic", "MSSQL": "MSSQL"};
+            var MAP_NAME_TO_LANG = {"Lisp (SBCL)": "LISP_SBCL", "TypeScript": "TYPESCRIPT", "Java": "JAVA", "Scala": "SCALA", "JavaScript": "JAVASCRIPT_UI", "Perl": "PERL", "Lua": "LUA", "JavaScript(Rhino)": "JAVASCRIPT", "MySQL": "MYSQL", "Erlang": "ERLANG", "LOLCODE": "LOLCODE", "HTML": "HTML", "C#": "CSHARP", "R(RScript)": "R", "C++14": "CPP14", "Rust": "RUST", "Octave": "OCTAVE", "Ruby": "RUBY", "Bash": "BASH", "Groovy": "GROOVY", "C": "C", "Python 3": "PYTHON3", "Lisp": "LISP", "Kotlin": "KOTLIN", "Oracle_Db": "ORACLE_DB", "F#": "FSHARP", "N/A": "vp", "C++": "CPP", "Racket": "RACKET", "Objective-C": "OBJECTIVEC", "Swift": "SWIFT", "CSS": "CSS", "D": "D", "Clojure": "CLOJURE", "Befunge": "BEFUNGE", "Java 8": "JAVA8", "Whenever": "WHENEVER", "PostgreSQL": "POSTGRESQL", "Text": "TEXTFILE", "Swift-4.1": "SWIFT_4_1", "OCaml": "OCAML", "Julia": "JULIA", "JavaScript(Node.js)": "JAVASCRIPT_NODE", "Python": "PYTHON", "Pascal": "PASCAL", "Haskell": "HASKELL", "Scala 2.11.8": "SCALA_2118", "C++11": "CPP11", "Go": "GO", "Visual Basic": "VB", "PHP": "PHP", "MSSQL": "MSSQL"};
+        </script>
+
+        
+
+        <!-- alljs: static_media/js/jquery-1.7.min.patched.js static_media/js/jquery.color.js static_media/js/jquery.elastic.js static_media/js/ajaxSend.js  static_media/js/jquery.inview.js  static_media/js/tooltip/jquery.tipTip.modified.js  static_media/offline/offline.min.js  static_media/js/watermark.min.js  static_media/history.js?v=0.1/scripts/bundled/html4html5/jquery.history.js  static_media/js/jquery.nicescroll.js  static_media/simplemodal/simplemodal.js static_media/js/jquery.sticky.js static_media/js/pusher.min.js static_media/js/ifvisible.min.js static_media/ghost/ghost.js static_media/feeds/feeds.js static_media/base/progress_bar.js -->
+        
+
+
+<script>
+    UPLOADING_TEXT = "Uploading";
+    UPLOADED_TEXT = "Uploaded";
+    SAVING_TEXT = "Saving..";
+    UPLOAD_SUCCESS_MESSAGE = "File saved successfully.";
+    UPLOAD_ERROR_MESSAGE = "An error occured while saving, please try again in sometime.";
+</script>
+<script type="text/javascript" src="./1 - fun with bits_files/alljs.js.download" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./1 - fun with bits_files/base1.0.1.js.download" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./1 - fun with bits_files/bigpipe.js.download" crossorigin="anonymous"></script>
+        
+
+
+<script type="text/javascript">
+var CONFIRM_COMMENT_DELETE = "Are you sure, you want to delete comment?";
+var COMMENT_NOT_DELETED = "Comment could not be deleted!";
+var CONFORM_COMMENT_MARK_SPAM = "Are you sure, you want to mark this comment as spam?";
+var COMMENT_NOT_MARKED_SPAM = "Comment could not be marked as spam!";
+var ENTER_15_CHARS = "Enter atleast 15 characters";
+var JUST_X_MORE = "Just {count} more to go";
+</script>
+        <script type="text/javascript" src="./1 - fun with bits_files/pusher_realtime.js.download" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./1 - fun with bits_files/userprompt.js.download" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./1 - fun with bits_files/history.js.download" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="./1 - fun with bits_files/commentUtils.js.download" crossorigin="anonymous"></script>
+
+        
+        <script src="./1 - fun with bits_files/api.js.download" async="" defer=""></script>
+        
+
+        <script src="./1 - fun with bits_files/offline.min.js.download" crossorigin="anonymous"></script>
+        
+
+        
+<script type="text/javascript" async="" src="./1 - fun with bits_files/MathJax.js.download"></script>
+<script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        messageStyle: "none",
+        jax: ["input/TeX", "output/SVG"],
+        tex2jax: {
+            inlineMath: [['$$','$$'], ['\\(', '\\)']],
+            displayMath: [['$$$', '$$$'], ['\\[', '\\]']],
+            preview: "none"
+        },
+    });
+</script>
+<script type="text/javascript" src="./1 - fun with bits_files/MathJax.js(1).download"></script>
+<script type="text/javascript">
+    window.addEventListener("load", function() {
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    });
+</script>
+
+        <script>
+            Offline.options = {
+                interceptRequests: false,
+                requests: false,
+            };
+        </script>
+
+        
+
+        
+
+
+<script>
+
+$(document).ready(function (){
+    $('#header-notif-icon-trigger').click();
+
+    
+    $('#live-events-trigger').click();
+    
+
+    
+    
+    
+
+    
+
+    // show kone ge widget if not visited
+    
+
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    
+    var m_links = {};
+    var m_elements = {
+        '#modal-login-form input[type=submit]': 'Modal Email Login',
+        '#modal-signup-form input[type=submit]': 'Modal Email Signup',
+        '.modal-social-login .btn-facebook': 'Modal Facebook Login',
+        '.modal-social-login .btn-google': 'Modal Google Login',
+        '.modal-social-signup .btn-facebook': 'Modal Facebook Signup',
+        '.modal-social-signup .btn-google': 'Modal Google Signup',
+        '.top-banner .login-banner a': 'Signup after banner click',
+    };
+    
+    for (var key in m_elements) {
+        $(key).live('click', {'key': key }, function(e) {
+            var key = e.data.key;
+            mixpanel.track('Click', {'name': m_elements[key]});
+        });
+    }
+    for (var key in m_links) {
+        mixpanel.track_links(key, 'Click', {'name': m_links[key]});
+    }
+});
+</script>
+
+
+
+
+<script type="text/javascript" src="./1 - fun with bits_files/search.1.0.js.download" crossorigin="anonymous" defer=""></script>
+
+
+
+
+
+<script type="text/javascript" src="./1 - fun with bits_files/lab.js.download" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="./1 - fun with bits_files/gdpr-modal.js.download" crossorigin="anonymous"></script>
+
+
+
+        <script>
+            // Used in search
+            var is_user_logged_in = false;
+        </script>
+
+        <script type="text/javascript" src="./1 - fun with bits_files/detect_timezone.js.download" crossorigin="anonymous"></script>
+
+        
+        <script>
+
+            function setTimezoneCookie(detected_user_tz) {
+                /* Sets the detected user timezone as a cookie in the browser.
+                   If someone changes it or removes it, a sanity check is
+                   performed and the cookie is reset.
+
+                   This cookie is set for ready availability of user timezone
+                   in the backend.
+                */
+
+                const USER_TIMEZONE_COOKIE = 'user_tz';
+                // Try to get the existing user timezone cookie stored
+                // in the browser.
+                user_tz = readCookie(USER_TIMEZONE_COOKIE);
+
+                // Flag to determine whether a new cookie has to be created.
+                create_cookie = false;
+
+                if(user_tz) {
+                    if(user_tz !== detected_user_tz) {
+                        // If someone has changed the cookie in some way, we
+                        // set a new cookie.
+                        eraseCookie(USER_TIMEZONE_COOKIE);
+                        create_cookie = true;
+                    }
+                } else {
+                    create_cookie = true;
+                }
+
+                // Create a new cookie if create_cookie flag is set.
+                createCookie(USER_TIMEZONE_COOKIE, detected_user_tz, 1);
+
+            }
+            $(document).ready(function(){
+                var timezone = jstz.determine_timezone(); // Now you have an instance of the TimeZone object.
+                // Set as a cookie in browser for easy access in backend.
+                setTimezoneCookie(timezone.name());
+
+                // Set as a js variable for easy access across frontend.
+                USER_TIMEZONE = timezone.name()
+
+                
+
+                
+
+                
+                
+                
+
+                
+
+                
+                    $.ajax({
+                        type: "POST",
+                        url:"/users/AJAX/set-timezone/",
+                        data: {
+                        'timezone': timezone.name(),
+                        },
+                    });
+                
+            });
+        </script>
+        
+        
+
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+                //mixpanel delegate links custom method
+                mixpanel.delegate_links = function (parent, selector, event_name, properties) {
+                    properties = properties || {};
+                    parent = parent || document.body;
+                    parent = $(parent);
+                    parent.on('click', selector, function (event) {
+                        var new_tab = event.which === 2 || event.metaKey || event.target.target === '_blank' || this.target === '_blank';
+                        properties.url = event.target.href || this.href;
+                        function callback() {
+                            if (new_tab) {
+                                return;
+                            }
+                            window.location = properties.url;
+                        }
+                        if (!new_tab) {
+                            event.preventDefault();
+                            setTimeout(callback, 300);
+                        }
+                        mixpanel.track(event_name, properties, callback);
+                    });
+                };
+            });
+            
+        </script>
+
+        
+<script type="text/javascript" src="./1 - fun with bits_files/prettifyall.js.download" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./1 - fun with bits_files/votes.js.download" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./1 - fun with bits_files/tagging_autocomplete.js.download" crossorigin="anonymous"></script>
+
+<script>
+    $("#notes-title-bar").sticky({
+        bottomSpacing: 600,
+    });
+    $("#notes-title-bar").width($("#notes-left-container").width()+ 'px');
+</script>
+
+<script>
+$(document).ready(function() {
+    styleCode();
+});
+</script>
+
+
+        
+        <!-- mixpanel analytics start -->
+        <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);mixpanel.init("4c30b8635363027dfb780d5a61785112");
+        </script>
+        <!-- mixpanel analytics end -->
+        <script type="text/javascript">
+            
+                
+                    mixpanel.unregister("username");
+                    mixpanel.unregister("email");
+                    mixpanel.unregister("date_of_joining");
+                    mixpanel.unregister("user_bucket");
+                    mixpanel.unregister("company");
+                    mixpanel.unregister("is_recruiter");
+                    mixpanel.register({
+                        "url_path": "/practice/notes/fun-with-bits-print-all-subsets-of-a-set/"
+                    });
+                
+            
+        </script>
+        
+
+        
+        
+        <div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./1 - fun with bits_files/vy-MhgbfL4v.html" style="border: none;"></iframe></div><div></div></div></div>
+        <script>
+            <!-- facebook button -->
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            <!-- twitter button -->
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+            <!-- google+ button -->
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/plusone.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+        </script>
+        
+        
+
+        
+            
+
+<link rel="stylesheet" href="./1 - fun with bits_files/cookiebar.css">
+
+<script type="text/javascript" src="./1 - fun with bits_files/cookiebar.js.download" crossorigin="anonymous"></script>
+
+
+        
+
+        
+            
+        
+
+        
+            <!-- Hackerearth Zendesk Widget -->
+
+
+
+
+<link rel="stylesheet" href="./1 - fun with bits_files/customer-support-widget.css">
+
+<script>
+    var isRecruiterDashboard = false;
+    var zESettingsRecruiterDashboard = {
+        webWidget: {
+            launcher: {
+                label: {
+                    "en-US": "",
+                    "*": "",
+                }
+            },
+            offset: {
+                horizontal: "-100px", /* To hide actual launcher widget */
+                vertical: "70px"
+            },
+            position: {
+                horizontal: 'right',
+                vertical: 'top'
+            }
+        }
+    };
+
+    var zESettingsDefault = {
+        webWidget: {
+            launcher: {
+                label: {
+                    "en-US": "",
+                    "*": "",
+                }
+            },
+            offset: {
+                horizontal: "-100px", /* To hide actual launcher widget */
+            }
+        }
+    };
+    if(isRecruiterDashboard) {
+       window.zESettings = zESettingsRecruiterDashboard;
+    } else {
+        window.zESettings = zESettingsDefault;
+    }
+    /*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(e){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var e=this.createElement("script");n&&(this.domain=n),e.id="js-iframe-async",e.src="https://assets.zendesk.com/embeddable_framework/main.js",this.t=+new Date,this.zendeskHost="hackerearth.zendesk.com",this.zEQueue=a,this.body.appendChild(e)},o.write('<body onload="document._l();">'),o.close()}();
+    /*]]>*/
+
+    var ZENDESK_LOCALE = "en-US";
+    var USER_EMAIL = "";
+    var USER_NAME = "";
+    var ATTACHMENT_LABEL = "Attachments (Optional)";
+    var DESCRIPTION_LABEL = "How can we help you, {name}?";
+</script>
+<script type="text/javascript" src="./1 - fun with bits_files/customer-support-widget.js.download" crossorigin="anonymous" defer=""></script>
+
+
+    <div class="customer-support-icon">
+        <p>?</p>
+    </div>
+
+
+        
+    
+
+</div>
+
+<script type="text/javascript" id="">!function(d,e,f,a,b,c){d.qp||(a=d.qp=function(){a.qp?a.qp.apply(a,arguments):a.queue.push(arguments)},a.queue=[],b=document.createElement(e),b.async=!0,b.src=f,c=document.getElementsByTagName(e)[0],c.parentNode.insertBefore(b,c))}(window,"script","https://a.quora.com/qevents.js");qp("init","d70e9ff77e5c4464abe91616d2cf5351");qp("track","ViewContent");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://q.quora.com/_/ad/d70e9ff77e5c4464abe91616d2cf5351/pixel?tag=ViewContent&amp;noscript=1"></noscript>
+
+<script type="text/javascript" id="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","802574803157043");fbq("set","agent","tmgoogletagmanager","802574803157043");fbq("track","PageView");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=802574803157043&amp;ev=PageView&amp;noscript=1"></noscript>
+<meta name="ahrefs-site-verification" content="3ffaea83eb287154cbd7b0d7353e6c847f50b59a65129ef2eb006a7a00369811"><script type="text/javascript" id="" src="./1 - fun with bits_files/an.js.download"></script>
+<iframe src="javascript:false" title="" style="display: none;" src="./1 - fun with bits_files/saved_resource(1).html"></iframe><script type="text/javascript" id="hs-script-loader" src="./1 - fun with bits_files/2586902.js(1).download"></script><noscript><img src="//adpxl.co/nWD76dPX/spacer.gif" alt=""></noscript>
+<div id="tiptip_holder" style="max-width:200px;"><div id="tiptip_arrow"><div id="tiptip_arrow_inner"></div></div><div id="tiptip_content"></div></div><div class="offline-ui offline-ui-up"><div class="offline-ui-content"></div></div><script src="./1 - fun with bits_files/saved_resource" type="text/javascript"></script><div class="offline-ui offline-ui-up"><div class="offline-ui-content"></div></div><iframe scrolling="no" frameborder="0" allowtransparency="true" src="./1 - fun with bits_files/widget_iframe.5b0c4d3ea3997aa2c22eac39be510646.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe name="oauth2relay856830872" id="oauth2relay856830872" src="./1 - fun with bits_files/postmessageRelay.html" tabindex="-1" aria-hidden="true" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe><iframe data-product="web_widget" title="No content" tabindex="-1" aria-hidden="true" src="./1 - fun with bits_files/saved_resource(2).html" style="width: 0px; height: 0px; border: 0px; position: absolute; top: -9999px;"></iframe><div><iframe title="Opens a widget where you can find more information" id="launcher" tabindex="0" class="zEWidget-launcher zEWidget-launcher--active" style="border: none; background: transparent; z-index: 999998; transform: translateZ(0px); position: fixed; transition: opacity 250ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, top, bottom; opacity: 1; width: 139px; height: 50px; max-height: 551px; min-height: 50px; margin: 10px 20px; right: -100px; bottom: 0px;" src="./1 - fun with bits_files/saved_resource(3).html"></iframe></div><div><iframe title="Find more information here" id="webWidget" tabindex="-1" class="zEWidget-webWidget " style="border: none; background: transparent; z-index: 999999; transform: translateZ(0px); position: fixed; transition: opacity 250ms cubic-bezier(0.645, 0.045, 0.355, 1) 0s, top, bottom; opacity: 0; width: 357px; height: 100%; max-height: 565px; min-height: 150px; margin-left: 8px; margin-right: 8px; top: -9999px;" src="./1 - fun with bits_files/saved_resource(4).html"></iframe></div></body></html>

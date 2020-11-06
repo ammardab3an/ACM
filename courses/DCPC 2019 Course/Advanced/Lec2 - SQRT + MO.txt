@@ -1,0 +1,14 @@
+Easy:
+http://codeforces.com/problemset/problem/425/D
+http://codeforces.com/problemset/problem/348/C
+http://codeforces.com/problemset/problem/342/E
+https://codeforces.com/problemset/problem/220/B
+
+Lecture Problems:
+https://codeforces.com/contest/455/problem/D
+https://codeforces.com/contest/506/problem/D
+https://csacademy.com/contest/archive/task/interval-expected-max/statement/
+https://codeforces.com/contest/220/problem/E
+https://codeforces.com/contest/877/problem/F
+https://codeforces.com/contest/95/problem/E
+https://csacademy.com/contest/archive/task/hamming-distances/

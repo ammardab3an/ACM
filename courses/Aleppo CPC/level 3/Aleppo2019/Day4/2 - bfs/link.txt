@@ -1,0 +1,17 @@
+1- simple bfs
+https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1594
+
+2- knight moves
+https://www.spoj.com/problems/NAKANJ/
+
+3- bfs+counting
+https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=865
+
+4- bfs+mod
+https://www.spoj.com/problems/ONEZERO/
+
+5- bfs
+https://www.spoj.com/problems/PPATH/
+
+6- two buttons
+https://codeforces.com/problemset/problem/520/B

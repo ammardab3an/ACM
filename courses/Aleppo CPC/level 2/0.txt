@@ -1,0 +1,66 @@
+#level_2
+#day_6
+https://ideone.com/IJIrkV
+https://www.spoj.com/problems/UCV2013H/
+https://ideone.com/0EBdzk
+http://www.spoj.com/problems/CATM/
+https://www.spoj.com/problems/BITMAP/
+https://ideone.com/7z8el1
+
+#level_2
+#day_5
+ÊÕ·Ê „”«∆· «·»«Ì‰—Ì ”Ì—‘ Ê œ—»Ê« ⁄·ÌÂ« ·‰› Õ „Ê÷Ê⁄ ÃœÌœ »ﬂ—«
+https://codeforces.com/contest/474/problem/B
+https://ideone.com/TKpoEI
+https://codeforces.com/problemset/problem/706/B
+
+#level_2
+ﬂÌ›ﬂ‰ .. Ì·Ì „« »Ì⁄—› «·⁄„·Ì«  ⁄«·» «  √Ê Ì·Ì ÷⁄Ì› ›ÌÂ‰ »«„ﬂ«‰Ê Ì› Õ ÂœÊ· «· Ê Ê—Ì«·«  ÊÌﬁ—√ „‰‰ „‘—ÊÕÌ‰ „‰ÌÕ .. »«·«÷«›… · Ê Ê—Ì«· ·„Ê÷Ê⁄ „»«—Õ Ì·Ì √Œœ‰« „ﬁœ„… ⁄‰Ê 
+https://www.cprogramming.com/tutorial/bitwise_operators.html
+https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/
+https://www.geeksforgeeks.org/power-set/
+
+#Day_4
+#Level_2
+#„ Ê”ÿ
+«·„”«∆· Ì·Ì „« Õ·Ì‰«Â« Õ·ÊÂ« „‘«‰ ‰ﬂ›Ì »«· Ê»Ìﬂ »ﬂ—« .. „Ê›ﬁÌ‰ ﬂ·ﬂ‰
+https://codeforces.com/contest/912/problem/B
+https://ideone.com/YCqgLL
+https://www.spoj.com/problems/AGGRCOW/
+https://ideone.com/Ld7LmK
+https://codeforces.com/contest/279/problem/B
+https://ideone.com/hEroad
+https://codeforces.com/contest/670/problem/D1
+https://ideone.com/rURzdw
+codeforces.com/problemset/problem/911/B
+https://ideone.com/PNpTSP
+
+#Day_2
+#Level_2
+#„ Ê”ÿ
+›Ì „”√·… Õ·Ì‰«Â« „»«—Õ »” „« ‰“·  ﬂÊœÂ« Ã—»Ê« ›ÌÂ« Ê»„”«∆· «·ﬂÊ‰ ” « ..
+œ—” «·ÌÊ„  ﬂ„·… ··⁄ÊœÌ… Ê«· —«Ã⁄Ì… „Ê›ﬁÌ‰ 
+https://codeforces.com/contest/476/problem/B
+https://ideone.com/uzJGVW
+https://www.spoj.com/problems/CODEIT02/
+https://codeforces.com/contest/1102/problem/B
+https://ideone.com/zpS750
+https://codeforces.com/Ö/vxP3awNX3J/contest/101361/problem/D
+https://ideone.com/Eeje9c
+
+#Day_1
+#Level_2
+#„ Ê”ÿ
+ÂÌ «·„”«∆· Ì·Ì Õ·Ì‰«Â« Ê›Ì „”«∆· „« Õ·Ì‰«Â« Ã—»Ê« ›ÌÂ« „‘«‰ ‰Õ·Â« »ﬂ—« Ê‰·Õﬁ €Ì—Â«
+https://codeforces.com/contest/82/problem/A
+https://ideone.com/VXYeEE
+https://codeforces.com/contest/1102/problem/B
+https://ideone.com/OFPDYf
+https://codeforces.com/contest/469/problem/A
+https://ideone.com/15GX8D
+https://codeforces.com/contest/520/problem/A
+https://ideone.com/3LQlRm
+https://codeforces.com/contest/4/problem/C
+https://ideone.com/eXUvUT
+https://codeforces.com/contest/988/problem/C
+https://ideone.com/u0yTF6

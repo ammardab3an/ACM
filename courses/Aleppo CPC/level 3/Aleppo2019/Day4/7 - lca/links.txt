@@ -1,0 +1,12 @@
+1- compute lca
+https://www.spoj.com/problems/LCA/
+
+2- lca queries
+https://www.spoj.com/problems/QTREE2/
+
+3- shortest path queries
+https://codeforces.com/gym/101808/problem/K
+
+4- sparse table for lca & max
+https://www.spoj.com/problems/NTICKETS/
+

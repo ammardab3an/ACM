@@ -1,0 +1,18 @@
+meet in the middle:
+http://codeforces.com/contest/525/problem/E
+http://codeforces.com/contest/1105/problem/E
+
+sparse table:
+http://codeforces.com/contest/713/problem/D
+
+segment tree:
+http://codeforces.com/contest/338/problem/E
+http://codeforces.com/contest/311/problem/D
+
+new:
+http://codeforces.com/contest/295/problem/E
+http://codeforces.com/contest/739/problem/C
+http://codeforces.com/contest/707/problem/E
+http://codeforces.com/contest/610/problem/E
+http://codeforces.com/contest/455/problem/E
+http://codeforces.com/contest/650/problem/D

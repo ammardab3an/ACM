@@ -1,0 +1,133 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+const long long mod = 1e9+7;
+const double eps = 1e-9;
+
+///***************************************************///
+
+/// POWER O(log p)
+long long POW(long a , long long p )
+{
+    if( p==0 )return 1;
+    if( p==1 )return a;
+    long long x=POW(a,p/2);
+    if( p%2==0) return ((x)*x);
+    return (((x)*x)*a);
+}
+
+/// POWER IN MOD O(log p)
+long long POW_M(long long a,long long p,long long m)
+{
+    if(p == 0) return 1;
+    if(p == 1) return a%m;
+    long long x=POW_M(a,p/2,m);
+    if( p%2 == 0) return ((x%m)*x)%m;
+    return (((x%m) *x%m)*a)%m;
+}
+
+///***************************************************///
+
+/// Cnr O(r)
+long long Cnr(long long n,long long r){
+    r=min(r,n-r);
+    long long ans=1;
+    for(long long i=1 ; i<=r ; i++){
+        ans*=(n--);
+        ans/=i;
+    }
+
+    return ans;
+}
+
+
+/// Cnr IN MOD O(r)
+/**
+long long POW_M(long long a,long long p,long long m)
+{
+    if(p == 0) return 1;
+    if(p == 1) return a%m;
+    long long x=POW_M(a,p/2,m);
+    if( p%2 == 0) return ((x%m)*x)%m;
+    return (((x%m) *x%m)*a)%m;
+}
+*/
+
+long long Cnr_M(long long n,long long r)
+{
+    r=min(r,n-r);
+    long long ans1=1,ans2=1;
+    for(long long i=1 ; i<=r ; i++){
+        ans2*=i;
+        ans1*=n--;
+
+        ans2%=mod;
+        ans1%=mod;
+    }
+    return (ans1*POW_M(ans2,mod-2,mod))%mod;
+}
+
+///***************************************************///
+
+/// Seive to Find All prime numbers from 1 to (N-1) (MAX N is 1e7)
+
+const int N=1e7;
+bool prime[N];
+
+void seive(){
+
+    for(int i=2 ; i<N ; i++) prime[i]=1;
+    prime[0]=prime[1]=0;
+
+    for(int i=2 ; i*i<N ; i++)
+        if( prime[i] )
+            for(int j=i*i ; j<N ; j+=i)
+                prime[j]=0;
+
+}
+
+
+/// Check if x prime number (MAX x is 1e16)
+bool IsPrimeSlow(long long x)
+{
+    if(x<=1) return false;
+    if(x<=3) return true;
+    if (!(x%2) | !(x%3)) return false;
+    long long s=(long long)(sqrt((double)(x))+eps);
+    for(long long i=5 ; i<=s ; i+=6)
+        if (!(x%i) || !(x%(i+2)))
+            return false;
+
+    return true;
+}
+
+///***************************************************///
+
+/// MOD negative number
+long long MOD(long long ans,long long m){
+    return (ans%m+m)%m;
+}
+
+/// Lowest Common Multiple LCM O(log a)
+long long lcm(long long a, long long b) {
+    return a / __gcd(a, b) * b;
+}
+
+
+/// gcd(x,y) = gcd(y,x%y) or gcd(x%y,y) or gcd(y%x,x) or gcd(x,y%x)
+/// gcd(x,y) = gcd(y,x-y) or gcd(x-y,y) : x >= y
+
+/// use __gcd(x,y)
+
+///***************************************************///
+
+int main()
+{
+    /// It is best to use a scanf & printf
+    /// but if you use cin & cout use :
+    ios::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+
+    return 0;
+}

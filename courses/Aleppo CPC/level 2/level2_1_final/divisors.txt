@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int>Div;
+
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    for(int i=1 ; i*i<=n ; i++){
+        if(n%i == 0){
+            Div.push_back(i);
+            if(i*i != n) Div.push_back(n/i);
+        }
+    }
+
+    sort(Div.begin() , Div.end());
+
+    for(auto x:Div)
+        printf("%d ",x);
+
+    return 0;
+}

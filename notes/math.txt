@@ -1,0 +1,13 @@
+even - odd
+if(num & 1) cout << "odd";
+
+power of two
+if( num && !(num & (num-1))) return true;
+
+most significant digit
+int k = log10(num);
+k -= floor(k);
+ans = pow(k, 10);
+
+number of digits
+int n = floor(log10(num))

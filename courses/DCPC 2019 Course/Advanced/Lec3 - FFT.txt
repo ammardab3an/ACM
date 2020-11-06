@@ -1,0 +1,11 @@
+https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2672
+https://codeforces.com/group/cxHTA5vjPZ/contest/101002/attachments problem E
+https://codeforces.com/problemset/problem/632/E
+https://codeforces.com/problemset/problem/1096/G
+https://codeforces.com/contest/528/problem/D
+https://codeforces.com/contest/472/problem/G
+https://codeforces.com/contest/993/problem/E
+
+variation of FFT , ( AND , OR , XOR , ... )
+https://csacademy.com/blog/fast-fourier-transform-and-variations-of-it
+

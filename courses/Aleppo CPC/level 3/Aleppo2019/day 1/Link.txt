@@ -1,0 +1,43 @@
+#Level_3
+
+#Day_1:
+
+Bitwise Operations:
+
+https://www.hackerearth.com/…/fun-with-bits-print-all-subs…/
+
+https://www.geeksforgeeks.org/power-set/
+
+____________________________________________________________
+
+Problem1:
+
+https://codeforces.com/contest/550/problem/B
+
+____________________________________________________________
+
+Problem2:
+
+https://codeforces.com/gym/100030 (Problem E in this gym)
+
+____________________________________________________________
+
+Problem3:
+
+https://codeforces.com/contest/994/problem/E
+
+Code:
+
+https://ideone.com/f6o7A9
+
+____________________________________________________________
+
+Ternary Search:
+
+https://www.codechef.com/ALC12019/problems/BUCKETWA
+
+Code:
+
+https://ideone.com/Ysb3Kd
+
+____________________________________________________________

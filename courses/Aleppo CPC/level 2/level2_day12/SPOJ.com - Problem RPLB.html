@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA -->
+<html class="not-ie" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- main header -->
+	
+	
+				<title>SPOJ.com - Problem RPLB</title>
+		  
+	<meta name="keywords" content="language, algorithm, spoj, contest, contester, Java, C#, Pascal, C, C++, python, ruby, caml, ocaml, perl, haskell, lisp, prolog, fortran, assembler, asembler, functional, online, judge, problem, problemset, ACM">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  		<meta property="og:title" content="SPOJ.com - Problem RPLB">
+    <meta property="fb:app_id" content="321676846207">
+	<meta property="og:type" content="spoj-pl:problem">
+	<meta property="og:url" content="http://www.spoj.com/problems/RPLB/">
+	<meta property="og:image" content="//stx1.spoj.com/gfx/logo-cr.png">
+	<meta property="og:description" content="...">
+	<meta name="description" content="...">
+		<meta property="og:site_name" content="spoj.com">
+
+  <!--[if (gte IE 9)|!(IE)]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" id="metatag">
+  <![endif]--> 
+
+	  <!-- Favicon -->
+	  <link href="https://stx1.spoj.com/gfx/favicon_new.png" rel="shortcut icon" type="image/x-icon">
+	  
+	  <!-- RSS -->
+	  <link href="https://www.spoj.com/rss/" rel="alternate" type="application/rss+xml" title="RSS Feed">
+	
+	  <!-- Web Fonts -->
+	  <link href="./SPOJ.com - Problem RPLB_files/css" rel="stylesheet" type="text/css">  
+
+	<!-- Internet Explorer condition - HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]--> 
+	
+	
+	
+	<!-- CSS: Bootstrap, Font-awesome, Bootstrap libs,  -->
+	<link href="./SPOJ.com - Problem RPLB_files/bootstrap.min.css" rel="stylesheet">
+  	<link href="./SPOJ.com - Problem RPLB_files/font-awesome.min.css" rel="stylesheet">
+  	<link href="./SPOJ.com - Problem RPLB_files/bootstrap-tour.min.css" rel="stylesheet">
+  	<link href="./SPOJ.com - Problem RPLB_files/bootstrap-social.css" rel="stylesheet" type="text/css">
+  	
+	<link href="./SPOJ.com - Problem RPLB_files/common.css" rel="stylesheet" type="text/css" id="theme0">
+	<link href="./SPOJ.com - Problem RPLB_files/en_new.css" rel="stylesheet" type="text/css" id="theme">
+	
+	<!-- JS -->
+	<script type="text/javascript" async="" src="./SPOJ.com - Problem RPLB_files/linkid.js.download"></script><script src="./SPOJ.com - Problem RPLB_files/sdk.js.download" async="" crossorigin="anonymous"></script><script async="" src="./SPOJ.com - Problem RPLB_files/analytics.js.download"></script><script id="facebook-jssdk" src="./SPOJ.com - Problem RPLB_files/sdk.js(1).download"></script><script type="text/javascript" src="./SPOJ.com - Problem RPLB_files/jquery-1.11.1.min.js.download"></script>
+	<script type="text/javascript" src="./SPOJ.com - Problem RPLB_files/jquery-ui.min.js.download"></script>
+	
+		
+		
+	<script type="text/javascript" language="javascript">
+	$(function () { 
+		$("#profile-menu").popover();
+	});
+	function UnCryptMailto(s) {
+		var n=0;
+		var r="";
+		for(var i=0;i<s.length;i++) {		
+			n=s.charCodeAt(i); 
+			if (n>=8364) {n = 128;}
+			r += String.fromCharCode(n+(2));	
+		}
+		return r;
+	}
+	function linkTo_UnCryptMailto(s)	{
+		location.href=UnCryptMailto(s);
+	}
+	</script>
+	
+	<script type="text/javascript">
+	function recordOutboundLink(link, category, action) {
+	  try {
+	    var pageTracker=_gat._getTracker("UA-XXXXX-X");
+	    pageTracker._trackEvent(category, action);
+	    setTimeout('document.location = "' + link.href + '"', 100)
+	  }catch(err){}
+	}
+	</script>
+	
+<script async="" src="./SPOJ.com - Problem RPLB_files/hotjar-334656.js.download"></script><script id="_bsa_srv-CK7D4KJL_0" type="text/javascript" src="./SPOJ.com - Problem RPLB_files/CK7D4KJL.json"></script><script id="_carbonads_projs" type="text/javascript" src="./SPOJ.com - Problem RPLB_files/CK7D427E.json"></script><script async="" src="./SPOJ.com - Problem RPLB_files/modules-e39a5507cbb05f5d456097501c919882.js.download"></script><style type="text/css">iframe#_hjRemoteVarsFrame {display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;}</style><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#1d3c78;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style></head>
+
+<body>
+
+	
+	<!-- <div class="space30"></div> -->
+	
+	<!-- Content -->
+	<div class="content">
+		<div class="container" id="header">
+			<div class="row">
+				<div class="col-md-12 text-right">
+					
+										
+					
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="col-md-4">
+					<a href="https://www.spoj.com/" class="navbar-brand">
+						<img src="./SPOJ.com - Problem RPLB_files/2015e.png" style="height: 40px;">
+					</a>
+					<div class="navbar-header">
+				      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+				        <span class="sr-only">Toggle navigation</span>
+				        <i class="fa fa-bars"></i>
+				      </button>
+				    </div>
+				</div>
+				<div class="col-md-8" id="menu">
+				
+					
+					<div class="row">
+					<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" style="border: 0px;">
+				      <ul class="nav navbar-nav" style="  float: right; margin-top: 10px;">
+				      						        <li class="active">
+					          <a href="https://www.spoj.com/problems"><i class="fa fa-puzzle-piece"></i> PROBLEMS</a>
+					        </li>
+					        					        <li>
+					          <a href="https://www.spoj.com/status"><i class="fa fa-circle"></i> STATUS</a>
+					        </li>
+					        <li>
+					          <a href="https://www.spoj.com/ranks"><i class="fa fa-trophy"></i> RANKS</a>
+					        </li>
+					        <li>
+					          <a href="http://spoj.com/forum"><i class="fa fa-comments-o"></i> DISCUSS</a>
+					        </li>
+					        <li>
+					          <a href="https://www.spoj.com/contests">CONTESTS</a>
+					        </li>
+											        					        
+						        						      	
+						      							      	<li style="margin-right: 0px;">
+						      		<a href="https://www.spoj.com/manageaccount/">
+						      			<span tabindex="0" id="profile-menu" data-trigger="hover" data-container="body" data-toggle="popover" data-html="true" data-placement="left" data-content="You filled 50% of your profile, maybe you want to add some more?" data-original-title="" title=""><i class="fa fa-exclamation-triangle text-danger"></i></span>
+						      		</a>
+						      	</li>
+						      						        
+					        <li class="dropdown profile">
+					        	<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="username_dropdown dropdown-toggle" data-toggle="dropdown">
+					        		<img width="20" height="20" src="./SPOJ.com - Problem RPLB_files/b66fd08fed775e4e2fba3e9ca6dbdebc.jpg" class="avatar small-left-margin">
+					        		<!-- maala_m -->PROFILE&nbsp;<span class="caret"></span>
+					        	</a>	
+			
+									<ul class="dropdown-menu text-right pull-right" role="menu" aria-labelledby="dropdownUser">
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.spoj.com/myaccount"><span class="fa fa-user fa-fw"></span>&nbsp; My profile</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.spoj.com/manageaccount"><span class="fa fa-cogs fa-fw"></span>&nbsp; Manage profile</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.spoj.com/status/maala_m"><span class="fa fa-history fa-fw"></span>&nbsp; Submissions history</a></li>
+										<li class="divider"></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.spoj.com/logout"><span class="fa fa-sign-out fa-fw"></span>&nbsp; Sign out</a></li>
+									</ul>
+								
+					        </li>
+					        
+					        						
+				        
+				      </ul>
+				    </nav>
+				    </div>
+				    
+				    
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="container" id="menu">
+			
+		</div>
+		
+		<div class="container" id="content">
+		<script type="text/javascript" src="./SPOJ.com - Problem RPLB_files/jquery.cxhelp2.js.download"></script>
+
+
+
+ <!-- wykorzystywane w pcontent.html (by wiele) -->
+
+<div class="submenu">
+	
+		<ol class="breadcrumb">
+	  <li><a href="https://www.spoj.com/problems">Problems</a></li>
+	  <li><a href="https://www.spoj.com/problems/classical">classical</a></li>
+	  <li class="active">Blueberries</li>
+	</ol>
+		
+	<ol class="navbar-right">
+						
+		<li><a href="https://www.spoj.com/status/RPLB,maala_m/" class="">My status</a></li>		<li><a href="https://www.spoj.com/status/RPLB/" class="">Status</a></li>
+		<li><a href="https://www.spoj.com/ranks/RPLB/" class="">Ranking</a></li>
+	</ol>
+</div>
+
+
+	<script type="text/javascript">
+		var number_of_voteboxes = "";
+	</script>
+
+
+<div class="row first-row">
+	<div class="col-lg-8 col-md-8">
+		<div class="prob" style="position: relative">
+
+			<!-- google_ad_section_start -->
+			<!-- plik z pomoca kontekstowa (cxhelp_*) dziedziczony po pindex.html -->
+
+
+
+<script type="text/javascript" src="./SPOJ.com - Problem RPLB_files/ASCIIMathMLwFallback.js.download"></script>
+<!--script type="text/javascript" src="/gfx/jscripts/tiny_mce/plugins/asciisvg/js/ASCIIsvgPI.js"></script-->
+<script type="text/javascript">
+<!--
+var AScgiloc = 'http://www.imathas.com/imathas/filter/graph/svgimg.php';
+var AMTcgiloc = "/files/gif/";
+-->
+</script>
+
+
+<div class="text-center"><center>
+	
+	</center>
+</div>
+<br>
+
+<h2 id="problem-name" class="text-center">RPLB - Blueberries</h2>
+
+
+<div class="row">
+	<div id="problem-tags" class="col-lg-12 text-center">
+												
+					<a href="https://www.spoj.com/problems/tag/dynamic-programming"><span class=" tag-algorithm-datastructure- tag-link problem-tag" data-tagid="45">#dynamic-programming<span class="fa fa-times manage-tag-ar" style="display: none"></span></span></a>
+						</div>
+</div>
+<br>
+
+<div id="problem-body">
+	<p>Teresa picked up enough strawberries, now she wants to pick blueberries from the magical blueberry bush from Rainbowland.</p>
+<p>Knowing her previous experience with the strawberries, Teresa wants to pick up the blueberries in a way that she may not exceed the limit proposed.</p>
+<p>When picking the blueberries, she noticed that if she pick from the bush i, she couldn't pick the blueberries at the bush i+1 (some sort of magic in rainbowland).</p>
+<p>Worried about this, Teresa wants to know the maximum blueberries she can pick, given the number of bushes and the number of blueberries in each bush.</p>
+
+<h3>Input</h3>
+<p>Will contain an integer T, then, T cases will follow, each case starts with a number N and K, being N the number of bushes and K the number of blueberries Teresa will pick as maximum, the next line contains N integers, each one representing the blueberries there is on the i-th bush.</p>
+
+<h3>Output</h3>
+<p>You will output for each test case the string: <tt>“Scenario #i: “</tt> where i is the test case you are analyzing, then, an integer denoting the maximum number of blueberries you can grab.</p>
+
+<h3>Example</h3>
+<pre><strong>Input:</strong>
+2
+5 100
+50 10 20 30 40
+5 87
+21 45 30 12 14
+
+<strong>Output:</strong>
+Scenario #1: 90
+Scenario #2: 65</pre>
+
+<!--
+<center>
+<table border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+  <td width="120px"><p align="CENTER"><strong>INPUT</strong></p></td>
+  <td width="120px"><p align="CENTER"><strong>OUTPUT</strong></p></td>
+</tr>
+<tr>
+  <td valign="top">
+<pre>
+2
+5 100
+50 10 20 30 40
+5 87
+21 45 30 12 14</pre>
+  </td>
+  <td valign="top">
+<pre>Scenario #1: 90
+Scenario #2: 65</pre>
+  </td>
+</tr>
+</tbody>
+</table>
+</center>
+
+-->
+<!-- <p>“Blank line between test cases for clarification and separation”</p> -->
+
+<h4>Output explanation (first scenario)</h4>
+<p>Teresa picks the 1<sup>st</sup> blueberry bush (50), she cannot pick the 2<sup>nd</sup>, she decides not to pick until the 5<sup>th</sup> one where she picks the “40” blueberry, she could pick the 3<sup>rd</sup> bush, but she would exceed the limit (100).</p>
+
+<h4>Output explanation (second scenario)</h4>
+<p>Teresa picks the 1<sup>st</sup>, the 3<sup>rd</sup> and the 5<sup>th</sup> bush, total of (21+30+14 = 65) blueberries</p>
+
+<h3>CONSTRAINTS</h3>
+<p>
+1 &lt;= N &lt;= 1000<br>
+1 &lt;= K &lt;= 1000
+</p>
+</div>
+
+<div class="text-center">
+	<a href="https://www.spoj.com/submit/RPLB/" class="btn btn-primary btn-lg"><i class="fa fa-send"></i> Submit solution!</a>
+</div>
+			<!-- google_ad_section_end -->
+			
+			<div id="ccontent">
+			<!-- google_ad_section_start -->
+			
+<hr style="clear:both;">
+<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" onclick="toggleComments(); return false;"><span id="comments_sh">hide</span> comments</a><br>
+
+<a id="comments"></a>
+<table id="comments_table" width="100%">
+		<tbody><tr>
+		<td colspan="2">
+		<ul class="pagination" style="">
+			<li class="disabled"><span>&lt;</span></li>
+		<li class="disabled"><span>Previous</span></li>
+						<li class="active"><span>1</span></li> 
+							<li><a href="https://www.spoj.com/problems/RPLB/cstart=10" class="pager_link">2</a></li> 
+							<li><a href="https://www.spoj.com/problems/RPLB/cstart=20" class="pager_link">3</a></li> 
+							<li><a href="https://www.spoj.com/problems/RPLB/cstart=30" class="pager_link">4</a></li> 
+							<li><a href="https://www.spoj.com/problems/RPLB/cstart=40" class="pager_link">5</a></li> 
+						<li><a href="https://www.spoj.com/problems/RPLB/cstart=10" class="pager_link">Next</a></li>
+		<li><a href="https://www.spoj.com/problems/RPLB/cstart=40" class="pager_link">&gt;</a></li>
+	</ul>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+				</td>
+	</tr>
+	
+	<script language="JavaScript">
+	<!--
+	$(document).ready(function(){
+        $('.pager_link').bind('click', function(me){
+                var href=$(me.currentTarget).attr('href');
+		$('#ccontent').animate({opacity: 0.5},1);
+                $.ajax({
+                        type: "GET",
+                        url: href+",ajax=1",
+                        contentType: "application/x-www-form-urlencoded;charset=ISO-8859-2",
+                        success: function(data){
+                                $('#ccontent').html(data);
+				$('#ccontent').animate({opacity: 1.0},1);
+                        },
+                        error: function(err){
+                                alert('error');
+                        }
+                });
+                return false;
+        });
+	});
+	-->
+	</script>
+	
+
+
+
+			
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/1aa52362f6467586b3447a674fccf21e.jpg">
+		</td>
+		<td class="comm comm_odd">
+			<a href="https://www.spoj.com/users/faha">faha</a>: 
+								<span style="font-size: 10px; color: #666;">2018-06-02 21:18:32</span>
+		<br>
+				<p>Can anyone tell the test case restriction ?
+<br></p>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/486402e98537ec9ea6e997dad9edb366.jpeg">
+		</td>
+		<td class="comm comm_even">
+			<a href="https://www.spoj.com/users/aman_sachin200">aman_sachin200</a>: 
+								<span style="font-size: 10px; color: #666;">2018-05-23 23:07:55</span>
+		<br>
+				<p>Simple 0/1 knapsack with modifications.Take care of output format...cost me 3WA:(</p>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/ad52ea349024fe54f1371484718dd494.jpeg">
+		</td>
+		<td class="comm comm_odd">
+			<a href="https://www.spoj.com/users/nadstratosfer">nadstratosfer</a>: 
+								<span style="font-size: 10px; color: #666;">2017-09-16 04:05:21</span>
+		<br>
+				<p>Bottom-up DP gets TLE in Python, managed to get 0.20s AC with PyPy. Francky's time of 0.03s in raw Python implies there exists a non-DP way of solving this. Any hints?</p>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/42d5386a9a827db011037c56ea65f52a.jpg">
+		</td>
+		<td class="comm comm_even">
+			<a href="https://www.spoj.com/users/cichipi_">cichipi_</a>: 
+								<span style="font-size: 10px; color: #666;">2017-06-09 16:37:46</span>
+		<br>
+				<p>take ith one recall  x = fun(i+2 , lim+a[i])
+<br>don't take ith one, y  = fun(i+1 , lim)
+<br>return the max of them
+<br>it will get TLE....as it computing same state once more
+<br>so , we take dp[1007][1007] = -1 all
+<br>inside the function if dp[i][limit]!=-1 then we need not copute it again....we just return dp[i][lim]
+<br>finally   return dp[i][limit] = max(x,y);</p>
+				<b>Last edit: 2017-06-09 16:40:25</b>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/f23adf17edf2de441a641ddc485ccdcb.jpg">
+		</td>
+		<td class="comm comm_odd">
+			<a href="https://www.spoj.com/users/don_1234">don_1234</a>: 
+								<span style="font-size: 10px; color: #666;">2017-04-01 14:03:02</span>
+		<br>
+				<p>Use Fast i/o in java cost me 1 tle</p>
+				<b>Last edit: 2017-04-01 14:04:24</b>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/ab9f5817d78950eefdc8cd90aa8b7d3f.jpeg">
+		</td>
+		<td class="comm comm_even">
+			<a href="https://www.spoj.com/users/manas0008">manas0008</a>: 
+								<span style="font-size: 10px; color: #666;">2017-02-05 07:12:38</span>
+		<br>
+				<p>Start afresh
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>.
+<br>
+<br> and realise it's no more than knapsack at the end.</p>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/20a9f3cdac263d3cce62849265bd90c1.jpg">
+		</td>
+		<td class="comm comm_odd">
+			<a href="https://www.spoj.com/users/mkfeuhrer">mkfeuhrer</a>: 
+								<span style="font-size: 10px; color: #666;">2017-02-02 22:05:47</span>
+		<br>
+				<p>its just  0 - 1 knapsack ! ! dont thnk much :-P . check print format !! </p>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/e9253f3496ced024665fe9bf20da08d4.jpg">
+		</td>
+		<td class="comm comm_even">
+			<a href="https://www.spoj.com/users/tni_mdixit">tni_mdixit</a>: 
+								<span style="font-size: 10px; color: #666;">2017-01-18 15:34:34</span>
+		<br>
+				<p>O/p format cost 2 WA . EASY! </p>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/348fc8640bc547386b99ce7b92b9707e.jpeg">
+		</td>
+		<td class="comm comm_odd">
+			<a href="https://www.spoj.com/users/vengatesh15">vengatesh15</a>: 
+								<span style="font-size: 10px; color: #666;">2016-12-29 10:16:57</span>
+		<br>
+				<p>AC in 1 go :-)</p>
+						</td>
+	</tr>
+				
+	<tr>
+		<td width="50" style="vertical-align:top;">
+			<img src="./SPOJ.com - Problem RPLB_files/6714fbae79e5beda1ed12582bd186a7c.jpeg">
+		</td>
+		<td class="comm comm_even">
+			<a href="https://www.spoj.com/users/blackgate">Joker</a>: 
+								<span style="font-size: 10px; color: #666;">2016-10-01 19:07:57</span>
+		<br>
+				<p>F**k there is a space between colon and answer
+<br></p>
+						</td>
+	</tr>
+			
+</tbody></table>
+
+
+<script language="javascript" type="text/javascript">
+<!--
+function getCookieVal (offset) {
+        var endstr = document.cookie.indexOf (";", offset);
+        if (endstr == -1) { 
+                endstr = document.cookie.length; 
+        }
+        return unescape(document.cookie.substring(offset, endstr));
+}
+
+function GetCookie (name) {
+  var arg = name + "=";
+  var alen = arg.length;
+  var clen = document.cookie.length;
+  var i = 0;
+  while (i < clen) {
+    var j = i + alen;
+    if (document.cookie.substring(i, j) == arg) {
+      return getCookieVal (j);
+      }
+    i = document.cookie.indexOf(" ", i) + 1;
+    if (i == 0) break; 
+    }
+  return null;
+}
+
+function toggleComments() {
+        var a = document.getElementById('comments_table');
+        var d = a.style.display;
+        if( d == "" || d == "block" ){
+                d = "none";
+                document.getElementById('comments_sh').innerHTML = 'show';
+        } else {
+                d = "block";
+                document.getElementById('comments_sh').innerHTML = 'hide';
+        }
+        a.style.display = d;
+        document.cookie="comments_table="+d+"; path=/;";
+}
+
+if( GetCookie('comments_table') == 'none' ){
+        document.getElementById('comments_sh').innerHTML = 'show';
+        document.getElementById('comments_table').style.display = 'hide';
+}
+
+-->
+</script>
+
+
+			<!-- google_ad_section_end -->
+			</div>
+			<table width="100%">
+                <tbody><tr>
+                <td colspan="2" height="20px"></td>
+        </tr>
+        <form method="post" action="https://www.spoj.com/comment/RPLB/add/"></form>
+        <tr> <td style="" colspan="2">Leave a Comment</td> </tr>
+        <tr>
+                <td valign="top"></td>
+                <td><textarea name="content" rows="3" class="form-control"></textarea></td>
+        </tr>
+        <tr>
+                <td colspan="2" style=""><br>
+                        <input type="submit" value="Publish" class="btn btn-default">
+                        <input type="hidden" name="pcode" value="RPLB">
+                </td>
+        </tr>
+<tr>
+<td colspan="2" style="padding-left:5px; color: #999;">
+<br>
+Notes:
+<br>1. Don't post any source code here.
+<br>2. Please be careful, leave short comments only. Don't spam here.
+<br>3. For more discussion (hints, ideas, solutions) please visit our <a href="https://www.spoj.com/forum">forum</a>.
+<br>4. Authors of the problems are allowed to delete the post and use html code here (e.g. to provide some useful links).
+</td>
+</tr>
+        
+        </tbody></table>
+<br>
+		</div>
+	</div><!-- endof col-lg-8 col-md-8 -->
+	
+	<div class="col-lg-4 col-md-4">
+	
+				<div id="problem-btn-submit-box">
+			<a href="https://www.spoj.com/submit/RPLB/" id="problem-btn-submit" class="btn btn-primary" style="width: 100%; margin-bottom: 20px;"><i class="fa fa-send"></i> Submit solution!</a>
+		</div>
+		
+		<div class="h"><script async="" type="text/javascript" src="./SPOJ.com - Problem RPLB_files/carbon.js.download" id="_carbonads_js"></script><div id="carbonads"><span><span class="carbon-wrap"><a href="https://srv.carbonads.net/ads/click/x/GTND42QMCKYITKQWCWY4YKQMCW7I42JJCYAILZ3JCWBI65Q7FTYDP2QKC6BIPK7ECASDTK3EHJNCLSIZ?segment=placement:wwwspojcom;" class="carbon-img" target="_blank" rel="noopener"><img src="./SPOJ.com - Problem RPLB_files/1549064736-Squiggles.png" alt="" border="0" height="100" width="130" style="max-width: 130px;"></a><a href="https://srv.carbonads.net/ads/click/x/GTND42QMCKYITKQWCWY4YKQMCW7I42JJCYAILZ3JCWBI65Q7FTYDP2QKC6BIPK7ECASDTK3EHJNCLSIZ?segment=placement:wwwspojcom;" class="carbon-text" target="_blank" rel="noopener">Automate your development process quickly, safely, and at scale with CircleCI.</a></span><a href="http://carbonads.net/?utm_source=wwwspojcom&amp;utm_medium=ad_via_link&amp;utm_campaign=in_unit&amp;utm_term=carbon" class="carbon-poweredby" target="_blank" rel="noopener">ads via Carbon</a></span></div></div>
+
+		
+		<table border="0" cellspacing="0" cellpadding="0" style="margin-bottom:10px" class="probleminfo" id="problem-meta">
+			<colgroup>
+				<col width="120">
+				<col>
+			</colgroup>
+			<tbody>
+			<tr><td>Added by:</td><td><a href="https://www.spoj.com/users/david_8k">david_8k</a></td></tr>
+			<tr><td>Date:</td><td>2012-04-12</td></tr>
+			<tr><td>Time limit:</td><td>0.439s
+			</td></tr>
+			<tr><td>Source limit:</td><td>50000B</td></tr>
+						<tr><td>Memory limit:</td><td>1536MB</td></tr>
+										<tr>
+					<td>Cluster:</td>
+					<td>
+													<a href="https://www.spoj.com/clusters/" target="_blank">Cube (Intel G860)</a>
+								
+					</td>
+				</tr>
+						<tr><td>Languages:</td><td>All except: ASM64 </td></tr>
+			<tr><td>Resource:</td><td>Own Problem used for the RPL contest</td></tr>													</tbody>
+		</table>
+	
+		<!-- BEGIN: Voting for problem -->
+												<div class="panel panel-default" id="vote-requirement-message">
+					<div class="panel-heading">
+						<h4 class="panel-title">Vote requirements<span class="fa fa-exclamation-triangle pull-right grey"></span></h4>
+					</div>
+					<div class="panel-body">
+						<ul class="list-unstyled">
+							<li><span class="text-success fa fa-check fa-fw"></span>&nbsp;&nbsp;be spoj user for at least 5 days							</li>
+							<li><span class="text-success fa fa-check fa-fw"></span>&nbsp;&nbsp;solve at least 15 problems							</li>
+							<li><span class="text-danger fa fa-times fa-fw"></span>&nbsp;&nbsp;solve this problem</li>
+						</ul>
+					</div>
+				</div><!-- end #vote-requirement-message -->
+					
+				
+		<!-- END: Voting the problem -->
+	
+				
+				<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">Own tags</h4>
+				</div>
+				<div class="panel-body">
+			
+					<div id="problem-mytags">
+						<p>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id="4392"><span class="label label-default">#graph-theory-10</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id="4431"><span class="label label-default">#sorting-15</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id=""><span class="label label-default">#</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id=""><span class="label label-default">#</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id=""><span class="label label-default">#</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id=""><span class="label label-default">#</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id=""><span class="label label-default">#</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id=""><span class="label label-default">#</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id=""><span class="label label-default">#</span></a>
+			<a href="https://www.spoj.com/problems/RPLB/fbclid=IwAR1tnnQMA9q1p140A3iPCbp5vaEKUg8e34wBrH7uTTb_PqVFlMtdqd_QGoA#" class="mytag" data-id=""><span class="label label-default">#</span></a>
+	</p>					</div>
+					
+					<div class="input-group input-group-sm">
+				      <input type="text" class="form-control" placeholder="Tag name" id="problem-mytags-new">
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" type="button" id="problem-mytags-btn-add">Add</button>
+				      </span>
+				    </div><!-- /input-group -->
+				    
+				    
+				    <script type="text/javascript">
+				    $(document).ready(function(){
+				    	$(document).on('click', '#problem-mytags-btn-add', function(){
+				    		$.ajax({
+				    			url: '/?a=tags&act=cpriv',
+				    			method: 'post',
+				    			dataType: 'json',
+				    			data: {'name': $("#problem-mytags-new").val(), 'pid': '11372'},
+				    			success: function(data){
+				    				if(data['result'] == 'success'){
+				    					$('#problem-mytags').html(data['html']);
+				    				}
+				    				$("#problem-mytags-new").val('');
+				    				$("#problem-mytags-new").focus();
+				    			},
+				    			error: function(data){
+				    				//alert('error');
+				    			}
+				    		});
+				    	});
+				    	$(document).on('click', '.mytag', function(){
+				    		
+				    		var tid = $(this).attr('data-id');
+				    		var pid = '11372';
+				    		
+				    		$.ajax({
+				    			url: '/?a=tags&act=spriv',
+				    			method: 'post',
+				    			dataType: 'json',
+				    			data: {'pid': pid, 'tid': tid},
+				    			success: function(data){
+				    				if(data['result'] == 'success'){
+				    					$('#problem-mytags').html(data['html']);
+				    				}
+				    			},
+				    			error: function(data){
+				    				//alert('error');
+				    			}
+				    		});
+				    		
+				    		
+				    		return false;
+				    	});
+				    });
+				    </script>
+				    
+		
+				</div>
+		</div><!-- end .panel.panel-default -->
+				
+		
+		<script type="text/javascript">
+			function callback_after_vote(type, data)
+			{
+				var response = $.parseJSON(data);
+				manage_vote_interface(type);
+				//.html('<div class="vote-thank-you">Thank you!</div>');
+				
+
+				if (type == "problem" || type == "implementation") {
+					var progressBarValue = Math.round(2 + 98 * response.avg / 3);
+					var progressBarType;
+					if (progressBarValue < 25) progressBarType = "progress-bar-primary";
+					else if (progressBarValue < 50) progressBarType = "progress-bar-success";
+					else if (progressBarValue < 75) progressBarType = "progress-bar-warning";
+					else progressBarType = "progress-bar-danger";
+					
+					$("#rate-" + type + "-box .progress-bar").css("width", progressBarValue.toString() +"%");
+					$("#rate-" + type + "-box .progress-bar").attr("aria-valuenow", progressBarValue.toString());
+					$("#rate-" + type + "-box .progress-bar").attr("class", "progress-bar " + progressBarType);
+					$("#rate-" + type + "-box .progress-value").html(progressBarValue.toString() +"%");
+				}
+				else if (type == "quality") {
+					var quality_plus = response.sum_plus;
+					var quality_minus = response.sum_minus;
+
+					var box_content = '';
+
+					if (quality_plus > 0 || quality_minus > 0) {
+						if (quality_plus > 0) {
+							box_content += '<font size="+2"><span class="label label-success">' +
+								quality_plus.toString() + 
+								' <span class="fa fa-thumbs-o-up"></span></span></font>';
+						}
+						if (quality_minus > 0) {
+							box_content += '<font size="+2"><span class="label label-danger">' +
+								quality_minus.toString() + 
+								' <span class="fa fa-thumbs-o-down"></span></span></font>';
+						}
+					}
+
+					$( "#rate-" + type + "-box" ).empty().html(box_content);
+				}
+
+				// update count
+				if (response.update_count == 1) {
+					var count = parseInt($("#votes_count").html(), 10);
+					count++;
+					var votes_word = " vote";
+					if (count > 1) votes_word += "s";
+					$("#votes_count").empty().html(count.toString() + votes_word);
+				}
+			}
+			$( ".rate-btn" ).click(function() {
+				var rate_type = $(this).attr('data-rate-type').toString();
+				var rate_type_full = "";
+				var rate = $(this).attr('data-rate').toString();
+				if (rate_type == "p") rate_type_full = "problem";
+				else if (rate_type == "i") rate_type_full = "implementation";
+				else if (rate_type == "q") rate_type_full = "quality";
+				$.get( '/?a=vote&pid=11372&t=' + rate_type + '&r=' + rate, function( data ) {
+				  callback_after_vote(rate_type_full, data);
+				});
+			});
+			function manage_vote_interface(type) {
+				number_of_voteboxes--;
+				/*
+				if (number_of_voteboxes == 0) {
+					$( "#vote-box" ).fadeOut(1500, function() {
+						$(this).remove();
+					});
+				} else {
+					$( "#vote-" + type + "-box" ).fadeOut(1500, function() {
+						$(this).remove();
+					});
+				}
+				*/
+				var n = $('.vote-thank-you').length;
+				var offset = (n * 60).toString() + "px";
+				$(document.body).append(
+					'<div class="vote-thank-you" style="margin: 40%;">' +
+					'<div class="alert alert-success" style="position: fixed; top: '+offset+';">' +
+					'<strong>Thank you for voting!</strong>' +				
+					'</div></div>');
+				setTimeout(function(){$( ".vote-thank-you" ).fadeOut(1500, function() {
+					$(this).remove();
+				});},2000);
+			}
+		</script>
+		
+		
+	</div><!-- endof col-lg-4 col-md-4 -->
+</div>
+
+
+
+
+
+
+<style>
+ul.list-unstyled li{
+	margin-bottom: 5px;
+}
+ul.list-unstyled li a.btn{
+	width: 100%;
+}
+ul.ui-autocomplete{
+	z-index: 10000;
+	width: 200px !important;
+}
+</style>
+	<br>
+</div>
+		
+		
+		<div class="container" id="footer">
+			<div class="row">
+				<div class="col-md-10">
+					<p><a href="https://www.spoj.com/info">About</a> | <a href="https://www.spoj.com/tutorials">Tutorial</a> | <a href="https://www.spoj.com/tools">Tools</a> | <a href="https://www.spoj.com/clusters">Clusters</a> | <a href="https://www.spoj.com/credits">Credits</a> | <a href="https://www.spoj.com/sphereengine">API</a> | <a href="https://www.spoj.com/sphereengine-widget">Widgets</a></p>
+					<p>Legal: 
+					   <a href="https://www.spoj.com/legal-tos/" target="_blank">Terms of Service</a> | <a href="https://www.spoj.com/legal-pp/" target="_blank">Privacy Policy</a> | <a href="https://www.spoj.com/legal-gdpr/" target="_blank">GDPR Info</a>
+					</p>
+				</div>
+				<div class="col-md-2 text-right">
+					<a href="https://www.spoj.com/rss/"><img src="./SPOJ.com - Problem RPLB_files/rss10x10.gif" border="0">&nbsp;RSS</a>&nbsp;
+				</div>
+			</div>
+		</div>
+		
+		<div class="text-center" id="footer-srl">
+			
+	© Spoj.com. All Rights Reserved. Spoj uses <a href="http://sphere-engine.com/?utm_campaign=permanent&amp;utm_medium=footer&amp;utm_source=spoj" style="color:black">Sphere Engine</a>™ © by <a href="http://sphere-research.com/?utm_campaign=permanent&amp;utm_medium=footer&amp;utm_source=spoj" style="color:black">Sphere Research Labs</a>.
+
+		</div> 
+	</div>
+
+	<!-- JavaScripts -->
+	
+		
+	
+	<script type="text/javascript">
+	$(function(){
+		setTimeout(function(){
+			$('.no_a_info').css('visibility', 'visible');
+		}, 5000);
+		
+		if(!$('.aProblemTop').length && !$('.aProblemsTop').length && !$('.aSubmitTop').length && !$('.aStatusTop').length && !$('.aMainRight').length){
+			ga('send', 'event', 'ads', 'no-ads', 'main-contest');
+		}
+		if ($('.aProblemTop').height() == 0){
+			$('.aProblemTop').css({'border': '1px solid #ddd', 'background': '#f0f4e3', 'height': 90});
+			$('.aProblemTop').html($('<p class="text-center">using adblock?</p><h4 class="text-center">Online ads help us to maintain site.</h4><p class="text-center"><strong>please whitelist *.spoj.com</strong></p>'));
+			ga('send', 'event', 'ads', 'adblock2', 'aProblemTop');
+		}
+		if ($('.aProblemsTop').height() == 0){
+			ga('send', 'event', 'ads', 'adblock2', 'aProblemsTop');
+		}
+		if ($('.aSubmitTop').height() == 0){
+			ga('send', 'event', 'ads', 'adblock2', 'aSubmitTop');
+		}
+		if ($('.aStatusTop').height() == 0){
+			ga('send', 'event', 'ads', 'adblock2', 'aStatusTop');
+		}
+		if ($('.aMainRight').height() == 0){
+			ga('send', 'event', 'ads', 'adblock2', 'aMainRight');
+		}
+	});
+	</script>
+	
+	
+	<script type="text/javascript" src="./SPOJ.com - Problem RPLB_files/jquery.timers.js.download"></script>
+	<script type="text/javascript" src="./SPOJ.com - Problem RPLB_files/jquery.cookie.js.download"></script>
+	
+	<script src="./SPOJ.com - Problem RPLB_files/bootstrap.min.js.download"></script>
+
+	<script src="./SPOJ.com - Problem RPLB_files/md5.js.download"></script>
+	<script src="./SPOJ.com - Problem RPLB_files/bootstrap-tour.min.js.download"></script>
+	<script src="./SPOJ.com - Problem RPLB_files/tour.js.download"></script>
+	
+	
+	<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./SPOJ.com - Problem RPLB_files/d_vbiawPdxB.html" style="border: none;"></iframe></div></div></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/pl_PL/sdk.js#xfbml=1&appId=321676846207&version=v2.0";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	
+	
+
+
+<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-10507872-1', 'auto');
+	  ga('require', 'linkid', 'linkid.js');
+	  ga('send', 'pageview');
+	</script>
+<!-- Hotjar Tracking Code for http://www.spoj.com -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:334656,hjsv:5};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<script src="./SPOJ.com - Problem RPLB_files/monetization.js.download" type="text/javascript"></script>
+<script>
+(function(){
+  if(typeof _bsa !== 'undefined' && _bsa) {
+    // format, zoneKey, segment:value, options
+    _bsa.init('flexbar', 'CK7D4KJL', 'placement:demo');
+  }
+})();
+</script>
+<script type="text/javascript">
+	$(function(){
+		$(document).on('click', '.track', function(){
+			var event = $(this).attr('data-event');
+			var action = $(this).attr('data-action');
+			var value = $(this).attr('data-value');
+			ga('send', 'event', event, action, value);
+		});
+	});
+	//window.open('http://incoming.hotjar.com/s/7366', '_blank');
+	</script>
+
+
+
+<div id="ads"></div><iframe name="_hjRemoteVarsFrame" title="_hjRemoteVarsFrame" id="_hjRemoteVarsFrame" src="./SPOJ.com - Problem RPLB_files/box-d831eecf6f5411af024c3acd759add17.html" style="display: none !important; width: 1px !important; height: 1px !important; opacity: 0 !important; pointer-events: none !important;"></iframe></body></html>
