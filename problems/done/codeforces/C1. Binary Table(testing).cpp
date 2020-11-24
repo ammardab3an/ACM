@@ -30,6 +30,9 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int n, m;
+int grid[1010][1010];
+
 int32_t main(){
     
     fastIO;
@@ -39,8 +42,21 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n >> m;
+    for(int i = 0; i < n; i++){
+        string str; cin >> str;
+        for(int j = 0; j < m; j++) grid[i][j] = str[j] - '0';
+    }
+    
+    int q; cin >> q; while(q--){
+		for(int i = 0; i < 3; i++){
+			int x, y; cin >> x >> y;
+			grid[x-1][y-1] = !grid[x-1][y-1];
+		}
+    }
+    
+    for(int i = 0; i < n; i++){
+    	for(int j = 0; j < m; j++) cout << grid[i][j];
+    	cout << endl;
+    }
 }

@@ -1,3 +1,11 @@
+// Problem: A. Special Permutation
+// Contest: Codeforces - Codeforces Round #686 (Div. 3)
+// URL: https://codeforces.com/contest/1454/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -40,7 +48,11 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+		
+		int n;
+		cin >> n;
+		cout << n << ' ';
+		for(int i = 1; i < n; i++) cout << i << ' '; 
+		cout << endl;
     }	
 }

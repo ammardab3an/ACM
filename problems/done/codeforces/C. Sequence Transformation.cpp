@@ -1,3 +1,11 @@
+// Problem: C. Sequence Transformation
+// Contest: Codeforces - Codeforces Round #686 (Div. 3)
+// URL: https://codeforces.com/contest/1454/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -30,6 +38,8 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int arr[NMAX];
+
 int32_t main(){
     
     fastIO;
@@ -41,6 +51,47 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n; 
+		
+		int lst = -1;
+		
+		for(int i = 0; i < n; i++){
+		
+			int x; cin >> x;
+		
+			if(x != lst){
+				arr[i] = lst = x;
+			}
+			else{
+				n--;
+				i--;
+			}
+		}
+		
+		map<int, array<int, 3> > cnt;
+		
+		
+		cnt[arr[0]] = {1, 1, 0};
+		
+		if(n != 1)
+			cnt[arr[n-1]] = {1, 0, 1};
+		else
+			cnt[arr[n-1]] = {1, 1, 1};
+			
+			
+		for(int i = 1; i < n-1; i++){
+			cnt[arr[i]];
+			cnt[arr[i]][0]++;
+		}
+		
+		int ans = n;
+		for(auto p : cnt){
+			
+			ans = min(ans, p.second[0] - p.second[1] - p.second[2] +1);
+		}
+//		for(int i = 0; i < n; i++) cout << arr[i] << ' '; cout << endl;
+		
+		cout << ans << endl;
     }	
 }

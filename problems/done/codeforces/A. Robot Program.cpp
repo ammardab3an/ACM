@@ -1,3 +1,11 @@
+// Problem: A. Robot Program
+// Contest: Codeforces - Educational Codeforces Round 98 (Rated for Div. 2)
+// URL: http://codeforces.com/contest/1452/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -41,6 +49,10 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+		int i, j; cin >> i >> j;
+		if(i > j) swap(i, j);
+		int ans = i*2;
+		if(i != j) ans += (j-i) + (j-i-1);
+		cout << ans << endl;
     }	
 }

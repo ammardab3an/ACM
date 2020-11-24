@@ -1,3 +1,11 @@
+// Problem: A. Subtract or Divide
+// Contest: Codeforces - Codeforces Round #685 (Div. 2)
+// URL: https://codeforces.com/contest/1451/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -41,6 +49,16 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+		int x; cin >> x;
+		
+		int ans;
+		if(x == 1) ans = 0;
+		else if(x == 2) ans = 1;
+		else if(x == 3) ans = 2;
+		else if(x%2 == 0) ans = 2;
+		else if(x%2 == 1) ans = 3;
+		else ans = -1;
+		
+		cout << ans << endl;
     }	
 }
