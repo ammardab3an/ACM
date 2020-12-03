@@ -1,5 +1,0 @@
-given undirected unwighted graph
-
--check if it's bipartite graph?
-or
--check if there are any cycle with odd length ??
