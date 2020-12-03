@@ -1,3 +1,11 @@
+// Problem: B. Jumps
+// Contest: Codeforces - Educational Codeforces Round 99 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1455/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -43,7 +51,19 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
+		
+		int x;
+		cin >> x;
+		
+		int tmp = 0;
 
-
+		int i = 1;
+		while(tmp < x){
+			tmp += i++;
+		}
+		
+		int step_to_remove = tmp - x -1;
+		
+		cout << i-1 + (step_to_remove == 0) << endl;
     }	
 }

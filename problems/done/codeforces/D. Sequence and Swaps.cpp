@@ -1,3 +1,11 @@
+// Problem: D. Sequence and Swaps
+// Contest: Codeforces - Educational Codeforces Round 99 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1455/problem/D
+// Memory Limit: 512 MB
+// Time Limit: 1500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -33,6 +41,14 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int n;
+int arr[555];
+
+bool good(){
+	for(int i = 1; i < n; i++) if(arr[i-1] > arr[i]) return false;
+	return true;
+}
+
 int32_t main(){
     
     fastIO;
@@ -43,7 +59,28 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+		
+		int x;
+		cin >> n >> x;
+		for(int i = 0; i < n; i++) cin >> arr[i];
+				
+		int ans = 0;
+		
+		int i = 0;
+		
+		while(!good()){
+			
+			while(i < n && arr[i] <= x) i++;
+			
+			if(i == n){
+				ans = -1;
+				break;
+			}
+			
+			swap(arr[i], x);
+			ans++;
+		}
+		
+		cout << ans << endl;
     }	
 }
