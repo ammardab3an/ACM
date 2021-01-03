@@ -1,3 +1,11 @@
+// Problem: D. Coach Ayoub
+// Contest: Codeforces - Training Contest
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/309757/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,9 +14,8 @@
 using namespace std;
 
 //#define int int64_t
-//#define lli int64_t
 
-typedef unsigned int        uint;
+typedef unsigned int		uint;
 typedef long long int       lli;
 typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
@@ -26,7 +33,6 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -43,6 +49,12 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
+	
+	int n, a, b, s;
+	cin >> n >> a >> b >> s;
+	
+	cout << (a <= b && ((s-a-b) >= a*(n-2)) && ((s-a-b) <= b*(n-2)) ? "YES" : "NO") << endl;
+	return 0;
 
     int t; cin >> t; while(t--){
 

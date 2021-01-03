@@ -1,3 +1,11 @@
+// Problem: D. Meeting Bahosain
+// Contest: Codeforces - Training Contest 4
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/310464/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -44,8 +52,23 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
+	int n, m;
+	cin >> n >> m;
+	
+	vi a(n), b(m);
+	for(int i = 0; i < n; i++) cin >> a[i];
+	for(int i = 0; i < m; i++) cin >> b[i];
+	
+	int gcd = b[0];
+	for(int i = 1; i < m; i++) gcd = __gcd(gcd, b[i]);
 
-
-    }	
+	bool can = true;
+	for(int i = 1; i < n; i++){
+		if(abs(a[0] - a[i]) % gcd){
+			can = false;
+			break;
+		}
+	}
+	
+	cout << (can ? "Yes" : "No") << endl;
 }

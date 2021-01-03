@@ -7,7 +7,7 @@ using namespace std;
 const int N = 100;
 
 int arr[N];
-int seg[2][N];
+int seg[2][N << 2];
 
 void build(int nd, int L, int R){
     

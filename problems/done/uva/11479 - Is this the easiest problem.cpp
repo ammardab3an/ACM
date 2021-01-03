@@ -1,3 +1,11 @@
+// Problem: 11479 - Is this the easiest problem?
+// Contest: UVa Online Judge
+// URL: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2474
+// Memory Limit: 32 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -44,8 +52,24 @@ int32_t main(){
     freopenO;
 #endif
 
+	int tt = 1;
     int t; cin >> t; while(t--){
-
-
+		
+		lli a, b, c;
+		cin >> a >> b >> c;
+		
+		string ans = "Scalene";
+		
+		if(a <= 0 || b <= 0 || c <= 0)
+			ans = "Invalid";
+		else if(a+b<=c || a+c<=b || b+c<=a)
+			ans = "Invalid";
+		else if(a == b && b == c)
+			ans = "Equilateral";
+		else if(a == b || a == c || b == c)
+			ans = "Isosceles";
+				
+		
+		cout << "Case " << tt++ << ": " << ans << endl;
     }	
 }

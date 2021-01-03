@@ -1,3 +1,11 @@
+// Problem: G. Card Game
+// Contest: Codeforces - Training Contest 4
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/310464/problem/G
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -43,9 +51,17 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+	
+	int n;
+	cin >> n;
+	
+	double ans = 0;
+	
+	// ans = sum( (n-1)! * (k-1) * k ) / n!      {1 <= k <= n}
+	//     = sum( (k-1) * k ) / n                {1 <= k <= n}
+	//     = sum( (k+1) * k ) / n                {1 <= k < n}
+	
+	for(lli i = 1; i < n; i++) ans += i*(i+1);
+	
+	cout << fixed << setprecision(10) << ans / double(n) << endl;
 }

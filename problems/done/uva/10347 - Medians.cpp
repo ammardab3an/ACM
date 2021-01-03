@@ -1,3 +1,11 @@
+// Problem: F - Medians
+// Contest: Virtual Judge - Basic Geometry
+// URL: https://vjudge.net/contest/405410#problem/F
+// Memory Limit: 1024 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -32,7 +40,7 @@ const double EPS = 1e-9;
 const double  PI = acos(-1);
 
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 2e5 + 10;	
 const int MMAX = 2e5 + 10;
 
 int32_t main(){
@@ -44,8 +52,21 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
+	double a, b, c;
+	while(cin >> a >> b >> c){
 
-
-    }	
+/*
+		a *= 2.0/3.0;
+		b *= 2.0/3.0;
+		c *= 2.0/3.0;
+*/	
+		
+		double s = (a + b + c) / 2.0;
+		
+		double area = 4.0/3.0 * sqrt( s * (s-a) * (s-b) * (s-c) );
+		
+		if(isnan(area) || area == 0) area = -1.0;
+		
+		cout << fixed << setprecision(3) << area << endl;
+	}
 }

@@ -1,3 +1,11 @@
+// Problem: 10195 - The Knights Of The Round Table
+// Contest: UVa Online Judge
+// URL: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1136
+// Memory Limit: 32 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -44,8 +52,13 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+	double a, b, c;
+	while(cin >> a >> b >> c){
+		
+		double s = (a + b + c) / 2.0;
+		double area = sqrt( s * (s-a) * (s-b) * (s-c) );
+		double r = area/s;
+		if(isnan(r)) r = 0;
+		cout << "The radius of the round table is: " << fixed << setprecision(3) << r << endl;
+	}
 }

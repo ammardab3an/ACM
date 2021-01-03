@@ -1,3 +1,11 @@
+// Problem: B. Cow and Friend
+// Contest: Codeforces - Codeforces Round #621 (Div. 1 + Div. 2)
+// URL: https://codeforces.com/problemset/problem/1307/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,9 +14,8 @@
 using namespace std;
 
 //#define int int64_t
-//#define lli int64_t
 
-typedef unsigned int        uint;
+typedef unsigned int		uint;
 typedef long long int       lli;
 typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
@@ -26,7 +33,6 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -36,7 +42,7 @@ const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
 int32_t main(){
-    
+  	  
     fastIO;
     
 #ifdef LOCAL
@@ -46,6 +52,25 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+		int n, d;
+		cin >> n >> d;
+		
+		set<int> st;
+		int mx = 0;
+		
+		for(int i = 0; i < n; i++){
+			int x;
+			cin >> x;
+			st.insert(x);
+			mx = max(mx, x);
+		}
+		
+		if(st.count(d)){
+			cout << 1 << endl;
+		}else{
+			cout << max(2, (d+mx-1)/mx) << endl;
+		}
+		
+		
     }	
 }

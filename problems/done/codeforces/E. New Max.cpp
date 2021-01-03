@@ -1,3 +1,11 @@
+// Problem: E. New Max
+// Contest: Codeforces - Training Contest
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/309757/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,9 +14,8 @@
 using namespace std;
 
 //#define int int64_t
-//#define lli int64_t
 
-typedef unsigned int        uint;
+typedef unsigned int		uint;
 typedef long long int       lli;
 typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
@@ -26,7 +33,6 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -44,8 +50,18 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+   	int n, m, k;
+   	cin >> n >> m >> k;
+   	
+   	int cnt = 0;
+	bool found = 1;
+	
+   	for(int i = 0; i < n; i++){
+   		int x; 
+   		cin >> x; 
+   		if(x > m) cnt++;
+   		if(x == m) found = 0;
+   	}
+   	
+   	cout << (k >= (cnt+(found && !cnt)) ? "YES" : "NO") << endl;
 }

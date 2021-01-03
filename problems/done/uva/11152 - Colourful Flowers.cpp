@@ -1,3 +1,11 @@
+// Problem: 11152 - Colourful Flowers
+// Contest: UVa Online Judge
+// URL: https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2093
+// Memory Limit: 32 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -44,8 +52,19 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+	double a, b, c;
+	while(cin >> a >> b >> c){
+		
+		double s = (a+b+c)/2.0;
+		double area_t = sqrt( s * (s-a) * (s-b) * (s-c) );
+		double r_bs = (a*b*c)/area_t/4.0;
+		double area_bs = PI * r_bs * r_bs;
+		double r_ss = area_t/s;
+		double area_ss = PI * r_ss * r_ss;
+		
+		int i = 0;
+		for(double area : {area_bs-area_t, area_t-area_ss, area_ss})
+			cout << fixed << setprecision(4) << area << "  \n"[i++];
+	}
 }
+

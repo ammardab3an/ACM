@@ -1,3 +1,11 @@
+// Problem: N - 14
+// Contest: Virtual Judge - Level 3 - Graduation Contest
+// URL: https://vjudge.net/contest/414878#problem/N
+// Memory Limit: 1572 MB
+// Time Limit: 5000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,9 +14,8 @@
 using namespace std;
 
 //#define int int64_t
-//#define lli int64_t
 
-typedef unsigned int        uint;
+typedef unsigned int		uint;
 typedef long long int       lli;
 typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
@@ -26,7 +33,6 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -34,6 +40,7 @@ const double  PI = acos(-1);
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
+
 
 int32_t main(){
     
@@ -45,7 +52,37 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+		
+		lli x, y;
+		cin >> x >> y;
+		
+		while(x % 10 == 0) x/=10;
+		while(y % 10 == 0) y/=10;
+		
+		lli tx = 0;
+		while(x){
+			int d = x%10; x/=10;
+			tx += d;
+			tx *= 10;
+		}
+		
+		lli ty = 0;
+		while(y){
+			int d = y%10; y/=10;
+			ty += d;
+			ty *= 10;
+		}
+		
+		lli z = tx + ty;
+		while(z % 10 == 0) z/= 10;
+		
+		lli tz = 0;
+		while(z){
+			int d = z%10; z/= 10;
+			tz += d;
+			tz *= 10;
+		}
+		
+		cout << tz/10 << endl;
     }	
 }

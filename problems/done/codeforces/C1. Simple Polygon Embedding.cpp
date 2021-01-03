@@ -1,3 +1,11 @@
+// Problem: C1. Simple Polygon Embedding
+// Contest: Codeforces - Educational Codeforces Round 87 (Rated for Div. 2)
+// URL: https://codeforces.com/problemset/problem/1354/C1
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,9 +14,8 @@
 using namespace std;
 
 //#define int int64_t
-//#define lli int64_t
 
-typedef unsigned int        uint;
+typedef unsigned int		uint;
 typedef long long int       lli;
 typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
@@ -26,7 +33,6 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -45,7 +51,10 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+		
+		int n;
+		cin >> n;
+		
+		cout << fixed << setprecision(9) << 1.0 / tan( PI/(2*n) ) << endl;
     }	
 }
