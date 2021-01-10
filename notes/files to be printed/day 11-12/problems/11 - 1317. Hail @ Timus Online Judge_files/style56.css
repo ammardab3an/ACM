@@ -1,0 +1,636 @@
+﻿CODE, TT, PRE {font-family:monospace, "monospace for firefox"; font-size:0.81em;}
+PRE.with-code {font-size:1em;}
+SUP {position:relative; top:-0.4em; vertical-align:baseline;}
+SUB {bottom:-0.4em; position:relative; vertical-align:baseline;}
+PRE, FORM {margin:0;}
+PRE.breakable {white-space:pre-wrap; word-wrap:break-word;}
+A, A:visited, A:hover {color:#1A5CC8;}
+.strict A, .strict A:visited, .strict A:hover {color:#000000;}
+.help_par {line-height:1.4em;}
+H1.title, H2.title {color:#1A5CC8; text-align:center; margin-top:0;}
+H2.subtitle, H3.subtitle {color:#1A5CC8; text-align:left;}
+.score_verdict_acc {color:#008800;}
+.score_verdict_rej {color:#900000;}
+.captcha {float:left; margin:0 4px 4px 0;}
+
+/********** header **********/
+TABLE.body TR TD.caption {background-color:#1A5CC8; padding:1px 1px 0 1px; text-align:center;}
+TABLE.body TR TD.title {color:White; font-size:1.5em; text-align:center;}
+TABLE.body TR TD.title A {color:White; text-decoration:none;}
+TABLE.body TR TD.locale {font:bold 0.75em sans-serif; text-align:center; vertical-align:middle;}
+TABLE.body TR TD.locale A {color:White;}
+TABLE.body TR TD.panel {border:1px solid #1A5CC8; padding:1px;}
+TABLE.body TR TD.footer {border:1px solid #1A5CC8; padding:1px; text-align:right;}
+TABLE.body TR TD.rightp {text-align:right; vertical-align:middle; padding-right:6px;}
+TABLE.body TR TD.rightp A {color:White;}
+TABLE.body TR TD.leftp {text-align:left; vertical-align:middle; padding-left:6px;}
+TABLE.body TR TD.leftp A {color:White;}
+TABLE.panel TR TH, TABLE.panel TR TD {padding-right:15px; padding-top:5px;}
+TABLE.panel TR TH DIV {border-bottom:1px solid #1A5CC8; font-family:sans-serif; font-size:1.13em; font-weight:normal; text-align:left;}
+TABLE.panel A, TABLE.panel A:visited, TABLE.panel A:hover {color:#1A5CC8;}
+
+/********** status **********/
+TABLE.status {background-color:#FFFFFF; color:#000000; font:14px Arial, Helvetica, sans-serif;}
+TABLE.status {margin-bottom:10px; padding:0; text-align:center;}
+TABLE.status_nofilter {border-top:1px solid #808080;}
+TABLE.status TR.header {background-color:#EEEEEE; font-size:13px; font-weight:bold; height:36px;}
+TABLE.status TR.even {height:37px;}
+TABLE.status TR.odd {background-color:#F4F4F4; height:37px;}
+TABLE.status TD, TABLE.status TH {padding:2px 6px;}
+TABLE.status TD {border-top:1px solid #DDDDDD;}
+TABLE.status .id {border-left:1px solid #DDDDDD; border-right:1px solid #DDDDDD; width:64px;}
+TABLE.status .date {border-right:1px solid #DDDDDD; width:86px; white-space:nowrap;}
+TABLE.status .coder {border-right:1px solid #DDDDDD; width:248px;}
+TABLE.status TD.coder {text-align:left;}
+TABLE.status .problem {border-right:1px solid #DDDDDD; width:268px;}
+TABLE.status TD.problem {text-align:left;}
+TABLE.status .language {border-right:1px solid #DDDDDD; width:120px;}
+TABLE.status .result, TABLE.status .verdict_wt, TABLE.status .verdict_ac, TABLE.status .verdict_rj {border-right:1px solid #DDDDDD; width:160px;}
+TABLE.status .verdict_ac {color:#006600;}
+TABLE.status .verdict_rj, TABLE.status .verdict_rj A, TABLE.status .verdict_rj A:visited, TABLE.status .verdict_rj A:hover {color:#800000;}
+TABLE.status .verdict_ac, TABLE.status .verdict_ac A, TABLE.status .verdict_ac A:visited, TABLE.status .verdict_ac A:hover {color:#006600;}
+TABLE.status .test {border-right:1px solid #DDDDDD; width:52px;}
+TABLE.status .runtime {border-right:1px solid #DDDDDD; width:68px;}
+TABLE.status .memory {border-right:1px solid #DDDDDD; width:76px;}
+TABLE.status TD.status_footer {border-top:1px solid #808080; padding:10px 0 0 0;}
+TABLE.status_footer {color:#000000; font:14px Arial, Helvetica, sans-serif; width:100%;}
+TABLE.status_footer TD {border:none; padding:0; vertical-align:top;}
+TABLE.status_footer TD.footer_left {text-align:left; padding:0 32px 0 0;}
+TABLE.status_footer TD.footer_right {text-align:right; vertical-align:top;}
+P.status_filter {border:0; color:#000000; font:12px Arial, Helvetica, sans-serif; margin:0; padding:0 0 4px 0; text-align:right;}
+TABLE.status A, TABLE.status_footer A, P.status_filter A {color:#0044CC; text-decoration:underline;}
+TABLE.status TD.status_filter {border-bottom:1px solid #808080; border-top:none; padding:0;}
+
+/********** rating **********/
+TABLE.rating {background-color:#FFFFFF; color:#000000; font:14px Arial, Helvetica, sans-serif;}
+TABLE.rating {margin-bottom:10px; padding:0; text-align:center;}
+TABLE.rating TR.header {background-color:#EEEEEE; font-size:13px; font-weight:bold; height:36px;}
+TABLE.rating TR.even, TABLE.rating TR.odd {height:37px;}
+TABLE.rating TR.odd {background-color:#F4F4F4;}
+TABLE.rating TH, TABLE.rating TD {border-right:1px solid #DDDDDD; padding:2px 6px;}
+TABLE.rating TD {border-top:1px solid #DDDDDD;}
+TABLE.rating .rank {border-left:1px solid #DDDDDD; width:52px;}
+TABLE.rating .id {width:64px;}
+TABLE.rating .date {width:86px; white-space:nowrap;}
+TABLE.rating .coder {width:248px;}
+TABLE.rating TD.coder {text-align:left;}
+TABLE.rating .language {width:120px;}
+TABLE.rating .runtime {width:68px;}
+TABLE.rating .memory {width:76px;}
+TABLE.rating TD.rating_header {border-right:none; border-top:none; border-bottom:1px solid #808080; padding:0 0 7px 0; text-align:left; width:806px;}
+TABLE.rating TD.rating_header .single_filter {white-space:nowrap;}
+TABLE.rating TD.rating_footer {border-right:none; border-top:1px solid #808080; padding:10px 0 0 0;}
+TABLE.rating_footer {color:#000000; font:14px Arial, Helvetica, sans-serif; width:100%;}
+TABLE.rating_footer TD {border:none; padding:0; vertical-align:top;}
+TABLE.rating_footer TD.footer_left {padding-right:32px; text-align:left;}
+TABLE.rating_footer TD.footer_right {text-align:right;}
+TABLE.rating A {color:#0044CC; text-decoration:underline;}
+TABLE.rating .selected_filter {font-weight:bold;}
+
+/********** problem **********/
+TABLE.sample {border:solid 1px #1A5CC8; border-collapse:collapse;}
+TABLE.sample TR TD, TABLE.sample TR TH {border:solid 1px #1A5CC8; padding:3px; vertical-align:top;}
+TABLE.sample TR TH {color:#1A5CC8;}
+H2.problem_title {color:#1A5CC8; font-size:2em; font-weight:normal; margin:0; text-align:center;}
+H3.problem_subtitle {color:#1A5CC8; margin:14px 0 4px 0;}
+DIV.problem_limits {line-height:1.4em; margin:0 0 14px 0; text-align:center;}
+DIV.problem_source {line-height:1.4em; margin:10px 0 0 0;}
+DIV.problem_links {font-size:1.15em; margin:14px 0 6px 0; line-height:1.4em;}
+DIV.problem_centered_picture {margin:12px 0 12px 0; text-align:center;}
+IMG.problem_laimage {margin:4px 15px 6px 0;}
+IMG.problem_raimage {margin:4px 0 6px 15px;}
+DIV.problem_par, DIV.problem_par_pre {margin:0 0 10px 0;}
+DIV.problem_par {line-height:1.4em;}
+DIV.problem_par_normal {text-align:justify;}
+DIV.problem_par_center {text-align:center;}
+DIV.problem_par_right {text-align:right;}
+DIV.problem_par_epigraph {font-style:italic; padding-left:50%; text-align:left;}
+DIV.problem_par UL, DIV.problem_par OL {margin-bottom:10px; margin-top:4px;}
+DIV.problem_par TABLE {border:solid 1px Black; border-collapse:collapse;}
+DIV.problem_par TABLE TR TH, DIV.problem_par TABLE TR TD {border:solid 1px Black; padding:4px;}
+SPAN.problem_tags_toggle, SPAN.problem_tags_toggle A {color:Gray;}
+.myac {background:url(images/ok2.png) no-repeat left; padding-left:23px;}
+.prnver TABLE.sample, .prnver TABLE.sample TR TD, .prnver TABLE.sample TR TH {border-color:Black;}
+.prnver TABLE.sample TR TH, .prnver H2.problem_title, .prnver H3.problem_subtitle {color:Black;}
+.prnver A, .prnver A:visited, .prnver A:hover {color:Black;}
+
+/********** problemset **********/
+TABLE.problemset {border-collapse:collapse;}
+TABLE.problemset TR.content TH, TABLE.problemset TR.content TD {border:solid 1px #999; padding:3px;}
+TABLE.problemset TR.content TH {background-color:#A4C6FF; color:Black; text-align:center;}
+TABLE.problemset TR.content TD {background-color:#C6C6C6; color:Black; text-align:center;}
+TABLE.problemset TR.content TD.name {text-align:left;}
+TABLE.problemset TR.content TD.source {font-size:0.81em; text-align:left;}
+TABLE.problemset TR.navigation TD {border:0; padding:0; text-align:left;}
+TABLE.problemset TR.content A, TABLE.problemset TR.content A:visited, TABLE.problemset TR.content A:hover {color:#000000;}
+TABLE.problemset_footer {margin-bottom:5px; margin-top:2px; width:100%;}
+TABLE.problemset TR.navigation TD.problemset_footer_left {padding-left:1px; text-align:left;}
+TABLE.problemset TR.navigation TD.problemset_footer_right {padding-right:1px; text-align:right;}
+.active_filter {font-weight:bold;}
+.problemset_problemlistlink {font-size:1.3em;}
+.problemset_ranklistlink {padding-left:1.5em;}
+
+/********** ranklist **********/
+TABLE.ranklist {border-collapse:collapse;}
+TABLE.ranklist TR.content TH, TABLE.ranklist TR.content TD {border:solid 1px #999; padding:2px 4px;}
+TABLE.ranklist TR.content TH {background-color:#A4C6FF; color:Black; text-align:center;}
+TABLE.ranklist TR.content TD {background-color:#C6C6C6; color:Black; text-align:center;}
+TABLE.ranklist TR.content TD.name {text-align:left;}
+TABLE.ranklist TR.content TD.first {font:bold 1.3em Arial, Helvetica, sans-serif;}
+TABLE.ranklist TR.current TD {background-color:#D4D4D4;}
+TABLE.ranklist TR.content A, TABLE.ranklist TR.content A:visited, TABLE.ranklist TR.content A:hover {color:#000000;}
+TABLE.ranklist_footer {margin-bottom:5px; margin-top:2px; width:100%;}
+TD.ranklist_footer_left {padding-left:1px; text-align:left;}
+TD.ranklist_footer_right {padding-right:1px; text-align:right;}
+.active_filter {font-weight:bold;}
+
+/********** monitor **********/
+.monitor_header {text-align:center; font-weight:bold; margin-bottom:1em;}
+.monitor_footer {text-align:center; font-style:italic; margin-top:1em; font-size:0.81em; font-family:Arial, Helvetica, sans-serif;}
+TABLE.monitor {border-collapse:collapse;}
+TABLE.monitor TR TD, TABLE.monitor TR TH {border:solid 1px #BBB; padding:2px 4px; text-align:center; font-family:Arial, Helvetica, sans-serif;}
+TABLE.monitor TR TD {font-size:0.88em;}
+TABLE.monitor TR TH {font-size:0.81em; line-height:2em;}
+TABLE.monitor TR TD.author {text-align:left;}
+TABLE.monitor TR TD I {font-size:0.71em; font-style:normal;}
+TABLE.monitor TR TD.acc, TABLE.monitor TR TD.acb, TABLE.monitor TR TD.rej, TABLE.monitor TR TD.reb, TABLE.monitor TR TD.snt {font-family:Verdana, Geneva, 'Bitstream Vera Sans', 'DejaVu Sans', sans-serif;}
+TABLE.monitor TR TD.acc {color:#070;}
+TABLE.monitor TR TD.acb {color:#070; font-weight:bold;}
+TABLE.monitor TR TD.rej {color:#B00;}
+TABLE.monitor TR TD.reb {color:#B00; font-weight:bold;}
+TABLE.monitor TR TD.snt {color:#F60;}
+TABLE.monitor TR.stat_row TD {border:0; font-size:0.81em; font-style:italic;}
+TABLE.monitor TR.stat_row TD.stat_caption {text-align:right;}
+TABLE.monitor TR.hlauthor TD {background-color:#c4d8ff;}
+TABLE.monitor TR.oddrow TD {background-color:#f0f0f8;}
+TABLE.monitor TR.evenrow TD {background-color:#e4e4f8;}
+.monitor_page_score {margin:16px 0;}
+.monitor_page_score td {padding:0 4px; font-family:Verdana, Geneva, 'Bitstream Vera Sans', 'DejaVu Sans', sans-serif;}
+.monitor_page_score .score_top td {font-size:1.5em;}
+.monitor_page_score .score_bottom td {font-size:0.8em;}
+.monitor_filter {text-align:center; margin-bottom:1em;}
+
+/********** other **********/
+.centcontent {margin:20px auto; max-width:800px;}
+.fullcontent {margin:20px 0;}
+table.gray {border:1px solid #CCC; border-collapse:collapse;}
+table.gray tr td, table.gray tr th {border:1px solid #CCC; font-family:Arial, Helvetica, sans-serif; font-size:0.81em; vertical-align:top; padding:3px 5px;}
+table.gray tr td {background-color:#F8F8F8;}
+table.gray tr th {background-color:#ECECEC;}
+table.graytop tr td, table.graytop tr th {vertical-align:top;}
+table.graymid tr td, table.graymid tr th {vertical-align:middle;}
+table.watch {border:1px solid #999; border-collapse:collapse;}
+table.watch tr td, table.watch tr th {border:1px solid #999; font-family:Arial, Helvetica, sans-serif; font-size:0.81em; padding:0 2px; vertical-align:middle;}
+table.horz3 {border-collapse:collapse;}
+table.horz3 tr td {padding:2px 6px; background-color:#EEE; border-bottom:4px solid #FFF;}
+table.horz4 {border-collapse:collapse; border-top:1px solid #000; border-bottom:1px solid #000;}
+table.horz4 tr td {padding:4px 6px;}
+table.horz4 input {margin:0;}
+.spaces .header {border-bottom:solid 1px Silver; font:bold 1.2em Arial, Helvetica, sans-serif; padding-top:13px;}
+.spaces .spacename {text-align:left;}
+.spaces .spacedate {text-align:right; vertical-align:top; white-space:nowrap; padding-left:5px;}
+.idname + .taglist {margin-left:16px;}
+.taglist {display:inline; list-style-type:none; margin:0; padding:0;}
+.taglist LI {display:inline-block;}
+.taglist LI + LI {margin-left:8px;}
+.tagfont {font:14px Arial, Helvetica, sans-serif;}
+A.crossIcon, A.crossIcon:visited, A.crossIcon:hover {color:Gray; text-decoration:none;}
+A.crossIcon:active {opacity:0.5;}
+A.crossIcon::before {content:"✕";}
+A.plusIcon, A.plusIcon:visited, A.plusIcon:hover {color:Gray; text-decoration:none;}
+A.plusIcon:active {opacity:0.5;}
+A.plusIcon::before {content:"+";}
+A.tag, A.tag:visited, A.tag:hover {color:#3562ac; text-decoration:none;}
+A.tag:active {opacity:0.5;}
+.tag + .crossIcon {margin-left:8px;}
+.hashtagChip {display:inline-flex; align-items:center; background-color:#E0E0E0; padding:0 12px; min-height:24px; border-radius:12px; margin:0 8px 6px 0;}
+.hashtagChip A {text-decoration:none;}
+.hashtagChip A:active {opacity:0.5;}
+.problems-row:nth-child(2n) {background-color:#f0f0f0;}
+IMG.runpic {border:0; position:relative; top:1px;}
+.editpichov .editpiccont {visibility:hidden;}
+.editpichov:hover .editpiccont {visibility:visible;}
+.editpiccont {position:relative; margin-left:4px; padding-right:20px; cursor:pointer;}
+IMG.editpic {border:0; position:absolute; left:0; top:0; line-height:0.8em;}
+TABLE.source_code TR TD {margin:0; padding:0; vertical-align:top; width:600px; max-width:600px; background-color:#f5f2f0;}
+TABLE.source_code .diff_container {position:absolute; width:600px;}
+TABLE.source_code .diff_padding {padding:1em;}
+TABLE.source_code .diff_overlay {font-family:monospace, "monospace for firefox"; font-size:0.81em; line-height:1.4em;}
+TABLE.source_code .diff_overlay .delete {background-color:#ffd0d0;}
+TABLE.source_code .diff_overlay .insert {background-color:#c8ffc8;}
+TABLE.source_code .diff_overlay .empty {background-color:#e8e3e0;}
+A.dashedLink {border-bottom:dashed 1px Gray; margin-bottom:1px; text-decoration:none;}
+.dashed {border-bottom:dashed 1px black; cursor:pointer;}
+.formSection {margin-bottom:5px; text-align:left;}
+.fullWidth {width:100%;}
+A.printout:link {color:#1A5CC8}
+A.printout:visited {color:Maroon;}
+table.rulers {border-collapse:collapse;}
+table.rulers tr td, table.rulers tr th {padding:3px 8px; font-family:Arial, Helvetica, sans-serif; font-size:0.81em; vertical-align:top;}
+table.rulersmid tr td {vertical-align:middle !important;}
+table.ruletop, tr.ruletop td, tr.ruletop th {border-top:1px solid #CCC;}
+table.rulebottom, tr.rulebottom td, tr.rulebottom th {border-bottom:1px solid #CCC;}
+#tooltip {background:#FAF4DB; border:1px solid #666666; color:#333333; font:menu; margin:0; padding:3px 5px; position:absolute; visibility:hidden;}
+.lightBorder {border:1px solid LightGrey;}
+.asectitle {margin-bottom:0.4em;}
+.selectedMenu {background-color:#E0E0E0; color:#000000; border-radius:4px; padding:1px 4px; margin-left:-4px; margin-right:-4px;}
+.menucontent {padding:0; text-align:center; border:1px solid #1A5CC8;}
+.menulinks {line-height:1.6em;}
+.menulinks A {white-space:nowrap;}
+.menucontent A, .menucontent A:visited, .menucontent A:hover {color:#1A5CC8;}
+A.selectedMenu, A.selectedMenu:visited, A.selectedMenu:hover {color:#000000;}
+.menurow {padding-left:5px; padding-right:5px;}
+.menurowpt {padding-top:5px;}
+.menurowpb {padding-bottom:5px;}
+.menublock {display:inline-block; margin-left:6px; margin-right:6px; padding:0 8px;}
+.menublocktitle {font-size:1.5em;}
+.menublock, A.menublock, A.menublock:visited, A.menublock:hover {color:#00136b;}
+.navmenublock {background-color:#c1e0ff;}
+.curmenublock {background-color:#9ebfff;}
+.linkb, A.linkb, A.linkb:visited, A.linkb:hover {color:blue;}
+.linkg, A.linkg, A.linkg:visited, A.linkg:hover {color:gray;}
+.linkr, A.linkr, A.linkr:visited, A.linkr:hover {color:red;}
+FIELDSET.fldst {margin:0 0 6px 0; padding:6px 8px 2px 8px; border:#8AACE2 1px solid; border-radius:4px;}
+.test_lines {margin:0 2px 0 0; float:left;}
+.test_lines {color:#000; border:solid 1px #C0C0C0; border-radius:4px; background-color:#F0F0F0;}
+.test_lines PRE {margin:1px 3px; font-size:0.89em; text-align:left;}
+.check_ok::before {padding:0 2px; color:#006600; content:"✔";}
+.check_error::before {padding:0 2px; color:red; content:"✘";}
+.check_warn::before {padding:0 2px; color:orange; content:"✘";}
+.infobox {text-align:left; max-width:798px; margin-top:1em; position:relative;}
+.infobox {border:1px solid #d2e1f9; border-radius:4px; background-color:#f6f9fe;}
+.infobox::before {position:absolute; top:16px; left:16px; width:20px; height:20px; border-radius:50%;}
+.infobox::before {content:"i"; text-align:center; line-height:20px; font-style:italic;}
+.infobox::before {color:white; background-color:#97baf2;}
+.infobox P {margin:16px 16px 16px 48px;}
+
+/********** news **********/
+DIV.news_block {margin:1.2em 0 1.2em 0; line-height:1.4em;}
+DIV.news_caption {border-bottom:dashed 1px Silver; font-size:1.19em; font-weight:bold; margin-bottom:0.3em;}
+
+/********** the team **********/
+TABLE.team_person TR TD {background-color:#eee; height:130px; padding:7px; vertical-align:top; width:370px;}
+TABLE.team_person TR TD IMG.photo {float:left; margin:0 7px 0 0;}
+TABLE.team_person TR TD DIV.name {font-size:1.3em; margin-bottom:0.3em;}
+
+/********** forum **********/
+.board {font:14px Arial, Helvetica, sans-serif;}
+.board A:link {color:#1A5CC8; text-decoration:none;}
+.board A:visited {color:#404040; text-decoration:none;}
+.board A:hover {text-decoration:underline;}
+.forum0 {background-color:#ECECEC;}
+.forum1 {background-color:#F8F8F8;}
+.pages {border-bottom:solid 1px #b0b0b0; border-top:solid 1px #b0b0b0; color:#404040; text-align:center;}
+.beforepages {color:#545454; margin-bottom:5px; text-align:center;}
+.afterpages {border-top:solid 1px #b0b0b0; color:#545454; padding-top:5px; text-align:center;}
+.thread {border-bottom:solid 1px #c0c0c0; color:#404040;}
+.treedate {color:#808080; font:12px Arial, Helvetica, sans-serif; white-space:nowrap;}
+.message {font:14px monospace, "monospace for firefox";}
+.subject {margin:3px 0; padding:3px; background-color:#C0DBFF; text-align:center;}
+.subject {font:17px Arial, Helvetica, sans-serif; font-weight:bold;}
+.forum_tree_subject {text-align:left; width:462px;}
+.forum_tree_author {text-align:left; width:220px;}
+.forum_tree_problem {text-align:left; width:220px;}
+.forum_tree_date {text-align:right; width:124px; white-space:nowrap;}
+.forum_tree_count {text-align:right; width:33px;}
+.forum_text_icon {padding-left:20px;}
+.forum_shift_right {margin:5px 0 5px 25px;}
+.forum_message_box {padding:2px; background-color:#F8F8F8;}
+.forum_button {font-family:sans-serif; font-size:11px; line-height:16px; letter-spacing:1px;}
+.forum_button {text-align:center; text-decoration:none; cursor:pointer;}
+.forum_button {padding:0 8px; border-radius:3px; border:1px solid #003c74; color:#000;}
+.forum_button {background:#ffffff; background:-moz-linear-gradient(top, #ffffff 0%, #ecebe6 100%); background:-webkit-linear-gradient(top, #ffffff 0%, #ecebe6 100%); background:linear-gradient(to bottom, #ffffff 0%, #ecebe6 100%);}
+.forum_button:active {background:#ecebe6; background:-moz-linear-gradient(top, #ecebe6 0%, #ffffff 100%); background:-webkit-linear-gradient(top, #ecebe6 0%, #ffffff 100%); background:linear-gradient(to bottom, #ecebe6 0%, #ffffff 100%);}
+.forum_button {margin-right:10px;}
+.forum_button_main {font-weight:bold;}
+.forum_quote_header {margin:2px 0 0 25px; padding:0 2px; font:14px Arial, Helvetica, sans-serif;}
+.forum_quote {margin:2px 0 2px 25px; padding:2px;}
+.forum_quote {background-color:#F0F0F0;}
+.forum_quote .forum_quote {background-color:#E8E8E8;}
+.forum_quote .forum_quote .forum_quote {background-color:#E0E0E0;}
+.forum_quote .forum_quote .forum_quote .forum_quote {background-color:#D8D8D8;}
+.forum_quote .forum_quote .forum_quote .forum_quote .forum_quote {background-color:#D0D0D0;}
+.forum_quote .forum_quote .forum_quote .forum_quote .forum_quote .forum_quote {background-color:#C8C8C8;}
+.forum_quote .forum_quote .forum_quote .forum_quote .forum_quote .forum_quote .forum_quote {background-color:#C0C0C0;}
+
+/********** author **********/
+TABLE.attempt_list TR TD {padding:0 3px; line-height:1.3em;}
+TABLE.attempt_list TR TD.accepted {background-color:#90ff90;}
+TABLE.attempt_list TR TD.both {background-color:#e0f8e0;}
+TABLE.attempt_list TR TD.cmpac {background-color:#ffc8e0;}
+TABLE.attempt_list TR TD.empty A, TABLE.attempt_list TR TD.empty A:visited, TABLE.attempt_list TR TD.empty A:hover {color:#b0b0b0;}
+TABLE.attempt_list TR TD.attempt_list_volume {text-align:left; padding:6px 5px 0 3px;}
+.author_motto {margin-bottom:1em; background-color:#D4D4D4; font-style:italic; text-align:center; border-radius:6px;}
+H2.author_name {margin-top:0; margin-bottom:6px; color:#1A5CC8; font-size:2em; font-weight:normal; text-align:center;}
+.author_flag, .author_stats, .author_links, .author_submitted, .author_solved, .author_none_solved, .author_comparison, .attempt_list {margin-bottom:1em;}
+TABLE.author_comparison_legend TR TD {vertical-align:top;}
+TABLE.author_comparison_legend TR TD.padright {padding-right:5px;}
+.solved_map_links {margin-bottom:4px; padding:0 3px;}
+TABLE.author_stats {border-collapse:collapse; border-width:0;}
+TABLE.author_stats TR TD {padding:2px; vertical-align:middle;}
+TABLE.author_stats TR TD.author_stats_name {font:1.13em Arial, Helvetica, sans-serif; text-align:left; padding-right:50px;}
+TABLE.author_stats TR TD.author_stats_value {font:1.19em monospace, "monospace for firefox"; text-align:right;}
+.progress_cont {width:100%; background-color:#fff; border:solid 1px #888; position:relative; overflow:hidden;}
+.progress_bar {background-color:#c1e0ff; color:#000; padding:1px 0;}
+.progress_text {position:absolute; top:1px; z-index:2; color:#000; text-align:center; width:100%;}
+.author_stat_header {margin:4px 0; width:100%;}
+TABLE.attempt_list TR .author_stat_header td {padding:0;}
+TABLE.attempt_list TR .author_stat_header td.author_stat_volume {padding-right:16px; vertical-align:middle;}
+TABLE.attempt_list TR .author_stat_header td.author_stat_rank {padding-right:16px; vertical-align:middle;}
+TABLE.attempt_list TR .author_stat_header td.author_stat_count {width:300px;}
+
+/********** submit **********/
+.submit_solution_form {background-color:#ECECF4; width:588px; border:solid 1px #C0C0C0;}
+.submit_clarif_form {background-color:#C8FBC8; width:588px; border:solid 1px #C0C0C0;}
+.submit_print_form {background-color:#FFF2C0; width:588px; border:solid 1px #C0C0C0;}
+.submit_form_content {margin:12px;}
+.submit_text {width:560px;}
+.submit_title {margin-top:0.3em; margin-bottom:0.3em;}
+.submit_verdict_acc, .submit_verdict_rej, .submit_lines {color:#000; border:solid 1px #C0C0C0; border-radius:4px;}
+.submit_verdict_acc, .submit_verdict_rej {padding-left:3px; padding-right:3px; margin-left:-4px; margin-right:-4px;}
+.submit_verdict_acc {background-color:#C8FBC8;}
+.submit_verdict_rej {background-color:#F8D9FF;}
+.submit_lines {background-color:#F8F8F8;}
+.submit_lines pre {margin:1px 3px;}
+
+/********** sprites **********/
+.flag-AD {background-position:0 0; height:28px; width:41px;}
+.flag-AE {background-position:0 -50px; height:28px; width:54px;}
+.flag-AF {background-position:0 -100px; height:28px; width:54px;}
+.flag-AG {background-position:0 -150px; height:28px; width:41px;}
+.flag-AI {background-position:0 -200px; height:28px; width:54px;}
+.flag-AL {background-position:0 -250px; height:28px; width:40px;}
+.flag-AM {background-position:0 -300px; height:28px; width:54px;}
+.flag-AN {background-position:0 -350px; height:28px; width:41px;}
+.flag-AO {background-position:0 -400px; height:28px; width:41px;}
+.flag-AQ {background-position:0 -450px; height:28px; width:47px;}
+.flag-AR {background-position:0 -500px; height:28px; width:40px;}
+.flag-AS {background-position:0 -550px; height:28px; width:52px;}
+.flag-AT {background-position:0 -600px; height:28px; width:41px;}
+.flag-AU {background-position:0 -650px; height:28px; width:53px;}
+.flag-AW {background-position:0 -700px; height:28px; width:41px;}
+.flag-AZ {background-position:0 -750px; height:28px; width:53px;}
+.flag-BA {background-position:0 -800px; height:28px; width:54px;}
+.flag-BB {background-position:0 -850px; height:28px; width:41px;}
+.flag-BD {background-position:0 -900px; height:28px; width:45px;}
+.flag-BE {background-position:0 -950px; height:28px; width:31px;}
+.flag-BF {background-position:0 -1000px; height:28px; width:41px;}
+.flag-BG {background-position:0 -1050px; height:28px; width:41px;}
+.flag-BH {background-position:0 -1100px; height:28px; width:45px;}
+.flag-BI {background-position:0 -1150px; height:28px; width:40px;}
+.flag-BJ {background-position:0 -1200px; height:28px; width:40px;}
+.flag-BM {background-position:0 -1250px; height:28px; width:54px;}
+.flag-BN {background-position:0 -1300px; height:28px; width:53px;}
+.flag-BO {background-position:0 -1350px; height:28px; width:40px;}
+.flag-BR {background-position:0 -1400px; height:28px; width:39px;}
+.flag-BS {background-position:0 -1450px; height:28px; width:54px;}
+.flag-BT {background-position:0 -1500px; height:28px; width:41px;}
+.flag-BV {background-position:0 -1550px; height:28px; width:44px;}
+.flag-BW {background-position:0 -1600px; height:28px; width:41px;}
+.flag-BY {background-position:0 -1650px; height:28px; width:54px;}
+.flag-BZ {background-position:0 -1700px; height:28px; width:41px;}
+.flag-CA {background-position:0 -1750px; height:28px; width:53px;}
+.flag-CC {background-position:0 -1800px; height:28px; width:53px;}
+.flag-CD {background-position:0 -1850px; height:28px; width:43px;}
+.flag-CF {background-position:0 -1900px; height:28px; width:41px;}
+.flag-CG {background-position:0 -1950px; height:28px; width:40px;}
+.flag-CH {background-position:-76px 0; height:28px; width:28px;}
+.flag-CI {background-position:-76px -50px; height:28px; width:41px;}
+.flag-CK {background-position:-76px -100px; height:28px; width:54px;}
+.flag-CL {background-position:-76px -150px; height:28px; width:41px;}
+.flag-CM {background-position:-76px -200px; height:28px; width:41px;}
+.flag-CN {background-position:-76px -250px; height:28px; width:41px;}
+.flag-CO {background-position:-76px -300px; height:28px; width:41px;}
+.flag-CR {background-position:-76px -350px; height:28px; width:43px;}
+.flag-CU {background-position:-76px -400px; height:28px; width:54px;}
+.flag-CV {background-position:-76px -450px; height:28px; width:41px;}
+.flag-CX {background-position:-76px -500px; height:28px; width:53px;}
+.flag-CY {background-position:-76px -550px; height:28px; width:45px;}
+.flag-CZ {background-position:-76px -600px; height:28px; width:40px;}
+.flag-DE {background-position:-76px -650px; height:28px; width:44px;}
+.flag-DJ {background-position:-76px -700px; height:28px; width:41px;}
+.flag-DK {background-position:-76px -750px; height:28px; width:36px;}
+.flag-DM {background-position:-76px -800px; height:28px; width:54px;}
+.flag-DO {background-position:-76px -850px; height:28px; width:40px;}
+.flag-DZ {background-position:-76px -900px; height:28px; width:41px;}
+.flag-EC {background-position:-76px -950px; height:28px; width:52px;}
+.flag-EE {background-position:-76px -1000px; height:28px; width:41px;}
+.flag-EG {background-position:-76px -1050px; height:28px; width:41px;}
+.flag-EH {background-position:-76px -1100px; height:28px; width:47px;}
+.flag-ER {background-position:-76px -1150px; height:28px; width:53px;}
+.flag-ES {background-position:-76px -1200px; height:28px; width:41px;}
+.flag-ET {background-position:-76px -1250px; height:28px; width:47px;}
+.flag-FI {background-position:-76px -1300px; height:28px; width:44px;}
+.flag-FJ {background-position:-76px -1350px; height:28px; width:54px;}
+.flag-FK {background-position:-76px -1400px; height:28px; width:54px;}
+.flag-FM {background-position:-76px -1450px; height:28px; width:44px;}
+.flag-FO {background-position:-76px -1500px; height:28px; width:37px;}
+.flag-FR {background-position:-76px -1550px; height:28px; width:41px;}
+.flag-GA {background-position:-76px -1600px; height:28px; width:40px;}
+.flag-GD {background-position:-76px -1650px; height:28px; width:47px;}
+.flag-GE {background-position:-76px -1700px; height:28px; width:41px;}
+.flag-GF {background-position:-76px -1750px; height:28px; width:41px;}
+.flag-GH {background-position:-76px -1800px; height:28px; width:41px;}
+.flag-GI {background-position:-76px -1850px; height:28px; width:54px;}
+.flag-GL {background-position:-76px -1900px; height:28px; width:41px;}
+.flag-GM {background-position:-76px -1950px; height:28px; width:41px;}
+.flag-GN {background-position:-152px 0; height:28px; width:40px;}
+.flag-GP {background-position:-152px -50px; height:28px; width:41px;}
+.flag-GQ {background-position:-152px -100px; height:28px; width:43px;}
+.flag-GR {background-position:-152px -150px; height:28px; width:41px;}
+.flag-GS {background-position:-152px -200px; height:28px; width:54px;}
+.flag-GT {background-position:-152px -250px; height:28px; width:41px;}
+.flag-GU {background-position:-152px -300px; height:28px; width:54px;}
+.flag-GW {background-position:-152px -350px; height:28px; width:53px;}
+.flag-GY {background-position:-152px -400px; height:28px; width:41px;}
+.flag-HK {background-position:-152px -450px; height:28px; width:41px;}
+.flag-HM {background-position:-152px -500px; height:28px; width:53px;}
+.flag-HN {background-position:-152px -550px; height:28px; width:54px;}
+.flag-HR {background-position:-152px -600px; height:28px; width:53px;}
+.flag-HT {background-position:-152px -650px; height:28px; width:41px;}
+.flag-HU {background-position:-152px -700px; height:28px; width:41px;}
+.flag-ID {background-position:-152px -750px; height:28px; width:40px;}
+.flag-IE {background-position:-152px -800px; height:28px; width:54px;}
+.flag-IL {background-position:-152px -850px; height:28px; width:37px;}
+.flag-IN {background-position:-152px -900px; height:28px; width:41px;}
+.flag-IO {background-position:-152px -950px; height:28px; width:54px;}
+.flag-IQ {background-position:-152px -1000px; height:28px; width:41px;}
+.flag-IR {background-position:-152px -1050px; height:28px; width:48px;}
+.flag-IS {background-position:-152px -1100px; height:28px; width:38px;}
+.flag-IT {background-position:-152px -1150px; height:28px; width:41px;}
+.flag-JM {background-position:-152px -1200px; height:28px; width:54px;}
+.flag-JO {background-position:-152px -1250px; height:28px; width:54px;}
+.flag-JP {background-position:-152px -1300px; height:28px; width:41px;}
+.flag-KE {background-position:-152px -1350px; height:28px; width:41px;}
+.flag-KG {background-position:-152px -1400px; height:28px; width:41px;}
+.flag-KH {background-position:-152px -1450px; height:28px; width:40px;}
+.flag-KI {background-position:-152px -1500px; height:28px; width:41px;}
+.flag-KM {background-position:-152px -1550px; height:28px; width:41px;}
+.flag-KN {background-position:-152px -1600px; height:28px; width:40px;}
+.flag-KP {background-position:-152px -1650px; height:28px; width:53px;}
+.flag-KR {background-position:-152px -1700px; height:28px; width:41px;}
+.flag-KW {background-position:-152px -1750px; height:28px; width:54px;}
+.flag-KY {background-position:-152px -1800px; height:28px; width:53px;}
+.flag-KZ {background-position:-152px -1850px; height:28px; width:41px;}
+.flag-LA {background-position:-152px -1900px; height:28px; width:41px;}
+.flag-LB {background-position:-152px -1950px; height:28px; width:41px;}
+.flag-LC {background-position:-228px 0; height:28px; width:54px;}
+.flag-LI {background-position:-228px -50px; height:28px; width:41px;}
+.flag-LK {background-position:-228px -100px; height:28px; width:53px;}
+.flag-LR {background-position:-228px -150px; height:28px; width:52px;}
+.flag-LS {background-position:-228px -200px; height:28px; width:41px;}
+.flag-LT {background-position:-228px -250px; height:28px; width:41px;}
+.flag-LU {background-position:-228px -300px; height:28px; width:45px;}
+.flag-LV {background-position:-228px -350px; height:28px; width:54px;}
+.flag-LY {background-position:-228px -400px; height:28px; width:54px;}
+.flag-MA {background-position:-228px -450px; height:28px; width:41px;}
+.flag-MC {background-position:-228px -500px; height:28px; width:41px;}
+.flag-MD {background-position:-228px -550px; height:28px; width:54px;}
+.flag-MG {background-position:-228px -600px; height:28px; width:41px;}
+.flag-MH {background-position:-228px -650px; height:28px; width:54px;}
+.flag-MK {background-position:-228px -700px; height:28px; width:41px;}
+.flag-ML {background-position:-228px -750px; height:28px; width:41px;}
+.flag-MM {background-position:-228px -800px; height:28px; width:51px;}
+.flag-MN {background-position:-228px -850px; height:28px; width:54px;}
+.flag-MO {background-position:-228px -900px; height:28px; width:41px;}
+.flag-MP {background-position:-228px -950px; height:28px; width:54px;}
+.flag-MQ {background-position:-228px -1000px; height:28px; width:41px;}
+.flag-MR {background-position:-228px -1050px; height:28px; width:41px;}
+.flag-MS {background-position:-228px -1100px; height:28px; width:54px;}
+.flag-MT {background-position:-228px -1150px; height:28px; width:40px;}
+.flag-MU {background-position:-228px -1200px; height:28px; width:41px;}
+.flag-MV {background-position:-228px -1250px; height:28px; width:41px;}
+.flag-MW {background-position:-228px -1300px; height:28px; width:40px;}
+.flag-MX {background-position:-228px -1350px; height:28px; width:54px;}
+.flag-MY {background-position:-228px -1400px; height:28px; width:54px;}
+.flag-MZ {background-position:-228px -1450px; height:28px; width:41px;}
+.flag-NA {background-position:-228px -1500px; height:28px; width:41px;}
+.flag-NC {background-position:-228px -1550px; height:28px; width:40px;}
+.flag-NE {background-position:-228px -1600px; height:28px; width:41px;}
+.flag-NF {background-position:-228px -1650px; height:28px; width:54px;}
+.flag-NG {background-position:-228px -1700px; height:28px; width:54px;}
+.flag-NI {background-position:-228px -1750px; height:28px; width:54px;}
+.flag-NL {background-position:-228px -1800px; height:28px; width:41px;}
+.flag-NO {background-position:-228px -1850px; height:28px; width:37px;}
+.flag-NP {background-position:-228px -1900px; height:28px; width:21px;}
+.flag-NR {background-position:-228px -1950px; height:28px; width:53px;}
+.flag-NU {background-position:-304px 0; height:28px; width:54px;}
+.flag-NZ {background-position:-304px -50px; height:28px; width:54px;}
+.flag-OM {background-position:-304px -100px; height:28px; width:41px;}
+.flag-PA {background-position:-304px -150px; height:28px; width:40px;}
+.flag-PE {background-position:-304px -200px; height:28px; width:40px;}
+.flag-PF {background-position:-304px -250px; height:28px; width:48px;}
+.flag-PG {background-position:-304px -300px; height:28px; width:37px;}
+.flag-PH {background-position:-304px -350px; height:28px; width:54px;}
+.flag-PK {background-position:-304px -400px; height:28px; width:41px;}
+.flag-PL {background-position:-304px -450px; height:28px; width:43px;}
+.flag-PM {background-position:-304px -500px; height:28px; width:40px;}
+.flag-PN {background-position:-304px -550px; height:28px; width:54px;}
+.flag-PR {background-position:-304px -600px; height:28px; width:53px;}
+.flag-PS {background-position:-304px -650px; height:28px; width:40px;}
+.flag-PT {background-position:-304px -700px; height:28px; width:41px;}
+.flag-PW {background-position:-304px -750px; height:28px; width:41px;}
+.flag-PY {background-position:-304px -800px; height:28px; width:53px;}
+.flag-QA {background-position:-304px -850px; height:28px; width:54px;}
+.flag-RE {background-position:-304px -900px; height:28px; width:40px;}
+.flag-RO {background-position:-304px -950px; height:28px; width:40px;}
+.flag-RU {background-position:-304px -1000px; height:28px; width:41px;}
+.flag-RW {background-position:-304px -1050px; height:28px; width:58px;}
+.flag-SA {background-position:-304px -1100px; height:28px; width:41px;}
+.flag-SB {background-position:-304px -1150px; height:28px; width:41px;}
+.flag-SC {background-position:-304px -1200px; height:28px; width:55px;}
+.flag-SD {background-position:-304px -1250px; height:28px; width:54px;}
+.flag-SE {background-position:-304px -1300px; height:28px; width:42px;}
+.flag-SG {background-position:-304px -1350px; height:28px; width:41px;}
+.flag-SH {background-position:-304px -1400px; height:28px; width:53px;}
+.flag-SI {background-position:-304px -1450px; height:28px; width:54px;}
+.flag-SJ {background-position:-304px -1500px; height:28px; width:44px;}
+.flag-SK {background-position:-304px -1550px; height:28px; width:41px;}
+.flag-SL {background-position:-304px -1600px; height:28px; width:41px;}
+.flag-SM {background-position:-304px -1650px; height:28px; width:41px;}
+.flag-SN {background-position:-304px -1700px; height:28px; width:41px;}
+.flag-SO {background-position:-304px -1750px; height:28px; width:41px;}
+.flag-SR {background-position:-304px -1800px; height:28px; width:41px;}
+.flag-ST {background-position:-304px -1850px; height:28px; width:53px;}
+.flag-SU {background-position:-304px -1900px; height:28px; width:41px;}
+.flag-SV {background-position:-304px -1950px; height:28px; width:42px;}
+.flag-SY {background-position:-384px 0; height:28px; width:42px;}
+.flag-SZ {background-position:-384px -50px; height:28px; width:42px;}
+.flag-TC {background-position:-384px -100px; height:28px; width:54px;}
+.flag-TD {background-position:-384px -150px; height:28px; width:41px;}
+.flag-TF {background-position:-384px -200px; height:28px; width:41px;}
+.flag-TG {background-position:-384px -250px; height:28px; width:40px;}
+.flag-TH {background-position:-384px -300px; height:28px; width:41px;}
+.flag-TJ {background-position:-384px -350px; height:28px; width:54px;}
+.flag-TK {background-position:-384px -400px; height:28px; width:54px;}
+.flag-TL {background-position:-384px -450px; height:28px; width:54px;}
+.flag-TM {background-position:-384px -500px; height:28px; width:41px;}
+.flag-TN {background-position:-384px -550px; height:28px; width:41px;}
+.flag-TO {background-position:-384px -600px; height:28px; width:54px;}
+.flag-TR {background-position:-384px -650px; height:28px; width:41px;}
+.flag-TT {background-position:-384px -700px; height:28px; width:40px;}
+.flag-TV {background-position:-384px -750px; height:28px; width:54px;}
+.flag-TW {background-position:-384px -800px; height:28px; width:41px;}
+.flag-TZ {background-position:-384px -850px; height:28px; width:41px;}
+.flag-UA {background-position:-384px -900px; height:28px; width:41px;}
+.flag-UG {background-position:-384px -950px; height:28px; width:45px;}
+.flag-UK {background-position:-384px -1000px; height:28px; width:54px;}
+.flag-UM {background-position:-384px -1050px; height:28px; width:51px;}
+.flag-US {background-position:-384px -1100px; height:28px; width:51px;}
+.flag-UY {background-position:-384px -1150px; height:28px; width:40px;}
+.flag-UZ {background-position:-384px -1200px; height:28px; width:54px;}
+.flag-VA {background-position:-384px -1250px; height:28px; width:28px;}
+.flag-VC {background-position:-384px -1300px; height:28px; width:41px;}
+.flag-VE {background-position:-384px -1350px; height:28px; width:40px;}
+.flag-VG {background-position:-384px -1400px; height:28px; width:54px;}
+.flag-VI {background-position:-384px -1450px; height:28px; width:43px;}
+.flag-VN {background-position:-384px -1500px; height:28px; width:41px;}
+.flag-VU {background-position:-384px -1550px; height:28px; width:43px;}
+.flag-WF {background-position:-384px -1600px; height:28px; width:35px;}
+.flag-WS {background-position:-384px -1650px; height:28px; width:53px;}
+.flag-YE {background-position:-384px -1700px; height:28px; width:40px;}
+.flag-YT {background-position:-384px -1750px; height:28px; width:40px;}
+.flag-YU {background-position:-384px -1800px; height:28px; width:54px;}
+.flag-ZA {background-position:-384px -1850px; height:28px; width:44px;}
+.flag-ZM {background-position:-384px -1900px; height:28px; width:41px;}
+.flag-ZW {background-position:-384px -1950px; height:28px; width:54px;}
+.flag-earth {background-position:-464px 0; height:28px; width:41px;}
+.flags-img {background-image:url(images/flags.png); background-repeat:no-repeat; margin:auto;}
+.forumimg-message {background-position:0 -1728px;}
+.forumimg-arrow_down {background-position:0 -66px; height:5px; width:9px;}
+.forumimg-arrow_up {background-position:0 -121px; height:5px; width:9px;}
+.forumimg-ban {background-position:0 -176px; height:18px; width:38px;}
+.forumimg-ban_eng {background-position:0 -244px; height:18px; width:38px;}
+.forumimg-closethread {background-position:0 -312px; height:18px; width:90px;}
+.forumimg-closethread_eng {background-position:0 -380px; height:18px; width:89px;}
+.forumimg-delete {background-position:0 -448px; height:18px; width:62px;}
+.forumimg-delete_eng {background-position:0 -516px; height:18px; width:53px;}
+.forumimg-deletethread {background-position:0 -584px; height:18px; width:89px;}
+.forumimg-deletethread_eng {background-position:0 -652px; height:18px; width:93px;}
+.forumimg-edit {background-position:0 -720px; height:18px; width:96px;}
+.forumimg-edit_eng {background-position:0 -788px; height:18px; width:39px;}
+.forumimg-equal {background-position:0 -856px; height:5px; width:8px;}
+.forumimg-minus {background-position:-32px -1664px;}
+.forumimg-msg_minus {background-position:-64px -1600px;}
+.forumimg-msg_plus {background-position:-48px -1632px;}
+.forumimg-plus {background-position:-16px -1696px;}
+.forumimg-post {background-position:0 -1159px; height:18px; width:88px;}
+.forumimg-post_eng {background-position:0 -1227px; height:18px; width:80px;}
+.forumimg-reply {background-position:0 -1295px; height:18px; width:66px;}
+.forumimg-reply_eng {background-position:0 -1363px; height:18px; width:49px;}
+.forumimg-send {background-position:0 -1431px; height:17px; width:79px;}
+.forumimg-send_eng {background-position:0 -1498px; height:17px; width:39px;}
+.forumimg {background-image:url(images/forum.png); background-repeat:no-repeat;}
+.forumimg-button {float:left; margin-right:10px;}
+.forumimg-afterbutton {clear:both; padding-bottom:3px;}
+
+@media screen and (max-width: 950px) {
+    TABLE.status .problemname {display:none;}
+    TABLE.status .problem {width:64px;}
+    TABLE.status TD.problem {text-align:center;}
+    TABLE.status TD, TABLE.status TH {padding:2px 4px;}
+    TABLE.monitor TR TD, TABLE.monitor TR TH {padding:2px 2px;}
+    .board .problemname {display:none;}
+    .forum_tree_problem {width:46px;}
+    TABLE.attempt_list TR TD {font-size:0.88em;}
+}
