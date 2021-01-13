@@ -1,0 +1,10 @@
+1-Submission: 
+	kickoff.acpc.global/pc2team
+2-Scoreboard
+	kickoff.acpc.global/scoreboard
+3-Problemset
+	kickoff.acpc.global/problemset
+4-Samples
+	kickoff.acpc.global/samples
+5-STL
+	kickoff.acpc.global/problemset/stl

@@ -104,6 +104,7 @@ int dfs4(int nd, int par){
 			ret += dfs4(nxt, nd);
 			low[nd] = min(low[nd], low[nxt]);
 			if(low[nxt] > tin[nd]){
+//				cout << nxt << ' ' << nd << endl;
 				ret++;
 			}
 		}
@@ -152,7 +153,7 @@ int32_t main(){
 			dfs2(i, ccol++);
 		}
 		
-		for(int i = 0; i < n; i++) cout << col[i] << ' '; cout << endl;
+		//for(int i = 0; i < n; i++) cout << col[i] << ' '; cout << endl;
 		
 		for(int i = 0; i < m; i++) if(isb[i]){
 			
@@ -169,24 +170,39 @@ int32_t main(){
 		
 		
 		vis++;
-		fl = fi = -1;
+		fl = fi = -1; fl = 1;
 		dfs3(0, 0);
 		
 		int l = fi;
 		
 		vis++;
-		fl = fi = -1;
+		fl = fi = -1; fl = 1;
 		dfs3(l, 0);
 		
 		int r = fi;		
 		
-		if(l != r){
-			adj2[l].push_back(r);
-			adj2[r].push_back(l);
-		}
+		//cout << l << ' ' << r << endl;
+		
+		int ans;
 		
 		vis++;
 		clk = 0;
-		cout << dfs4(0, -1) << endl;
+		ans = dfs4(0, -1);
+		
+		if(l != r){
+			
+			adj2[l].push_back(r);
+			adj2[r].push_back(l);
+			
+			vis++;
+			clk = 0;
+			ans = dfs4(0, -1);
+		}
+		
+		else{
+			if(ans == 1) ans = 0;
+		}
+		
+		cout << ans << endl;
     }	
 }
