@@ -1,3 +1,11 @@
+// Problem: A. Yet Another String Game
+// Contest: Codeforces - Codeforces Round #700 (Div. 2)
+// URL: https://codeforces.com/contest/1480/problem/A
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -36,55 +44,43 @@ const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
 int32_t main(){
-
+    
     fastIO;
-
+    
 #ifdef LOCAL
     freopenI;
     freopenO;
 #endif
 
     int t; cin >> t; while(t--){
+		
+		string str;
+		cin >> str;
+		
+		int n = str.size();
+		
+		for(int i = 0; i < n; i++){
+			
+			if(i&1){
+				if(str[i] != 'z'){
+					str[i] = 'z';
+				}
+				else{
+					str[i] = 'y';
+				}
+			}	
+			else{
+				if(str[i] != 'a'){
+					str[i] = 'a';
+				}
+				else{
+					str[i] = 'b';
+				}
+			}
+		}
+		
+		cout << str << endl;
+		
 
-        int n, k;
-        cin >> n >> k;
-
-        vector<int> vec(n);
-        for(auto &i : vec) cin >> i;
-
-        vector<int> div_vec(1e6, 0);
-        map<int, int> div_mp;
-
-        int ans = -1;
-
-        for(int i : vec){
-
-            for(int j = 1; j*j <= i; j++) if(i%j==0){
-
-                if(j < 1e6) {
-                    div_vec[j]++;
-                    if(div_vec[j] >= k) ans = max(ans, j);
-                }
-                else{
-                    div_mp[j]++;
-                    if(div_mp[j] >= k) ans = max(ans, j);
-                }
-
-                if(j != i/j){
-                    int jj = i/j;
-                    if(jj < 1e6) {
-                        div_vec[jj]++;
-                        if(div_vec[jj] >= k) ans = max(ans, jj);
-                    }
-                    else {
-                        div_mp[jj]++;
-                        if(div_mp[jj] >= k) ans = max(ans, jj);
-                    }
-                }
-            }
-        }
-
-        cout << ans << endl;
-    }
+    }	
 }
-

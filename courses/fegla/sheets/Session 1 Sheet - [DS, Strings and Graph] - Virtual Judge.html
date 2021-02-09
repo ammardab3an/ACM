@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://vjudge.net/contest/421452#overview -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="keywords" content="Online Judge, vjudge, OJ, Virtual Judge, Replay Contest, ICPC, OnlineJudge, JudgeOnline, Coding, Algorithm, POJ, ZOJ, UVALive, SGU, URAL, HUST, SPOJ, HDU, HYSBZ, UVA, CodeForces, Z-Trening, Aizu, LightOJ, UESTC, NBUT, FZU, CSU, SCU, ACdream, CodeChef, OpenJudge, Kattis, HihoCoder, HIT, HRBUST, EIJudge, AtCoder, HackerRank, 51Nod">
+<meta name="author" content="chaoshxxu">
+<meta name="robots" content="index, follow">
+
+<link rel="shortcut icon" href="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/favicon.ico">
+<link rel="stylesheet" type="text/css" href="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/vendor.ce945806c8c0918667c2.css">
+<link rel="stylesheet" type="text/css" href="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/app.87394844c99d53744986.css">
+
+    <title>Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge</title>
+
+    <meta property="og:url" content="https://vjudge.net/contest/421452">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge">
+    <meta property="og:description" content="Contest [Session 1 Sheet - [DS, Strings and Graph]] in Virtual Judge">
+    <meta property="og:image" content="https://vjudge.net//static/images/favicon.ico">
+<style type="text/css" data-fbcssmodules="css:fb.css.basecss:fb.css.dialog css:fb.css.iframewidget">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}</style></head>
+
+<body data-new-gr-c-s-check-loaded="14.993.0" data-gr-ext-installed="">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-dark bg-inverse">
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#navbarResponsive"></button>
+    <div class="collapse navbar-toggleable-sm" id="navbarResponsive">
+        <a class="navbar-brand" href="https://vjudge.net/">
+            <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/favicon.ico" height="30">
+            Home
+        </a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item" id="nav-problem">
+                <a class="nav-link" href="https://vjudge.net/problem">Problem</a>
+            </li>
+            <li class="nav-item" id="nav-status">
+                <a class="nav-link" href="https://vjudge.net/status">Status</a>
+            </li>
+            <li class="nav-item active" id="nav-contest">
+                <a class="nav-link" href="https://vjudge.net/contest">Contest</a>
+            </li>
+            <li class="nav-item" id="nav-user">
+                <a class="nav-link" href="https://vjudge.net/user">User</a>
+            </li>
+            <li class="nav-item" id="nav-group">
+                <a class="nav-link" href="https://vjudge.net/group">Group</a>
+            </li>
+            <li class="nav-item" id="nav-comment">
+                <a class="nav-link" href="https://vjudge.net/comment">Forum</a>
+            </li>
+            
+            
+                
+                    <li class="nav-item float-xs-right">
+                        <a class="nav-link logout" href="javascript:void(0)">Logout</a>
+                    </li>
+                    <li class="nav-item dropdown float-xs-right">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="userNameDropdown" data-toggle="dropdown">Mahmoud_Warrak</a>
+                        <div class="dropdown-menu dropdown-menu-right user-dropdown">
+                            <a class="dropdown-item" href="https://vjudge.net/user/Mahmoud_Warrak">Profile</a>
+                            <a class="dropdown-item update-profile" href="javascript:void(0)">Update</a>
+                            <a class="dropdown-item message" href="https://vjudge.net/message">Message</a>
+                        </div>
+                    </li>
+                
+                
+            
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container" style="margin-top: 30px;">
+    
+        <div class="row alert alert-info" id="contest-announcement" style="display: none;"></div>
+    
+
+    <div class="row card" id="time-info">
+        <div class="row">
+            <div class="col-xs-3 text-xs-left">
+                <b>Begin:</b>
+                <span class="timestamp">2021-02-02 17:38 UTC+2</span>
+            </div>
+            <div class="col-xs-6 text-xs-center">
+                <h3>
+                    
+                        <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/group.png" height="30">
+                    
+                    
+                    Session 1 Sheet - [DS, Strings and Graph]
+                </h3>
+            </div>
+            <div class="col-xs-3 text-xs-right">
+                <b>End:</b>
+                <span class="timestamp">2021-02-02 17:38 UTC+2</span>
+            </div>
+        </div>
+        <div class="row" id="contest-time-slider-container">
+            <div class="slider slider-horizontal" id="contest-time-slider"><div class="slider-track"><div class="slider-track-low" style="left: 0px; width: 0%;"></div><div class="slider-selection" style="left: 0%; width: 100%;"></div><div class="slider-track-high" style="right: 0px; width: 0%;"></div><div class="slider-rangeHighlight slider-selection" style="left: 0%; width: 100%;"></div></div><div class="tooltip tooltip-main top" role="presentation" style="left: 100%; margin-left: -35.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">00:00:01</div></div><div class="tooltip tooltip-min top" role="presentation" style="display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div><div class="tooltip tooltip-max bottom" role="presentation" style="top: 18px; display: none;"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div><div class="slider-handle min-slider-handle round" role="slider" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="1000" aria-valuetext="00:00:01" style="left: 100%;" tabindex="0"></div><div class="slider-handle max-slider-handle round hide" role="slider" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="0" aria-valuetext="00:00:00" style="left: 0%;" tabindex="0"></div></div><input id="contest-time" type="text" data-slider-id="contest-time-slider" style="display: none;" data-value="1000" value="1000">
+        </div>
+        <div class="row">
+            <div class="col-xs-3 text-xs-left" id="info-elapsed"></div>
+            <div class="col-xs-6 text-xs-center">
+                <span id="info-running" style="color: green;">Ended</span>
+            </div>
+            <div class="col-xs-3 text-xs-right" id="info-remaining"></div>
+        </div>
+    </div>
+
+    
+        <div class="row">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" id="contest-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="https://vjudge.net/contest/421452#overview" section="overview" role="tab">Overview</a>
+                </li>
+
+                
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="https://vjudge.net/contest/421452#problem" section="problem" role="tab">Problem</a>
+                    </li>
+                
+
+                
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="https://vjudge.net/contest/421452#status" section="status" role="tab">Status</a>
+                    </li>
+                
+
+                
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="https://vjudge.net/contest/421452#rank" section="rank" role="tab">Rank (00:00:01)</a>
+                    </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="https://vjudge.net/contest/421452#discuss" section="discuss" role="tab" rel="#discuss" data-disqus-identifier="contest/421452">0 Comments</a>
+                </li>
+
+                <li class="text-xs-right">
+                    <div class="btn-group" role="group">
+                        
+                            <button type="button" class="btn btn-secondary" id="btn-setting">Setting</button>
+                        
+                        <button type="button" class="btn btn-secondary" id="btn-favorite"><i class="fa fa-star-o"></i>Favorite</button>
+                        
+                            <button type="button" class="btn btn-secondary" id="btn-clone">Clone</button>
+                        
+                        
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane in active" id="overview" role="tabpanel">
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="contest_overview" class="container">
+
+    
+        <div class="row">
+            <table id="contest-problems" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th class="my-stat"></th>
+                    <th class="all-stat">Stat</th>
+                    <th class="prob-num">#</th>
+                    
+                    
+                        <th>Origin</th>
+                    
+                    <th class="prob-title text-xl-left">Title</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">A</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-11995/origin" target="_blank">
+                                        UVA 11995
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/A">
+                                I Can Guess the Data Structure!
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">B</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-637B/origin" target="_blank">
+                                        CodeForces 637B
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/B">
+                                Chat Order
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">C</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-501B/origin" target="_blank">
+                                        CodeForces 501B
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/C">
+                                Misha and Changing Handles
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">D</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-681C/origin" target="_blank">
+                                        CodeForces 681C
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/D">
+                                Heap Operations
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">E</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-702B/origin" target="_blank">
+                                        CodeForces 702B
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/E">
+                                Powers of Two
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">F</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-962D/origin" target="_blank">
+                                        CodeForces 962D
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/F">
+                                Merge Equals
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">G</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-572B/origin" target="_blank">
+                                        CodeForces 572B
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/G">
+                                Order Book
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">H</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-799B/origin" target="_blank">
+                                        CodeForces 799B
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/H">
+                                T-shirt buying
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">I</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-10172/origin" target="_blank">
+                                        UVA 10172
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/I">
+                                The Lonesome Cargo Distributor
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">J</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-10004/origin" target="_blank">
+                                        UVA 10004
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/J">
+                                Bicoloring
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">K</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-572/origin" target="_blank">
+                                        UVA 572
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/K">
+                                Oil Deposits
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">L</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-10116/origin" target="_blank">
+                                        UVA 10116
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/L">
+                                Robot Motion
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">M</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-280/origin" target="_blank">
+                                        UVA 280
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/M">
+                                Vertex
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">N</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-505B/origin" target="_blank">
+                                        CodeForces 505B
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/N">
+                                Mr. Kitayuta's Colorful Graph
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">O</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/Kattis-fontan/origin" target="_blank">
+                                        Kattis fontan
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/O">
+                                Fountain
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">P</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-796D/origin" target="_blank">
+                                        CodeForces 796D
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/P">
+                                Police Stations
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">Q</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/SPOJ-PT07Y/origin" target="_blank">
+                                        SPOJ PT07Y
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/Q">
+                                Is it a tree
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">R</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/SPOJ-PT07Z/origin" target="_blank">
+                                        SPOJ PT07Z
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/R">
+                                Longest path in a tree
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">S</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/CodeForces-580C/origin" target="_blank">
+                                        CodeForces 580C
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/S">
+                                Kefa and Park
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">T</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-10000/origin" target="_blank">
+                                        UVA 10000
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/T">
+                                Longest Paths
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">U</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-11233/origin" target="_blank">
+                                        UVA 11233
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/U">
+                                Deli Deli
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">V</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-397/origin" target="_blank">
+                                        UVA 397
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/V">
+                                Equation Elation
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">W</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-10008/origin" target="_blank">
+                                        UVA 10008
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/W">
+                                What's Cryptanalysis?
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">X</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-1215/origin" target="_blank">
+                                        UVA 1215
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/X">
+                                String Cutting
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">Y</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/UVA-353/origin" target="_blank">
+                                        UVA 353
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/Y">
+                                Pesky Palindromes
+                            </a>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td class="my-stat"></td>
+                        <td class="all-stat"></td>
+                        <td class="prob-num text-xs-center">Z</td>
+                        
+                        
+                            <td class="prob-origin text-xs-center">
+                                <a href="https://vjudge.net/problem/SPOJ-ELEVTRBL/origin" target="_blank">
+                                        SPOJ ELEVTRBL
+                                </a>
+                            </td>
+                        
+                        <td class="prob-title">
+                            <a href="https://vjudge.net/contest/421452#problem/Z">
+                                Elevator Trouble
+                            </a>
+                        </td>
+                    </tr>
+                
+                </tbody>
+            </table>
+        </div>
+    
+
+    <div class="row text-xs-right" id="contest-manager"><span style="color:red">Private</span>. Prepared by <a href="https://vjudge.net/user/wahab" target="_blank">wahab</a> @ <a href="https://vjudge.net/group/seniors21" target="_blank"><img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/group.png" height="15">Seniors 2021</a>, 2021-02-02 16:14:15
+        <div class="fb-like fb_iframe_widget" data-href="https://vjudge.net/contest/421452" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=1140&amp;href=https%3A%2F%2Fvjudge.net%2Fcontest%2F421452&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=true&amp;size=small"><span style="vertical-align: bottom; width: 150px; height: 28px;"><iframe name="f375851029f947c" width="1000px" height="1000px" data-testid="fb:like Facebook Social Plugin" title="fb:like Facebook Social Plugin" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media" src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/like.html" style="border: none; visibility: visible; width: 150px; height: 28px;" class=""></iframe></span></div>
+    </div>
+
+    <div class="row card" id="contest-description" style="display: none"></div>
+
+</div>
+
+                </div>
+                
+                    <div class="tab-pane" id="problem" role="tabpanel">
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="contest_problem" class="container">
+    <div class="row">
+        <div class="col-md-3 container" id="prob-left-panel">
+            <ul class="nav nav-pills row" id="problem-nav">
+                
+                    <li class="nav-item">
+                        <a num="A" class="nav-link" href="https://vjudge.net/contest/421452#problem/A">A</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="B" class="nav-link" href="https://vjudge.net/contest/421452#problem/B">B</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="C" class="nav-link" href="https://vjudge.net/contest/421452#problem/C">C</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="D" class="nav-link" href="https://vjudge.net/contest/421452#problem/D">D</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="E" class="nav-link" href="https://vjudge.net/contest/421452#problem/E">E</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="F" class="nav-link" href="https://vjudge.net/contest/421452#problem/F">F</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="G" class="nav-link" href="https://vjudge.net/contest/421452#problem/G">G</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="H" class="nav-link" href="https://vjudge.net/contest/421452#problem/H">H</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="I" class="nav-link" href="https://vjudge.net/contest/421452#problem/I">I</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="J" class="nav-link" href="https://vjudge.net/contest/421452#problem/J">J</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="K" class="nav-link" href="https://vjudge.net/contest/421452#problem/K">K</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="L" class="nav-link" href="https://vjudge.net/contest/421452#problem/L">L</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="M" class="nav-link" href="https://vjudge.net/contest/421452#problem/M">M</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="N" class="nav-link" href="https://vjudge.net/contest/421452#problem/N">N</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="O" class="nav-link" href="https://vjudge.net/contest/421452#problem/O">O</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="P" class="nav-link" href="https://vjudge.net/contest/421452#problem/P">P</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="Q" class="nav-link" href="https://vjudge.net/contest/421452#problem/Q">Q</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="R" class="nav-link" href="https://vjudge.net/contest/421452#problem/R">R</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="S" class="nav-link" href="https://vjudge.net/contest/421452#problem/S">S</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="T" class="nav-link" href="https://vjudge.net/contest/421452#problem/T">T</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="U" class="nav-link" href="https://vjudge.net/contest/421452#problem/U">U</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="V" class="nav-link" href="https://vjudge.net/contest/421452#problem/V">V</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="W" class="nav-link" href="https://vjudge.net/contest/421452#problem/W">W</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="X" class="nav-link" href="https://vjudge.net/contest/421452#problem/X">X</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="Y" class="nav-link" href="https://vjudge.net/contest/421452#problem/Y">Y</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a num="Z" class="nav-link" href="https://vjudge.net/contest/421452#problem/Z">Z</a>
+                    </li>
+                
+            </ul>
+
+            <div class="alert alert-danger row" role="alert" id="prob-alert" style="display: none"></div>
+
+            <div id="prob-operation" class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-primary" id="problem-submit">Submit</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="https://vjudge.net/contest/421452#status//A/0/CPP" class="btn btn-secondary" id="btn-contest-status">Status</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="https://vjudge.net/contest/421452#status/Isun/A/0/CPP" class="btn btn-secondary" id="btn-contest-my-status">
+                                My Status</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-secondary" id="btn-problem-rejudge" style="display: none">
+                                Rejudge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="prob-properties" class="row">
+                <div class="container">
+                    <dl class="card row"></dl>
+                </div>
+            </div>
+
+            <div id="prob-descriptions" class="row">
+                <span>Choose a description for participants:</span>
+                <div class="list-group" id="prob-descs"></div>
+            </div>
+
+            <div id="prob-ads" class="row hidden-md-down" style="margin-top: 40px;">
+                <script src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/sdk.js" async="" crossorigin="anonymous"></script><script type="text/javascript" async="" src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/analytics.js"></script><script id="facebook-jssdk" src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/sdk(1).js"></script><script async="" src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/f.txt"></script>
+                <!-- Contest sidebar -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9098591903020457" data-ad-slot="9577100134" data-ad-format="rectangle" data-full-width-responsive="true"></ins>
+                <script>
+                  var ad_setter = setInterval(function () {
+                    if (document.getElementById('contest_problem').offsetParent !== null) {
+                      (adsbygoogle = window.adsbygoogle || []).push({});
+                      clearInterval(ad_setter);
+                    }
+                  }, 1000);
+                </script>
+            </div>
+        </div>
+        <div class="col-md-9 container" id="prob-right-panel">
+            <div class="row">
+                <div id="prob-title-contest">
+                    <h2 id="problem-title"></h2>
+                    <span class="origin">
+                        <a id="problem-origin" href="https://vjudge.net/contest/421452#" target="_blank"></a>
+                    </span>
+                </div>
+            </div>
+            <div class="row" id="frame-description-container"></div>
+        </div>
+    </div>
+
+</div>
+
+                    </div>
+                
+                
+                    <div class="tab-pane" id="status" role="tabpanel">
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="contest_status" class="container">
+    <div class="row" id="right-panel">
+        <table id="listStatus" class="table table-striped table-bordered table-responsive" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="run-id hidden-lg-down">Run ID</th>
+                <th class="username">
+                    Username<br>
+                    <input type="text" id="un" name="un" class="search_text" style="width:100%">
+                </th>
+                <th class="num">
+                    Prob<br>
+                    <select id="contest-status-num" name="num" class="custom-select">
+                        <option value="-">All</option>
+                    </select>
+                </th>
+                <th class="status">
+                    Result
+                    <br>
+                    <select id="res" name="res" class="custom-select">
+                        <option value="0">All</option>
+                        <option value="1">Accepted</option>
+                        <option value="2">Presentation Error</option>
+                        <option value="3">Wrong Answer</option>
+                        <option value="4">Time Limit Exceed</option>
+                        <option value="5">Memory Limit Exceed</option>
+                        <option value="6">Output Limit Exceed</option>
+                        <option value="7">Runtime Error</option>
+                        <option value="8">Compile Error</option>
+                        <option value="9">Unknown Error</option>
+                        <option value="10">Submit Error</option>
+                        <option value="11">Queuing &amp;&amp; Judging</option>
+                    </select>
+                </th>
+                <th class="runtime">Time<br>(ms)</th>
+                <th class="memory">Mem<br>(MB)</th>
+                <th class="length hidden-lg-down">Length</th>
+                <th class="language">
+                    Lang
+                    <br>
+                    <select name="language" id="language" class="custom-select">
+                        <option value="">All</option>
+                        <option value="CPP">C++</option>
+                        <option value="C">C</option>
+                        <option value="JAVA">Java</option>
+                        <option value="PASCAL">Pascal</option>
+                        <option value="PYTHON">Python</option>
+                        <option value="CSHARP">C#</option>
+                        <option value="RUBY">Ruby</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                </th>
+                <th class="date">Submit Time</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <input type="button" class="btn btn-secondary btn-md" id="refresh-all" value="Refresh" style="display: none">
+        <input type="button" class="btn btn-secondary btn-md" id="reset" value="Reset" style="display: none">
+        <input type="button" class="btn btn-secondary btn-md" id="filter" value="Filter" style="display: none">
+    </div>
+</div>
+
+                    </div>
+                
+                
+                    <div class="tab-pane" id="rank" role="tabpanel">
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="contest_rank">
+
+    <table id="contest-rank-table" cellspacing="1"></table>
+    <table id="contest-rank-table-export"></table>
+
+    <div class="rank_tool">
+        <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/find_me.png" id="img_find_me" title="Find me" height="55">
+    </div>
+
+</div>
+
+                    </div>
+                
+                <div class="tab-pane" id="discuss" role="tabpanel">
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="contest_discuss"><div class="comment-posts-container"><div class="comment-edit">
+        <textarea class="form-control edit" name="content" rows="6" placeholder="Comment in Markdown"></textarea>
+        <div class="comment-error alert-danger" style="display: none; padding: 20px"></div>
+        <div class="preview">
+            <span>Preview:</span><br>
+            <div class="preview-content" style="display: none;"></div>
+            <div class="buttons">
+                <button class="btn btn-primary save" style="display: none">Save</button>
+                <button class="btn btn-primary post broadcast">Post &amp; Broadcast</button>
+                <button class="btn btn-secondary post">Post</button>
+                <button class="btn btn-secondary cancel">Clear</button>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="comment-posts"></div>
+
+    
+
+</div></div>
+
+                </div>
+            </div>
+
+            <div class="rank_tool">
+                <span id="img_go_top" title="Go to top"></span>
+            </div>
+        </div>
+    
+
+    
+
+    
+
+</div>
+
+<textarea style="display: none" name="dataJson">{"id":421452,"title":"Session 1 Sheet - [DS, Strings and Graph]","type":1,"openness":2,"authStatus":2,"begin":1612280280000,"end":1612280281000,"createTime":1612275255000,"started":true,"ended":true,"managerId":215789,"managerName":"wahab","groupShortName":"seniors21","groupName":"Seniors 2021","fav":false,"description":{"format":"MD","content":""},"announcement":"","problems":[{"pid":18700,"title":"I Can Guess the Data Structure!","oj":"UVA","probNum":"11995","num":"A","publicDescId":10871,"publicDescVersion":1612364232000,"properties":[{"title":"Time limit","content":"1000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":342029,"title":"Chat Order","oj":"CodeForces","probNum":"637B","num":"B","publicDescId":61687,"publicDescVersion":1612072886000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"VK Cup 2016 - Qualification Round 1","hint":true},{"title":"Tags","content":"*special problem\nbinary search\nconstructive algorithms\ndata structures\nsortings\n*1200","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":102950,"title":"Misha and Changing Handles","oj":"CodeForces","probNum":"501B","num":"C","publicDescId":47932,"publicDescVersion":1612106882000,"properties":[{"title":"Time limit","content":"1000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Codeforces Round #285 (Div. 2)","hint":true},{"title":"Tags","content":"data structures\ndsu\nstrings\n*1100","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"https://codeforces.com/blog/entry/15725\" title\u003d\"Codeforces Round #285\" target\u003d\"_blank\"\u003eAnnouncement\u003c/a\u003e\n\u003ca href\u003d\"https://codeforces.com/blog/entry/15743\" title\u003d\"Разбор задач Codeforces Round #285\" target\u003d\"_blank\"\u003eTutorial #1 (ru)\u003c/a\u003e\n\u003ca href\u003d\"http://codeforces.com/blog/entry/15743\" title\u003d\"Tutorial\" target\u003d\"_blank\"\u003eTutorial #2 (en)\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":402031,"title":"Heap Operations","oj":"CodeForces","probNum":"681C","num":"D","publicDescId":64307,"publicDescVersion":1611929862000,"properties":[{"title":"Time limit","content":"1000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Codeforces Round #357 (Div. 2)","hint":true},{"title":"Tags","content":"constructive algorithms\ndata structures\ngreedy\n*1600","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"https://codeforces.com/blog/entry/45404\" title\u003d\"A\" target\u003d\"_blank\"\u003eAnnouncement (en)\u003c/a\u003e\n\u003ca href\u003d\"https://codeforces.com/blog/entry/45425\" title\u003d\"45425\" target\u003d\"_blank\"\u003eTutorial\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":439074,"title":"Powers of Two","oj":"CodeForces","probNum":"702B","num":"E","publicDescId":66009,"publicDescVersion":1611929602000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Educational Codeforces Round 15","hint":true},{"title":"Tags","content":"brute force\ndata structures\nimplementation\nmath\n*1500","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"https://codeforces.com/blog/entry/46319\" title\u003d\"Educational Codeforces Round 15\" target\u003d\"_blank\"\u003eAnnouncement\u003c/a\u003e\n\u003ca href\u003d\"https://codeforces.com/blog/entry/46324?locale\u003den\" title\u003d\"46324\" target\u003d\"_blank\"\u003eTutorial (en)\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":1484062,"title":"Merge Equals","oj":"CodeForces","probNum":"962D","num":"F","publicDescId":97882,"publicDescVersion":1612414664000,"properties":[{"title":"Time limit","content":"2000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Educational Codeforces Round 42 (Rated for Div. 2)","hint":true},{"title":"Tags","content":"data structures\nimplementation\n*1600","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"https://codeforces.com/blog/entry/58845\" title\u003d\"Educational Codeforces Round 42 (Rated for Div. 2)\" target\u003d\"_blank\"\u003eAnnouncement\u003c/a\u003e\n\u003ca href\u003d\"https://codeforces.com/blog/entry/58869\" title\u003d\"Educational Codeforces Round 42 Editorial\" target\u003d\"_blank\"\u003eTutorial\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":230669,"title":"Order Book","oj":"CodeForces","probNum":"572B","num":"G","publicDescId":54839,"publicDescVersion":1612309244000,"properties":[{"title":"Time limit","content":"2000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Codeforces Round #317 [AimFund Thanks-Round] (Div. 2)","hint":true},{"title":"Tags","content":"data structures\ngreedy\nimplementation\nsortings\n*1300","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"https://codeforces.com/blog/entry/19863\" title\u003d\"Codeforces Round #317\" target\u003d\"_blank\"\u003eAnnouncement\u003c/a\u003e\n\u003ca href\u003d\"https://codeforces.com/blog/entry/19923\" title\u003d\"Codeforces Round #317 [AimFund Thanks-Round] Editorial\" target\u003d\"_blank\"\u003eTutorial (en)\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":806220,"title":"T-shirt buying","oj":"CodeForces","probNum":"799B","num":"H","publicDescId":80435,"publicDescVersion":1612255388000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Playrix Codescapes Cup (Codeforces Round #413, rated, Div. 1 + Div. 2)","hint":true},{"title":"Tags","content":"data structures\nimplementation\n*1400","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"http://codeforces.com/blog/entry/51920\" title\u003d\"Playrix Codescapes Cup\" target\u003d\"_blank\"\u003eAnnouncement\u003c/a\u003e\n\u003ca href\u003d\"http://codeforces.com/blog/entry/51947\" title\u003d\"Playrix Codescapes Cup Problems Analysis\" target\u003d\"_blank\"\u003eTutorial\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":32226,"title":"The Lonesome Cargo Distributor","oj":"UVA","probNum":"10172","num":"I","publicDescId":23799,"publicDescVersion":1612093234000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":19438,"title":"Bicoloring","oj":"UVA","probNum":"10004","num":"J","publicDescId":11547,"publicDescVersion":1612409885000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":19435,"title":"Oil Deposits","oj":"UVA","probNum":"572","num":"K","publicDescId":11544,"publicDescVersion":1612247944000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":30894,"title":"Robot Motion","oj":"UVA","probNum":"10116","num":"L","publicDescId":22429,"publicDescVersion":1611847714000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":27158,"title":"Vertex","oj":"UVA","probNum":"280","num":"M","publicDescId":18558,"publicDescVersion":1612195643000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":105987,"title":"Mr. Kitayuta\u0027s Colorful Graph","oj":"CodeForces","probNum":"505B","num":"N","publicDescId":48047,"publicDescVersion":1612237136000,"properties":[{"title":"Time limit","content":"1000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Codeforces Round #286 (Div. 2)","hint":true},{"title":"Tags","content":"dfs and similar\ndp\ndsu\ngraphs\n*1400","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"https://codeforces.com/blog/entry/15842\" title\u003d\"Codeforces Round #286\" target\u003d\"_blank\"\u003eAnnouncement (en)\u003c/a\u003e\n\u003ca href\u003d\"http://codeforces.com/blog/entry/15889\" title\u003d\"Tutorial\" target\u003d\"_blank\"\u003eTutorial (en)\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":3872840,"title":"Fountain","oj":"Kattis","probNum":"fontan","num":"O","publicDescId":149210,"publicDescVersion":1612237655000,"properties":[{"title":"Time limit","content":"1000 ms","hint":false},{"title":"Memory limit","content":"1048576 kB","hint":false},{"title":"OS","content":"Linux","hint":false},{"title":"Source","content":" \u003ca href\u003d\"https://open.kattis.com/problem-sources/Kodsport%20Summer%20Challenge%202020\"\u003eKodsport Summer Challenge 2020\u003c/a\u003e","hint":true},{"title":"Author","content":" \u003ca href\u003d\"https://open.kattis.com/problem-authors/Nils%20Gustafsson\"\u003eNils Gustafsson\u003c/a\u003e","hint":true},{"title":"License","content":" \u003ca rel\u003d\"license\" href\u003d\"https://creativecommons.org/licenses/by-sa/3.0/\" style\u003d\"vertical-align: middle;\"\u003e \u003cimg class\u003d\"problem-license\" alt\u003d\"Creative Commons License (cc by-sa)\" src\u003d\"https://vj.z180.cn/9f210cdd030c90615fab37b8125d28ab?v\u003d1612237655\"\u003e \u003c/a\u003e","hint":true}],"weight":1},{"pid":745215,"title":"Police Stations","oj":"CodeForces","probNum":"796D","num":"P","publicDescId":78819,"publicDescVersion":1611946244000,"properties":[{"title":"Time limit","content":"2000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Codeforces Round #408 (Div. 2)","hint":true},{"title":"Tags","content":"constructive algorithms\ndfs and similar\ndp\ngraphs\nshortest paths\ntrees\n*2100","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"http://codeforces.com/blog/entry/51503\" title\u003d\"Announcement\" target\u003d\"_blank\"\u003eAnnouncement (en)\u003c/a\u003e\n\u003ca href\u003d\"http://codeforces.com/blog/entry/51527\" title\u003d\"Tutorial\" target\u003d\"_blank\"\u003eTutorial (en)\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":28524,"title":"Is it a tree","oj":"SPOJ","probNum":"PT07Y","num":"Q","publicDescId":19972,"publicDescVersion":1612432767000,"properties":[{"title":"Time limit","content":"500 ms","hint":false},{"title":"Memory limit","content":"1572864 kB","hint":false},{"title":"Code length Limit","content":"50000 B","hint":false},{"title":"OS","content":"Linux","hint":false},{"title":"Language limit","content":"All except: ERL JS-RHINO","hint":false},{"title":"Source","content":"Co-author Amber","hint":true},{"title":"Author","content":"Thanh-Vy Hua","hint":true}],"weight":1,"languages":{"44":"C++14 (gcc 8.3)","45":"Assembler 32 (gcc 8.3)","46":"Sed (sed 4.7)","47":"Kotlin (kotlin 1.3.21)","48":"Dart (dart 2.3.0)","110":"BC (bc 1.07.1)","111":"Clojure (clojure 1.10.0)","112":"JavaScript (SMonkey 60.2.3)","114":"Go (go 1.12.1)","115":"Unlambda (unlambda 0.1.4.2)","116":"Python 3 (python 3.7.3)","117":"R (R 3.5.2)","118":"Cobol (gnucobol 2.2.0)","91":"CoffeeScript (coffee 2.4.1)","92":"Fantom (fantom 1.0.72)","93":"Rust (rust 1.33.0)","94":"Pico Lisp (pico 18.12.27)","50":"VB.net (mono 4.7)","95":"Racket (racket 7.0)","96":"Elixir (elixir 1.8.2)","97":"Scheme (chicken 4.13)","98":"Gosu (gosu 1.14.9)","10":"Java (HotSpot 12)","54":"Perl (perl 2018.12)","11":"C (gcc 8.3)","99":"Python (PyPy 2.7.13)","12":"Brainf**k (bff 1.0.6)","56":"Node.js (node 11.12.0)","13":"Assembler 32 (nasm 2.14)","14":"Clips (clips 6.30)","59":"Any document (no testing)","15":"Prolog (swi 7.6.4)","16":"Icon (iconc 9.5.1)","17":"Ruby (ruby 2.5.5)","18":"Scheme (stalin 0.11)","19":"Pike (pike 8.0)","121":"Groovy (groovy 2.5.6)","1":"C++ (gcc 8.3)","122":"Nim (nim 0.19.4)","2":"Pascal (gpc 20070904)","124":"F# (mono 4.1)","3":"Perl (perl 5.28.1)","4":"Python (cpython 2.7.16)","5":"Fortran (gfortran 8.3)","126":"Python 3 nbc (python 3.7.3)","127":"Octave (octave 4.4.1)","6":"Whitespace (wspace 0.3)","7":"Ada95 (gnat 8.3)","8":"Ocaml (ocamlopt 4.05.0)","9":"Intercal (ick 0.3)","60":"PDF (ghostscript 8.62)","61":"PostScript (ghostscript 8.62)","62":"Text (plain text)","20":"D (gdc 8.3)","21":"Haskell (ghc 8.4.4)","22":"Pascal (fpc 3.0.4)","23":"Smalltalk (gst 3.2.5)","24":"JAR (JavaSE 6)","25":"Nice (nicec 0.9.13)","26":"Lua (luac 5.3.3)","27":"C# (gmcs 5.20.1)","28":"Bash (bash 5.0.3)","29":"PHP (php 7.3.5)","30":"Nemerle (ncc 1.2.547)","31":"Common Lisp (sbcl 1.4.16)","32":"Common Lisp (clisp 2.49.92)","33":"Scheme (guile 2.2.4)","34":"C99 (gcc 8.3)","38":"TCL (tcl 8.6)","39":"Scala (scala 2.12.8)","102":"D (dmd 2.085.0)","104":"AWK (gawk 4.2.1)","105":"AWK (mawk 1.3.3)","107":"Forth (gforth 0.7.3)","81":"C (clang 8.0)","108":"Prolog (gprolog 1.4.5)","82":"C++14 (clang 8.0)","83":"Objective-C (clang 8.0)","84":"D (ldc 1.12.0)","40":"SQLite (sqlite 3.27.2)","41":"C++ (g++ 4.3.2)","85":"Swift (swift 4.2.2)","42":"Assembler 64 (nasm 2.14)","43":"Objective-C (gcc 8.3)"}},{"pid":23736,"title":"Longest path in a tree","oj":"SPOJ","probNum":"PT07Z","num":"R","publicDescId":15248,"publicDescVersion":1612341437000,"properties":[{"title":"Time limit","content":"500 ms","hint":false},{"title":"Memory limit","content":"1572864 kB","hint":false},{"title":"Code length Limit","content":"50000 B","hint":false},{"title":"OS","content":"Linux","hint":false},{"title":"Language limit","content":"All except: ERL JS-RHINO NODEJS PERL6 VB.NET","hint":false},{"title":"Source","content":"Co-author Amber","hint":true},{"title":"Author","content":"Thanh-Vy Hua","hint":true}],"weight":1,"languages":{"44":"C++14 (gcc 8.3)","45":"Assembler 32 (gcc 8.3)","46":"Sed (sed 4.7)","47":"Kotlin (kotlin 1.3.21)","48":"Dart (dart 2.3.0)","110":"BC (bc 1.07.1)","111":"Clojure (clojure 1.10.0)","112":"JavaScript (SMonkey 60.2.3)","114":"Go (go 1.12.1)","115":"Unlambda (unlambda 0.1.4.2)","116":"Python 3 (python 3.7.3)","117":"R (R 3.5.2)","118":"Cobol (gnucobol 2.2.0)","91":"CoffeeScript (coffee 2.4.1)","92":"Fantom (fantom 1.0.72)","93":"Rust (rust 1.33.0)","94":"Pico Lisp (pico 18.12.27)","95":"Racket (racket 7.0)","96":"Elixir (elixir 1.8.2)","97":"Scheme (chicken 4.13)","98":"Gosu (gosu 1.14.9)","10":"Java (HotSpot 12)","11":"C (gcc 8.3)","99":"Python (PyPy 2.7.13)","12":"Brainf**k (bff 1.0.6)","13":"Assembler 32 (nasm 2.14)","14":"Clips (clips 6.30)","15":"Prolog (swi 7.6.4)","16":"Icon (iconc 9.5.1)","17":"Ruby (ruby 2.5.5)","18":"Scheme (stalin 0.11)","19":"Pike (pike 8.0)","121":"Groovy (groovy 2.5.6)","1":"C++ (gcc 8.3)","122":"Nim (nim 0.19.4)","2":"Pascal (gpc 20070904)","124":"F# (mono 4.1)","3":"Perl (perl 5.28.1)","4":"Python (cpython 2.7.16)","5":"Fortran (gfortran 8.3)","126":"Python 3 nbc (python 3.7.3)","127":"Octave (octave 4.4.1)","6":"Whitespace (wspace 0.3)","7":"Ada95 (gnat 8.3)","8":"Ocaml (ocamlopt 4.05.0)","9":"Intercal (ick 0.3)","62":"Text (plain text)","20":"D (gdc 8.3)","21":"Haskell (ghc 8.4.4)","22":"Pascal (fpc 3.0.4)","23":"Smalltalk (gst 3.2.5)","24":"JAR (JavaSE 6)","25":"Nice (nicec 0.9.13)","26":"Lua (luac 5.3.3)","27":"C# (gmcs 5.20.1)","28":"Bash (bash 5.0.3)","29":"PHP (php 7.3.5)","30":"Nemerle (ncc 1.2.547)","31":"Common Lisp (sbcl 1.4.16)","32":"Common Lisp (clisp 2.49.92)","33":"Scheme (guile 2.2.4)","34":"C99 (gcc 8.3)","38":"TCL (tcl 8.6)","39":"Scala (scala 2.12.8)","102":"D (dmd 2.085.0)","104":"AWK (gawk 4.2.1)","105":"AWK (mawk 1.3.3)","107":"Forth (gforth 0.7.3)","81":"C (clang 8.0)","108":"Prolog (gprolog 1.4.5)","82":"C++14 (clang 8.0)","83":"Objective-C (clang 8.0)","84":"D (ldc 1.12.0)","40":"SQLite (sqlite 3.27.2)","41":"C++ (g++ 4.3.2)","85":"Swift (swift 4.2.2)","42":"Assembler 64 (nasm 2.14)","43":"Objective-C (gcc 8.3)"}},{"pid":246619,"title":"Kefa and Park","oj":"CodeForces","probNum":"580C","num":"S","publicDescId":55911,"publicDescVersion":1611892861000,"properties":[{"title":"Time limit","content":"2000 ms","hint":false},{"title":"Memory limit","content":"262144 kB","hint":false},{"title":"Source","content":"Codeforces Round #321 (Div. 2)","hint":true},{"title":"Tags","content":"dfs and similar\ngraphs\ntrees\n*1500","hint":true},{"title":"Editorial","content":"\u003ca href\u003d\"https://codeforces.com/blog/entry/20376\" title\u003d\"Codeforces Round #321 (Div. 2)\" target\u003d\"_blank\"\u003eAnnouncement\u003c/a\u003e\n\u003ca href\u003d\"https://codeforces.com/blog/entry/20468\" title\u003d\"Codeforces Round #321 Editorial\" target\u003d\"_blank\"\u003eTutorial\u003c/a\u003e","hint":true}],"weight":1,"languages":{"67":"Ruby 3.0.0","48":"Kotlin 1.4.0","49":"Rust 1.49.0","28":"D DMD32 v2.091.0","50":"GNU G++14 6.4.0","51":"PascalABC.NET 3.4.2","52":"Clang++17 Diagnostics","31":"Python 3.9.1","54":"GNU G++17 7.3.0","32":"Go 1.15.6","55":"Node.js 12.6.3","12":"Haskell GHC 8.10.1","34":"JavaScript V8 4.8.0","13":"Perl 5.20.1","36":"Java 1.8.0_241","59":"Microsoft Visual C++ 2017","19":"OCaml 4.02.1","2":"Microsoft Visual C++ 2010","3":"Delphi 7","4":"Free Pascal 3.0.2","6":"PHP 7.2.13","7":"Python 2.7.18","9":"C# Mono 6.8","60":"Java 11.0.6","61":"GNU G++17 9.2.0 (64 bit, msys 2)","40":"PyPy 2.7 (7.3.0)","41":"PyPy 3.7 (7.3.0)","42":"GNU G++11 5.1.0","20":"Scala 2.12.8","43":"GNU GCC C11 5.1.0","65":"C# 8, .NET Core 3.1"}},{"pid":18280,"title":"Longest Paths","oj":"UVA","probNum":"10000","num":"T","publicDescId":10456,"publicDescVersion":1612277673000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":19739,"title":"Deli Deli","oj":"UVA","probNum":"11233","num":"U","publicDescId":11837,"publicDescVersion":1612236326000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":35650,"title":"Equation Elation","oj":"UVA","probNum":"397","num":"V","publicDescId":27378,"publicDescVersion":1612180274000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":19413,"title":"What\u0027s Cryptanalysis?","oj":"UVA","probNum":"10008","num":"W","publicDescId":11523,"publicDescVersion":1612398587000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":36041,"title":"String Cutting","oj":"UVA","probNum":"1215","num":"X","publicDescId":27769,"publicDescVersion":1612176719000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":19530,"title":"Pesky Palindromes","oj":"UVA","probNum":"353","num":"Y","publicDescId":11643,"publicDescVersion":1612333685000,"properties":[{"title":"Time limit","content":"3000 ms","hint":false},{"title":"OS","content":"Linux","hint":false}],"weight":1},{"pid":51003,"title":"Elevator Trouble","oj":"SPOJ","probNum":"ELEVTRBL","num":"Z","publicDescId":43425,"publicDescVersion":1612278675000,"properties":[{"title":"Time limit","content":"1000 ms","hint":false},{"title":"Memory limit","content":"1572864 kB","hint":false},{"title":"Code length Limit","content":"50000 B","hint":false},{"title":"OS","content":"Linux","hint":false},{"title":"Language limit","content":"All except: ASM64","hint":false},{"title":"Source","content":"Nordic programming contest","hint":true},{"title":"Author","content":"Krzysztof Lewko","hint":true}],"weight":1,"languages":{"44":"C++14 (gcc 8.3)","45":"Assembler 32 (gcc 8.3)","46":"Sed (sed 4.7)","47":"Kotlin (kotlin 1.3.21)","48":"Dart (dart 2.3.0)","110":"BC (bc 1.07.1)","111":"Clojure (clojure 1.10.0)","112":"JavaScript (SMonkey 60.2.3)","114":"Go (go 1.12.1)","115":"Unlambda (unlambda 0.1.4.2)","116":"Python 3 (python 3.7.3)","117":"R (R 3.5.2)","118":"Cobol (gnucobol 2.2.0)","91":"CoffeeScript (coffee 2.4.1)","92":"Fantom (fantom 1.0.72)","93":"Rust (rust 1.33.0)","94":"Pico Lisp (pico 18.12.27)","50":"VB.net (mono 4.7)","95":"Racket (racket 7.0)","96":"Elixir (elixir 1.8.2)","97":"Scheme (chicken 4.13)","98":"Gosu (gosu 1.14.9)","10":"Java (HotSpot 12)","54":"Perl (perl 2018.12)","11":"C (gcc 8.3)","99":"Python (PyPy 2.7.13)","12":"Brainf**k (bff 1.0.6)","56":"Node.js (node 11.12.0)","13":"Assembler 32 (nasm 2.14)","14":"Clips (clips 6.30)","15":"Prolog (swi 7.6.4)","16":"Icon (iconc 9.5.1)","17":"Ruby (ruby 2.5.5)","18":"Scheme (stalin 0.11)","19":"Pike (pike 8.0)","121":"Groovy (groovy 2.5.6)","1":"C++ (gcc 8.3)","122":"Nim (nim 0.19.4)","2":"Pascal (gpc 20070904)","124":"F# (mono 4.1)","3":"Perl (perl 5.28.1)","4":"Python (cpython 2.7.16)","5":"Fortran (gfortran 8.3)","126":"Python 3 nbc (python 3.7.3)","127":"Octave (octave 4.4.1)","6":"Whitespace (wspace 0.3)","7":"Ada95 (gnat 8.3)","8":"Ocaml (ocamlopt 4.05.0)","9":"Intercal (ick 0.3)","20":"D (gdc 8.3)","21":"Haskell (ghc 8.4.4)","22":"Pascal (fpc 3.0.4)","23":"Smalltalk (gst 3.2.5)","24":"JAR (JavaSE 6)","25":"Nice (nicec 0.9.13)","26":"Lua (luac 5.3.3)","27":"C# (gmcs 5.20.1)","28":"Bash (bash 5.0.3)","29":"PHP (php 7.3.5)","30":"Nemerle (ncc 1.2.547)","31":"Common Lisp (sbcl 1.4.16)","32":"Common Lisp (clisp 2.49.92)","33":"Scheme (guile 2.2.4)","34":"C99 (gcc 8.3)","35":"JavaScript (rhino 1.7.9)","36":"Erlang (erl 21.3.8)","38":"TCL (tcl 8.6)","39":"Scala (scala 2.12.8)","102":"D (dmd 2.085.0)","104":"AWK (gawk 4.2.1)","105":"AWK (mawk 1.3.3)","107":"Forth (gforth 0.7.3)","81":"C (clang 8.0)","108":"Prolog (gprolog 1.4.5)","82":"C++14 (clang 8.0)","83":"Objective-C (clang 8.0)","84":"D (ldc 1.12.0)","40":"SQLite (sqlite 3.27.2)","41":"C++ (g++ 4.3.2)","85":"Swift (swift 4.2.2)","43":"Objective-C (gcc 8.3)"}}],"problemsHash":"e4935f894bf12be6c39ab1473ca9fd91","privatePeerContestIds":[],"enableTimeMachine":true,"sumTime":true,"penalty":1200,"partialScore":false,"customizedWeight":false,"showPeers":false}</textarea>
+<script type="text/javascript">moduleName = "./contest/view/view";</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="body-footer">
+    <div style="margin-bottom: 8px">
+        <a href="https://t.me/joinchat/Erw7nRGwXN3iSCoKguVW3w" target="_blank">
+            <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/telegram.svg">
+        </a>
+        <a href="https://www.facebook.com/virtualjudge/" target="_blank">
+            <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/facebook.svg">
+        </a>
+        <a href="https://weibo.com/u/5340553087" target="_blank">
+            <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/weibo.svg">
+        </a>
+        <a href="https://groups.google.com/forum/#!forum/virtual-judge" target="_blank">
+            <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/google_bookmark.svg">
+        </a>
+        <a href="https://twitter.com/virtualjudge" target="_blank">
+            <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/twitter.svg">
+        </a>
+        <a href="mailto:is.un@qq.com" target="_blank">
+            <img src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/email.svg">
+        </a>
+    </div>
+    All Copyright Reserved © 2010-2021 <a href="mailto:is.un@qq.com">Xu Han</a><br>
+    Server Time: <span class="currentTimeTZ">2021-02-04 17:40:24 UTC+2</span>
+</div>
+
+<input name="version" type="hidden" value="1612256195422">
+<input name="gaId" type="hidden" value="UA-13231844-2">
+
+    <input id="visitor_username" name="username" type="hidden" value="Mahmoud_Warrak">
+    <input id="visitor_userId" name="userId" type="hidden" value="348401">
+    <input id="visitor_sup" name="sup" type="hidden" value="0">
+    <input id="newMessage" name="newMessage" type="hidden" value="false">
+
+
+<span id="img-support" title="Feedback"></span>
+<script type="text/javascript">basePath = "";</script>
+<script type="text/javascript">imagesRoot = "/static/images";</script>
+<script src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/loader.d41d8cd98f00b204e980.js"></script>
+<script src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/vendor.ce945806c8c0918667c2.js"></script>
+<script src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/app.87394844c99d53744986.js"></script>
+
+<script async="" src="./Session 1 Sheet - [DS, Strings and Graph] - Virtual Judge_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-13231844-2', {
+    'user_id': 'Mahmoud_Warrak'
+  });
+</script>
+
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+<script>(function (d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+</body></html>
