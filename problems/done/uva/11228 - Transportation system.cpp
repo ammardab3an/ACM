@@ -6,6 +6,7 @@
 // 
 // Powered by CP Editor (https://cpeditor.org)
 
+
 // By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
@@ -13,8 +14,9 @@
 using namespace std;
 
 //#define int int64_t
+//#define lli int64_t
 
-typedef unsigned int		uint;
+typedef unsigned int        uint;
 typedef long long int       lli;
 typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
@@ -32,6 +34,7 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
+const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -40,13 +43,29 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
-int n, r;
-pii arr[NMAX];
+int par[1010];
 
-int par[NMAX];
+int getPar(int u){
+    return par[u] == u ? u : par[u] = getPar(par[u]);
+}
 
-int get_par(int u){
-	return par[u] == u ? u : par[u] = get_par(par[u]);
+bool samePar(int u, int v){
+    return getPar(u) == getPar(v);  
+}
+
+void mergeDSU(int u, int v){
+    
+    if(samePar(u, v)) return;
+    
+    int parU = getPar(u);
+    int parV = getPar(v);
+    
+    if(rand()&1){
+        par[parU] = parV;
+    }
+    else{
+        par[parV] = parU;
+    }
 }
 
 int32_t main(){
@@ -57,61 +76,57 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-	int tt = 1;
+    
+    int tt = 1;
     int t; cin >> t; while(t--){
-    	
-		cin >> n >> r;
-		for(int i = 0; i < n; i++) 
-			cin >> arr[i].first >> arr[i].second;
-			
-		
-		vector< pair< double, pair<int, int> > > edges;
-		
-		for(int i = 0; i < n; i++)
-		for(int j = i+1; j < n; j++){
-			double dist = sqrt( pow(arr[i].first - arr[j].first, 2) + pow(arr[i].second - arr[j].second, 2));
-			edges.push_back({dist, {i, j}});
-		}
-		
-		
-		sort(edges.begin(), edges.end());
-		
-		int cntc = 1;
-		double totr = 0;
-		double totb = 0;
-		
-		for(int i = 0; i < n; i++) par[i] = i;
-		
-		for(int i = 0; i < edges.size(); i++){
-			
-			double d = edges[i].first;
-			int u = edges[i].second.first;
-			int v = edges[i].second.second;
-			
-			int paru = get_par(u);
-			int parv = get_par(v);
-			
-			if(paru != parv){
-				
-				if(d > double(r)){
-					cntc++;
-					totb += d;
-				}
-				else{
-					totr += d;
-				}
-				
-				if(rand() & 1){
-					par[paru] = parv;
-				}
-				else{
-					par[parv] = paru;
-				}
-			}
-		}
-		
-		
-		cout << "Case #" << tt++ << ": " << cntc << ' ' << round(totr) << ' ' << round(totb) << endl;
+        
+        int n, r;
+        cin >> n >> r;
+        
+        vector<pii> vec(n);
+        for(auto &p : vec) cin >> p.first >> p.second;
+        
+        vector< pair< double, pii >  > edges;
+        
+        for(int i = 0; i < n; i++)
+        for(int j = i+1; j < n; j++){
+            
+            pii p0 = vec[i];
+            pii p1 = vec[j];
+            
+            double dis = sqrt( pow(p0.first-p1.first, 2) + pow(p0.second-p1.second, 2) );
+            
+            edges.push_back({dis, {i, j}});
+        }
+        
+        sort(edges.begin(), edges.end());
+        
+        for(int i = 0; i < n; i++) par[i] = i;
+        
+        int cnt = 0;
+        double totr = 0, totb = 0;
+        
+        for(int i = 0; i < edges.size(); i++){ // edges.size()
+            
+            auto p = edges[i];
+            
+            double cdis = p.first;
+            int u = p.second.first;
+            int v = p.second.second;
+            
+            if(!samePar(u, v)){
+                mergeDSU(u, v);
+                if(cdis > double(r)){
+                    cnt++;
+                    totr += cdis;
+                }
+                else{
+                    totb += cdis;
+                }
+            }
+        }
+        
+        cout << "Case #" << tt++ << ": ";
+        cout << cnt+1 << ' ' << round(totb) << ' ' << round(totr) << endl;
     }	
 }
