@@ -1,3 +1,11 @@
+// Problem: C. Double-ended Strings
+// Contest: Codeforces - Codeforces Round #710 (Div. 3)
+// URL: https://codeforces.com/contest/1506/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -35,6 +43,8 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+string str0, str1;
+
 int32_t main(){
     
     fastIO;
@@ -45,8 +55,29 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+        
+        cin >> str0 >> str1;
+        
+        int ans = 0;
+        
+        for(int i = 0; i < str0.size(); i++){
+            
+            for(int j = 0; j < str1.size(); j++){
+                
+                int cnt = 0;
+                
+                for(int k = 0; ; k++){
+                    
+                    if(i+k == str0.size() || j+k == str1.size()) break;
+                    if(str0[i+k] != str1[j+k]) break;
+                    cnt++;
+                }
+                
+                ans = max(ans, cnt);
+            }
+        }
+        
+        cout << str0.size() + str1.size() - 2 * ans << endl;
     }	
 }
 

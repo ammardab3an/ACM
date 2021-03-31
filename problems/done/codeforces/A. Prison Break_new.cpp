@@ -1,4 +1,3 @@
-
 // By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
@@ -46,18 +45,8 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n, m;
+        cin >> n >> m;
+        cout << n * m << endl;
     }	
 }
-
-/*
-  arrays sizes 
-  INFLL & 1ll
-  there is something called long long.
-  if its an interactive problem : #define endl '\n'
-  
-  
-  notes : 
-  
-  
-*/    

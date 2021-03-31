@@ -1,3 +1,11 @@
+// Problem: Reversort Engineering
+// Contest: Google Coding Competitions - Qualification Round 2021 - Code Jam 2021
+// URL: https://codingcompetitions.withgoogle.com/codejam/round/000000000043580a/00000000006d12d7
+// Memory Limit: 1024 MB
+// Time Limit: 10000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -20,7 +28,7 @@ typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
-#define endl '\n'
+// #define endl '\n'
 #define fastIO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define freopenI freopen("input.txt", "r", stdin);
 #define freopenO freopen("output.txt", "w", stdout);
@@ -43,10 +51,36 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
+    
+    int tt = 1;
     int t; cin >> t; while(t--){
+        
+        cout << "Case #" << tt++ << ": ";
+        
+        int n, c;
+        cin >> n >> c;
+        
+        int mn = n-1;
+        int mx = 0;
+        for(int i = 2; i <= n; i++) mx += i;
 
-
+        if(c < mn || c > mx){
+            cout << "IMPOSSIBLE" << endl;
+            continue;
+        }
+        
+        vi ans(n);
+        for(int i = 0; i < n; i++) ans[i] = i+1;
+        
+        for(int i = n-2; i >= 0 && c; i--){
+            
+            int cur = min(n-i, c-i);
+            c -= cur;
+            
+            reverse(ans.begin()+i, ans.begin()+i+cur);
+        }
+        
+        for(auto i : ans) cout << i << ' '; cout << endl;
     }	
 }
 

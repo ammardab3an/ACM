@@ -35,6 +35,23 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int n;
+int arr[NMAX];
+int mem[NMAX][2];
+
+int go(int pos, int turn){
+
+    if(pos >= n) return 0;
+
+    int &ret = mem[pos][turn];
+    if(ret + 1) return ret;
+
+    int stPath = go(pos+1, !turn) + turn * arr[pos];
+    int ndPath = go(pos+2, !turn) + turn * (arr[pos] + arr[pos+1]);
+
+    return ret = min(stPath, ndPath);
+}
+
 int32_t main(){
     
     fastIO;
@@ -46,7 +63,14 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
+        cin >> n;
+        for(int i = 0; i < n; i++) cin >> arr[i];
 
+        arr[n] = 0;
+
+        memset(mem, -1, sizeof mem);
+
+        cout << go(0, 1) << endl;
     }	
 }
 

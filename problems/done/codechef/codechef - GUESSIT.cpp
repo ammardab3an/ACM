@@ -1,3 +1,11 @@
+// Problem: Guess the Number
+// Contest: CodeChef - March Cook-Off 2021 Division 2
+// URL: https://www.codechef.com/COOK127B/problems/GUESSIT
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -20,7 +28,7 @@ typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
-#define endl '\n'
+//#define endl '\n'
 #define fastIO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define freopenI freopen("input.txt", "r", stdin);
 #define freopenO freopen("output.txt", "w", stdout);
@@ -46,18 +54,15 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
+        for(lli i = 1; i*i <= 1e6; i++){
+
+            cout << i*i << endl;
+
+            int ans;
+            cin >> ans;
+
+            if(ans) break;
+        }
 
     }	
 }
-
-/*
-  arrays sizes 
-  INFLL & 1ll
-  there is something called long long.
-  if its an interactive problem : #define endl '\n'
-  
-  
-  notes : 
-  
-  
-*/    

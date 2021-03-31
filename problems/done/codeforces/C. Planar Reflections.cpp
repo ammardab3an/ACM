@@ -1,3 +1,11 @@
+// Problem: C. Planar Reflections
+// Contest: Codeforces - CodeCraft-21 and Codeforces Round #711 (Div. 2)
+// URL: https://codeforces.com/contest/1498/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -35,6 +43,28 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int n, kk;
+int mem[1010][1010][2];
+
+int add(lli a, lli b){
+    return (1ll * a + b + MOD + MOD) % MOD;
+}
+
+int go(int pos, int k, int d){
+    
+    if(k == 1) return 0;
+    if(pos == n) return 0;
+    if(pos == -1) return 0;
+    
+    int &ret = mem[pos][k][d];
+    if(ret + 1) return ret;
+    
+    int stPath = go(pos + (!d - d), k, d);
+    int ndPath = add(go(pos + (d - !d), k-1, !d), 1);
+    
+    return ret = add(stPath, ndPath);
+}
+
 int32_t main(){
     
     fastIO;
@@ -45,8 +75,12 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+        
+        cin >> n >> kk;
+        
+        memset(mem, -1, sizeof mem);
+        
+        cout << add(go(0, kk, 0), 1) << endl;
     }	
 }
 

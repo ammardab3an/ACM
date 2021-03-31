@@ -5,12 +5,12 @@
 
 using namespace std;
 
-//#define int int64_t
-//#define lli int64_t
+#define int int64_t
+#define lli int64_t
 
-typedef unsigned int        uint;
-typedef long long int       lli;
-typedef unsigned long long  ull;
+//typedef unsigned int        uint;
+//typedef long long int       lli;
+//typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
 typedef pair<int, pii>      iii;
@@ -47,6 +47,28 @@ int32_t main(){
     int t; cin >> t; while(t--){
 
 
+        lli x, y, k;
+        cin >> x >> y >> k;
+        
+        lli ans = 0;
+
+        lli cur = 1;
+
+        lli need = (y+1) * k;
+
+        while(cur < need){
+
+            lli tmp = (need-cur+x-1)/x;
+            tmp = min(tmp, cur);
+
+            cur -= tmp;
+            cur += tmp * x;
+
+            ans += tmp;
+        }
+
+
+        cout << ans + k << endl;
     }	
 }
 

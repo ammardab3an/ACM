@@ -1,3 +1,11 @@
+// Problem: A. GCD Sum
+// Contest: Codeforces - CodeCraft-21 and Codeforces Round #711 (Div. 2)
+// URL: https://codeforces.com/contest/1498/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -46,6 +54,25 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
+        lli n;
+        cin >> n;
+
+        auto gcd = [](lli y){
+
+            lli sm = 0, x = y;
+            while(x) sm += x%10, x /= 10;
+
+            return __gcd(y, sm);
+        };
+
+        while(true){
+
+            if(gcd(n) != 1){
+                cout << n << endl;
+                break;
+            }
+            n++;
+        }
 
     }	
 }

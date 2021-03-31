@@ -1,3 +1,11 @@
+// Problem: Matrix XOR
+// Contest: CodeChef - March Cook-Off 2021 Division 2
+// URL: https://www.codechef.com/COOK127B/problems/MATXOR
+// Memory Limit: 256 MB
+// Time Limit: 500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -46,18 +54,32 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
+        int n, m, k;
+        cin >> n >> m >> k;
+        
+        if(n > m) swap(n, m);
 
+        int mn = 2;
+        int mx = n+m;
+        
+        int ans = 0;
+        
+        if(n&1)
+        for(int i = n+1; i <= m+1; i++){
+            ans ^= i + k;
+        }
+        
+        for(int i = 1; i < n; i++){
+            if(i&1) ans ^= i+1 + k, ans ^= mx-i+1 + k;
+        }
+        
+        cout << ans << endl;
     }	
 }
 
 /*
-  arrays sizes 
-  INFLL & 1ll
-  there is something called long long.
-  if its an interactive problem : #define endl '\n'
-  
-  
-  notes : 
-  
-  
-*/    
+2 3 4 5 6 7 8 9 10 11 
+3 4 5 6 7 8 9 10 11 12 
+4 5 6 7 8 9 10 11 12 13 
+5 6 7 8 9 10 11 12 13 14 
+*/

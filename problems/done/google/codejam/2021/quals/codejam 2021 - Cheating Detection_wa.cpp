@@ -1,3 +1,11 @@
+// Problem: Cheating Detection
+// Contest: Google Coding Competitions - Qualification Round 2021 - Code Jam 2021
+// URL: https://codingcompetitions.withgoogle.com/codejam/round/000000000043580a/00000000006d1155
+// Memory Limit: 1024 MB
+// Time Limit: 60000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -35,6 +43,8 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+char str[111][10100];
+
 int32_t main(){
     
     fastIO;
@@ -44,9 +54,30 @@ int32_t main(){
     freopenO;
 #endif
 
+    int tt = 1;
     int t; cin >> t; while(t--){
 
-
+        int k;
+        cin >> k;
+        
+        for(int i = 0; i < 100; i++) cin >> str[i];
+        
+        int mx = -1;
+        int ans = -1;
+        
+        for(int i = 0; i < 100; i++){
+            
+            int cnt = 0;
+            for(int j = 0; j < 10000; j++) cnt += str[i][j] - '0';
+            
+            if(cnt > mx){
+                mx = cnt;
+                ans = i+1;
+            }
+        }
+        
+        cout << "Case #" << tt++ << ": ";
+        cout << ans << endl;
     }	
 }
 

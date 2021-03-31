@@ -46,7 +46,47 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
+        int n;
+        cin >> n;
 
+        vi vec(n);
+        for(auto &i : vec) cin >> i;
+
+        vi loc(n);
+        for(auto &i : loc) cin >> i;
+
+        vi pos, neg;
+
+        for(int i = 0; i < n; i++) if(!loc[i]){
+
+            if(vec[i] >= 0){
+                pos.push_back(vec[i]);
+            }
+            else{
+                neg.push_back(vec[i]);
+            }
+        }
+
+        sort(pos.begin(), pos.end());
+        sort(neg.begin(), neg.end());
+
+        vi ans(n);
+        for(int i= 0; i < n; i++){
+
+            if(loc[i]){
+                ans[i] = vec[i];
+            }
+            else if(!pos.empty()){
+                ans[i] = pos.back();
+                pos.pop_back();
+            }
+            else{
+                ans[i] = neg.back();
+                neg.pop_back();
+            }
+        }
+
+        for(auto i : ans) cout << i << ' ' ; cout << endl;
     }	
 }
 

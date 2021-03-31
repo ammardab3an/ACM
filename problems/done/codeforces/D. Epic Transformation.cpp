@@ -1,3 +1,11 @@
+// Problem: D. Epic Transformation
+// Contest: Codeforces - Codeforces Round #710 (Div. 3)
+// URL: https://codeforces.com/contest/1506/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -35,6 +43,8 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int arr[NMAX];
+
 int32_t main(){
     
     fastIO;
@@ -46,7 +56,26 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        for(int i = 0; i < n; i++) cin >> arr[i];
+        
+        map<int, int> mp;
+        
+        for(int i = 0; i < n; i++) mp[arr[i]]++;
+        
+        vi cnt;
+        for(auto p : mp) cnt.push_back(p.second);
+        sort(cnt.begin(), cnt.end());
+        
+        int ans = n&1;
+        
+        int sz = cnt.back();
+        
+        if(2*sz > n) ans = 2*sz - n;
+        
+        cout << ans << endl;
     }	
 }
 
