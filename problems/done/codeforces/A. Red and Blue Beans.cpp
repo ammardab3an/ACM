@@ -1,3 +1,11 @@
+// Problem: A. Red and Blue Beans
+// Contest: Codeforces - Educational Codeforces Round 108 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1519/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -52,7 +60,31 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int r, b, d;
+        cin >> r >> b >> d;
+        
+        if(r > b) swap(r, b);
+        
+        int cnt = 0;
+        
+        int cnt_b = b / (1+d);
+        
+        if(cnt_b <= r){
+            r -= cnt_b;
+            b -= cnt_b * (1+d);
+            cnt += cnt_b;
+        }
+        else{
+            cout << "NO" << endl;
+            continue;
+        }
+        
+        if(!r && b){
+            cout << "NO" << endl;
+        }
+        else if(true || (!r && !b)){
+            cout << "YES" << endl;
+        }
     }	
 }
 

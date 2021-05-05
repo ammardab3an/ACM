@@ -1,3 +1,11 @@
+// Problem: F. Number of Subsequences
+// Contest: Codeforces - Codeforces Round #674 (Div. 3)
+// URL: https://codeforces.com/contest/1426/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -31,15 +39,48 @@ const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
-int rand(int x, int y) {
-    return uniform_int_distribution<int>(x, y)(rng);
-}
-
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
+
+int n;
+char str[NMAX];
+int mem[NMAX][4];
+
+int add(int a, int b){
+    return (1ll * a + b + MOD + MOD) % MOD;
+}
+ 
+int mul(int a, int b){
+    return (1ll * a * b) % MOD;
+}
+
+int go(int pos, int k){
+    
+    if(pos == n) return k == 3;
+    
+    int &ret = mem[pos][k];
+    if(ret+1) return ret;
+    
+    int stPath = go(pos+1, k);
+    if(str[pos] == '?') stPath = mul(stPath, 3);
+    
+    int ndPath = 0;
+    
+    if(k == 0){
+        if(str[pos] == 'a') ndPath += go(pos+1, k+1);
+    }
+    else if(k == 1){
+        if(str[pos] == 'b') ndPath += go(pos+1, k+1);
+    }
+    else if(k == 2){
+        if(str[pos] == 'c') ndPath += go(pos+1, k+1);
+    }
+    
+    if(k < 3 && str[pos] == '?') ndPath += go(pos+1, k+1);
+    
+    return ret = add(stPath, ndPath);
+}
 
 int32_t main(){
     
@@ -49,11 +90,12 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+    
+    cin >> n >> str;
+    
+    memset(mem, -1, sizeof mem);
+    
+    cout << go(0, 0) << endl;
 }
 
 /*

@@ -1,3 +1,11 @@
+// Problem: A. Little Pony and Expected Maximum
+// Contest: Codeforces - Codeforces Round #259 (Div. 1)
+// URL: https://codeforces.com/problemset/problem/453/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -49,11 +57,21 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+    
+    int m, n;
+    cin >> m >> n;
+    
+    double ans = 0;
+    
+    // ev = sum( i * (i^n - (i-1)^n) / m^n)  ) for i in range [1, m]
+    //    = sum( i * ((i/m)^n - ((i-1)/m)^n) )
+    
+    double ans = 0;
+    for(int i = 1; i <= m; i++){
+        ans += double(i) * (pow(double(i)/m, n) - pow(double(i-1)/m, n));
+    }
+    
+    cout << fixed << setprecision(12) << ans << endl;
 }
 
 /*

@@ -1,3 +1,11 @@
+// Problem: C. Fillomino 2
+// Contest: Codeforces - Contest 2050 and Codeforces Round #718 (Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1517/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -31,15 +39,33 @@ const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
-int rand(int x, int y) {
-    return uniform_int_distribution<int>(x, y)(rng);
-}
-
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
+
+int n, m, bad;
+int grid[555][555];
+
+void dfs(int i, int j, int v, int k){
+    
+    if(!k) return;
+    
+    if(j-1 >= 0 && !grid[i][j-1]){
+        grid[i][j-1] = v;
+        dfs(i, j-1, v, k-1);
+    }
+    else{
+        
+        if(i+1 >= n || grid[i+1][j]){
+            bad = true;
+            return;
+        }
+        else{
+            grid[i+1][j] = v;
+            dfs(i+1, j, v, k-1);
+        }
+    }
+}
 
 int32_t main(){
     
@@ -50,10 +76,21 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n;
+    for(int i = 0; i < n; i++) cin >> grid[i][i];
+    
+    for(int i = 0; i < n; i++) dfs(i, i, grid[i][i], grid[i][i]-1);
+    
+    if(bad){
+        cout << -1 << endl;
+    }
+    else{
+        
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j <= i; j++) cout << grid[i][j] << ' ' ;
+            cout << endl;
+        }
+    }
 }
 
 /*

@@ -1,3 +1,11 @@
+// Problem: A. Perfectly Imperfect Array
+// Contest: Codeforces - Codeforces Round #716 (Div. 2)
+// URL: https://codeforces.com/contest/1514/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -31,12 +39,6 @@ const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
-int rand(int x, int y) {
-    return uniform_int_distribution<int>(x, y)(rng);
-}
-
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
@@ -52,7 +54,22 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        vi vec(n);
+        for(auto &i : vec) cin >> i;
+        
+        bool ans = false;
+        
+        for(auto i : vec){
+            if(pow(int(sqrt(i)), 2) != i){
+                ans = true;
+                break;
+            }
+        }
+        
+        cout << (ans ? "YES" : "NO") << endl;
     }	
 }
 

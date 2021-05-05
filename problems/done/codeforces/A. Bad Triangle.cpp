@@ -1,3 +1,11 @@
+// Problem: A. Bad Triangle
+// Contest: Codeforces - Educational Codeforces Round 93 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1398/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -52,7 +60,22 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        vi vec(n);
+        for(auto &i : vec) cin >> i;
+        
+        int a = vec[0];
+        int b = vec[1];
+        int c = vec.back();
+        
+        if(c >= (a+b)){
+            cout << 1 << ' ' << 2 << ' ' << n << endl;
+        }
+        else{
+            cout << -1 << endl;
+        }
     }	
 }
 

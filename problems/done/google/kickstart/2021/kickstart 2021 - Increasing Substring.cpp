@@ -1,3 +1,11 @@
+// Problem: Increasing Substring
+// Contest: Google Coding Competitions - Round B 2021 - Kick Start 2021
+// URL: https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435a5b/000000000077a882
+// Memory Limit: 1024 MB
+// Time Limit: 20000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -31,15 +39,25 @@ const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
-int rand(int x, int y) {
-    return uniform_int_distribution<int>(x, y)(rng);
-}
-
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
+
+int n;
+char str[NMAX];
+
+int mem[NMAX];
+
+int go(int i){
+    
+    if(i == 0) return 0;
+    
+    int &ret = mem[i];
+    if(ret+1) return ret;
+    
+    if(str[i-1] < str[i]) return ret = go(i-1) + 1;
+    return ret = 0;
+}
 
 int32_t main(){
     
@@ -50,9 +68,14 @@ int32_t main(){
     freopenO;
 #endif
 
+    int tt = 1;
     int t; cin >> t; while(t--){
 
-
+        cin >> n >> str;
+        memset(mem, -1, sizeof mem);
+        cout << "Case #" << tt++ << ": ";
+        for(int i = 0; i < n; i++) cout << go(i)+1 << ' ' ; cout << endl;
+                
     }	
 }
 

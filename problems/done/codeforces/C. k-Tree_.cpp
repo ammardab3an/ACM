@@ -1,3 +1,11 @@
+// Problem: C. k-Tree
+// Contest: Codeforces - Codeforces Round #247 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/431/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -41,6 +49,29 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int add(int a, int b){
+    return (1ll * a + b + MOD) % MOD;
+}
+
+int n, k, d;
+int mem[111][2];
+
+int go(int n, bool b){
+    
+    if(n < 0) return 0;
+    if(n == 0) return b;
+    
+    int &ret = mem[n][b];
+    if(ret+1) return ret;
+    
+    int ans = 0;
+    for(int i = 1; i <= k; i++){
+        ans = add(ans, go(n-i, b || (i >= d)));
+    }    
+    
+    return ret = ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -50,10 +81,9 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n >> k >> d;
+    memset(mem, -1, sizeof mem);
+    cout << go(n, 0) << endl;
 }
 
 /*

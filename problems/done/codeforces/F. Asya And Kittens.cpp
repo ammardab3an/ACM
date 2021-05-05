@@ -1,3 +1,11 @@
+// Problem: F. Asya And Kittens
+// Contest: Codeforces - Codeforces Round #541 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/1131/F
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -41,6 +49,39 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int n;
+int par[NMAX];
+int id[NMAX];
+vi gr[NMAX];
+
+int get_par(int n){
+    return par[n] == n ? n : par[n] = get_par(par[n]);
+}
+
+bool merge(int u, int v){
+    
+    int par_u = get_par(u);
+    int par_v = get_par(v);
+    
+    if(par_u == par_v) return false;
+    
+    int sz_u = gr[id[par_u]].size();
+    int sz_v = gr[id[par_v]].size();
+    
+    if(sz_u > sz_v){
+        swap(par_u, par_v);
+    }
+    
+    for(auto i : gr[id[par_u]]){
+        id[i] = par_v;
+        gr[id[par_v]].push_back(i);
+    }
+    
+    par[par_u] = par_v;
+    
+    return true;
+}
+
 int32_t main(){
     
     fastIO;
@@ -49,11 +90,24 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+    
+    cin >> n;
+    
+    for(int i = 1; i <= n; i++){
+        id[i] = i;
+        gr[i].push_back(i);
+        par[i] = i;
+    }
+    
+    for(int i = 0; i < n; i++){
+        int u, v;
+        cin >> u >> v;
+        merge(u, v);
+    }   
+    
+    for(auto i : gr[id[get_par(1)]]){
+        cout << i << ' ';
+    }
 }
 
 /*

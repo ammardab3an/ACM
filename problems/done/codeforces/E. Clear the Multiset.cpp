@@ -1,3 +1,11 @@
+// Problem: E. Clear the Multiset
+// Contest: Codeforces - Educational Codeforces Round 94 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1400/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -38,8 +46,32 @@ int rand(int x, int y) {
 }
 
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 5e3 + 10;
 const int MMAX = 2e5 + 10;
+
+int n;
+int arr[NMAX];
+int mem[NMAX][NMAX];
+
+int go(int i, int k){
+    
+    if(i == n) return 0;
+    
+    int &ret = mem[i][k];
+    if(ret+1) return ret;
+    
+    int ans = INF;
+    
+    if(k >= arr[i]){
+        ans = go(i+1, arr[i]);
+    }
+    else{
+        ans = go(i+1, k) + 1;
+        if(k+1 < n) ans = min(ans, go(i, k+1) + 1);
+    }
+    
+    return ret = ans;
+}
 
 int32_t main(){
     
@@ -49,11 +81,13 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+    
+    cin >> n;
+    for(int i = 0; i < n; i++) cin >> arr[i];
+    
+    memset(mem, -1, sizeof mem);
+    
+    cout << go(0, 0) << endl;
 }
 
 /*

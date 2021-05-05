@@ -1,3 +1,11 @@
+// Problem: D. Dima and Hares
+// Contest: Codeforces - Codeforces Round #208 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/358/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -31,16 +39,43 @@ const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
-int rand(int x, int y) {
-    return uniform_int_distribution<int>(x, y)(rng);
+const int NMAX = 3e3 + 10;
+
+int n;
+int a[NMAX];
+int b[NMAX];
+int c[NMAX];
+
+int mem[NMAX][2];
+
+int go(int i, int p){
+    
+    if(i == n-1){
+        return p ? b[i] : a[i];
+    }
+    
+    int &ret = mem[i][p];
+    if(ret+1) return ret;
+    
+    int ans = 0;
+    
+    if(p){
+        
+        int stPath = b[i] + go(i+1, 1);
+        int ndPath = c[i] + go(i+1, 0);
+        
+        ans = max(stPath, ndPath);
+    }
+    else{
+        
+        int stPath = a[i] + go(i+1, 1);
+        int ndPath = b[i] + go(i+1, 0);
+        
+        ans = max(stPath, ndPath);
+    }
+    
+    return ret = ans;
 }
-
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-
 int32_t main(){
     
     fastIO;
@@ -50,10 +85,14 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n;
+    for(int i = 0; i < n; i++) cin >> a[i];
+    for(int i = 0; i < n; i++) cin >> b[i];
+    for(int i = 0; i < n; i++) cin >> c[i];
+    
+    memset(mem, -1, sizeof mem);
+    
+    cout << go(0, 0) << endl;
 }
 
 /*

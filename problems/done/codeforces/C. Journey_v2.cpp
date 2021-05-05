@@ -1,3 +1,11 @@
+// Problem: C. Journey
+// Contest: Codeforces - Codeforces Round #428 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/839/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -41,6 +49,20 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int n;
+vi adj[NMAX];
+
+double go(int nd, int par){
+    
+    double sum = 0;
+    
+    for(auto nxt : adj[nd]) if(nxt != par){
+        sum += go(nxt, nd) + 1;
+    }
+    
+    return sum ? sum / (adj[nd].size() - (par != -1)) : 0;
+}
+
 int32_t main(){
     
     fastIO;
@@ -50,10 +72,15 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n;
+    for(int i = 0; i < n-1; i++){
+        int u, v;
+        cin >> u >> v; u--, v--;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    
+    cout << fixed << setprecision(15) << go(0, -1) << endl;
 }
 
 /*

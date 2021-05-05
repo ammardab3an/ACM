@@ -1,3 +1,11 @@
+// Problem: C. Good Subarrays
+// Contest: Codeforces - Educational Codeforces Round 93 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1398/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -52,7 +60,29 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        string str;
+        cin >> str;
+        
+        map<int, int> mp;
+        
+        mp[0] = 1;
+        
+        lli ans = 0;
+        
+        int cur_sm = 0;
+        
+        for(int i = 0; i < n; i++){
+            
+            cur_sm += str[i] - '0' -1;
+            
+            ans += mp[cur_sm];
+            mp[cur_sm]++;
+        }
+        
+        cout << ans << endl;
     }	
 }
 

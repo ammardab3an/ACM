@@ -1,3 +1,11 @@
+// Problem: C. Binary String Reconstruction
+// Contest: Codeforces - Educational Codeforces Round 94 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1400/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -41,6 +49,10 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 
+int n, x;
+char str[NMAX];
+char ans[NMAX];
+
 int32_t main(){
     
     fastIO;
@@ -52,7 +64,44 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        cin >> str >> x;
+        n = strlen(str);
+        
+        bool bad = false;
+        
+        for(int i = 0; i < n; i++) ans[i] = '1';
+        
+        for(int i = 0; i < n; i++){
+            
+            if(str[i] == '0'){
+                
+                int l = i-x;
+                int r = i+x;
+                
+                if(l >= 0) ans[l] = '0';
+                if(r <  n) ans[r] = '0';
+            }    
+        }   
+        
+        for(int i = 0; i < n; i++){
+            
+            bool one = false;
+            one |= (i-x >= 0) && (ans[i-x] == '1');
+            one |= (i+x <  n) && (ans[i+x] == '1');
+            
+            if(str[i] != '0' + one){
+                bad = true;
+                break;
+            }
+        }
+        
+        if(bad){
+            cout << -1 << endl;
+        }
+        else{
+            ans[n] = 0;
+            cout << ans << endl;
+        }
     }	
 }
 

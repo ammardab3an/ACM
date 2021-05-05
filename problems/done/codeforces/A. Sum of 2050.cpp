@@ -1,3 +1,11 @@
+// Problem: A. Sum of 2050
+// Contest: Codeforces - Contest 2050 and Codeforces Round #718 (Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1517/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -31,12 +39,6 @@ const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
-int rand(int x, int y) {
-    return uniform_int_distribution<int>(x, y)(rng);
-}
-
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
@@ -52,7 +54,26 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        lli num;
+        cin >> num;
+        
+        lli tmp = 2050 * 1e15;
+        
+        int cnt = 0;
+        
+        while((num > 0) && (tmp >= 2050)){
+            
+            while(tmp <= num) num -= tmp, cnt++;
+            
+            tmp /= 10;
+        }
+        
+        if(num){
+            cout << -1 << endl;
+        }
+        else{
+            cout << cnt << endl;
+        }
     }	
 }
 

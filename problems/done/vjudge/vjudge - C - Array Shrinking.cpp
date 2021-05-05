@@ -1,3 +1,11 @@
+// Problem: C - Array Shrinking
+// Contest: Virtual Judge - Contest 2
+// URL: https://vjudge.net/contest/436948#problem/C
+// Memory Limit: 262 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -38,8 +46,51 @@ int rand(int x, int y) {
 }
 
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 5e2 + 10;
 const int MMAX = 2e5 + 10;
+
+int n;
+int arr[NMAX];
+int mem[NMAX];
+int mem0[NMAX][NMAX];
+
+int can(int l, int r){
+    
+    if(l+1 == r) return arr[l];
+    
+    int &ret = mem0[l][r];
+    if(ret+1) return ret;
+    
+    for(int i = l+1; i < r; i++){
+        
+        int pre = can(l, i);
+        int suf = can(i, r);
+        
+        if(pre && (pre == suf)){
+            return ret = pre+1;
+        }
+    }
+    
+    return ret = 0;
+}
+
+int go(int i){
+    
+    if(i == n) return 0;
+    
+    int &ret = mem[i];
+    if(ret+1) return ret;
+    
+    int ans = n-i;
+    
+    for(int j = i+1; j < n+1; j++){
+        if(can(i, j)){
+            ans = min(ans, 1 + go(j));
+        }
+    }    
+    
+    return ret = ans;
+}
 
 int32_t main(){
     
@@ -49,11 +100,14 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+    
+    cin >> n;
+    for(int i = 0; i < n; i++) cin >> arr[i];
+    
+    memset(mem, -1, sizeof mem);
+    memset(mem0, -1, sizeof mem0);
+    
+    cout << go(0);
 }
 
 /*

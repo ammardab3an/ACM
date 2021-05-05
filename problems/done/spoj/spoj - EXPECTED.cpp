@@ -1,3 +1,11 @@
+// Problem: Compute the expected VAlue
+// Contest: SPOJ - Problems
+// URL: https://www.spoj.com/problems/EXPECTED/
+// Memory Limit: 1536 MB
+// Time Limit: 100 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -49,11 +57,27 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+    
+    string str;
+    while(getline(cin, str)){
+        
+        if(str[0] == '$') break;
+        
+        if(str[0] != '('){
+            cout << str << ".00" << endl;
+            continue;
+        }
+        
+        str.erase(str.begin());
+        str.pop_back();
+        
+        stringstream ss(str);
+        
+        double p, a, b;
+        ss >> p >> a >> b;
+        
+        cout << fixed << setprecision(2) << p * (a+b) + (1.0-p) * (a-b) << endl;
+    }
 }
 
 /*

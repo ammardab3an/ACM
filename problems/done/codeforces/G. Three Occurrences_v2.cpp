@@ -133,6 +133,8 @@ int32_t main(){
     
     lli ans = 0;
 
+    for(int i = 1; i <= n; i++) idxs[i].push_back(0);
+    
     for(int i = 1; i <= n; i++){
         
         int ai = arr[i];
@@ -148,14 +150,11 @@ int32_t main(){
         
         idxs[ai].push_back(i);
         
-        if(sz == 0)
-            update(1, 1, n, 1, i, 1);
-            
         auto que = query(1, 1, n, 1, i);
         if(que.first == 0) ans += que.second;
         
-        for(int i = 1; i <= n; i++)
-            cout << query(1, 1, n, i, i).first << ' ' ; cout << endl;
+        // for(int i = 1; i <= n; i++)
+            // cout << query(1, 1, n, i, i).first << ' ' ; cout << endl;
     }
     
     cout << ans << endl;

@@ -1,3 +1,11 @@
+// Problem: B. Phoenix and Puzzle
+// Contest: Codeforces - Codeforces Global Round 14
+// URL: https://codeforces.com/contest/1515/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -51,8 +59,40 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+        
+        int n;
+        cin >> n;
+        
+        if(n%2==1){
+            cout << "NO" << endl;
+            continue;
+        }
+        
+        int cnt_2 = 0;
+        while(n && (n%2==0)) cnt_2++, n/=2;
+        
+        int rem = n;
+        if(pow((int)sqrt(rem), 2) != rem){
+            cout << "NO" << endl;
+            continue;
+        }
+        
+        if(rem == 1){
+            cout << "YES" << endl;
+            continue;
+        }
+        
+        bool ans = false;
+        for(int i = 1; i <= cnt_2; i *= 2){
+            int ncnt = cnt_2 - i;    
+            
+            if(ncnt%2==0){
+                ans = true;
+                break;
+            }
+        }
+        
+        cout << (ans ? "YES" : "NO") << endl;
     }	
 }
 
