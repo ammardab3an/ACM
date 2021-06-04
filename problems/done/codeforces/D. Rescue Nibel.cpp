@@ -1,3 +1,11 @@
+// Problem: D. Rescue Nibel!
+// Contest: Codeforces - Codeforces Round #672 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/1420/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -27,7 +35,7 @@ typedef vector<pll>         vpll;
 
 const int INF = 0x3f3f3f3f;
 const lli INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353 ; //1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -51,12 +59,24 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
- 
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+
+const int NMAX = 3e5 + 10;
+
+int inv[NMAX], fac[NMAX], ifac[NMAX];
+
+void init(){
+    
+    inv[1] = 1; 
+    fac[0] = ifac[0] = 1;
+    
+    for(int i = 2; i < NMAX; i++) inv[i] = mul(MOD-MOD/i, inv[MOD%i]);
+    for(int i = 1; i < NMAX; i++) fac[i] = mul(fac[i-1], i);
+    for(int i = 1; i < NMAX; i++) ifac[i] = mul(ifac[i-1], inv[i]);
+}
+
+int choose(int n, int c){
+    return mul(mul(fac[n], ifac[c]), ifac[n-c]);
+}
 
 int32_t main(){
     
@@ -67,16 +87,44 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    init();
+        
+    int n, k;
+    cin >> n >> k;
+    
+    vpii vec(n), tmp;
+    
+    for(auto &p : vec){
+        cin >> p.first >> p.second;
+        tmp.push_back({p.first, -1});
+        tmp.push_back({p.second, +1});
+    }
+    
+    sort(tmp.begin(), tmp.end());
+    
+    int ans = 0;
+    
+    int cnt = 0;
+    for(int i = 0; i < tmp.size(); i++){
+        
+        cnt += -tmp[i].second;
+        
+        if(tmp[i].second == -1 && cnt >= k){
+            int cans = choose(cnt-1, k-1);
+            ans = add(ans, cans);
+        }
+        
+    }
+    
+    cout << ans << endl;
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

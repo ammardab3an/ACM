@@ -1,3 +1,11 @@
+// Problem: C. Parsa's Humongous Tree
+// Contest: Codeforces - Codeforces Round #722 (Div. 2)
+// URL: https://codeforces.com/contest/1529/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -55,8 +63,33 @@ int pow_exp(int n, int p){
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+
+int n;
+int arr[NMAX][2];
+vi adj[NMAX];
+
+int mem[NMAX][3];
+
+int go(int nd, int p, int par){
+    
+    int &ret = mem[nd][p+1];
+    if(ret+1) return ret;
+    
+    int stPath = 0;
+    int ndPath = 0;
+    
+    if(p != -1){
+        stPath += abs(arr[nd][0] - arr[par][p]);
+        ndPath += abs(arr[nd][1] - arr[par][p]);
+    }
+    
+    for(auto nxt : adj[nd]) if(nxt != par){
+        stPath += go(nxt, 0, nd);
+        ndPath += go(nxt, 1, nd);
+    }    
+    
+    return ret = max(stPath, ndPath);
+}
 
 int32_t main(){
     
@@ -69,14 +102,32 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        cin >> n;
+        
+        for(int i = 0; i < n; i++){
+            cin >> arr[i][0] >> arr[i][1];
+            adj[i].clear();
+        }
+        
+        for(int i = 0; i < n-1; i++){
+            int u, v;
+            cin >> u >> v; u--, v--;
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        
+        memset(mem, -1, sizeof mem);
+        
+        cout << go(0, -1, -1) << endl;
     }	
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

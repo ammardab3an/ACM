@@ -1,3 +1,11 @@
+// Problem: C. Mahmoud and Ehab and the xor
+// Contest: Codeforces - Codeforces Round #435 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/862/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -55,8 +63,6 @@ int pow_exp(int n, int p){
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
 
 int32_t main(){
     
@@ -67,16 +73,48 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, x;
+    cin >> n >> x;
+    
+    if((x == 0) && (n == 2)){
+        cout << "NO" << endl;
+        return 0;
+    }
+    
+    cout << "YES" << endl;
+    
+    if(n == 1){
+        cout << x << endl;    
+    }
+    else if(n == 2){
+        cout << 0 << ' ' << x << endl;
+    }
+    else{
+        
+        int ans = 0;
+        for(int i = 1; i <= n-3; i++){
+            cout << i << ' ';
+            ans ^= i;
+        }
+        
+        int pw1 = 1 << 17;
+        int pw2 = 1 << 18;
+        
+        if(ans == x){
+            cout << pw1+pw2 << ' ' << pw1 << ' ' << pw2 << endl;
+        }
+        else{
+            cout << pw1 << ' ' << ((pw1 ^ x) ^ ans) << ' ' << 0 << endl;
+        }
+    }
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

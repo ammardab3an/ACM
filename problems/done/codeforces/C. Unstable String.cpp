@@ -1,3 +1,11 @@
+// Problem: C. Unstable String
+// Contest: Codeforces - Educational Codeforces Round 110 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1535/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -58,6 +66,27 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n;
+string str;
+
+int mem[NMAX][2];
+
+int go(int i, int odd){
+    
+    if(i == n) return 0;
+    
+    int &ret = mem[i][odd];
+    if(ret+1) return ret;
+    
+    if(str[i] == '?') 
+        return ret = go(i+1, !odd) + 1;
+    
+    if((str[i]-'0') == odd)
+        return ret = go(i+1, !odd) + 1;
+    
+    return 0;
+}
+
 int32_t main(){
     
     fastIO;
@@ -67,9 +96,39 @@ int32_t main(){
     freopenO;
 #endif
 
+    
     int t; cin >> t; while(t--){
 
-
+        cin >> str;
+        n = str.size();
+        
+        memset(mem, -1, sizeof mem);
+        
+        int ans = 0;
+        
+        for(int i = 0; i < n; i++){
+            
+            if(str[i] == '?'){
+                
+                int stPath = go(i, 0);
+                int ndPath = go(i, 1);
+                
+                int mx = max(stPath, ndPath);
+                
+                ans += mx;
+            }
+            else{
+                
+                int stPath = go(i, str[i]-'0');
+                
+                int mx = stPath;
+                
+                ans += mx;
+            }
+            
+        }
+        
+        cout << ans << endl;
     }	
 }
 
@@ -77,6 +136,7 @@ int32_t main(){
   arrays sizes 
   INFLL & 1ll
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

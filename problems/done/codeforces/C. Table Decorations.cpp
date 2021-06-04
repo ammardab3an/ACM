@@ -1,3 +1,11 @@
+// Problem: C. Table Decorations
+// Contest: Codeforces - Codeforces Round #273 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/478/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -55,8 +63,6 @@ int pow_exp(int n, int p){
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
 
 int32_t main(){
     
@@ -66,17 +72,32 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+    
+    vi vec(3);
+    for(int &i : vec) cin >> i;
+    
+    sort(vec.begin(), vec.end());
+    
+    int r = vec[0], g = vec[1], b = vec[2];
+    
+    int ans = 0;
+    
+    if((r+g)*2 >= b){
+        ans = (r+g+b)/3;
+    }
+    else{
+        ans = r+g;
+    }
+    
+    cout << ans << endl;
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

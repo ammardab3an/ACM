@@ -1,3 +1,11 @@
+// Problem: D. Multipliers
+// Contest: Codeforces - Codeforces Round #338 (Div. 2)
+// URL: https://codeforces.com/contest/615/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -37,8 +45,8 @@ int rand(int x, int y) {
     return uniform_int_distribution<int>(x, y)(rng);
 }
 
-int mul(int a, int b){
-	return (1ll * a * b) % MOD;
+int mul(int a, int b, int mod = MOD){
+	return (1ll * a * b) % mod;
 }
  
 int add(int a, int b){
@@ -55,8 +63,6 @@ int pow_exp(int n, int p){
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
 
 int32_t main(){
     
@@ -67,16 +73,41 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    map<int, int> mp;
+    
+    int num = 1;
+    
+    for(int i = 0; i < n; i++){
+        int ai;
+        cin >> ai;
+        mp[ai]++;
+    }
+    
+    
+    int d = 1;
+    int ans = 1;
+    
+    for(auto p : mp){
+        
+        int fp = pow_exp(p.first, (p.second+1) * (p.second) / 2);
+    
+        ans = mul(pow_exp(ans, (p.second+1)), pow_exp(fp, d));
+    
+        d = mul(d, (p.second+1), MOD-1);
+    }
+    
+    cout << ans << endl;    
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

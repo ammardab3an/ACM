@@ -78,12 +78,11 @@ int32_t main(){
         
         while((i < l) && (j < r)){
             
-            while((i < l) && (j < r) && (vec_l[i] == vec_r[j])){
+            if(vec_l[i] == vec_r[j]){
                 i++, j++, fo++;
             }
             
-            if(j < r)
-            while((i < l) && (vec_l[i] < vec_r[j])){
+            else if(vec_l[i] < vec_r[j]){
                 
                 int cnt = 1;
                 
@@ -99,8 +98,7 @@ int32_t main(){
                 i++;
             }
             
-            if(i < l)
-            while((j < r) && (vec_r[j] < vec_l[i])){
+            else if(vec_r[j] < vec_l[i]){
                 
                 int cnt = 1;
                 

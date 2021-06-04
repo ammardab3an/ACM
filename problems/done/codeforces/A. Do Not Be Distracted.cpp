@@ -1,3 +1,11 @@
+// Problem: A. Do Not Be Distracted!
+// Contest: Codeforces - Codeforces Round #719 (Div. 3)
+// URL: https://codeforces.com/contest/1520/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -55,8 +63,6 @@ int pow_exp(int n, int p){
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
 
 int32_t main(){
     
@@ -69,14 +75,37 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        string str;
+        cin >> str;
+        
+        vi vis(26);
+        
+        bool ans = true;
+        
+        for(int i = 0; i < n; i++){
+            
+            if(vis[str[i]-'A']){
+                ans = false;
+                break;
+            }
+            
+            vis[str[i]-'A'] = true;
+            while(i+1 < n && str[i+1] == str[i]) i++;
+        }
+        
+        cout << (ans ? "YES" : "NO") << endl;
     }	
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

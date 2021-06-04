@@ -1,3 +1,11 @@
+// Problem: Chef and his study plans
+// Contest: CodeChef - Practice(Medium)
+// URL: https://www.codechef.com/problems/SUBSEG2
+// Memory Limit: 256 MB
+// Time Limit: 750 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -52,11 +60,13 @@ int pow_exp(int n, int p){
 	return mul(tmp, tmp);
 }
  
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+const int NMAX = 1e6 + 10;
+const int LOG = ceil(log2(NMAX));
+
+int n, q, sz;
+int arr[NMAX];
+int par[NMAX][LOG];
+int dist[NMAX][LOG];
 
 int32_t main(){
     
@@ -66,17 +76,63 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
+    
+    cin >> n >> q;
 
-    int t; cin >> t; while(t--){
+    memset(arr, INF, sizeof arr);
 
+    for(int i = 0; i < n; i++){
+        
+        int l, r;
+        cin >> l >> r; l--, r--;
+        
+        arr[l] = min(arr[l], r);
+    }
+    
+    for(int i = 1e6; i >= 0; i--){
+        arr[i] = min(arr[i+1], arr[i]);
+    }
+    
+    memset(par, INF, sizeof par);
+    
+    for(int i = 1e6; i >= 0; i--){
+        
+        par[i][0] = arr[i];
+        
+        for(int j = 1; j < LOG; j++){
+            if(par[i][j-1] < INF){            
+                par[i][j] = par[par[i][j-1]+1][j-1];
+            }
+        }
+    }
+    
+    while(q--){
+        
+        int l, r;
+        cin >> l >> r;
+        l--, r--;
+        
+        int ans = 0;
+        
+        for(int i = LOG-1; i >= 0; i--){
+            
+            if(par[l][i] <= r){
 
-    }	
+                l = par[l][i]+1;
+                ans += 1 << i;
+            }
+        }
+        
+        cout << ans << endl;
+    }
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

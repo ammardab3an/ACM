@@ -1,3 +1,11 @@
+// Problem: A. Fair Playoff
+// Contest: Codeforces - Educational Codeforces Round 110 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1535/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -68,8 +76,23 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+    
+        int n = 4;
+        
+        vi vec(n);
+        for(auto &i : vec) cin >> i;
+        
+        vi tmp = vec;
+        sort(tmp.begin(), tmp.end());
+        
+        int a = max(vec[0], vec[1]);
+        int b = max(vec[2], vec[3]);
+        
+        if(a > b) swap(a, b);
+        
+        int ans = a == tmp[n-2] && b == tmp[n-1];
+        
+        cout << (ans ? "YES" : "NO") << endl;
     }	
 }
 
@@ -77,6 +100,7 @@ int32_t main(){
   arrays sizes 
   INFLL & 1ll
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

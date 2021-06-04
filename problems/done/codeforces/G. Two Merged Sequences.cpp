@@ -1,3 +1,11 @@
+// Problem: G. Two Merged Sequences
+// Contest: Codeforces - Codeforces Round #550 (Div. 3)
+// URL: https://codeforces.com/problemset/problem/1144/G
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -55,8 +63,20 @@ int pow_exp(int n, int p){
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+
+int n;
+int arr[NMAX];
+int arr_inc[NMAX], sz0;
+int arr_dec[NMAX], sz1;
+int ans[NMAX];
+
+bool inc(int i){
+    return !sz0 || (arr_inc[sz0-1] < arr[i]);
+}
+
+bool dec(int i){
+    return !sz1 || (arr_dec[sz1-1] > arr[i]);    
+}
 
 int32_t main(){
     
@@ -67,16 +87,39 @@ int32_t main(){
     freopenO;
 #endif
 
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n;
+    for(int i = 0; i < n; i++) cin >> arr[i];
+    
+    for(int i = 0; i < n; i++){
+        
+        if(inc(i) && dec(i)){
+            if(arr[i] < arr[i+1]) 
+                arr_inc[sz0++] = arr[i];
+            else 
+                arr_dec[sz1++] = arr[i], ans[i] = 1;
+        }
+        else if(inc(i)){
+            arr_inc[sz0++] = arr[i];
+        }
+        else if(dec(i)){
+            arr_dec[sz1++] = arr[i], ans[i] = 1;
+        }
+        else{
+            cout << "NO";
+            return 0;
+        }
+    }    
+    
+    cout << "YES" << endl;
+    for(int i = 0; i < n; i++) cout << ans[i] << ' ';
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

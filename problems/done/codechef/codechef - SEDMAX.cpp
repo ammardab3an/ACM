@@ -1,3 +1,11 @@
+// Problem: E - Sed Max
+// Contest: Virtual Judge - DS & DP #1
+// URL: https://vjudge.net/contest/442197#problem/E
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -69,7 +77,39 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        vi vec(n);
+        for(auto &i : vec) cin >> i;
+        
+        set<int> ans;
+        stack<int> st;
+        
+        for(int i = 0; i < n; i++){
+            
+            while(!st.empty() && (st.top()< vec[i])) st.pop();
+                
+            if(!st.empty())
+                ans.insert(abs(vec[i] - st.top()));
+            
+            st.push(vec[i]);
+        }
+        
+        while(!st.empty()) st.pop();
+        reverse(vec.begin(), vec.end());
+        
+        for(int i = 0; i < n; i++){
+            
+            while(!st.empty() && (st.top() < vec[i])) st.pop();
+            
+            if(!st.empty())
+                ans.insert(abs(vec[i] - st.top()));
+            
+            st.push(vec[i]);
+        }
+        
+        cout << ans.size() << endl;
     }	
 }
 
@@ -77,6 +117,7 @@ int32_t main(){
   arrays sizes 
   INFLL & 1ll
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

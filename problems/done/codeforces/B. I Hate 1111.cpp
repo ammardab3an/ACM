@@ -1,3 +1,11 @@
+// Problem: B. I Hate 1111
+// Contest: Codeforces - Codeforces Round #723 (Div. 2)
+// URL: https://codeforces.com/contest/1526/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -56,7 +64,6 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
 
 int32_t main(){
     
@@ -66,17 +73,26 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
+    
     int t; cin >> t; while(t--){
 
-
+        int x;
+        cin >> x;
+        
+        int cnt11 = x/11;
+        int rem11 = x%11;
+        
+        int ans = cnt11 >= rem11*10;
+        
+        cout << (ans ? "YES" : "NO") << endl;
     }	
 }
 
 /*
   arrays sizes 
-  INFLL & 1ll
+  INFLL & 1ll]
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

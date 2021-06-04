@@ -1,3 +1,11 @@
+// Problem: D. Armchairs
+// Contest: Codeforces - Educational Codeforces Round 109 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1525/problem/D
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -53,10 +61,29 @@ int pow_exp(int n, int p){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 5e3 + 10;
 const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+
+int n;
+int arr[NMAX];
+int pos[NMAX], sz;
+int mem[NMAX][NMAX >> 1];
+
+int go(int i, int cur){
+    
+    if(i == n) return cur == sz ? 0 : INFLL;
+    
+    int &ret = mem[i][cur];
+    if(ret+1) return ret;
+    
+    int ans = go(i+1, cur);
+    
+    if(arr[i] == 0){
+        ans = min(ans, go(i+1, cur+1) + abs(i - pos[cur]));
+    }
+    
+    return ret = ans;
+}
 
 int32_t main(){
     
@@ -66,17 +93,25 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    int t; cin >> t; while(t--){
-
-
-    }	
+    
+    cin >> n;
+    
+    for(int i = 0; i < n; i++){
+        cin >> arr[i];
+        if(arr[i] == 1) pos[sz++] = i;
+    }
+    
+    memset(mem, -1, sizeof mem);
+    
+    cout << go(0, 0);
 }
 
 /*
   arrays sizes 
   INFLL & 1ll
+  there is something called long long.
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

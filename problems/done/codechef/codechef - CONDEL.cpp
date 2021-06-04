@@ -1,3 +1,11 @@
+// Problem: F - Consecutive Deletions
+// Contest: Virtual Judge - DS & DP #1
+// URL: https://vjudge.net/contest/442197#problem/F
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -69,7 +77,38 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n, k;
+        cin >> n >> k;
+        
+        vector<int> vec(n);
+        for(auto &i : vec) cin >> i;
+        
+        vector<int> pre(n);
+        
+        pre[0] = vec[0];
+        for(int i = 1; i < n; i++) pre[i] = pre[i-1] + vec[i];
+        
+        int one_cnt = pre[n-1];
+        
+        int mx = 0;
+        
+        for(int i = k-1; i < n; i++){
+            int csum = pre[i];
+            if(i-k >= 0) csum -= pre[i-k];
+            mx = max(mx, k-csum);
+        }
+        
+        int ans = 0;
+        
+        while(mx < k){
+            ans += k-mx;
+            one_cnt--;
+            mx++;
+        }
+        
+        ans += one_cnt;
+        
+        cout << ans << endl;
     }	
 }
 
@@ -77,6 +116,7 @@ int32_t main(){
   arrays sizes 
   INFLL & 1ll
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

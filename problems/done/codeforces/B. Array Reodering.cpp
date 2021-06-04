@@ -1,3 +1,11 @@
+// Problem: B. Array Reodering
+// Contest: Codeforces - Educational Codeforces Round 110 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1535/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -68,8 +76,37 @@ int32_t main(){
 #endif
 
     int t; cin >> t; while(t--){
-
-
+        
+        int n;
+        cin >> n;
+        
+        vi even, odd;
+        for(int i = 0; i < n; i++){
+            
+            int ai;
+            cin >> ai;
+            
+            if(ai%2==0){
+                even.push_back(ai);
+            }
+            else{
+                odd.push_back(ai);
+            }
+        }
+        
+        int ans = 0;
+        
+        int cnt_even = even.size();
+        int foo = n-1;
+        while(cnt_even--){
+            ans += foo--;
+        }
+        
+        int m = odd.size();
+        for(int i = 0; i < m; i++)
+        for(int j = i+1; j < m; j++) if(__gcd(odd[i], odd[j]) > 1) ans++;
+        
+        cout << ans << endl;
     }	
 }
 
@@ -77,6 +114,7 @@ int32_t main(){
   arrays sizes 
   INFLL & 1ll
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   

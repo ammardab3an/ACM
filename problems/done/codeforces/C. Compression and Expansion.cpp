@@ -1,3 +1,11 @@
+// Problem: C. Compression and Expansion
+// Contest: Codeforces - Deltix Round, Spring 2021 (open for everyone, rated, Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1523/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,10 +14,10 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
-// typedef long long int       ll;
+// typedef long long int       lli;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
 typedef pair<lli, lli>      pll;
@@ -56,7 +64,6 @@ const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
 
 int32_t main(){
     
@@ -69,14 +76,53 @@ int32_t main(){
 
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        vi tmp;
+        
+        while(n--){
+            
+            int ai;
+            cin >> ai;
+            
+            if(ai == 1){
+                
+                if(tmp.empty()){
+                    cout << '1' << endl;
+                }
+                else{
+                    for(auto i : tmp){
+                        cout << i << '.';
+                    }
+                    cout << '1' << endl;
+                }
+                
+                tmp.push_back(1);
+            }
+            
+            else{
+                
+                while(tmp.back() != ai-1) tmp.pop_back();
+                
+                tmp.back()++;
+                
+                int sz = tmp.size();
+                for(int i = 0; i < sz; i++){
+                    if(i) cout << '.';
+                    cout << tmp[i];
+                }
+                cout << endl;
+            }
+        }
     }	
 }
 
 /*
   arrays sizes 
-  INFLL & 1ll
+  INFLL & 1ll]
   if its an interactive problem : #define endl '\n'
+  
   
   notes : 
   
