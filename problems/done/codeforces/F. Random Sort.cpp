@@ -1,3 +1,13 @@
+// Problem: F. Random Sort
+// Contest: Codeforces - ACM International Collegiate Programming Contest, Damascus University Collegiate Programming Contest(2018)
+// URL: https://codeforces.com/gym/101808/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+
+// By AmmarDab3an - Aleppo University
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,17 +16,17 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
-typedef pair<ll, ll>      pll;
+typedef pair<lli, lli>      pll;
 typedef pair<int, pii>      iii;
-typedef pair<ll, pll>      lll;
+typedef pair<lli, pll>      lll;
 typedef vector<int>         vi;
-typedef vector<ll>         vl;
+typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
@@ -26,13 +36,13 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const lli INFLL = 0x3f3f3f3f3f3f3f3f;
+const int MOD = 7901;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
+
 int rand(int x, int y) {
     return uniform_int_distribution<int>(x, y)(rng);
 }
@@ -40,47 +50,63 @@ int rand(int x, int y) {
 int mul(int a, int b){
 	return (1ll * a * b) % MOD;
 }
- 
+
 int add(int a, int b){
 	return (1ll * a + b + MOD + MOD) % MOD;
 }
- 
+
 int pow_exp(int n, int p){
 	if(!p) return 1;
 	if(p&1) return mul(n, pow_exp(n, p-1));
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
- 
-const int  MAX = 2e5 + 10;
+
+const int  MAX = 1e3 + 5 ;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
+int fact[MAX] ;
+void init( int n ){
+    fact[0] = 1 ;
+    for ( int i = 1 ; i<= n ; i++ ){
+        fact[i] = mul( fact[i-1] , i ) ;
+    }
+
+}
 
 int32_t main(){
-    
+
     fastIO;
-    
+
 #ifdef LOCAL
     freopenI;
     freopenO;
 #endif
-
-    // freopen("name.in", "r", stdin);
-    
+    init(1003) ;
     int t; cin >> t; while(t--){
-
-
-    }	
+        map <int,int> frq ;
+        int n , a[MAX] ;
+        cin >> n ;
+        for ( int i = 0 ; i < n ; i ++ ){
+            cin >> a[i];
+            frq[a[i]] ++ ;
+        }
+        int ans = 1 ;
+        for ( auto it : frq ){
+            ans = mul(ans,fact[it.second]) ;
+        }
+        cout << ans << "\n" ;
+    }
 }
 
 /*
-  arrays sizes 
+  arrays sizes
   INFLL & 1ll
   if its an interactive problem : #define endl '\n'
-  
-  notes : 
-  
-  
-*/    
+
+  notes :
+
+
+*/

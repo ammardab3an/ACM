@@ -1,3 +1,11 @@
+// Problem: A. Omkar and Bad Story
+// Contest: Codeforces - Codeforces Round #724 (Div. 2)
+// URL: https://codeforces.com/contest/1536/problem/0
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,17 +14,17 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
-typedef pair<ll, ll>      pll;
+typedef pair<lli, lli>      pll;
 typedef pair<int, pii>      iii;
-typedef pair<ll, pll>      lll;
+typedef pair<lli, pll>      lll;
 typedef vector<int>         vi;
-typedef vector<ll>         vl;
+typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
@@ -26,7 +34,7 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const ll INFLL = 0x3f3f3f3f3f3f3f3f;
+const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -58,6 +66,7 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+
 int32_t main(){
     
     fastIO;
@@ -71,7 +80,51 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        vi vec(n);
+        for(auto &i : vec) cin >> i;
+        
+        bool ans = false;
+        
+        set<int> st;
+        for(auto i : vec) st.insert(i);
+        
+        while(st.size() <= 300){
+            
+            set<int> foo;
+            for(int i = 0; i < vec.size(); i++)
+            for(int j = i+1; j < vec.size(); j++){
+                
+                int dif = abs(vec[i] - vec[j]);
+                
+                if(!st.count(dif)){
+                    foo.insert(dif);
+                }
+            }
+            
+            if(foo.size() == 0){
+                ans = true;
+                break;
+            }
+            
+            for(auto i : foo) st.insert(i), vec.push_back(i);
+        }
+        
+        
+        ans &= st.size() <= 300;
+        ans &= vec.size() <= 300;
+        
+        if(ans){
+            cout << "YES" << endl;
+            cout << st.size() << endl;
+            for(auto i : st) cout << i << ' ' ; cout << endl;
+        }
+        
+        else{
+            cout << "NO" << endl;
+        }
     }	
 }
 

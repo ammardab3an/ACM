@@ -1,3 +1,11 @@
+// Problem: L. The Expected Square
+// Contest: Codeforces - ECPC 2019 Kickoff
+// URL: https://codeforces.com/gym/102881/problem/L
+// Memory Limit: 64 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,17 +14,17 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
-typedef pair<ll, ll>      pll;
+typedef pair<lli, lli>      pll;
 typedef pair<int, pii>      iii;
-typedef pair<ll, pll>      lll;
+typedef pair<lli, pll>      lll;
 typedef vector<int>         vi;
-typedef vector<ll>         vl;
+typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
@@ -26,7 +34,7 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const ll INFLL = 0x3f3f3f3f3f3f3f3f;
+const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -66,12 +74,34 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    // freopen("name.in", "r", stdin);
+    
+    freopen("exor.in", "r", stdin);
     
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        int k = pow_exp(pow_exp(2, n), MOD-2);
+        
+        int c = add(pow_exp(2, n), -1);
+        c = mul(c, k);
+        
+        int y = pow_exp(add(1, -c), MOD-2);
+        y = mul(c, y);
+        
+        int z = add(1, mul(2, y));
+        z = mul(z, pow_exp(add(1, -c), MOD-2));
+        
+        int s = mul(z, pow_exp(add(1, -c), MOD-2));
+        
+        int ans = mul(k, s);
+        
+        cout << ans << endl;
+        
+        // ans = 2^(2*n+1) - 2^n
+        
+        // cout << add(pow_exp(2, add(mul(2, n), 1)), -pow_exp(2, n)) << endl;
     }	
 }
 

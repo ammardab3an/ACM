@@ -1,3 +1,11 @@
+// Problem: A. Circle of Students
+// Contest: Codeforces - Codeforces Round #579 (Div. 3)
+// URL: https://codeforces.com/contest/1203/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,17 +14,17 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
-typedef pair<ll, ll>      pll;
+typedef pair<lli, lli>      pll;
 typedef pair<int, pii>      iii;
-typedef pair<ll, pll>      lll;
+typedef pair<lli, pll>      lll;
 typedef vector<int>         vi;
-typedef vector<ll>         vl;
+typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
@@ -26,7 +34,7 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const ll INFLL = 0x3f3f3f3f3f3f3f3f;
+const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -71,7 +79,35 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        vi vec(n);
+        int pos_of_one = -1;
+        
+        for(int i = 0; i < n; i++){
+            cin >> vec[i];
+            if(vec[i] == 1) pos_of_one = i;
+        }
+        
+        
+        int clk = true;
+        for(int i = 0; i < n; i++){
+            if(vec[(pos_of_one+i)%n] != i+1){
+                clk = false;
+                break;
+            }
+        }
+        
+        int aclk = true;
+        for(int i = 0; i < n; i++){
+            if(vec[(pos_of_one-i+n)%n] != i+1){
+                aclk = false;
+                break;
+            }
+        }
+        
+        cout << (clk || aclk ? "YES" : "NO") << endl;
     }	
 }
 

@@ -1,3 +1,11 @@
+// Problem: B. Ternary Sequence
+// Contest: Codeforces - Codeforces Round #665 (Div. 2)
+// URL: https://codeforces.com/contest/1401/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,17 +14,17 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
-typedef pair<ll, ll>      pll;
+typedef pair<lli, lli>      pll;
 typedef pair<int, pii>      iii;
-typedef pair<ll, pll>      lll;
+typedef pair<lli, pll>      lll;
 typedef vector<int>         vi;
-typedef vector<ll>         vl;
+typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
@@ -26,7 +34,7 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const ll INFLL = 0x3f3f3f3f3f3f3f3f;
+const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -71,7 +79,39 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+        int a, b, c;
+        cin >> a >> b >> c;
+        
+        int i, j, k;
+        cin >> i >> j >> k;
+        
+        int ans = 0;
+        
+        int mn = min(c, j);
+        ans += 2*1*mn;
+        c -= mn, j -= mn;
+        
+        mn = min(c, k);
+        c -= mn, k -= mn;
+        
+        mn = min(c, i);
+        c -= mn, i -= mn;
+        
+        mn = min(c, j);
+        ans -= 2*1*mn;
+        c -= mn, j -= mn;
+        
+        mn = min(b, j);
+        b -= mn, j -= b;
+        
+        mn = min(b, i);
+        b -= mn, i -= b;
+        
+        mn = min(b, k);
+        ans -= 1*2*mn;
+        b -= mn, k -= mn;
+        
+        cout << ans << endl;
     }	
 }
 

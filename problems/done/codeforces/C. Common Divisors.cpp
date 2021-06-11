@@ -1,3 +1,11 @@
+// Problem: C. Common Divisors
+// Contest: Codeforces - Codeforces Round #579 (Div. 3)
+// URL: https://codeforces.com/contest/1203/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,17 +14,17 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
-typedef pair<ll, ll>      pll;
+typedef pair<lli, lli>      pll;
 typedef pair<int, pii>      iii;
-typedef pair<ll, pll>      lll;
+typedef pair<lli, pll>      lll;
 typedef vector<int>         vi;
-typedef vector<ll>         vl;
+typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
@@ -26,7 +34,7 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const ll INFLL = 0x3f3f3f3f3f3f3f3f;
+const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
@@ -53,10 +61,24 @@ int pow_exp(int n, int p){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 1e6 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
+
+bool notPrime[NMAX];
+
+vi primes;
+
+void init(){
+    
+    for(int i = 2; i < NMAX; i++) if(!notPrime[i]){
+        
+        primes.push_back(i);
+        
+        for(int j = i*i; j < NMAX; j += i) notPrime[j] = true;        
+    }    
+}
 
 int32_t main(){
     
@@ -69,10 +91,40 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    init();
+    
+    int n;
+    cin >> n;
+    
+    int g = 0;
+    for(int i = 0; i < n; i++){
+        int ai;
+        cin >> ai;
+        g = __gcd(g, ai);
+    }
+        
+    int ans = 1;
+    
+    for(auto i : primes){
+        
+        if(i*i > g) break;
+        
+        if(g%i==0){
+            
+            int cnt = 0;
+            
+            while(g%i==0){
+                cnt++;
+                g/=i;
+            }
+            
+            ans *= cnt+1;
+        }
+    }
+    
+    if(g != 1) ans *= 2;
+    
+    cout << ans << endl;
 }
 
 /*

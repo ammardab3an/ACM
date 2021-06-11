@@ -1,3 +1,13 @@
+// Problem: C. Help Shahhoud
+// Contest: Codeforces - ACM International Collegiate Programming Contest, Damascus University Collegiate Programming Contest(2018)
+// URL: https://codeforces.com/gym/101808/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+
+// By AmmarDab3an - Aleppo University
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,17 +16,17 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define lli int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
 typedef pair<int, int>      pii;
-typedef pair<ll, ll>      pll;
+typedef pair<lli, lli>      pll;
 typedef pair<int, pii>      iii;
-typedef pair<ll, pll>      lll;
+typedef pair<lli, pll>      lll;
 typedef vector<int>         vi;
-typedef vector<ll>         vl;
+typedef vector<lli>         vl;
 typedef vector<pii>         vpii;
 typedef vector<pll>         vpll;
 
@@ -26,13 +36,13 @@ typedef vector<pll>         vpll;
 #define freopenO freopen("output.txt", "w", stdout);
 
 const int INF = 0x3f3f3f3f;
-const ll INFLL = 0x3f3f3f3f3f3f3f3f;
+const lli INFLL = 0x3f3f3f3f3f3f3f3f;
 const int MOD = 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
+
 int rand(int x, int y) {
     return uniform_int_distribution<int>(x, y)(rng);
 }
@@ -40,18 +50,18 @@ int rand(int x, int y) {
 int mul(int a, int b){
 	return (1ll * a * b) % MOD;
 }
- 
+
 int add(int a, int b){
 	return (1ll * a + b + MOD + MOD) % MOD;
 }
- 
+
 int pow_exp(int n, int p){
 	if(!p) return 1;
 	if(p&1) return mul(n, pow_exp(n, p-1));
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
- 
+
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
@@ -59,28 +69,65 @@ const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
 int32_t main(){
-    
+
     fastIO;
-    
+
 #ifdef LOCAL
     freopenI;
     freopenO;
 #endif
 
-    // freopen("name.in", "r", stdin);
-    
     int t; cin >> t; while(t--){
 
+        string a, b;
+        cin >> a >> b;
 
-    }	
+        int n = a.size();
+
+        int ans = 0;
+
+        bool bb = 0;
+
+        for(int i = 0; i < n/2; i++){
+
+            int c0 = a[i];
+            int c1 = a[n-i-1];
+
+            int c2 = b[i];
+            int c3 = b[n-i-1];
+
+            bool foo = false;
+
+            if(c0 == c2 && c1 == c3) foo = true;
+            if(c0 == c3 && c1 == c2) foo = true;
+
+            if(!foo){
+                ans = -1;
+                break;
+            }
+
+            if(bb) swap(c0, c1);
+
+            if(c0 != c2){
+                ans++;
+                bb = !bb;
+            }
+        }
+
+        if(a[n/2] != b[n/2]){
+            ans = -1;
+        }
+
+        cout << ans << endl;
+    }
 }
 
 /*
-  arrays sizes 
+  arrays sizes
   INFLL & 1ll
   if its an interactive problem : #define endl '\n'
-  
-  notes : 
-  
-  
-*/    
+
+  notes :
+
+
+*/
