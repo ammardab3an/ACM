@@ -6,19 +6,19 @@
 using namespace std;
 
 #define int int64_t
-#define ll  int64_t
+#define ll int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
-typedef pair<int, int>    pii;
+typedef pair<int, int>      pii;
 typedef pair<ll, ll>      pll;
-typedef pair<int, pii>    iii;
-typedef pair<ll, pll>     lll;
-typedef vector<int>       vi;
-typedef vector<ll>        vl;
-typedef vector<pii>       vpii;
-typedef vector<pll>       vpll;
+typedef pair<int, pii>      iii;
+typedef pair<ll, pll>      lll;
+typedef vector<int>         vi;
+typedef vector<ll>         vl;
+typedef vector<pii>         vpii;
+typedef vector<pll>         vpll;
 
 #define endl '\n'
 #define fastIO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
@@ -67,10 +67,31 @@ int32_t main(){
     freopenO;
 #endif
 
-    // freopen("name.in", "r", stdin);
+    freopen("alimagde.in", "r", stdin);
     
     int t; cin >> t; while(t--){
 
-
+        int n;
+        cin >> n;
+        
+        int ans = n;
+        
+        int x = 0;
+        for(int i = 1; i+x <= n; i++){
+            x += i;
+            ans--;
+        }
+        
+        cout << ans << endl;
     }	
 }
+
+/*
+  arrays sizes 
+  INFLL & 1ll
+  if its an interactive problem : #define endl '\n'
+  
+  notes : 
+  
+  
+*/    
