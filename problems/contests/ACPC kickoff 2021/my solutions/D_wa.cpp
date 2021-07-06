@@ -1,3 +1,12 @@
+// Problem: D. 2wix
+// Contest: Codeforces - ACPC Kickoff 2021
+// URL: https://codeforces.com/gym/103158/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 5000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -64,15 +73,15 @@ void init(){
     
     memset(dist, INF, sizeof dist);
     
-    dist[0] = 0;
+    dist[0] = 2;
     dist[1] = 2;
     dist[2] = 1;
     
     priority_queue<pii> que;
     
-    que.push({-1, 2});
+    que.push({-2, 0});
     que.push({-2, 1});
-    que.push({-0, 0});
+    que.push({-1, 2});
     
     while(!que.empty()){
         
@@ -123,6 +132,8 @@ void init(){
                 que.push({-nd, nn});
             }
         }
+        
+        // opps : (....) - (....) 
         
         {
             int nn = cn-1;

@@ -1,3 +1,11 @@
+// Problem: D. PriceFixed
+// Contest: Codeforces - Codeforces Round #727 (Div. 2)
+// URL: https://codeforces.com/contest/1539/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -6,19 +14,19 @@
 using namespace std;
 
 #define int int64_t
-#define ll int64_t
+#define ll  int64_t
 
 // typedef unsigned int        uint;
 // typedef long long int       ll;
 // typedef unsigned long long  ull;
-typedef pair<int, int>      pii;
+typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
-typedef pair<int, pii>      iii;
-typedef pair<ll, pll>      lll;
-typedef vector<int>         vi;
-typedef vector<ll>         vl;
-typedef vector<pii>         vpii;
-typedef vector<pll>         vpll;
+typedef pair<int, pii>    iii;
+typedef pair<ll, pll>     lll;
+typedef vector<int>       vi;
+typedef vector<ll>        vl;
+typedef vector<pii>       vpii;
+typedef vector<pll>       vpll;
 
 #define endl '\n'
 #define fastIO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
@@ -69,18 +77,42 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    vector<pii> vec;
+    
+    for(int i = 0; i < n; i++){
+        int ai, bi;
+        cin >> ai >> bi;
+        vec.emplace_back(bi, ai);
+    }
+    
+    sort(vec.begin(), vec.end());
+    
+    int ans = 0;
+    int cnt = 0;
+    
+    int l = 0, r = n-1;
+    
+    while(l <= r){
+        
+        while(l <= r && vec[l].first <= cnt){
+            ans += vec[l].second;
+            cnt += vec[l].second;
+            l++;
+        }    
+        
+        if(l > r) break;
+        
+        int taken = min(vec[l].first-cnt, vec[r].second);
+        ans += taken * 2;
+        cnt += taken;
+        
+        vec[r].second -= taken;
+        
+        if(!vec[r].second) r--;
+    }
+    
+    cout << ans << endl;
 }
-
-/*
-  arrays sizes 
-  INFLL & 1ll
-  if its an interactive problem : #define endl '\n'
-  
-  notes : 
-  
-  
-*/    

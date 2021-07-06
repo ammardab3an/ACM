@@ -1,3 +1,11 @@
+// Problem: I. Binary string
+// Contest: Codeforces - ACPC Kickoff 2021
+// URL: https://codeforces.com/gym/103158/problem/I
+// Memory Limit: 64 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -38,11 +46,11 @@ int rand(int x, int y) {
 }
 
 int mul(int a, int b){
-	return (1ll * (a%MOD) * (b%MOD)) % MOD;
+	return (1ll * a * b) % MOD;
 }
  
 int add(int a, int b){
-	return (1ll * (a%MOD) + (b%MOD) + MOD + MOD) % MOD;
+	return (1ll * a + b + MOD + MOD) % MOD;
 }
  
 int pow_exp(int n, int p){
@@ -58,6 +66,22 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int m, k;
+pii arr[2020];
+bitset<2020> bs;
+
+bool go(){
+    
+    bs.reset();
+    bs.set(0, 1);
+    
+    for(int i = 0; i < m; i++){
+        bs = (bs << arr[i].first) | (bs << arr[i].second);
+    }
+    
+    return bs.test(k);
+}
+
 int32_t main(){
     
     fastIO;
@@ -66,11 +90,38 @@ int32_t main(){
     freopenI;
     freopenO;
 #endif
-
-    // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    freopen("binary.in", "r", stdin);
+    
+    int n;
+    cin >> n >> k;
+    
+    string str;
+    cin >> str;
+    
+    int ans = -1;
+    
+    for(int l = 1; l < n; l++){
+        
+        vector<vi> tmp(2, vi(l));
+        vi cnt(l);
+        
+        for(int i = 0; i < n; i++) {
+            tmp[str[i]-'0'][i%l]++;
+            cnt[i%l]++;            
+        }
+        
+        m = l;
+        for(int i = 0; i < m; i++){
+            arr[i] = {cnt[i] - tmp[0][i], cnt[i] - tmp[1][i]};    
+        }
+        
+        if(go()){
+            ans = l;
+            break;
+        }
+    }
+    
+    cout << ans << endl;
 }
+

@@ -1,3 +1,11 @@
+// Problem: C. Stable Groups
+// Contest: Codeforces - Codeforces Round #727 (Div. 2)
+// URL: https://codeforces.com/contest/1539/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -38,11 +46,11 @@ int rand(int x, int y) {
 }
 
 int mul(int a, int b){
-	return (1ll * (a%MOD) * (b%MOD)) % MOD;
+	return (1ll * a * b) % MOD;
 }
  
 int add(int a, int b){
-	return (1ll * (a%MOD) + (b%MOD) + MOD + MOD) % MOD;
+	return (1ll * a + b + MOD + MOD) % MOD;
 }
  
 int pow_exp(int n, int p){
@@ -69,8 +77,41 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
+    {
 
-
+        int n, k, x;
+        cin >> n >> k >> x;
+        
+        vi vec(n);
+        for(auto &i : vec) cin >> i;
+        
+        sort(vec.begin(), vec.end());
+        
+        vi tmp;
+        int cnt = 1;
+        
+        for(int i = 1; i < n; i++){
+            if(vec[i]-vec[i-1] > x){
+                tmp.push_back(vec[i]-vec[i-1]-1);
+                cnt++;
+            }
+        }
+        
+        sort(tmp.begin(), tmp.end());
+        
+        // for(auto i : tmp) cout << i << ' ' ; cout << endl;
+        
+        for(auto i : tmp){
+            
+            if(i/x > k){
+                break;
+            }
+            else{
+                k -= i/x;
+                cnt--;
+            }
+        }
+        
+        cout << cnt << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: D. Distance in Tree
+// Contest: Codeforces - VK Cup 2012 Round 1
+// URL: https://codeforces.com/contest/161/problem/D
+// Memory Limit: 512 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -5,12 +13,12 @@
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -20,7 +28,7 @@ typedef vector<ll>        vl;
 typedef vector<pii>       vpii;
 typedef vector<pll>       vpll;
 
-#define endl '\n'
+// #define endl '\n'
 #define fastIO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 #define freopenI freopen("input.txt", "r", stdin);
 #define freopenO freopen("output.txt", "w", stdout);
@@ -52,11 +60,32 @@ int pow_exp(int n, int p){
 	return mul(tmp, tmp);
 }
  
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+const int NMAX = 5e4 + 10;
+
+int n, k;
+vi adj[NMAX];
+int dp[NMAX][555];
+
+ll go(int u, int p){
+    
+    int ret = 0;
+    dp[u][0] = 1;
+    
+    for(auto v : adj[u]) if(v != p){
+        
+        ret += go(v, u);
+        
+        for(int i = 1; i <= k; i++){
+            ret += dp[v][i-1] * dp[u][k-i];
+        }
+        
+        for(int i = 1; i <= k; i++){
+            dp[u][i] += dp[v][i-1];
+        }
+    }    
+    
+    return ret;
+}
 
 int32_t main(){
     
@@ -69,8 +98,13 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n >> k;
+    for(int i = 0; i < n-1; i++){
+        int u, v;
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    
+    cout << go(1, 0) << endl;
 }

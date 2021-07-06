@@ -1,3 +1,11 @@
+// Problem: A. Contest Start
+// Contest: Codeforces - Codeforces Round #727 (Div. 2)
+// URL: https://codeforces.com/contest/1539/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -38,11 +46,11 @@ int rand(int x, int y) {
 }
 
 int mul(int a, int b){
-	return (1ll * (a%MOD) * (b%MOD)) % MOD;
+	return (1ll * a * b) % MOD;
 }
  
 int add(int a, int b){
-	return (1ll * (a%MOD) + (b%MOD) + MOD + MOD) % MOD;
+	return (1ll * a + b + MOD + MOD) % MOD;
 }
  
 int pow_exp(int n, int p){
@@ -71,6 +79,14 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+        int n, x, t;
+        cin >> n >> x >> t;
+        
+        int ans0 = max(n-t/x, int(0)) * (t/x);
+        int ans1 = (min(n-1, t/x-1) * min(n, t/x)) / 2;
+        
+        int ans = ans0 + ans1;
+        
+        cout << ans << endl;
     }	
 }

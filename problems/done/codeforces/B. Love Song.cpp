@@ -1,3 +1,11 @@
+// Problem: B. Love Song
+// Contest: Codeforces - Codeforces Round #727 (Div. 2)
+// URL: https://codeforces.com/contest/1539/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -38,11 +46,11 @@ int rand(int x, int y) {
 }
 
 int mul(int a, int b){
-	return (1ll * (a%MOD) * (b%MOD)) % MOD;
+	return (1ll * a * b) % MOD;
 }
  
 int add(int a, int b){
-	return (1ll * (a%MOD) + (b%MOD) + MOD + MOD) % MOD;
+	return (1ll * a + b + MOD + MOD) % MOD;
 }
  
 int pow_exp(int n, int p){
@@ -69,8 +77,30 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
+    {
+        int n, q;
+        cin >> n >> q;
+        
+        string str;
+        cin >> str;
+        
+        vi pre(n);
+        
+        pre[0] = str[0] - 'a'+1;
+        for(int i = 1; i < n; i++){
+            pre[i] = pre[i-1] + str[i]-'a'+1;
+        }
+        
+        while(q--){
+            
+            int l, r;
+            cin >> l >> r;
+            l--, r--;
+            
+            int ans = pre[r];
+            if(l) ans -= pre[l-1];
+            
+            cout << ans << endl;
+        }
     }	
 }

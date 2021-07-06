@@ -1,3 +1,11 @@
+// Problem: D. Priority Queue
+// Contest: Codeforces - Codeforces Round #729 (Div. 2)
+// URL: https://codeforces.com/contest/1542/problem/D
+// Memory Limit: 512 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an - Aleppo University
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -38,11 +46,11 @@ int rand(int x, int y) {
 }
 
 int mul(int a, int b){
-	return (1ll * (a%MOD) * (b%MOD)) % MOD;
+	return (1ll * a * b) % MOD;
 }
  
 int add(int a, int b){
-	return (1ll * (a%MOD) + (b%MOD) + MOD + MOD) % MOD;
+	return (1ll * a + b + MOD + MOD) % MOD;
 }
  
 int pow_exp(int n, int p){
@@ -58,6 +66,40 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n, wanted;
+int arr[505];
+int mem[505][505];
+
+int go(int pos, int cnt, bool b){
+    
+    if(b && !cnt) return 0;
+    if(pos == n) return 1;
+    
+    int &ret = mem[pos][cnt];
+    if(ret+1) return ret;
+    
+    if(pos == wanted){
+        return ret = go(pos+1, cnt+1, 1);
+    }
+    
+    int stPath = go(pos+1, cnt, b);
+    
+    int ndPath;
+    if(arr[pos] == -1){
+        ndPath = go(pos+1, max(cnt-1, int(0)), b);
+    }
+    else{
+        if(!b){        
+            ndPath = go(pos+1, cnt+(arr[pos]<arr[wanted]), b);
+        }
+        else{
+            ndPath = go(pos+1, cnt+(arr[pos]<=arr[wanted]), b);
+        }
+    }
+    
+    return ret = add(stPath, ndPath);
+}
+
 int32_t main(){
     
     fastIO;
@@ -69,8 +111,28 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
+    cin >> n;
+    for(int i = 0; i < n; i++){
 
-
-    }	
+        char c;
+        cin >> c;
+        
+        if(c == '-'){
+            arr[i] = -1;
+        }
+        else{
+            cin >> arr[i];
+        }
+    }
+    
+    int ans = 0;
+    
+    for(int i = 0; i < n; i++) if(arr[i] != -1){
+        
+        wanted = i;
+        memset(mem, -1, sizeof mem);
+        ans = add(ans, mul(arr[i], go(0, 0, 0)));
+    }
+    
+    cout << ans << endl;
 }
