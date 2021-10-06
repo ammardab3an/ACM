@@ -1,0 +1,12 @@
+adhoc greedy data-structure
+recursion backtrack memorization bitmask 
+bottom-up top-down
+dp-with-ds matrix-exp sweep-line convex-hull-trick sos dp-on-tree HLD
+bSearch tSearch twoPointers
+BIT ST Lazy-ST Dynamic-ST Sparse-Table
+DFS BFS Dijkstra Floyed DSU LCA Bridges 01BFS Multisource MST SCC Graph-Matching Max-Flow DSU-on-tree
+mods fast-power sieve factorizing elementary-math 
+number-theory counting game-theory Grundy-Game ExpVal Inclusion-Exclusion geometry
+KMP Trie Hashing Suffix-Array
+FFT
+SQRT-Decomposition Mo's

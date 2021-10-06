@@ -1,0 +1,360 @@
+#main-footer {
+	width: 100%;
+	background-color: #1b365d;
+}
+
+.footer-container {
+	display: block;
+	font-size: 13px;
+	color: #fff;
+	padding: 12px 0;
+	max-width: 1170px;
+	margin: auto;
+	font-family: "Roboto", sans-serif;
+}
+
+.footer-topRow {
+	display: flex;
+	justify-content: space-between;
+	padding: 12px 0;
+}
+
+.footer-mainLogo {
+	height: 30px;
+	width: auto;
+}
+
+.footer-wasc {
+	height: 36px;
+	display: flex;
+	align-items: center;
+	font-weight: 500;
+}
+
+.footer-accredited {
+	color: #fff;
+}
+
+.footer-wascLogo {
+	height: 36px;
+	width: 36px;
+	margin-left: 5px;
+}
+
+.wasc-break {
+	display: none;
+}
+
+.footer-links {
+	border-top: 2px solid rgba(255, 255, 255, 0.1);
+	border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+	padding: 24px 0 0;
+	line-height: 140%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.footer-col {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+	min-width: 84px;
+	margin: 0 18px 24px 0;
+}
+
+.footer-col.social {
+	margin-right: 12px;
+}
+
+.footer-colHeader {
+	text-transform: uppercase;
+	color: #c5e86c;
+	font-weight: 400;
+}
+
+.footer-col .link {
+	text-decoration: none;
+	color: #fff;
+	font-weight: 300;
+	cursor: pointer;
+}
+
+.footer-col .link:hover {
+	text-decoration: underline;
+}
+
+.footer-col:last-child {
+	flex: 0 1 auto;
+}
+
+.footer-social {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-right: 24px;
+}
+
+.footer-social .sm-icon {
+	height: 24px;
+	width: 24px;
+	margin-right: 5px;
+	transition: width 100ms, height 100ms;
+}
+
+.footer-social .link {
+	height: 28px;
+	width: 28px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer-col form {
+	display: flex;
+	position: relative;
+}
+
+.footer-email {
+	min-width: 150px;
+	max-width: 198px;
+	width: 198px;
+	height: 30px;
+	padding: 0 0 0 6px;
+	border: none;
+}
+
+.footer-submit {
+	color: #fff;
+	width: 30px;
+	height: 30px;
+	background-color: #54769e;
+	border: none;
+}
+
+.footer-submit:focus,
+.footer-email:focus {
+	outline: none;
+}
+
+.footer-submit-arrow {
+	position: absolute;
+	right: 0px;
+	bottom: 0;
+	width: 30px;
+	height: 30px;
+	pointer-events: none;
+}
+
+.arrow-fill {
+	fill: #fff;
+}
+
+.footer-submit:hover {
+	background-color: #c5e86c;
+}
+
+.footer-submit:hover + .footer-submit-arrow .arrow-fill {
+	fill: #1b365d;
+}
+
+.link:hover .sm-icon {
+	width: 28px;
+	height: 28px;
+}
+
+.copyright {
+	text-align: left;
+	padding: 30px 0;
+	font-weight: 400;
+	color: #aaa;
+	font-size: 11px;
+}
+
+/* small footer */
+
+.small-footer #main-footer {
+	display: none;
+}
+
+#small-footer-wrapper {
+	display: none;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #1b365d;
+}
+
+#small-footer-wrapper .footer-container {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	align-items: center;
+}
+
+#small-footer-wrapper .footer-mainLogo {
+	height: 22px;
+}
+
+#small-footer-wrapper .copyright {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
+	padding: 0;
+}
+
+.copyright-links a,
+.copyright-links div {
+	color: #fff;
+	cursor: pointer;
+}
+
+.copyright-links a:hover,
+.copyright-links div:hover {
+	text-decoration: none;
+	color: #c5e86c;
+}
+
+/* schedule consultation modal (for aops academy national) */
+#consultation-campus-list {
+	display: none;
+}
+.pick-campus-modal {
+	width: 500px;
+	box-shadow: none;
+	border: none;
+	padding: 6px;
+}
+.pick-campus-modal .aops-modal-content-wrapper {
+	box-shadow: none;
+}
+.pick-campus-title {
+	position: relative;
+	top: 12px;
+	font-size: 16px;
+	margin-bottom: 24px;
+	color: #606060;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.pick-campus-site {
+	display: block;
+	margin: 6px 0;
+}
+.pick-campus-site,
+.pick-campus-site:visited {
+	color: #1b365d;
+}
+.pick-campus-site:hover,
+.pick-campus-site:visited:hover {
+	color: #82b44a;
+	text-decoration: none;
+}
+.pick-campus-site:last-of-type {
+	margin-bottom: 12px;
+}
+
+/* end schedule consultation modal */
+
+/* mail dialog / contact us modal */
+
+#mail-dialog {
+	width: 100%;
+	background: #eee;
+}
+#mail-dialog h1 {
+	margin: 0;
+	padding: 15px;
+	text-align: center;
+	font-size: 28px;
+	font-weight: normal;
+}
+#mail-dialog p {
+	margin: 0;
+	padding: 0;
+	font-size: 15px;
+}
+#mail-dialog input[type="text"],
+#mail-dialog textarea {
+	font-size: 15px;
+	width: 100%;
+	max-width: 600px;
+	margin: 2px 0;
+	padding: 14px 29px;
+	border: 1px solid white;
+}
+#mail-dialog textarea {
+	height: 150px;
+}
+#mail-dialog #email-error {
+	display: none;
+}
+#mail-dialog #email-error {
+	padding-bottom: 20px;
+	color: #800;
+}
+#mail-dialog-confirm {
+	padding: 15px;
+}
+
+@media (max-width: 1230px) {
+	.footer-container {
+		padding: 12px 30px;
+	}
+}
+
+@media (max-width: 900px) {
+	.footer-topRow {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+	.footer-mainLogo {
+		margin-bottom: 12px;
+	}
+}
+
+@media (max-width: 700px) {
+	.footer-col.social {
+		width: 100%;
+	}
+}
+
+@media (max-width: 550px) {
+	.footer-col {
+		width: calc(50% - 36px);
+	}
+	.footer-col.subscribe {
+		width: auto;
+	}
+	.footer-col:last-child {
+		width: initial;
+	}
+	.copyright {
+		text-align: left;
+	}
+	.pick-campus-modal {
+		width: 90%;
+	}
+}
+
+@media (max-width: 450px) {
+	.wasc-break {
+		display: block;
+	}
+}
+
+@media (max-width: 420px) {
+	.footer-container {
+		padding: 12px 20px;
+	}
+	#small-footer-wrapper .footer-container {
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		padding-bottom: 12px;
+	}
+	#small-footer-wrapper .copyright {
+		align-items: flex-start;
+	}
+}

@@ -1,0 +1,9 @@
+4
+3
+RPS
+1
+R
+5
+PPRSR
+5
+RPSPR

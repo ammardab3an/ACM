@@ -1,0 +1,10 @@
+YES
+2 3 2 
+YES
+1 
+YES
+5 3 
+YES
+1 2 9 5 9 
+NO
+NO

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright 2017 mathsisfun.com -->
+<svg xmlns="http://www.w3.org/2000/svg" width="44.7" height="44.7" version="1.1" style="fill:#013397; stroke-width:0.44;">
+<defs/>
+<g transform="translate(-17.056,-87.8096)">
+	<rect x="17" y="88" ry="8" width="42" height="42" style="fill:#00a3fc; fill-opacity:0.3; stroke-width:1; stroke:white; "/>
+	<rect x="22"  y="96" ry="2" width="30" height="5"/>
+	<rect x="22" y="106" ry="2" width="30" height="5"/>
+	<rect x="22" y="116" ry="2" width="30" height="5"/>
+</g>
+</svg>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)https://www.mathopenref.com/common/appletframe.html?applet=circumcircle&wid=600&ht=350 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title></title>
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <link href="./css.css" type="text/css" rel="stylesheet">
+    <script src="./js.js.download" type="text/javascript"> </script>
+
+	<style>
+	body       { padding:0; margin:0; position:relative; background:#ffffee; 
+				-webkit-touch-callout: none;  /*ensure text selection does not work*/
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none; }
+
+	.canvClass { margin:0; }
+
+	/* control buttons */
+	#hideBtn    { float:left;  display:none }
+	#showBtn    { float:left;  display:none }
+	#sizeBtn    { float:left;  display:none }
+	#saveBtn    { float:left;  display:none }
+	#printBtn   { float:left;  display:none }
+	#runBtn     { float:left;  display:none }
+	#resetBtn   { float:left;  display:none }
+
+	#optBtn     { float:right; display:none; color:yellow; background:#8c99aa}  /*turned on when items aded */
+	#optBtn:hover {background:#7b8899}
+
+	/* the clipper div is used by applets that need to mask something.  They create content inside the div, set it's dims
+	so that only a portion is shown.  Normally it has no effect */
+	.clipper   {position:absolute; left:0px; top:0px; height:0px; width:0px; overflow:hidden ;pointer-events:none}
+	</style>
+
+	<script src="./js5.js.download" type="text/javascript"> </script>
+	<script src="./graphfunctionslib.js.download" type="text/javascript"> </script>
+
+
+	<script>
+	var appletName;
+	var runCmd, resetCmd, fullCmd, saveCmd, showCmd, hideCmd, printCmd;
+    var minus = "\u2013";
+	
+	function start()
+	    {   //get the applet name from the url
+			appletName = getParam("applet");
+
+			//fire up the appropriate js file by stuffing a script tag into the head
+			var head= document.getElementsByTagName('head')[0];
+			var script= document.createElement('script');
+			script.type = 'text/javascript';
+			script.src  = "../applet5/" +appletName+ ".js";
+			head.appendChild(script);
+
+            setTimeout(function(){window.focus(); },50); 
+			//once the script loads, it has a call to startApplet)() at the bottom
+		}
+
+
+	function setToolbarPointers()
+		{
+			//set up globals to iframe.  Called from startApplet()
+			optionsMenu = document.getElementById("optionsMenu");
+			buttonBar  = document.getElementById("buttonBar");
+
+			hideCmd    = document.getElementById("hideBtn");
+			fullCmd    = document.getElementById("sizeBtn");
+			saveCmd    = document.getElementById("saveBtn");
+			printCmd   = document.getElementById("printBtn");
+			runCmd     = document.getElementById("runBtn");
+			resetCmd   = document.getElementById("resetBtn");
+			optCmd     = document.getElementById("optBtn");
+
+			//attach event handlers to the buttons
+			fullCmd.onmousedown   = cmdFull;      fullCmd.ontouchstart  = cmdFull;
+			saveCmd.onmousedown   = cmdSave;      saveCmd.ontouchstart  = cmdSave;
+			printCmd.onmousedown  = cmdPrint;     printCmd.ontouchstart = cmdPrint;
+			runCmd.onmousedown    = cmdRun;       runCmd.ontouchstart   = cmdRun;
+			resetCmd.onmousedown  = cmdReset;     resetCmd.ontouchstart = cmdReset; 
+		}
+	</script>
+
+ <script type="text/javascript" src="./circumcircle.js.download"></script></head>
+
+
+<body onload="start()">
+
+	 <!-- button bar -->
+	 <div class="buttonBar" id="buttonBar">
+		<div class="constButton" id="hideBtn" title="Hide certain angle and length measures" onclick="cmdHide()" style="display: block;">Hide details</div>
+		<div class="constButton" id="sizeBtn" title="Open the animation in another window which fills the display screen" style="display: block;">Full screen</div>
+		<div class="constButton" id="saveBtn" title="Create a link to this page that will restore the animation to the current state">Save as link</div>
+		<div class="constButton" id="printBtn" title="Print the animation window in its current state" style="display: block;">Print</div>
+		<div class="constButton" id="runBtn" title="Run the animation continuously">RUN</div>
+		<div class="constButton" id="resetBtn" title="Reset the applet to its initial state" style="display: block;">RESET</div>
+
+	    <!-- options menu -->
+		<div class="constButton" id="optBtn" title="Show options menu" onclick="toggleOptions();">Options</div>
+		<table class="optionsMenu" id="optionsMenu" border="0" cellspacing="0" cellpadding="0">
+			 <tbody><tr>
+			    <td>&nbsp;</td><td style="cursor:pointer; text-align:right" onclick="closeOptions();">Close <b>X</b></td>
+			 </tr>
+		</tbody></table>
+	 </div> 
+
+ 
+
+
+ <canvas width="600" height="350" class="canvClass" id="canvId" style="z-index: 1; cursor: default;"></canvas><div class="formulaCenter" style="visibility: visible; font-size: 15px;"><div style="display: inline-table; line-height: 1.1em; padding-bottom: 0.07em; vertical-align: middle; text-align: center; position: relative; box-sizing: border-box; border-spacing: 0px; top: 0.05em;"><div style="display: table-cell; line-height: 1.1em; padding-bottom: 0.07em; vertical-align: baseline; text-align: center; position: relative; box-sizing: border-box; border-spacing: 0px;">Circumcircle radius</div><div style="display: table-cell; line-height: 1.1em; padding: 0px 0.3em; vertical-align: baseline; text-align: center; position: relative; box-sizing: border-box; border-spacing: 0px;">=</div><div class="vardefault" style="display: table-cell; line-height: 1.1em; padding-bottom: 0.07em; vertical-align: baseline; text-align: center; position: relative; box-sizing: border-box; border-spacing: 0px;">11.59</div></div></div></body></html>
