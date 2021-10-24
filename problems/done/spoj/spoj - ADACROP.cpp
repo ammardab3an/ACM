@@ -1,6 +1,6 @@
-// Problem: Robotic Sort
+// Problem: Ada and Harvest
 // Contest: SPOJ - Classical
-// URL: https://www.spoj.com/problems/CERC07S/
+// URL: https://www.spoj.com/problems/ADACROP/
 // Memory Limit: 1536 MB
 // Time Limit: 1000 ms
 // 
@@ -13,12 +13,12 @@
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -67,6 +67,7 @@ const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
+
 const int MAX_IDS = 2e5 + 10;
 const int MAX_NODES = 2e5 + 10;
 
@@ -97,11 +98,7 @@ struct ids_tracker{
         free_list.push_back(id);
     }
     
-    void make_free_all(){
-        free_list.clear();
-        next_id = 1;
-    }
-};
+} tracker;
 
 typedef int nodeData;
 extern struct node nodes[MAX_NODES];
@@ -112,7 +109,7 @@ struct node{
     nodeData val;
     int par, ch[2];
     int sz, frq;
-    int lazy_rev;
+    int lazy;
     
     node(){
         memset(this, 0, sizeof *this);
@@ -129,18 +126,7 @@ struct node{
     }
     
     void push_down(){
-        
-        if(lazy_rev){
-            
-            for(auto d : {LF, RI}){
-                if(ch[d]){
-                     nodes[ch[d]].lazy_rev ^= 1;
-                }
-            }
-            
-            swap(ch[LF], ch[RI]);
-            lazy_rev = 0;
-        }
+        return;    
     }
     
 } nodes[MAX_NODES];
@@ -148,7 +134,6 @@ struct node{
 struct splay_tree{
     
     int root = 0;
-    ids_tracker tracker;
     
     DIR get_dir(int par, int child){
         return (DIR) (nodes[par].ch[RI] == child);
@@ -246,25 +231,6 @@ struct splay_tree{
         splay(cur, rt);
     }
     
-    void push_down_from_root(int cur){
-        if(!cur) return;
-        push_down_from_root(nodes[cur].par);
-        nodes[cur].push_down();
-    }
-    
-    int get_idx(int cur){
-        push_down_from_root(cur);
-        int ret = nodes[nodes[cur].ch[LF]].sz;
-        while(cur){
-            int p = nodes[cur].par;
-            if(get_dir(p, cur) == RI){
-                ret += nodes[nodes[p].ch[LF]].sz + 1;
-            }
-            cur = p;
-        }
-        return ret;
-    }
-    
     void splay_max(int &rt){
         
         int cur = rt;
@@ -285,70 +251,85 @@ struct splay_tree{
         return ls;    
     }
     
-    void split(int rt, int lf_sz, int &ls, int &gr){
+    void insert(nodeData value, int &rt){
         
-        if(lf_sz >= nodes[rt].sz){
-            ls = rt;
-            gr = 0;
+        if(!rt){
+            rt = tracker.get_free_id();
+            nodes[rt] = node(value);
             return;
-        }    
-        
-        get_by_idx(lf_sz, rt);
-        ls = nodes[rt].ch[LF];
-        link(rt, 0, LF);
-        link(0, ls, LF);
-        gr = rt;
-    }
-    
-    void split(int rt, int l, int r, int &bef, int &btw, int &aft){
-        split(rt, r+1, rt, aft);
-        split(rt, l, bef, btw);
-    }
-    
-    void rev(int &cur, int l, int r){
-        
-        int bef, btw, aft;
-        split(cur, l, r, bef, btw, aft);
-        
-        nodes[btw].lazy_rev ^= 1;
-        nodes[btw].push_down();
-        
-        cur = merge(btw, aft);
-        cur = merge(bef, cur);
-    }
-    
-    void rot(int &cur, int l, int r, int sh){
-        
-        int bef, btw, aft;
-        split(cur, l, r, bef, btw, aft);
-        
-        int pre, suf;
-        split(btw, nodes[btw].sz-sh, pre, suf);
-        
-        btw = merge(suf, pre);
-        cur = merge(btw, aft);
-        cur = merge(bef, cur);
-    }
-    
-    void print(int node, int depth){
-    
-        if (!node){
-            return void();
         }
         
-        print(nodes[node].ch[RI], depth + 1);
-        printf("%s%d\n", string(depth, ' ').c_str(), nodes[node].val);
-        print(nodes[node].ch[LF], depth + 1);
+        get_by_value(value, rt);
+        
+        if(nodes[rt].val == value){
+            nodes[rt].frq++;
+            nodes[rt].sz++;
+        }
+        else{
+            DIR d = (DIR)(nodes[rt].val < value);
+            int id = tracker.get_free_id();
+            nodes[id] = node(value);
+            link(id, nodes[rt].ch[d], d);
+            link(rt, 0, d);
+            link(id, rt, (DIR)(!d));
+            rt = id;
+        }
     }
     
-    void print(int node){
-        puts("--------------");
-        print(node, 0);
-        puts("--------------");
-        fflush(stdout);
+    void del(nodeData value, int &rt){
+        
+        get_by_value(value, rt);
+        
+        if(nodes[rt].val == value){
+            
+            if(nodes[rt].frq > 1){
+                nodes[rt].frq--;
+                nodes[rt].sz--;
+            }
+            else{
+                tracker.make_free(rt);
+                link(0, nodes[rt].ch[LF], LF);
+                link(0, nodes[rt].ch[RI], LF);
+                rt = merge(nodes[rt].ch[LF], nodes[rt].ch[RI]);
+            }
+        }    
     }
+    
+    int lb(nodeData value, int &rt){
+    
+        if(!rt){
+            return 0;
+        }    
+        
+        int ret = 0;
+        int cur = rt;
+        
+        while(nodes[cur].val != value){
+            
+            DIR d = (DIR)(nodes[cur].val < value);
+            
+            if(d){
+                ret += nodes[nodes[cur].ch[LF]].sz + nodes[cur].frq;
+            }
+            
+            if(nodes[cur].ch[d]){
+                cur = nodes[cur].ch[d];
+            }
+            else{
+                break;
+            }
+        }
+        
+        if(nodes[cur].val == value){
+            ret += nodes[nodes[cur].ch[LF]].sz;
+        }
+        
+        splay(cur, rt);
+        
+        return ret;
+    }
+    
 };
-
 
 int32_t main(){
     
@@ -361,36 +342,41 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int n; while(cin >> n, n){
+    int n, m;
+    cin >> n >> m;
+    
+    vi vec(n), tmp;
+    for(auto &i : vec) cin >> i, tmp.push_back(i);
+    
+    vpii que(m);
+    for(auto &p : que){
+        cin >> p.first >> p.second;
+        tmp.push_back(p.second);
+    }
+    
+    sort(tmp.begin(), tmp.end());
+    tmp.resize(unique(tmp.begin(), tmp.end()) - tmp.begin());
+    for(auto &i : vec){
+        i = lower_bound(tmp.begin(), tmp.end(), i) - tmp.begin();
+    }
+    
+    vector<splay_tree> trees(tmp.size());
+    
+    for(int i = 0; i < n; i++){
+        trees[vec[i]].insert(i, trees[vec[i]].root);
+    }
+    
+    for(auto p : que){
         
-        splay_tree st;
+        int i = p.first;
+        int nv = lower_bound(tmp.begin(), tmp.end(), p.second) - tmp.begin();
         
-        vi vec(n);
+        splay_tree &st = trees[nv];
+        cout << st.lb(i, st.root) << endl;
         
-        for(int i = 0; i < n; i++){
-            
-            int ai;
-            cin >> ai;
-            
-            int id = st.tracker.get_free_id();
-            nodes[id] = node(ai);
-            vec[i] = id;
-            
-            st.root = st.merge(st.root, id);
-        }
-        
-        stable_sort(vec.begin(), vec.end(), [&](int i, int j){
-            return nodes[i].val < nodes[j].val;
-        });
-        
-        for(int i = 0; i < n; i++){
-            
-            int cid = vec[i];
-            int cidx = st.get_idx(cid);
-            cout << cidx+1 << ' ' ;
-            st.rev(st.root, i, cidx);
-        }
-        
-        cout << endl;
+        st.insert(i, st.root);
+        splay_tree &nst = trees[vec[i]];
+        nst.del(i, nst.root);
+        vec[i] = nv;    
     }
 }

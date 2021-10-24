@@ -1,8 +1,8 @@
-// Problem: Robotic Sort
-// Contest: SPOJ - Classical
-// URL: https://www.spoj.com/problems/CERC07S/
-// Memory Limit: 1536 MB
-// Time Limit: 1000 ms
+// Problem: D. Yet Another Array Queries Problem
+// Contest: Codeforces - Educational Codeforces Round 29
+// URL: https://codeforces.com/problemset/problem/863/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
 // 
 // Powered by CP Editor (https://cpeditor.org)
 
@@ -67,6 +67,7 @@ const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
+
 const int MAX_IDS = 2e5 + 10;
 const int MAX_NODES = 2e5 + 10;
 
@@ -95,11 +96,6 @@ struct ids_tracker{
     
     void make_free(int id){
         free_list.push_back(id);
-    }
-    
-    void make_free_all(){
-        free_list.clear();
-        next_id = 1;
     }
 };
 
@@ -246,25 +242,6 @@ struct splay_tree{
         splay(cur, rt);
     }
     
-    void push_down_from_root(int cur){
-        if(!cur) return;
-        push_down_from_root(nodes[cur].par);
-        nodes[cur].push_down();
-    }
-    
-    int get_idx(int cur){
-        push_down_from_root(cur);
-        int ret = nodes[nodes[cur].ch[LF]].sz;
-        while(cur){
-            int p = nodes[cur].par;
-            if(get_dir(p, cur) == RI){
-                ret += nodes[nodes[p].ch[LF]].sz + 1;
-            }
-            cur = p;
-        }
-        return ret;
-    }
-    
     void splay_max(int &rt){
         
         int cur = rt;
@@ -329,26 +306,12 @@ struct splay_tree{
         cur = merge(btw, aft);
         cur = merge(bef, cur);
     }
-    
-    void print(int node, int depth){
-    
-        if (!node){
-            return void();
-        }
-        
-        print(nodes[node].ch[RI], depth + 1);
-        printf("%s%d\n", string(depth, ' ').c_str(), nodes[node].val);
-        print(nodes[node].ch[LF], depth + 1);
-    }
-    
-    void print(int node){
-        puts("--------------");
-        print(node, 0);
-        puts("--------------");
-        fflush(stdout);
-    }
 };
 
+
+
+int n, q, m;
+int arr[NMAX];
 
 int32_t main(){
     
@@ -361,36 +324,41 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int n; while(cin >> n, n){
+    splay_tree st;
+    
+    cin >> n >> q >> m;
+    
+    for(int i = 0; i < n; i++){
         
-        splay_tree st;
+        int ai;
+        cin >> ai;
+            
+        int id = st.tracker.get_free_id();
+        nodes[id] = node(ai);
+        st.root = st.merge(st.root, id);
+    }
+
+    while(q--){
         
-        vi vec(n);
+        int t, l, r;
+        cin >> t >> l >> r;
+        l--, r--;
         
-        for(int i = 0; i < n; i++){
-            
-            int ai;
-            cin >> ai;
-            
-            int id = st.tracker.get_free_id();
-            nodes[id] = node(ai);
-            vec[i] = id;
-            
-            st.root = st.merge(st.root, id);
+        if(t == 1){
+            st.rot(st.root, l, r, 1);
         }
-        
-        stable_sort(vec.begin(), vec.end(), [&](int i, int j){
-            return nodes[i].val < nodes[j].val;
-        });
-        
-        for(int i = 0; i < n; i++){
-            
-            int cid = vec[i];
-            int cidx = st.get_idx(cid);
-            cout << cidx+1 << ' ' ;
-            st.rev(st.root, i, cidx);
+        else{
+            st.rev(st.root, l, r);
         }
+    }    
+    
+    while(m--){
         
-        cout << endl;
+        int i;
+        cin >> i;
+        i--;
+        
+        st.get_by_idx(i, st.root);
+        cout << nodes[st.root].val << ' ' ;
     }
 }

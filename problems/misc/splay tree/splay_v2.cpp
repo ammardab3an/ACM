@@ -1,72 +1,3 @@
-// Problem: Robotic Sort
-// Contest: SPOJ - Classical
-// URL: https://www.spoj.com/problems/CERC07S/
-// Memory Limit: 1536 MB
-// Time Limit: 1000 ms
-// 
-// Powered by CP Editor (https://cpeditor.org)
-
-
-// By AmmarDab3an - Aleppo University
-
-#include "bits/stdc++.h"
-
-using namespace std;
-
-#define int int64_t
-#define ll  int64_t
-
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
-typedef pair<int, int>    pii;
-typedef pair<ll, ll>      pll;
-typedef pair<int, pii>    iii;
-typedef pair<ll, pll>     lll;
-typedef vector<int>       vi;
-typedef vector<ll>        vl;
-typedef vector<pii>       vpii;
-typedef vector<pll>       vpll;
-
-#define endl '\n'
-#define fastIO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define freopenI freopen("input.txt", "r", stdin);
-#define freopenO freopen("output.txt", "w", stdout);
-
-const int INF = 0x3f3f3f3f;
-const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
-const double EPS = 1e-9;
-const double  PI = acos(-1);
-
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
- 
-int rand(int x, int y) {
-	return uniform_int_distribution<int>(x, y)(rng);
-}
-
-int mul(int a, int b){
-	int ret = (1ll * (a%MOD) * (b%MOD)) % MOD;
-	return (ret+MOD)%MOD;
-}
- 
-int add(int a, int b){
-	int ret = (1ll * (a%MOD) + (b%MOD)) % MOD;
-	return (ret+MOD)%MOD;
-}
- 
-int pow_exp(int n, int p){
-	if(!p) return 1;
-	if(p&1) return mul(n, pow_exp(n, p-1));
-	int tmp = pow_exp(n, p/2);
-	return mul(tmp, tmp);
-}
- 
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
 const int MAX_IDS = 2e5 + 10;
 const int MAX_NODES = 2e5 + 10;
 
@@ -95,11 +26,6 @@ struct ids_tracker{
     
     void make_free(int id){
         free_list.push_back(id);
-    }
-    
-    void make_free_all(){
-        free_list.clear();
-        next_id = 1;
     }
 };
 
@@ -349,48 +275,3 @@ struct splay_tree{
     }
 };
 
-
-int32_t main(){
-    
-    fastIO;
-    
-#ifdef LOCAL
-    freopenI;
-    freopenO;
-#endif
-
-    // freopen("name.in", "r", stdin);
-    
-    int n; while(cin >> n, n){
-        
-        splay_tree st;
-        
-        vi vec(n);
-        
-        for(int i = 0; i < n; i++){
-            
-            int ai;
-            cin >> ai;
-            
-            int id = st.tracker.get_free_id();
-            nodes[id] = node(ai);
-            vec[i] = id;
-            
-            st.root = st.merge(st.root, id);
-        }
-        
-        stable_sort(vec.begin(), vec.end(), [&](int i, int j){
-            return nodes[i].val < nodes[j].val;
-        });
-        
-        for(int i = 0; i < n; i++){
-            
-            int cid = vec[i];
-            int cidx = st.get_idx(cid);
-            cout << cidx+1 << ' ' ;
-            st.rev(st.root, i, cidx);
-        }
-        
-        cout << endl;
-    }
-}
