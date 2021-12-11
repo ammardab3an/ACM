@@ -1,24 +1,41 @@
-#include <iostream>
+// Problem: Marbles
+// Contest: CodeChef - Practice(Medium)
+// URL: https://www.codechef.com/problems/MARBLES
+// Memory Limit: 256 MB
+// Time Limit: 440 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+#include<bits/stdc++.h>
 
 using namespace std;
 
-int main()
-{
-    int t, n, k;
-    for(cin >> t; t--;)
-    {
-        cin >> n >> k; n--, k--;
+#define int uint64_t
 
-        if(k > n/2)
-            k = n-k;
+const int NMAX = 1e6 + 10;
 
-        long long ans = 1; //ans = choose(n-1, k-1)
-        for(int i = 1; i <= k; i++, n--)
-        {
-            ans *= n;
-            ans /= i;
-        }
+int choose(int n, int r){
+	
+	r = min(r, n-r);
+	
+	int a = 1;
+	
+	for(int i = 0; i < r; i++){
+		a *= n-i;
+		a /= i+1;
+	}
+	
+	return a;
+}
 
-        cout << ans << endl;
-    }
+int32_t main(){
+	
+		
+	int t; cin >> t; while(t--){
+		
+		int n, k;
+		cin >> n >> k;
+		
+		cout << choose(n-1, k-1) << endl;
+	}
 }
