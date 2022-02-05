@@ -1,117 +1,72 @@
-// Problem: 532 - Dungeon Master
-// Contest: Virtual Judge - Week #8.1 [Dijkstra- BFS] Harder
-// URL: https://vjudge.net/contest/406926#problem/B
-// Memory Limit: 1024 MB
-// Time Limit: 3000 ms
-// 
-// Powered by CP Editor (https://cpeditor.org)
-
-
-// By AmmarDab3an - Aleppo University
-
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 
 using namespace std;
 
-//#define int int64_t
+int L, R, C;
+char dungeon[33][33][33];
+int     vist[33][33][33];
+int    mvArr[6][3] = {{0, 0, 1}, {0, 1, 0}, {0, 0, -1}, {0, -1, 0}, {1, 0, 0}, {-1, 0, 0}};
 
-typedef unsigned int		uint;
-typedef long long int       lli;
-typedef unsigned long long  ull;
-typedef pair<int, int>      pii;
-typedef pair<lli, lli>      pll;
-typedef pair<int, pii>      iii;
-typedef pair<lli, pll>      lll;
-typedef vector<int>         vi;
-typedef vector<lli>         vl;
-typedef vector<pii>         vpii;
-typedef vector<pll>         vpll;
-
-#define endl '\n'
-#define fastIO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-#define freopenI freopen("input.txt", "r", stdin);
-#define freopenO freopen("output.txt", "w", stdout);
-
-const int INF = 0x3f3f3f3f;
-const int MOD = 1e9 + 7;
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-
-int l, r, c;
-int si, sj, sk;
-char dung[50][50][50];
-int mvArr[6][3] = {{0, 0, 1}, {0, 0, -1}, {0, 1, 0}, {0, -1, 0}, {1, 0, 0}, {-1, 0, 0}};
-
-bool can(int i, int j, int k){
-	
-	return 0 <= i && i < l &&
-		   0 <= j && j < r &&
-		   0 <= k && k < c;
+bool in(int l, int r, int c)
+{
+    return 0 <= l && l < L &&
+           0 <= r && r < R &&
+           0 <= c && c < C;
 }
+void bfs(int sl, int si, int sj)
+{
+    memset(vist, -1, sizeof vist);
+    vist[sl][si][sj] = 0;
 
-int go(){
-	
-	bool vist[50][50][50];
-	memset(vist, 0, sizeof vist);
-	vist[si][sj][sk] = 1;
-	
-	queue< array<int, 4> > que;
-	que.push({0, si, sj, sk});
-	
-	while(!que.empty()){
-		
-		auto fr = que.front(); que.pop();
+    queue< array<int, 3> > que; que.push({sl, si, sj});
 
-		int cc = fr[0];
-		int ci = fr[1];
-		int cj = fr[2];
-		int ck = fr[3];
-		
-		if(dung[ci][cj][ck] == 'E') return cc;
-		
-		for(auto a : mvArr){
-			
-			int ni = ci + a[0];
-			int nj = cj + a[1];
-			int nk = ck + a[2];
-			
-			if(can(ni, nj, nk) && dung[ni][nj][nk] != '#' && !vist[ni][nj][nk]){
-				vist[ni][nj][nk] = 1;
-				que.push({cc+1, ni, nj, nk});
-			}
-		}
-	}
-	
-	return -1;
+    while(!que.empty())
+    {
+        array<int, 3> fr = que.front(); que.pop();
+
+        int fl = fr[0];
+        int fi = fr[1];
+        int fj = fr[2];
+        int fc = vist[fl][fi][fj];
+
+        if(dungeon[fl][fi][fj] == 'E')
+        {
+            printf("Escaped in %d minute(s).\n", fc);
+            return;
+        }
+
+        for(auto a : mvArr)
+        {
+            int nl = fl + a[0];
+            int ni = fi + a[1];
+            int nj = fj + a[2];
+            int nc = fc + 1;
+
+            if(in(nl, ni, nj) && (dungeon[nl][ni][nj] != '#') && (vist[nl][ni][nj] == -1))
+            {
+                vist[nl][ni][nj] = nc;
+                que.push({nl, ni, nj});
+            }
+        }
+    }
+
+    cout << "Trapped!" << endl;
 }
-int32_t main(){
-    
-    fastIO;
-    
-#ifdef LOCAL_PROJECT
-    freopenI;
-    freopenO;
-#endif
+int main()
+{
+    while(cin >> L >> R >> C && (L && R && C))
+    {
+        for(int l = 0; l < L; l++)
+        for(int r = 0; r < R; r++)
+            cin >> dungeon[l][r];
 
-	while(true){
-		
-		cin >> l >> r >> c;
-		
-		if(!l && !r && !c) break;
-		
-		for(int i = 0; i < l; i++)
-		for(int j = 0; j < r; j++)
-		for(int k = 0; k < c; k++){
-			cin >> dung[i][j][k];
-			if(dung[i][j][k] == 'S') si = i, sj = j, sk = k;
-		}
-		
-		int dist = go();
-		
-		if(dist != -1)
-			cout << "Escaped in " << dist << " minute(s)." << endl;
-		else
-			cout << "Trapped!" << endl;
-	}
+        for(int l = 0; l < L; l++)
+        for(int r = 0; r < R; r++)
+        for(int c = 0; c < C; c++)
+            if(dungeon[l][r][c] == 'S')
+            {
+                bfs(l, r, c); goto next;
+            }
+        next:;
+    }
 }
