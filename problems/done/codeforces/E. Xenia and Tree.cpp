@@ -110,7 +110,7 @@ int dist(int u, int v){
 // decompose -------------------------------
 
 int nn;
-int dfs1(int u, int p){
+void dfs1(int u, int p){
     
     nn++;
     sz[u] = 1;

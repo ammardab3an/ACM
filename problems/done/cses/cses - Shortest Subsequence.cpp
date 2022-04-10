@@ -1,0 +1,118 @@
+// Problem: Shortest Subsequence
+// Contest: CSES - CSES Problem Set
+// URL: https://cses.fi/problemset/task/1087
+// Memory Limit: 512 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
+
+// By AmmarDab3an - Aleppo University
+
+#include "bits/stdc++.h"
+
+using namespace std;
+
+#define int int64_t
+#define ll  int64_t
+
+// typedef unsigned int        uint;
+// typedef long long int       ll;
+// typedef unsigned long long  ull;
+typedef pair<int, int>    pii;
+typedef pair<ll, ll>      pll;
+typedef pair<int, pii>    iii;
+typedef pair<ll, pll>     lll;
+typedef vector<int>       vi;
+typedef vector<ll>        vl;
+typedef vector<pii>       vpii;
+typedef vector<pll>       vpll;
+
+#define endl '\n'
+#define fastIO ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define freopenI freopen("input.txt", "r", stdin);
+#define freopenO freopen("output.txt", "w", stdout);
+
+const int INF = 0x3f3f3f3f;
+const ll INFLL = 0x3f3f3f3f3f3f3f3f;
+const int MOD = 1e9 + 7;
+const double EPS = 1e-9;
+const double  PI = acos(-1);
+
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+ 
+int rand(int x, int y) {
+	return uniform_int_distribution<int>(x, y)(rng);
+}
+
+int mul(int a, int b){
+	int ret = (1ll * (a%MOD) * (b%MOD)) % MOD;
+	return (ret+MOD)%MOD;
+}
+ 
+int add(int a, int b){
+	int ret = (1ll * (a%MOD) + (b%MOD)) % MOD;
+	return (ret+MOD)%MOD;
+}
+ 
+int pow_exp(int n, int p){
+	if(!p) return 1;
+	if(p&1) return mul(n, pow_exp(n, p-1));
+	int tmp = pow_exp(n, p/2);
+	return mul(tmp, tmp);
+}
+ 
+const int  MAX = 2e5 + 10;
+const int NMAX = 2e5 + 10;
+const int MMAX = 2e5 + 10;
+const int LOG_MAX = ceil(log2(double(NMAX)));
+const int BLOCK = ceil(sqrt(double(NMAX)));
+
+int32_t main(){
+    
+    fastIO;
+    
+#ifdef LOCAL
+    freopenI;
+    freopenO;
+#endif
+
+    // freopen("name.in", "r", stdin);
+    
+    string str;
+    cin >> str;
+    
+    vi mp(26);
+    mp['A'-'A'] = 0;
+    mp['C'-'A'] = 1;
+    mp['G'-'A'] = 2;
+    mp['T'-'A'] = 3;
+    
+    int ans = 0;
+    
+    vi vis(4);
+    int cnt = 0;
+    
+    string res;
+    
+    for(auto c : str){
+    	if(!vis[mp[c-'A']]){
+    		
+    		vis[mp[c-'A']] = true;
+    		cnt++;
+    		
+    		if(cnt == 4){
+    			res.push_back(c);
+    			vis = vi(4);
+    			cnt = 0;			
+    		}
+    	}
+    }
+    
+    if(!vis[0]) res.push_back('A');
+    else if(!vis[1]) res.push_back('C');
+    else if(!vis[2]) res.push_back('G');
+    else if(!vis[3]) res.push_back('T');
+    
+    cout << res << endl;
+}
