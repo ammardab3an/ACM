@@ -1,3 +1,11 @@
+// Problem: H1. Maximum Crossings (Easy Version)
+// Contest: Codeforces - Codeforces Round #790 (Div. 4)
+// URL: https://codeforces.com/contest/1676/problem/H1
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -60,6 +68,38 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+struct FenwickTree {
+	
+    int n;
+    vector<int> bit;  // binary indexed tree
+
+    FenwickTree(int n) {
+        this->n = n;
+        bit.assign(n, 0);
+    }
+
+    FenwickTree(vector<int> a) : FenwickTree(a.size()) {
+        for (size_t i = 0; i < a.size(); i++)
+            add(i, a[i]);
+    }
+
+    int sum(int r) {
+        int ret = 0;
+        for (; r >= 0; r = (r & (r + 1)) - 1)
+            ret += bit[r];
+        return ret;
+    }
+
+    int sum(int l, int r) {
+        return sum(r) - sum(l - 1);
+    }
+
+    void add(int idx, int delta) {
+        for (; idx < n; idx = idx | (idx + 1))
+            bit[idx] += delta;
+    }
+};
+
 int32_t main(){
     
     fastIO;
@@ -72,7 +112,23 @@ int32_t main(){
     // freopen("name.in", "r", stdin);
     
     int t; cin >> t; while(t--){
-
-
+	
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, --i;
+		
+		FenwickTree tree(n);
+		
+		int ans = 0;
+		
+		for(int i = 0; i < n; i++){
+			int j = vec[i];
+			ans += tree.sum(j, n-1);
+			tree.add(j, +1);	
+		}
+		
+		cout << ans << endl;
     }	
 }

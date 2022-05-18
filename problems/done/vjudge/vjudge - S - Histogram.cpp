@@ -1,5 +1,13 @@
+// Problem: S - Histogram
+// Contest: Virtual Judge - Dynamic Programming Sheet 1 Week 3
+// URL: https://vjudge.net/contest/490538#problem/S
+// Memory Limit: 1536 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,42 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n;
+int arr[22];
+pii mem[22][1 << 15];
+int vis[22][1 << 15], vid;
+
+pii go(int lst, int msk){
+	
+	if(!msk){
+		return {arr[lst], 1};
+	}	
+	
+	if(vis[lst+1][msk]==vid){
+		return mem[lst+1][msk];
+	}
+	else{	
+		vis[lst+1][msk] = vid;
+	}
+	
+	pii ans = {0, 0};
+	
+	for(int i = 0; i < n; i++) if((msk>>i)&1){
+		
+		pii cans = go(i, msk^(1<<i));
+		cans.first += lst==-1 ? arr[i] : abs(arr[i] - arr[lst]);
+		
+		if(ans.first < cans.first){
+			ans = cans;
+		}
+		else if(ans.first==cans.first){
+			ans.second += cans.second;
+		}
+	}
+	
+	return mem[lst+1][msk] = ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +115,15 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    while(cin >> n, n){
+    	
+    	for(int i = 0; i < n; i++){
+    		cin >> arr[i];
+    	}
+    	
+    	vid++;
+    	
+    	pii ans = go(-1, (1<<n)-1);
+    	cout << ans.first+2*n << ' ' << ans.second << endl;
+    }
 }

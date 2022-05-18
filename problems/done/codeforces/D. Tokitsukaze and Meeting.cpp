@@ -1,5 +1,13 @@
+// Problem: D. Tokitsukaze and Meeting
+// Contest: Codeforces - Codeforces Round #789 (Div. 2)
+// URL: https://codeforces.com/contest/1678/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,53 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		string str;
+		cin >> str;
+		
+		vi st_path(n*m);
+		vi nd_path(n*m);
+		
+		{
+			
+			vi vis(m);
+			int cur = 0;
+			
+			for(int i = 0; i < n*m; i++){
+				
+				if(str[i]=='1'){
+					if(!vis[i%m]) cur++;
+					vis[i%m] = true;
+				}
+				
+				st_path[i] = cur;
+			}
+		}
+		
+		{
+			int lst = -INF;
+			for(int i = 0; i < n*m; i++){
+				
+				if(str[i]=='1') lst = i;
+			
+				if(i==0){
+					nd_path[i] = str[i]-'0';
+				}
+				else if(i < m){
+					nd_path[i] = nd_path[i-1] || (str[i]-'0');
+				}
+				else{
+					nd_path[i] = nd_path[i-m];
+					if(i-lst < m) nd_path[i]++;
+				}
+			}
+		}
+		
+		for(int i = 0; i < n*m; i++){
+			cout << st_path[i]+nd_path[i] << ' ';
+		}
+		cout << endl;
     }	
 }

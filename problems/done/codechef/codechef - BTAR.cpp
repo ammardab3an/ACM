@@ -1,5 +1,13 @@
+// Problem: Beautiful Array
+// Contest: CodeChef - Practice
+// URL: https://www.codechef.com/problems/BTAR
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,40 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi cnt(4);
+		int sm = 0;
+		
+		for(int i = 0; i < n; i++){
+			int ai;
+			cin >> ai;
+			sm += ai;
+			cnt[ai%4]++;
+		}
+		
+		if(sm%4){
+			cout << -1 << endl;
+			continue;
+		}
+		
+		int ans = 0;
+		ans += cnt[2]/2;
+		cnt[2] %= 2;
+		
+		int mn = min(cnt[1], cnt[3]);
+		ans += mn;
+		cnt[1] -= mn;
+		cnt[3] -= mn;
+		
+		if(cnt[2]){
+			ans += 2 + ((cnt[1]+cnt[3]-2)/4)*3;
+		}
+		else{
+			ans += ((cnt[1]+cnt[3])/4)*3;
+		}
+		
+		cout << ans << endl;
     }	
 }

@@ -1,5 +1,13 @@
+// Problem: C. Where is the Pizza?
+// Contest: Codeforces - Codeforces Round #788 (Div. 2)
+// URL: https://codeforces.com/contest/1670/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,21 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+vi adj[NMAX];
+int vis[NMAX], vid;
+
+int dfs(int u){
+	
+	int ret = 1;
+	
+	vis[u] = vid;
+	for(auto v : adj[u]) if(vis[v] != vid){
+		ret += dfs(v);
+	}	
+	
+	return ret;
+}
+
 int32_t main(){
     
     fastIO;
@@ -72,7 +95,58 @@ int32_t main(){
     // freopen("name.in", "r", stdin);
     
     int t; cin >> t; while(t--){
-
-
+			
+		int n;
+		cin >> n;
+		
+		vector<vi> vec(2, vi(n));
+		
+		for(int j = 0; j < 2; j++)
+		for(int i = 0; i < n; i++){
+			cin >> vec[j][i];
+			vec[j][i]--;
+		}
+		
+		for(int i = 0; i < n; i++){
+			adj[i].clear();
+		}
+		
+		vector<vi> tmp(n);
+		for(int j = 0; j < 2; j++)
+		for(int i = 0; i < n; i++){
+			tmp[vec[j][i]].push_back(i);
+		}
+		
+		for(int i = 0; i < n; i++){
+			
+			assert(tmp[i].size()==2);
+			
+			int u = tmp[i][0];
+			int v = tmp[i][1];
+			
+			adj[u].push_back(v);
+			adj[v].push_back(u);
+		}
+		
+		vid++;
+		for(int i = 0; i < n; i++){
+			
+			int ci;
+			cin >> ci;
+			ci--;
+			
+			if(ci != -1){
+				dfs(i);
+			}
+		}
+		
+		int cnt = 0;
+		for(int i = 0; i < n; i++) if(vis[i] != vid){
+			int sz = dfs(i);
+			if(sz > 1) cnt++;
+		}
+		
+		int ans = pow_exp(2, cnt);
+		cout << ans << endl;
     }	
 }

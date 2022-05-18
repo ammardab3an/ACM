@@ -1,16 +1,24 @@
+// Problem: G. Sorting Pancakes
+// Contest: Codeforces - Codeforces Round #787 (Div. 3)
+// URL: https://codeforces.com/contest/1675/problem/G
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -60,6 +68,29 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n, m;
+int arr[255];
+int mem[255][255][555];
+
+int go(int i, int cur, int rm){
+	
+	if(cur < 0){
+		return INF;
+	}
+	
+	if(i==n){
+		return rm==0 ? 0 : INF;
+	}	
+	
+	int &ret = mem[i][cur][rm+250];
+	if(ret+1) return ret;
+	
+	int st_path = go(i, cur-1, rm);
+	int nd_path = go(i+1, cur, rm + (cur-arr[i])) + abs(rm);
+	
+	return ret = min(st_path, nd_path);
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +102,13 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n >> m;
+    for(int i = 0; i < n; i++){
+    	cin >> arr[i];
+    }
+    
+    memset(mem, -1, sizeof mem);
+    
+    int ans = go(0, m, 0);
+    cout << ans << endl;
 }

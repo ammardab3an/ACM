@@ -1,16 +1,24 @@
+// Problem: N - Linear Garden
+// Contest: Virtual Judge - Dynamic Programming Week 3
+// URL: https://vjudge.net/contest/490538#problem/N
+// Memory Limit: 1536 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -55,10 +63,49 @@ int pow_exp(int n, int p){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 1e6 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
+
+int n, mod;
+string str;
+
+int mem[NMAX][3][3][5][2];
+
+int go(int i, int mn, int mx, int cur, bool b){
+	
+	mn = min(mn, cur);
+	mx = max(mx, cur);
+	
+	if(abs(cur-mn) > 2 || abs(cur-mx) > 2){
+		return 0;
+	}
+	
+	if(i==n){
+		return 1;
+	}	
+	
+	int &ret = mem[i][mn+2][mx][cur+2][b];
+	if(ret+1) return ret;
+	
+	if(b){
+		int st_path = go(i+1, mn, mx, cur-1, 1);
+		int nd_path = go(i+1, mn, mx, cur+1, 1);
+		return ret = (st_path + nd_path) % mod;
+	}
+	else{
+		
+		if(str[i]=='L'){
+			return ret = go(i+1, mn, mx, cur-1, 0);
+		}
+		else{
+			int st_path = go(i+1, mn, mx, cur-1, 1);
+			int nd_path = go(i+1, mn, mx, cur+1, 0);
+			return ret = (st_path + nd_path) % mod;
+		}
+	}
+}
 
 int32_t main(){
     
@@ -71,8 +118,7 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n >> mod >> str;
+    memset(mem, -1, sizeof mem);
+    cout << go(0, 0, 0, 0, 0) << endl;
 }

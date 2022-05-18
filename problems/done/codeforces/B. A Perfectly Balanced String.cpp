@@ -1,5 +1,13 @@
+// Problem: B. A Perfectly Balanced String?
+// Contest: Codeforces - Codeforces Round #785 (Div. 2)
+// URL: https://codeforces.com/contest/1673/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,45 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		
+		string str;
+		cin >> str;
+		
+		bool ans = true;
+		
+		vector<vi> tmp(26);
+		vi vis(26);
+		
+		int n = str.size();
+		
+		for(int i = 0; i < n; i++){
+			tmp[str[i]-'a'].push_back(i);
+			vis[str[i]-'a'] = true;
+		}
+		
+		for(auto v : tmp) if(v.size() > 1){
+			
+			int l = v.front();
+			int r = v.back();
+			
+			vi cnt(26);
+			
+			for(int i = l; i <= r; i++){
+				cnt[str[i]-'a']++;
+			}
+			
+			int mx = *max_element(cnt.begin(), cnt.end());
+			
+			for(int i = 0; i < 26; i++) if(vis[i]){
+				if(mx-cnt[i] > 1){
+					ans = false;
+					break;
+				}	
+			}
+			
+			if(!ans) break;
+		}
+		
+		cout << (ans ? "YES" : "NO") << endl;
     }	
 }

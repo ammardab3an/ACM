@@ -1,5 +1,13 @@
+// Problem: E. Replace With the Previous, Minimize
+// Contest: Codeforces - Codeforces Round #787 (Div. 3)
+// URL: https://codeforces.com/contest/1675/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,45 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		string str;
+		cin >> str;
+		
+		int p = n;
+		int mx = 0;
+		
+		for(int i = 0; i < n; i++){
+			
+			if(str[i]-'a' > k){
+				p = i;
+				break;
+			}
+			else{
+				mx = max(mx, (int) str[i]-'a');
+				str[i] = 'a';
+			}
+		}
+		
+		if(p != n){
+			
+			k -= mx;
+			char c = str[p];
+			str[p] -= k;
+			
+			for(int i = p+1; i < n; i++){
+				
+				if(str[i]-'a' <= mx){
+					str[i] = 'a';
+				}	
+				else if(str[p] <= str[i] && str[i] <= c){
+					str[i] = str[p];
+				}
+			}
+		}
+		
+		
+		cout << str << endl;
     }	
 }

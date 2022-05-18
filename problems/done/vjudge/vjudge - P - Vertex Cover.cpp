@@ -1,5 +1,13 @@
+// Problem: P - Vertex Cover
+// Contest: Virtual Judge - Dynamic Programming Week 3
+// URL: https://vjudge.net/contest/490538#problem/P
+// Memory Limit: 1536 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,37 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n;
+vi adj[NMAX];
+int mem[NMAX][2];
+
+int go(int u, int p, bool b){
+	
+	int &ret = mem[u][b];
+	if(ret+1) return ret;
+	
+	if(!b){
+		int ans = 1;
+		for(auto v : adj[u]) if(v != p){
+			ans += go(v, u, 1);
+		}
+		
+		return ret = ans;
+	}	
+	else{
+		
+		int st_path = 1;
+		int nd_path = 0;
+		
+		for(auto v : adj[u]) if(v != p){
+			st_path += go(v, u, 1);
+			nd_path += go(v, u, 0);
+		}
+		
+		return ret = min(st_path, nd_path);
+	}
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +110,16 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n;
+    for(int i = 0; i < n-1; i++){
+    	int u, v;
+    	cin >> u >> v;
+    	u--, v--;
+    	adj[u].push_back(v);
+    	adj[v].push_back(u);
+    }
+    
+    memset(mem, -1, sizeof mem);
+    
+    cout << go(0, -1, 1) << endl;
 }

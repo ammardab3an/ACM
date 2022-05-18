@@ -1,3 +1,11 @@
+// Problem: A - Right String
+// Contest: AtCoder - AtCoder Regular Contest 140
+// URL: https://atcoder.jp/contests/arc140/tasks/arc140_a
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -71,8 +79,43 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, k;
+    cin >> n >> k;
+    
+    string str;
+    cin >> str;
+    
+    int ans = n;
+    
+    for(int _l = 1; _l*_l <= n; _l++) if(n%_l==0){
+    	
+    	for(auto l : {_l, n/_l}){	
+    		
+	    	vector<vi> cnt(l, vi(26));
+	    	
+	    	for(int i = 0; i < n; i++){
+	    		cnt[i%l][str[i]-'a']++;
+	    	}
+	    	
+	    	int cans = 0;
+	    	for(int i = 0; i < l; i++){
+	    		
+	    		int sm = 0;
+	    		int mx = 0;
+	    		
+	    		for(int j = 0; j < 26; j++){
+	    			sm += cnt[i][j];
+	    			mx = max(mx, cnt[i][j]);
+	    		}
+	    		
+	    		cans += sm-mx;
+	    	}		
+	    	
+	    	if(cans <= k){
+	    		ans = min(ans, l);
+	    	}
+    	}
+    }
+    
+    cout << ans << endl;
 }

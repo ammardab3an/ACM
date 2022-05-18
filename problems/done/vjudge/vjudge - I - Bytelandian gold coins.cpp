@@ -1,5 +1,13 @@
+// Problem: I - Bytelandian gold coins
+// Contest: Virtual Judge - Dynamic Programming Week 3
+// URL: https://vjudge.net/contest/490538#problem/I
+// Memory Limit: 1536 MB
+// Time Limit: 9000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,23 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+unordered_map<int, int> mp;
+
+int go(int n){
+	
+	if(!n){
+		return 0;
+	}	
+	
+	auto it = mp.find(n);
+	if(it != mp.end()) return it->second;
+	
+	int st_path = n;
+	int nd_path = go(n/2) + go(n/3) + go(n/4);
+	
+	return mp[n] = max(st_path, nd_path);
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +96,10 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    while(cin >> n){
+    	
+    	int ans = go(n);
+    	cout << ans << endl;
+    }
 }

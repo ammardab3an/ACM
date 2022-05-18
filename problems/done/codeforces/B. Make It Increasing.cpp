@@ -1,5 +1,13 @@
+// Problem: B. Make It Increasing
+// Contest: Codeforces - Codeforces Round #787 (Div. 3)
+// URL: https://codeforces.com/contest/1675/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,29 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		int ans = 0;
+		for(int i = n-2; i >= 0; i--){
+			
+			while(vec[i] >= vec[i+1]){
+				
+				if(vec[i] == 0){
+					ans = -1;
+					break;
+				}
+				
+				ans++;
+				vec[i] /= 2;
+			}
+			
+			if(ans==-1) break;
+		}
+		
+		cout << ans << endl;
     }	
 }

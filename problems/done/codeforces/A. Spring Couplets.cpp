@@ -1,3 +1,11 @@
+// Problem: A. Spring Couplets
+// Contest: Codeforces - 2021 Jiangsu Collegiate Programming Contest
+// URL: https://codeforces.com/gym/103495/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,38 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vector<string> vec_0(n), vec_1(n);
+		for(auto &s : vec_0) cin >> s;
+		for(auto &s : vec_1) cin >> s;
+		
+		bool good = true;
+		
+		for(int i = 0; i < n; i++){
+			
+			string s0 = vec_0[i];
+			string s1 = vec_1[i];
+			
+			int d0 = s0.back()-'0';
+			int d1 = s1.back()-'0';
+			
+			if(d0 > d1) swap(d0, d1);
+			
+			if((d0==1 || d0==2) && (d1==3 || d1==4)){
+				continue;
+			} 
+			else{
+				// cout << i << ' ' << d0 << ' ' << d1 << endl;
+				good = false;
+				break;
+			}
+		}
+		
+		int d = vec_0.back().back()-'0';
+		good &= d==3 || d==4;
+		
+		cout << (good ? "YES" : "NO") << endl;
     }	
 }

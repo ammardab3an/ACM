@@ -1,5 +1,13 @@
+// Problem: F. Jee, You See?
+// Contest: Codeforces - Codeforces Round #788 (Div. 2)
+// URL: https://codeforces.com/contest/1670/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -54,11 +62,57 @@ int pow_exp(int n, int p){
 	return mul(tmp, tmp);
 }
  
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+const int NMAX = 1e4 + 10;
+
+int n, l, r, z, x;
+int mem[64][NMAX];
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	ifac[NMAX-1] = pow_exp(fac[NMAX-1], MOD-2);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	return mul(mul(fac[n], ifac[c]), ifac[n-c]);
+}
+
+int go(int i, int rm){
+	
+	if(i==-1){
+		return 1;
+	}	
+	
+	rm += (x>>i)&1;
+	rm = min(rm, 2*n);
+	
+	int &ret = mem[i][rm];
+	if(ret+1) return ret;
+	
+	int ans = 0;
+	
+	for(int j = (z>>i)&1; j <= rm && j <= n; j+=2){
+		ans += mul(choose(n, j), go(i-1, (rm-j)*2));		
+	}
+	
+	return ret = ans;
+}
+
+int calc(int x){
+	
+	::x = x;	
+	memset(mem, -1, sizeof mem);
+	int ret = go(63, 0);
+	
+	return ret;
+}
 
 int32_t main(){
     
@@ -71,8 +125,12 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    init();
+    
+    cin >> n >> l >> r >> z;
+    
+    int ans = calc(r);
+    if(l) ans = add(ans, mul(-1, calc(l-1)));
+    
+    cout << ans << endl;
 }

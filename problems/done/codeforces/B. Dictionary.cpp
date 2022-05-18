@@ -1,5 +1,13 @@
+// Problem: B. Dictionary
+// Contest: Codeforces - Codeforces Round #786 (Div. 3)
+// URL: https://codeforces.com/contest/1674/problem/B
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -71,8 +79,18 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
+    vector<string> vec;
+    
+    for(int i = 0; i < 26; i++)
+    for(int j = 0; j < 26; j++) if(i != j){
+    	vec.push_back(string(1, 'a'+i) + string(1, 'a'+j));
+    }
+    
     int t; cin >> t; while(t--){
 
-
+		string str;
+		cin >> str;
+		
+		cout << lower_bound(vec.begin(), vec.end(), str) - vec.begin() + 1 << endl;	
     }	
 }

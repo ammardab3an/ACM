@@ -1,5 +1,13 @@
+// Problem: B. Cinema
+// Contest: Codeforces - STAR Contest 2022
+// URL: https://starcontest22.contest.codeforces.com/group/ZbfYu7B821/contest/378214/problem/B
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -70,9 +78,19 @@ int32_t main(){
 #endif
 
     // freopen("name.in", "r", stdin);
-    
-    int t; cin >> t; while(t--){
-
-
-    }	
+	
+	int a, b;
+	cin >> a >> b;
+	
+	if(a > b) swap(a, b);
+	
+	int x, y;
+	cin >> x >> y;
+	
+	if(x > y) swap(x, y);
+	
+	int b0 = (x <= a) && (y <= b);
+	int b1 = x+y <= b;
+	
+	cout << (b0 || b1 ? "YES" : "NO") << endl;
 }

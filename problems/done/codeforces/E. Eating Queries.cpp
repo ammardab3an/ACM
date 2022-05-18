@@ -1,3 +1,11 @@
+// Problem: E. Eating Queries
+// Contest: Codeforces - Codeforces Round #790 (Div. 4)
+// URL: https://codeforces.com/contest/1676/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 3500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,32 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n, q;
+		cin >> n >> q;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		sort(vec.begin(), vec.end());
+		reverse(vec.begin(), vec.end());
+		
+		for(int i = 1; i < n; i++){
+			vec[i] += vec[i-1];
+		}
+		
+		while(q--){
+			
+			int x;
+			cin >> x;
+			
+			auto it = lower_bound(vec.begin(), vec.end(), x);
+			
+			if(it == vec.end()){
+				cout << -1 << endl;
+			}
+			else{
+				cout << it-vec.begin()+1 << endl;
+			}
+		}
     }	
 }

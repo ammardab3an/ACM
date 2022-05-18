@@ -1,3 +1,11 @@
+// Problem: F. Longest Strike
+// Contest: Codeforces - Codeforces Round #790 (Div. 4)
+// URL: https://codeforces.com/contest/1676/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,46 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		map<int, int> mp;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, mp[i]++;
+		
+		int ans = -1;
+		pii ans_p = {-1, -1};
+		
+		vi tmp;
+		for(auto p : mp) if(p.second >= k){
+			tmp.push_back(p.first);
+		}
+		
+		while(tmp.size()){
+			
+			vi cur;
+			int lst = tmp.back()+1;	
+			while(tmp.size() && tmp.back()==lst-1){
+				cur.push_back(tmp.back());
+				tmp.pop_back();
+				lst--;
+			}
+			
+			int l = cur.back();
+			int r = cur.front();
+			
+			if(r-l > ans){
+				ans = r-l;
+				ans_p = {l, r};
+			}
+		}
+		
+		if(ans_p.first==-1){
+			cout << -1 << endl;
+		}
+		else{
+			cout << ans_p.first << ' ' << ans_p.second << endl;
+		}
     }	
 }

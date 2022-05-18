@@ -1,3 +1,11 @@
+// Problem: J. Joining Pairs
+// Contest: Codeforces - 2021-2022 ACM-ICPC Latin American Regional Programming Contest
+// URL: https://codeforces.com/gym/103640/problem/J
+// Memory Limit: 1024 MB
+// Time Limit: 500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -71,8 +79,75 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, m;
+    cin >> n >> m;
+    
+    auto good = [&](int i, int j){
+    	return i==0 || i==n || j==0 || j==m;
+    };
+    
+    auto conv = [&](int i, int j){
+    	
+    	if(i==0){
+    		return j;
+    	}		
+    	else if(j==m){
+    		return m+i;
+    	}
+    	else if(i==n){
+    		return m+n+(m-j);
+    	}
+    	else if(j==0){
+    		return m+n+m+(n-i);
+    	}
+    	else{
+    		assert(false);
+    	}
+    };
+    
+    int k;
+    cin >> k;
+    
+    vpii tmp;
+    int ii = 0;
+    while(k--){
+    	
+    	pii p0, p1;
+    	cin >> p0.first >> p0.second;
+    	cin >> p1.first >> p1.second;
+    	
+    	if(good(p0.first, p0.second) && good(p1.first, p1.second)){
+    		tmp.push_back({conv(p0.first, p0.second), ii});
+    		tmp.push_back({conv(p1.first, p1.second), ii});
+    		ii++;
+    	}
+    }
+    
+    bool ans = true;
+    
+    sort(tmp.begin(), tmp.end());
+    
+    vi vis(ii);
+    stack<int> st;
+    
+    // for(auto [i, c] : tmp){
+    	// cout << i << ' ' << c << endl;
+    // }
+	
+    for(auto [i, c] : tmp){
+    	
+    	if(!vis[c]){
+    		vis[c] = true;
+    		st.push(c);
+    	}	
+    	else{
+    		if(st.top() != c){
+    			ans = false;
+    			break;
+    		}
+    		st.pop();
+    	}
+    }
+    
+    cout << "NY"[ans] << endl;
 }

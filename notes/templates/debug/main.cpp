@@ -1,5 +1,5 @@
 
-// By AmmarDab3an - Aleppo University
+// By AmmarDab3an 
 
 #include "bits/stdc++.h"
 

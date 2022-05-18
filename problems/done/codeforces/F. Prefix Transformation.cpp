@@ -1,5 +1,13 @@
+// Problem: F. Prefix Transformation
+// Contest: Codeforces - STAR Contest 2022
+// URL: https://starcontest22.contest.codeforces.com/group/ZbfYu7B821/contest/378214/problem/f
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -71,8 +79,30 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    string str;
+    cin >> str;
+    
+    int l;
+    bool found = false;
+    
+    for(int i = n-1; i >= 0; i--) if(str[i]=='1'){
+    	l = i;
+    	found = true;
+    	break;
+    }
+    
+    if(!found){
+    	cout << 0 << endl;
+    	return 0;
+    }
+    
+    int ans = 1;
+    for(int i = 1; i <= l; i++){
+    	ans += str[i] != str[i-1];
+    }
+    
+    cout << ans << endl;
 }

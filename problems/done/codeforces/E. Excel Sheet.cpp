@@ -1,5 +1,13 @@
+// Problem: E. Excel Sheet
+// Contest: Codeforces - STAR Contest 2022
+// URL: https://starcontest22.contest.codeforces.com/group/ZbfYu7B821/contest/378214/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -71,8 +79,29 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, m;
+    cin >> n >> m;
+    
+    vector<string> vec(n);
+    for(auto &s : vec) cin >> s;
+    
+    int ans = 0;
+    
+    for(int i = 0; i < n; i++){
+    	
+    	for(int j = i+1; j < n; j++){
+    		
+    		vi tmp(128);
+    		
+    		for(int k = 0; k < m; k++){
+    			
+    			if(vec[i][k] == vec[j][k]){
+    				ans += tmp[vec[i][k]-'a'];
+    				tmp[vec[i][k]-'a']++;
+    			}
+    		}
+    	}
+    }
+    
+    cout << ans << endl;
 }

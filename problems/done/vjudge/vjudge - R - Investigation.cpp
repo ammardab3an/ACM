@@ -1,3 +1,11 @@
+// Problem: R - Investigation
+// Contest: Virtual Judge - Dynamic Programming Sheet 2 Week 4
+// URL: https://vjudge.net/contest/490713#problem/R
+// Memory Limit: 64 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -60,6 +68,30 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n, k;
+string num;
+int mem[33][100][100][2];
+
+int go(int i, int val, int sm, bool b){
+	
+	if(i == n){
+		return val+sm==0;
+	}	
+	
+	int &ret = mem[i][val][sm][b];
+	if(ret+1) return ret;
+	
+	int ans = 0;
+	
+	int mx = b ? 9 : num[i]-'0';
+	for(int j = 0; j <= mx; j++){
+		int cans = go(i+1, (val*10+j)%k, (sm+j)%k, b || (j < num[i]-'0'));
+		ans += cans;
+	}
+	
+	return ret = ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +103,33 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
+    int tt = 1;
     int t; cin >> t; while(t--){
 
-
+		cout << "Case " << tt++ << ": ";
+		
+		int l, r, k;
+		cin >> l >> r >> k;
+		
+		if(k > 100){
+			cout << 0 << endl;
+			continue;
+		}
+		
+		::k = k;
+		
+		num = to_string(r);
+		n = num.size();
+		memset(mem, -1, sizeof mem);
+		int ans = go(0, 0, 0, 0);
+		
+		if(l){
+			num = to_string(l-1);
+			n = num.size();
+			memset(mem, -1, sizeof mem);
+			ans -= go(0, 0, 0, 0);
+		}
+		
+		cout << ans << endl;
     }	
 }

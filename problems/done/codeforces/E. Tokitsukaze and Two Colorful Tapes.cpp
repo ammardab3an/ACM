@@ -1,5 +1,13 @@
+// Problem: E. Tokitsukaze and Two Colorful Tapes
+// Contest: Codeforces - Codeforces Round #789 (Div. 2)
+// URL: https://codeforces.com/contest/1678/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,20 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+vi adj[NMAX];
+int vis[NMAX], vid;
+
+int dfs(int u){
+	
+	int ret = 1;
+	for(auto v : adj[u]) if(vis[v] != vid){
+		vis[v] = vid;
+		ret += dfs(v);
+	}	
+	
+	return ret;
+}
+
 int32_t main(){
     
     fastIO;
@@ -73,6 +95,42 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		for(int i = 0; i < n; i++){
+			adj[i].clear();
+		}
+		
+		vector<vi> tmp(n, vi(2));
+		for(int i = 0; i < n; i++) cin >> tmp[i][0], tmp[i][0]--;
+		for(int i = 0; i < n; i++) cin >> tmp[i][1], tmp[i][1]--;
+		
+		for(int i = 0; i < n; i++){
+			int u = tmp[i][0];
+			int v = tmp[i][1];
+			adj[u].push_back(v);
+			adj[v].push_back(u);
+		}
+		
+		int ans = 0;
+		
+		int l = 1;
+		int r = n;
+		
+		vid++;
+		for(int i = 0; i < n; i++) if(vis[i] != vid){
+			
+			int cnt = dfs(i);
+			cnt -= cnt%2;
+			
+			while(cnt){
+				ans += r--;
+				ans -= l++;
+				cnt -= 2;
+			}
+		}
+		
+		cout << 2*ans << endl;
     }	
 }

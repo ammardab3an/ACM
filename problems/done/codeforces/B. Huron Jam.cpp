@@ -1,3 +1,11 @@
+// Problem: B. Huron Jam
+// Contest: Codeforces - 2021, XIII Donald Knuth Annual Programming Contest by ESCOM-IPN
+// URL: https://codeforces.com/gym/103256/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -71,8 +79,19 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    vi vec(n);
+    for(auto &i : vec) cin >> i;
+    
+    sort(vec.begin(), vec.end());
+    
+    int ans = 0;
+    
+    for(int i = 0; i < n; i+=2){
+    	ans += vec[i+1] - vec[i];
+    }
+    
+    cout << ans << endl;
 }

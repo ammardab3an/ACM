@@ -1,3 +1,11 @@
+// Problem: A. Lucky?
+// Contest: Codeforces - Codeforces Round #790 (Div. 4)
+// URL: https://codeforces.com/contest/1676/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,12 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		string str;
+		cin >> str;
+		
+		int s0 = str[0]+str[1]+str[2] - 3 * '0';
+		int s1 = str[3]+str[4]+str[5] - 3 * '0';
+		
+		cout << (s0==s1 ? "YES": "NO") << endl;
     }	
 }

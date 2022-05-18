@@ -1,5 +1,13 @@
+// Problem: K - Wachovia Bank
+// Contest: Virtual Judge - Dynamic Programming Sheet 1 Week 3
+// URL: https://vjudge.net/contest/490538#problem/K
+// Memory Limit: 1536 MB
+// Time Limit: 201 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,32 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n, k;
+int arr[202][2];
+int mem[202][1010];
+int vis[202][1010], vid;
+
+int go(int i, int rm){
+	
+	if(rm < 0){
+		return -INF;
+	}
+	
+	if(i == n){
+		return 0;
+	}
+	
+	if(vis[i][rm] == vid){
+		return mem[i][rm];
+	}
+	vis[i][rm] = vid;
+	
+	int st_path = go(i+1, rm);
+	int nd_path = go(i+1, rm - arr[i][0]) + arr[i][1];
+	
+	return mem[i][rm] = max(st_path, nd_path);
+}
+
 int32_t main(){
     
     fastIO;
@@ -73,6 +107,15 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		cin >> k >> n;
+		
+		for(int i = 0; i < n; i++){
+			cin >> arr[i][0] >> arr[i][1];
+		}
+		
+		vid++;
+		
+		int ans = go(0, k);
+		cout << "Hey stupid robber, you can get " << ans << "." << endl;
     }	
 }

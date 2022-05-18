@@ -1,5 +1,13 @@
+// Problem: A. Mobile Internet Package
+// Contest: Codeforces - STAR Contest 2022
+// URL: https://starcontest22.contest.codeforces.com/group/ZbfYu7B821/contest/378214/problem/A
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -71,8 +79,11 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    
+    int ans = max(int(0), d-a);
+    ans *= c;
+    ans += b;
+    cout << ans << endl;
 }

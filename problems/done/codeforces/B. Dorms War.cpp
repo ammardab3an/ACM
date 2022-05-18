@@ -1,5 +1,13 @@
+// Problem: B. Dorms War
+// Contest: Codeforces - Codeforces Round #788 (Div. 2)
+// URL: https://codeforces.com/contest/1670/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,62 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		string str;
+		cin >> str;
+		
+		reverse(str.begin(), str.end());
+		
+		int k;
+		cin >> k;
+		
+		vi vis(26);
+		
+		vector<char> vec(k);
+		for(auto &c : vec) cin >> c, vis[c-'a'] = true;
+		
+		set<int> st0, st1;
+		
+		for(int i = 0; i < n; i++){
+			
+			if(vis[str[i]-'a']){
+				st0.insert(i);
+			}
+			st1.insert(i);
+		}
+		
+		
+		if(st0.empty()){
+			cout << 0 << endl;
+			continue;
+		}
+		
+		int ans = 0;
+		
+		while(true){
+			
+			ans++;
+			
+			vi tmp;
+			for(auto i : st0){
+				
+				auto it = st1.upper_bound(i);
+				
+				if(it != st1.end()){
+					tmp.push_back(*it);
+				}
+			}
+			
+			if(tmp.empty()) break;
+			
+			for(auto i : tmp){
+				st0.erase(i);
+				st1.erase(i);
+			}
+		}
+		
+		cout << ans-1 << endl;
     }	
 }

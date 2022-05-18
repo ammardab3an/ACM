@@ -1,3 +1,11 @@
+// Problem: G. White-Black Balanced Subtrees
+// Contest: Codeforces - Codeforces Round #790 (Div. 4)
+// URL: https://codeforces.com/contest/1676/problem/G
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -60,6 +68,30 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n;
+vi adj[NMAX];
+string str;
+int ans = 0;
+
+pii dfs(int u){
+	
+	if(adj[u].empty()){
+		return {str[u]=='B', str[u]=='W'};
+	}	
+	
+	pii ret = {str[u]=='B', str[u]=='W'};
+	
+	for(auto v : adj[u]){
+		pii tmp = dfs(v);
+		ret.first += tmp.first;
+		ret.second += tmp.second;
+	}
+	
+	ans += ret.first == ret.second;
+	
+	return ret;
+}
+
 int32_t main(){
     
     fastIO;
@@ -73,6 +105,24 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		cin >> n;
+		for(int i = 0; i < n; i++){
+			adj[i].clear();
+		}
+		
+		for(int i = 1; i < n; i++){
+			int p;
+			cin >> p;
+			p--;
+			adj[p].push_back(i);
+		}
+		
+		cin >> str;
+		
+		ans = 0;
+		dfs(0);
+		
+		cout << ans << endl;
     }	
+    
 }

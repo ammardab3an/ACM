@@ -1,5 +1,13 @@
+// Problem: F. Vlad and Unfinished Business
+// Contest: Codeforces - Codeforces Round #787 (Div. 3)
+// URL: https://codeforces.com/contest/1675/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,43 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n, k;
+int x, y;
+vi adj[NMAX];
+int vis[NMAX], vid;
+int ans;
+
+int dfs0(int u, int p){
+	
+	int ret = (vis[u]==vid);
+	
+	for(auto v : adj[u]) if(v != p){
+		
+		int t = dfs0(v, u);
+		
+		if(t){
+			ret += t;
+			ans += 2;
+		}
+	}	
+	
+	return ret;
+}
+
+int dfs1(int u, int p){
+	
+	if(u==y){
+		return 0;
+	}	
+	
+	int ret = INF;
+	for(auto v : adj[u]) if(v != p){
+		ret = min(ret, 1+dfs1(v, u));
+	}
+	
+	return ret;
+}
+
 int32_t main(){
     
     fastIO;
@@ -73,6 +118,38 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		cin >> n >> k;
+		cin >> x >> y;
+		x--, y--;
+		
+		vid++;
+		vis[x] = vid;
+		vis[y] = vid;
+		
+		for(int i = 0; i < k; i++){
+			int u;
+			cin >> u;
+			vis[u-1] = vid;
+		}
+		
+		for(int i = 0; i <= n; i++){
+			adj[i].clear();
+		}
+		
+		for(int i = 0; i < n-1; i++){
+			
+			int u, v;
+			cin >> u >> v;
+			u--, v--;
+			
+			adj[u].push_back(v);
+			adj[v].push_back(u);
+		}
+		
+		ans = 0;
+		dfs0(x, -1);
+		ans -= dfs1(x, -1);
+		
+		cout << ans << endl;
     }	
 }

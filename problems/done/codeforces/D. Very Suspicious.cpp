@@ -1,5 +1,13 @@
+// Problem: D. Very Suspicious
+// Contest: Codeforces - Codeforces Round #788 (Div. 2)
+// URL: https://codeforces.com/contest/1670/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -71,8 +79,31 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
+    vpii ans;
+    
+	int cur = 6;
+	int tot = 3;
+	
+	ans.push_back({2, 2});
+	ans.push_back({6, 3});
+	
+	vi cnt(3);
+	cnt[0] = cnt[1] = cnt[2] = 1;
+	
+	while(cur < 1e9){
+		int mn = min_element(cnt.begin(), cnt.end()) - cnt.begin();
+		cnt[mn]++;
+		tot++;
+		cur += (cnt[0] + cnt[1] + cnt[2] - cnt[mn])*2;
+		ans.push_back({cur, tot});
+	}
+	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		auto it = lower_bound(ans.begin(), ans.end(), (pii){n, -1});
+		cout << it->second << endl;
     }	
 }

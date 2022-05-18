@@ -1,5 +1,13 @@
+// Problem: A. Food for Animals
+// Contest: Codeforces - Codeforces Round #787 (Div. 3)
+// URL: https://codeforces.com/contest/1675/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,16 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int a, b, c;
+		cin >> a >> b >> c;
+		
+		int x, y;
+		cin >> x >> y;
+		
+		x = max(int(0), x-a);
+		y = max(int(0), y-b);
+		
+		bool ans = c >= x+y;
+		cout << (ans ? "YES" : "NO") << endl;
     }	
 }

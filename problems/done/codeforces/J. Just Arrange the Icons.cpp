@@ -1,3 +1,11 @@
+// Problem: J. Just Arrange the Icons
+// Contest: Codeforces - 2019-2020 ICPC, NERC, Northern Eurasia Finals (Unrated, Online Mirror, ICPC Rules, Teams Preferred)
+// URL: https://codeforces.com/contest/1267/problem/J
+// Memory Limit: 512 MB
+// Time Limit: 5000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,49 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, --i;
+		
+		vi frq(n);
+		for(auto i : vec) frq[i]++;
+		int mx = *max_element(frq.begin(), frq.end());
+		
+		vi ffrq(n+1);
+		for(auto i : frq) ffrq[i]++;
+		
+		vpii tmp;
+		for(int i = 1; i <= n; i++) if(ffrq[i]){
+			tmp.push_back({i, ffrq[i]});
+		}
+		
+		int ans = 0;
+		for(int s = mx; s >= 1; s--){
+			
+			int cans = 0;
+			bool good = true;
+			
+			for(auto [c, f] : tmp){
+				
+				int k = (c+s-1)/s;
+				int rm = k*s - c;
+				
+				if(rm > k){
+					good = false;
+					break;
+				}
+				
+				cans += f*k;
+			}
+			
+			if(!good) continue;
+			
+			ans = cans;
+			break;
+		}
+		
+		cout << ans << endl;
     }	
 }

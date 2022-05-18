@@ -1,3 +1,11 @@
+// Problem: C. Most Similar Words
+// Contest: Codeforces - Codeforces Round #790 (Div. 4)
+// URL: https://codeforces.com/contest/1676/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,29 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		vector<string> vec(n);
+		for(auto &s : vec) cin >> s;
+		
+		int ans = INF;
+		
+		for(int i = 0; i < n; i++)
+		for(int j = 0; j < i; j++){
+			
+			string s0 = vec[i];
+			string s1 = vec[j];
+			
+			int cans = 0;
+			
+			for(int k = 0;  k < m; k++){
+				cans += abs(s0[k]-s1[k]);
+			}
+			
+			ans = min(ans, cans);
+		}
+		
+		cout << ans << endl;
     }	
 }

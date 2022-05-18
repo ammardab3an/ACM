@@ -1,5 +1,13 @@
+// Problem: G. Banquet Preparations 1
+// Contest: Codeforces - Codeforces Round #753 (Div. 3)
+// URL: https://codeforces.com/contest/1607/problem/G
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,66 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		vector<vi> vec(n, vi(2));
+		
+		for(auto &v : vec){
+			cin >> v[0] >> v[1];
+		}
+		
+		int ans_dif = INFLL;
+		vector<vi> ans(n, vi(2));
+		
+		for(auto b : {0, 1}){
+			
+			vpii tmp;
+			int cans_dif = 0;
+			vector<vi> cans(n, vi(2));
+			
+			for(int i = 0; i < n; i++){
+				
+				int mn = min(vec[i][b], m);
+				int rm = m-mn;
+				
+				cans[i][b] += mn;
+				cans[i][!b] += rm;
+				
+				int k = min(mn, vec[i][!b]-rm);
+				if(k) tmp.push_back({k, i});
+				
+				cans_dif += vec[i][!b] - rm;
+				cans_dif -= vec[i][b] - mn;
+			}
+			
+			if(cans_dif < 0) continue;
+			
+			sort(tmp.begin(), tmp.end());
+			
+			while(!tmp.empty() && (cans_dif > 1)){
+				
+				int mn = min(cans_dif/2, tmp.back().first);
+				
+				cans_dif -= mn*2;
+				
+				int p = tmp.back().second;
+				cans[p][b] -= mn;
+				cans[p][!b] += mn;
+				
+				tmp.pop_back();	
+			}
+			
+			if(cans_dif < ans_dif){
+				ans_dif = cans_dif;
+				ans = cans;
+			}
+		}
+		
+		cout << ans_dif << endl;
+		for(auto v : ans){
+			for(auto i : v) cout << i << ' ';
+			cout << endl;
+		}
     }	
 }

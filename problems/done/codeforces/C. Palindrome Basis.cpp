@@ -1,5 +1,13 @@
+// Problem: C. Palindrome Basis
+// Contest: Codeforces - Codeforces Round #785 (Div. 2)
+// URL: https://codeforces.com/contest/1673/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,28 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int arr[NMAX], sz;
+int mem[505][40004];
+
+int go(int i, int rm){
+	
+	if(rm < 0){
+		return 0;
+	}
+	
+	if(i==sz){
+		return rm==0;
+	}
+	
+	int &ret = mem[i][rm];
+	if(ret+1) return ret;
+	
+	int st_path = go(i+1, rm);
+	int nd_path = go(i, rm-arr[i]);
+	
+	return ret = add(st_path, nd_path);
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +101,48 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
+    for(int i = 1; ;i++){
+    	
+    	string s = to_string(i);
+    	
+    	string s1 = s;
+    	string s2 = s;
+    	
+    	reverse(s1.begin(), s1.end());
+    	
+    	s2.pop_back();
+    	s2 += s1;
+    	
+    	s1 = s + s1;
+    	
+    	int i1 = stoi(s1);
+    	int i2 = stoi(s2);
+    	
+    	if(i1 > 4e4 && i2 > 4e4){
+    		break;
+    	}
+    	if(i1 <= 4e4){
+    		arr[sz++] = i1;
+    	}
+    	if(i2 <= 4e4){
+    		arr[sz++] = i2;
+    	}
+    }
+    
+    sort(arr, arr+sz);
+    
+    // cout << sz << endl;
+    // for(int i = 0; i < sz; i++){
+    	// cout << arr[i] << endl;
+    // }
+    
+    memset(mem, -1, sizeof mem);
+    
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		cout << go(0, n) << endl;		
     }	
 }

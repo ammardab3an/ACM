@@ -1,5 +1,13 @@
+// Problem: A. Tokitsukaze and All Zero Sequence
+// Contest: Codeforces - Codeforces Round #789 (Div. 2)
+// URL: https://codeforces.com/contest/1678/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,37 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		sort(vec.begin(), vec.end());
+		
+		int cnt = 0;
+		for(auto i : vec) if(i != 0){
+			cnt++;
+		}
+		
+		if(cnt != n){
+			cout << cnt << endl;
+			continue;	
+		}
+		
+		bool found = false;
+		for(int i = 0; i+1 < n; i++){
+			if(vec[i]==vec[i+1]){
+				found = true;
+				break;
+			}
+		}
+		
+		if(found){
+			cout << n << endl;
+		}
+		else{
+			cout << n+1 << endl;
+		}
     }	
 }

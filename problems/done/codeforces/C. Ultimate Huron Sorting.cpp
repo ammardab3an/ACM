@@ -1,3 +1,11 @@
+// Problem: C. Ultimate Huron Sorting
+// Contest: Codeforces - 2021, XIII Donald Knuth Annual Programming Contest by ESCOM-IPN
+// URL: https://codeforces.com/gym/103256/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -71,8 +79,16 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    int ans = 0;
+    
+    for(int i = 1; i <= n; i++){
+    	int ai;
+    	cin >> ai;
+    	ans += i==ai;
+    }
+    
+    cout << ans << endl;
 }

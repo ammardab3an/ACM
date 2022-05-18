@@ -1,3 +1,11 @@
+// Problem: E1. Coins Game (easy version)
+// Contest: Codeforces - 2021, XIII Donald Knuth Annual Programming Contest by ESCOM-IPN
+// URL: https://codeforces.com/gym/103256/problem/E1
+// Memory Limit: 64 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -60,6 +68,23 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int mem[(1 << 20) + 10];
+
+int go(int msk){
+	
+	if(!msk){
+		return 0;
+	}
+	
+	int &ret = mem[msk];
+	if(ret+1) return ret;
+	
+	int p = __builtin_popcount(msk);
+	msk ^= 1 << (p-1);
+	
+	return ret = go(msk)+1;
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +96,21 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    int ans = 0;
+    memset(mem, -1, sizeof mem);
+    
+    for(int i = 0; i < (1<<n); i++){
+    	ans += go(i);
+    }
+    
+    int a = ans;
+    int b = 1 << n;
+    
+    int g = __gcd(a, b);
+    a /= g, b/=g;
+    
+    cout << a << '/' << b << endl;
 }

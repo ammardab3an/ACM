@@ -1,5 +1,13 @@
+// Problem: A. Prof. Slim
+// Contest: Codeforces - Codeforces Round #788 (Div. 2)
+// URL: https://codeforces.com/contest/1670/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -72,7 +80,25 @@ int32_t main(){
     // freopen("name.in", "r", stdin);
     
     int t; cin >> t; while(t--){
+		
+		int n;
+		cin >> n;
+		
+		int cnt = 0;
+		
+		vi vec(n);
+		for(auto &i : vec){
+			cin >> i;
+			if(i < 0){
+				cnt++;
+				i *= -1;
+			}
+		}
 
-
+		for(int i = 0; i < cnt; i++){
+			vec[i] *= -1;
+		}
+		
+		cout << (is_sorted(vec.begin(), vec.end()) ? "YES" : "NO") << endl;
     }	
 }

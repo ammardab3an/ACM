@@ -1,5 +1,13 @@
+// Problem: C. Infinite Replacement
+// Contest: Codeforces - Codeforces Round #786 (Div. 3)
+// URL: https://codeforces.com/contest/1674/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,24 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		string a, b;
+		cin >> a >> b;
+		
+		if(b=="a"){
+			cout << 1 << endl;
+			continue;
+		}
+		
+		bool vis_a = false;
+		for(auto c : b) if(c=='a'){
+			vis_a = true;
+		}
+		
+		if(vis_a){
+			cout << -1 << endl;
+			continue;
+		}
+		
+		cout << (1ll << int(a.size())) << endl;
     }	
 }

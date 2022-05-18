@@ -1,3 +1,11 @@
+// Problem: A. Coffee Bar
+// Contest: Codeforces - 2021, XIII Donald Knuth Annual Programming Contest by ESCOM-IPN
+// URL: https://codeforces.com/gym/103256/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -71,8 +79,11 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    string str;
+    cin >> str;
+    
+    cout << str << endl;
 }

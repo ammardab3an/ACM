@@ -1,5 +1,13 @@
+// Problem: B2. Tokitsukaze and Good 01-String (hard version)
+// Contest: Codeforces - Codeforces Round #789 (Div. 2)
+// URL: https://codeforces.com/contest/1678/problem/B2
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,37 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		string str;
+		cin >> str;
+		
+		int ans = 0;
+		int ans_cnt = 1;
+		
+		for(int i = 0; i < n; i+=2){
+			if(str[i] != str[i+1]){			
+				ans++;
+			}
+		}
+		
+		int lst = -1;
+		
+		while(!str.empty()){
+			
+			int c0 = str.back()-'0'; str.pop_back();
+			int c1 = str.back()-'0'; str.pop_back();
+			
+			if(c0 != c1) continue;
+			
+			if(lst != -1 && c0 != lst){
+				ans_cnt++;
+			}
+			
+			lst = c0;
+		}
+		
+		cout << ans << ' ' << ans_cnt << endl;
     }	
 }

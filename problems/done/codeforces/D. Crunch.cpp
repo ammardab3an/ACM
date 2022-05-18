@@ -1,5 +1,13 @@
+// Problem: D. Crunch
+// Contest: Codeforces - STAR Contest 2022
+// URL: https://starcontest22.contest.codeforces.com/group/ZbfYu7B821/contest/378214/problem/D
+// Memory Limit: 512 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -71,8 +79,29 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    vi vec(n);
+    for(auto &i : vec) cin >> i;
+    
+    vi pre(n);
+    pre[0] = vec[0];
+    for(int i = 1; i < n; i++){
+    	pre[i] = pre[i-1] + vec[i];
+    }
+    
+    int ans = 0;
+    
+    for(int i = 0; i < n; i++)
+    for(int j = i; j < n; j++){
+    	
+    	int sm = pre[j] - pre[i] + vec[i];
+    	
+    	if(sm > (j-i+1)*100){
+    		ans = max(ans, j-i+1);
+    	}
+    }
+    
+    cout << ans << endl;
 }

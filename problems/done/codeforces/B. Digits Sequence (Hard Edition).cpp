@@ -1,5 +1,13 @@
+// Problem: B. Digits Sequence (Hard Edition)
+// Contest: Codeforces - Testing Round #15 (Unrated)
+// URL: https://codeforces.com/contest/1177/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -71,8 +79,39 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int t = 1; 
+    // cin >> t; 
+    while(t--) {
+    	
+	    int n;
+	    cin >> n;
+	    
+	    int cur_s = 1;
+	    int cur_c = 9;
+	    int k = 1;
+	    
+	    while(n >= cur_c * k){
+	    	n -= cur_c * k;
+	    	cur_s *= 10;
+	    	cur_c *= 10;
+	    	k += 1;
+	    }
+	    
+	    if(n==0){
+	    	cout << (cur_s-1)%10 << endl;
+	    	continue;
+	    }
+	    
+	    int x = n/k;
+	    n -= x*k;
+	    cur_s += x;
+	    
+	    if(n==0){
+	    	cout << (cur_s-1)%10 << endl;
+	    	continue;
+	    }
+	    
+	    string str = to_string(cur_s);
+	    cout << str[n-1] << endl;
+    }
 }

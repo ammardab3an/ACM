@@ -1,3 +1,11 @@
+// Problem: D. X-Sum
+// Contest: Codeforces - Codeforces Round #790 (Div. 4)
+// URL: https://codeforces.com/contest/1676/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,63 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		vector<vi> grid(n, vi(m));
+		
+		for(auto &v : grid)
+		for(auto &i : v) cin >> i;
+		
+		vector<vi> v0(n, vi(m)), v1=v0, v2=v0, v3=v0;
+		
+		{
+			v0[0] = grid[0];
+			for(int i = 1; i < n; i++){
+				v0[i][0] = grid[i][0];
+				for(int j = 1; j < m; j++){
+					v0[i][j] = v0[i-1][j-1] + grid[i][j];
+				}
+			}
+		}
+		{
+			v1[0] = grid[0];
+			for(int i = 1; i < n; i++){
+				v1[i][m-1] = grid[i][m-1];
+				for(int j = m-2; j >= 0; j--){
+					v1[i][j] = v1[i-1][j+1] + grid[i][j];
+				}
+			}
+		}
+		{
+			v2[n-1] = grid[n-1];
+			for(int i = n-2; i >= 0; i--){
+				v2[i][0] = grid[i][0];
+				for(int j = 1; j < m; j++){
+					v2[i][j] = v2[i+1][j-1] + grid[i][j];
+				}
+			}
+		}
+		{
+			v3[n-1] = grid[n-1];
+			for(int i = n-2; i >= 0; i--){
+				v3[i][m-1] = grid[i][m-1];
+				for(int j = m-2; j >= 0; j--){
+					v3[i][j] = v3[i+1][j+1] + grid[i][j];
+				}
+			}
+		}
+		
+		int ans = 0;
+		for(int i = 0; i < n; i++)
+		for(int j = 0; j < m; j++){
+			
+			int cans = v0[i][j] + v1[i][j] + v2[i][j] + v3[i][j];
+			cans -= 3 * grid[i][j];
+			
+			ans = max(ans, cans);
+		}
+		
+		cout << ans << endl;
     }	
 }

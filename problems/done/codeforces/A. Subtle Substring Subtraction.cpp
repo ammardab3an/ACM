@@ -1,5 +1,13 @@
+// Problem: A. Subtle Substring Subtraction
+// Contest: Codeforces - Codeforces Round #785 (Div. 2)
+// URL: https://codeforces.com/contest/1673/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,26 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		string str;
+		cin >> str;
+		
+		if(str.size()==1){
+			cout << "Bob " << str[0]-'a'+1 << endl;
+			continue;
+		}
+		
+		int sm = 0;
+		for(auto c : str){
+			sm += c-'a'+1;
+		}
+		
+		int mn = min(str.front(), str.back()) - 'a'+1;
+		
+		if(str.size()%2==1){		
+			cout << "Alice " << (sm-mn)-mn << endl;
+		}
+		else{
+			cout << "Alice " << sm << endl;
+		}
     }	
 }

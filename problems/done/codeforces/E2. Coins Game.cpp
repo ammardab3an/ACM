@@ -1,3 +1,11 @@
+// Problem: E2. Coins Game (hard version)
+// Contest: Codeforces - 2021, XIII Donald Knuth Annual Programming Contest by ESCOM-IPN
+// URL: https://codeforces.com/gym/103256/problem/E2
+// Memory Limit: 64 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -71,8 +79,10 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    ll x = n*(n+1)/2;
+    if(x%2 == 0) cout<<x/2<<'/'<<1;
+    else cout<<x<<'/'<<2;   
+    
 }

@@ -1,5 +1,13 @@
+// Problem: D. Vertical Paths
+// Contest: Codeforces - Codeforces Round #787 (Div. 3)
+// URL: https://codeforces.com/contest/1675/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,26 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n;
+vi adj[NMAX];
+int vis[NMAX], vid;
+vi tmp;
+
+int dfs(int u){
+	
+	if(adj[u].empty()){
+		tmp.push_back(u);
+		return 1;
+	}
+	
+	int ret = 0;
+	for(auto v : adj[u]){
+		ret += dfs(v);
+	}
+	
+	return ret;
+}
+
 int32_t main(){
     
     fastIO;
@@ -73,6 +101,56 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		cin >> n;
+		
+		for(int i = 0; i <= n; i++){
+			adj[i].clear();
+		}
+		
+		vi par(n);
+		
+		int root = 0;
+		for(int i = 0; i < n; i++){
+			
+			int p;
+			cin >> p;
+			p--;
+			
+			par[i] = p;
+			
+			if(p != i){
+				adj[p].push_back(i);
+			}
+			else{
+				root = i;
+			}
+		}
+		
+		vid++;
+		tmp.clear();
+		dfs(root);
+		
+		// reverse(tmp.begin(), tmp.end());
+		
+		vector<vi> ans;
+		for(auto u : tmp){
+			
+			int v = u;
+			ans.push_back({});
+			
+			while(vis[v] != vid){
+				vis[v] = vid;
+				ans.back().push_back(v);
+				v = par[v];
+			}
+		}
+		
+		cout << ans.size() << endl;
+		for(auto v : ans){
+			cout << v.size() << endl;
+			reverse(v.begin(), v.end());
+			for(auto u : v) cout << u+1 << ' '; cout << endl;
+		}
+		cout << endl;
     }	
 }

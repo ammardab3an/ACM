@@ -1,3 +1,11 @@
+// Problem: A. Minimums and Maximums
+// Contest: Codeforces - Educational Codeforces Round 128 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1680/problem/A
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,19 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int l0, r0;
+		cin >> l0 >> r0;
+		
+		int l1, r1;
+		cin >> l1 >> r1;;
+		
+		if(r0 < l1 || r1 < l0){
+			cout << l0+l1 << endl;
+		}
+		else{
+			int st_path = l0+l1;
+			int nd_path = max(l0, l1);
+			cout << min(st_path, nd_path) << endl;
+		}
     }	
 }

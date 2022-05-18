@@ -1,5 +1,13 @@
+// Problem: O - Optimal Binary Search Tree
+// Contest: Virtual Judge - Dynamic Programming Week 3
+// URL: https://vjudge.net/contest/490538#problem/O
+// Memory Limit: 1024 MB
+// Time Limit: 10000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,36 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n;
+int arr[255];
+int pre[255];
+int mem[255][255];
+
+int calc(int l, int r){
+	if(l > r) return 0;
+	return pre[r] - pre[l] + arr[l];
+}
+
+int go(int l, int r){
+	
+	if(l >= r){
+		return 0;
+	}
+	
+	int &ret = mem[l][r];
+	if(ret+1) return ret;
+	
+	int ans = INFLL;
+	
+	for(int i = l; i <= r; i++){
+		int st_path = go(l, i-1) + calc(l, i-1);
+		int nd_path = go(i+1, r) + calc(i+1, r);
+		ans = min(ans, st_path + nd_path);
+	}	
+	
+	return ret = ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +109,20 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    while(cin >> n){
+    	
+    	for(int i = 0; i < n; i++){
+    		cin >> arr[i];
+    	}
+    	
+    	pre[0] = arr[0];
+    	for(int i = 1; i < n; i++){
+    		pre[i] = pre[i-1] + arr[i];	
+    	}
+    	
+    	memset(mem, -1, sizeof mem);
+    	
+    	int ans = go(0, n-1);
+    	cout << ans << endl;
+    }
 }

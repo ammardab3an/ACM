@@ -1,3 +1,11 @@
+// Problem: B. Equal Candies
+// Contest: Codeforces - Codeforces Round #790 (Div. 4)
+// URL: https://codeforces.com/contest/1676/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,16 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		int sm = 0;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, sm+=i;
+		
+		sort(vec.begin(), vec.end());
+		
+		cout << sm - vec.front()*n << endl;
     }	
 }

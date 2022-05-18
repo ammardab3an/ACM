@@ -1,16 +1,24 @@
+// Problem: C. Tokitsukaze and Strange Inequality
+// Contest: Codeforces - Codeforces Round #789 (Div. 2)
+// URL: https://codeforces.com/contest/1678/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -73,6 +81,61 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, --i;
+		
+		vector<vi> pre(n, vi(n));
+		vector<vi> suf(n, vi(n));
+		
+		{
+			for(int i = vec[0]; i < n; i++){
+				pre[0][i] = 1;
+			}
+			
+			for(int i = 1; i < n; i++){
+				
+				for(int j = 0; j < n; j++){
+					pre[i][j] = pre[i-1][j];
+				}
+				
+				for(int j = vec[i]; j < n; j++){
+					pre[i][j]++;
+				}
+			}
+		}
+		
+		{
+			for(int i = vec[n-1]; i < n; i++){
+				suf[n-1][i] = 1;
+			}
+			
+			for(int i = n-2; i >= 0; i--){
+				
+				for(int j = 0; j < n; j++){
+					suf[i][j] = suf[i+1][j];
+				}	
+				
+				for(int j = vec[i]; j < n; j++){
+					suf[i][j]++;
+				}
+			}
+		}
+		
+		int64_t ans = 0;
+		
+		for(int i = 1; i < n; i++)
+		for(int j = i+1; j+1 < n; j++){
+			
+			int a = pre[i-1][vec[j]];
+			int b = suf[j+1][vec[i]];
+			
+			ans += 1ll*a*b;
+		}
+		
+		cout << ans << endl;
     }	
+    
 }

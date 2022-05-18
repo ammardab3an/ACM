@@ -1,5 +1,13 @@
+// Problem: Maximum Streak
+// Contest: HackerRank - Maximum Streak
+// URL: https://www.hackerrank.com/contests/maximum-streak/challenges/maximum-streak
+// Memory Limit: 512 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -71,8 +79,41 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, m;
+    cin >> n >> m;
+    
+    vi vec(n);
+    for(auto &i : vec) cin >> i;
+    
+    sort(vec.begin(), vec.end());
+    
+    int ans = 0;
+    
+    for(int i = 0; i < n; i++){
+    	
+    	int l = i;
+    	int r = n-1;
+    	
+    	int cans = i;
+    	
+    	while(l <= r){
+    		
+    		int mid = (l+r)/2;
+    		
+    		int cnt = mid-i+1;
+    		int dif = vec[mid]-vec[i]+1;
+    		
+    		if(dif-cnt <= m){
+    			cans = mid;
+    			l = mid+1;
+    		}
+    		else{
+    			r = mid-1;
+    		}
+    	}
+    	
+    	ans = max(ans, vec[cans]-vec[i]+1);
+    }
+    
+    cout << ans << endl;
 }

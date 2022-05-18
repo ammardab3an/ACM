@@ -1,5 +1,13 @@
+// Problem: B2. Tokitsukaze and Good 01-String (hard version)
+// Contest: Codeforces - Codeforces Round #789 (Div. 2)
+// URL: https://codeforces.com/contest/1678/problem/B2
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,47 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n;
+string str;
+pii mem[NMAX][2][2];
+int vis[NMAX][2][2], vid;
+
+pii go(int i, int lst, int b){
+	
+	if(i==n){
+		return b==0 ? (pii){0, 0} : (pii){INF, INF};
+	}
+	
+	if(vis[i][lst][b]==vid){
+		return mem[i][lst][b];
+	}
+	vis[i][lst][b] = vid;
+	
+	pii st_path = {INF, INF};
+	pii nd_path = {INF, INF};
+	pii rd_path = {INF, INF};
+	
+	if(i){	
+		pii tmp = go(i+1, lst, !b);
+		st_path.first = ((str[i]-'0') != lst) + tmp.first;
+		st_path.second = tmp.second;
+	}
+	
+	if(!b){
+		pii tmp = go(i+1, 0, 1);
+		nd_path.first = ((str[i]-'0') != 0) + tmp.first;
+		nd_path.second = 1 + tmp.second;
+	}
+	
+	if(!b){
+		pii tmp = go(i+1, 1, 1);
+		rd_path.first = ((str[i]-'0') != 1) + tmp.first;
+		rd_path.second = 1 + tmp.second;
+	}
+	
+	return mem[i][lst][b] = min({st_path, nd_path, rd_path});
+}
+
 int32_t main(){
     
     fastIO;
@@ -73,6 +122,12 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		cin >> n;
+		cin >> str;
+		
+		vid++;
+		
+		pii ans = go(0, 0, 0);
+		cout << ans.first << ' ' << ans.second << endl;
     }	
 }

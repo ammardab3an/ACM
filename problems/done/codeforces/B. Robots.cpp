@@ -1,3 +1,11 @@
+// Problem: B. Robots
+// Contest: Codeforces - Educational Codeforces Round 128 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1680/problem/B
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,34 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		vector<string> grid(n);
+		for(auto &s : grid) cin >> s;
+		
+		int i, j;
+		for(i = 0; i < n; i++){
+			bool found = false;
+			for(j = 0; j < m; j++) if(grid[i][j]=='R'){
+				found = true;
+				break;
+			}
+			if(found) break;
+		}
+		
+		// cout << i << ' ' << j << endl;
+		
+		bool ans = true;
+		
+		for(int ii = i; ii < n; ii++)
+		for(int jj = 0; jj < j; jj++){
+			if(grid[ii][jj]=='R'){
+				ans = false;
+				break;
+			}	
+		}
+		
+		cout << (ans ? "YES" : "NO") << endl;
     }	
 }

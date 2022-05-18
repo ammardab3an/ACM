@@ -1,3 +1,11 @@
+// Problem: J. Bongcloud Opening
+// Contest: Codeforces - 2021-2022 ICPC, NERC, Southern and Volga Russian Regional Contest (problems intersect with Educational Codeforces Round 117)
+// URL: https://codeforces.com/gym/103430/problem/J
+// Memory Limit: 512 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -60,6 +68,41 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n, k, x;
+int arr[2020][10];
+int mem[2020][10];
+
+int go(int i, int cur){
+	
+	if(i == n){
+		return cur;
+	}
+	
+	if(cur < x-k){
+		return go(i+1, cur + arr[i][!arr[i][2]]);
+	}
+	if(x+k < cur){
+		return go(i+1, cur + arr[i][!arr[i][3]]);
+	}
+	
+	int &ret = mem[i][x+k-cur];
+	if(ret+1) return ret;
+	
+	int ans = -INFLL;
+	
+	if(arr[i][2] || arr[i][3]){
+		int cans = go(i+1, cur + arr[i][0]);
+		ans = max(ans, cans);
+	}
+	
+	if(!arr[i][2] || !arr[i][3]){
+		int cans = go(i+1, cur + arr[i][1]);
+		ans = max(ans, cans);
+	}
+	
+	return ret = ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +114,21 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
+    {
 
-
+		cin >> n >> k >> x;
+		for(int i = 0; i < n; i++)
+		for(int j = 0; j < 4; j++){
+			cin >> arr[i][j];
+		}
+		
+		for(int i = 0; i < n; i++){
+			arr[i][1] *= -1;
+		}
+		
+		memset(mem, -1, sizeof mem);
+		
+		int ans = go(0, x);
+		cout << ans << endl;
     }	
 }

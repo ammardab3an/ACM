@@ -1,5 +1,13 @@
+// Problem: K - FOODIE
+// Contest: Virtual Judge - Dynamic Programming Week 3
+// URL: https://vjudge.net/contest/490538#problem/K
+// Memory Limit: 1536 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,28 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n, k;
+int arr[111];
+int mem[111][1010];
+
+int go(int i, int rm){
+	
+	if(rm < 0){
+		return -INF;
+	}
+	if(i == n){
+		return 0;
+	}
+	
+	int &ret = mem[i][rm];
+	if(ret+1) return ret;
+	
+	int st_path = go(i+1, rm);
+	int nd_path = go(i+1, rm-arr[i]) + arr[i];
+	
+	return ret = max(st_path, nd_path);
+}
+
 int32_t main(){
     
     fastIO;
@@ -73,6 +103,23 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		cin >> n >> k;
+		for(int i = 0; i < n; i++){
+			
+			int sm = 0;
+			
+			int ai;
+			int m; cin >> m; while(m--){
+				cin >> ai;
+				sm += ai;	
+			}
+			
+			arr[i] = sm;
+		}
+		
+		memset(mem, -1, sizeof mem);
+		
+		int ans = go(0, k);
+		cout << ans << endl;
     }	
 }

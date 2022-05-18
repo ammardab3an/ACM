@@ -1,3 +1,11 @@
+// Problem: G. Chat Ban
+// Contest: Codeforces - 2021-2022 ICPC, NERC, Southern and Volga Russian Regional Contest (problems intersect with Educational Codeforces Round 117)
+// URL: https://codeforces.com/gym/103430/problem/g
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,39 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int k, x;
+		cin >> k >> x;
+		
+		auto calc = [&](int i){
+			
+			if(i <= k){
+				return (i*(i+1))/2;
+			}
+			else{
+				i = i-k;
+				i = k-i;
+				return (k*(k+1))/2 + ((k*(k-1))/2 - (i*(i-1))/2);
+			}
+		};
+		
+		int l = 0;
+		int r = k*2-1;
+		
+		int ans = k*2-1;
+		
+		while(l <= r){
+			
+			int mid = (l+r)/2;
+			
+			if(calc(mid) >= x){
+				ans = mid;
+				r = mid-1;
+			}
+			else{
+				l = mid+1;
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }

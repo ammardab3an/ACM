@@ -1,3 +1,11 @@
+// Problem: C. Magical Rearrangement
+// Contest: Codeforces - 2021 Jiangsu Collegiate Programming Contest
+// URL: https://codeforces.com/gym/103495/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -73,6 +81,76 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int sm = 0;
+		
+		vi vec(10);
+		for(auto &i : vec) cin >> i, sm += i;
+			
+		int n = sm;
+		
+		if(n==1 && vec[0]==1){
+			cout << 0 << endl;
+			continue;
+		}
+		
+		int mx = *max_element(vec.begin(), vec.end());
+		
+		if(2*mx > n+1 || 2*vec[0] > n){
+			cout << -1 << endl;
+			continue;
+		}
+		
+		string ans;
+		int lst = -1;
+		bool good = true;
+		
+		for(int i = 0; i < n; i++){
+			
+			int m = n-i;
+				
+			auto it = max_element(vec.begin() + (i==0), vec.end());	
+			int c = *it;
+			int p = it-vec.begin();
+			
+			if(2*c==m+1){
+				if(p==lst){
+					good = false;
+					break;
+				}
+				else{
+					ans.push_back('0' + p);
+					vec[p]--;
+					lst = p;
+				}
+			}
+			else{
+				
+				int p = -1;
+				for(p = i==0 ? 1 : 0; p < 10; p++) if(vec[p]) if(p != lst){
+					
+					int nc = vec[p]-1;
+					int nm = m-1;
+					if(2*nc == nm+1) continue;
+					
+					break;
+				}
+				
+				if(p!=-1){
+					ans.push_back('0' + p);
+					vec[p]--;
+					lst = p;
+				}
+				else{
+					good = false;
+					break;
+				}
+			}
+		}
+		
+		if(!good){
+			ans = -1;
+		}
+		
+		cout << ans << endl;
     }	
 }

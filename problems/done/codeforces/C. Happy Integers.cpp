@@ -1,5 +1,13 @@
+// Problem: C. Happy Integers
+// Contest: Codeforces - STAR Contest 2022
+// URL: https://starcontest22.contest.codeforces.com/group/ZbfYu7B821/contest/378214/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,17 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+bool good(int x){
+	string str = to_string(x);
+	int n = str.size();
+	for(int i = 1; i < n; i++){
+		if(str[i-1] > str[i]){
+			return false;
+		}
+	}
+	return true;
+}
+
 int32_t main(){
     
     fastIO;
@@ -71,8 +90,12 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    int t; cin >> t; while(t--){
-
-
-    }	
+    vi mem(int(1e6+10));
+    for(int i = 1; i < mem.size(); i++){
+    	mem[i] = mem[i-1] + good(i);
+    }
+    
+    int x;
+    cin >> x;
+    cout << mem[x] << endl;
 }

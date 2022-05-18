@@ -1,5 +1,13 @@
+// Problem: H - Scuba diver
+// Contest: Virtual Judge - Dynamic Programming Week 3
+// URL: https://vjudge.net/contest/490538#problem/H
+// Memory Limit: 1536 MB
+// Time Limit: 5000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -60,6 +68,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+int n;
+int arr[1010][3];
+int mem[1010][33][88];
+
+int go(int i, int a, int b){
+	
+	if(i==n){
+		return (!a && !b) ? 0 : INF;
+	}
+	
+	int &ret = mem[i][a][b];
+	if(ret+1) return ret;
+	
+	int st_path = go(i+1, a, b);
+	int nd_path = go(i+1, max(int(0), a-arr[i][0]), max(int(0), b-arr[i][1])) + arr[i][2];
+	
+	return ret = min(st_path, nd_path);
+}
+
 int32_t main(){
     
     fastIO;
@@ -73,6 +100,18 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
+		int a, b;
+		cin >> a >> b;
+		
+		cin >> n;
+		for(int i = 0; i < n; i++)
+		for(int j = 0; j < 3; j++){
+			cin >> arr[i][j];
+		}
+		
+		memset(mem, -1, sizeof mem);
+		
+		int ans = go(0, a, b);
+		cout << ans << endl;
     }	
 }

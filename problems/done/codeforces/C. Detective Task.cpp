@@ -1,5 +1,13 @@
+// Problem: C. Detective Task
+// Contest: Codeforces - Codeforces Round #787 (Div. 3)
+// URL: https://codeforces.com/contest/1675/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
 
-// By AmmarDab3an 
+
+// By AmmarDab3an - Aleppo University
 
 #include "bits/stdc++.h"
 
@@ -73,6 +81,37 @@ int32_t main(){
     
     int t; cin >> t; while(t--){
 
-
-    }	
+		string str;
+		cin >> str;
+		
+		int n = str.size();
+		
+		vi suf(n);
+		suf[n-1] = (str[n-1]=='1');
+		for(int i = n-2; i >= 0; i--){
+			suf[i] = suf[i+1] + (str[i]=='1');
+		}
+		
+		vi pre(n);
+		pre[0] = str[0]=='0';
+		for(int i = 1; i < n; i++){
+			pre[i] = pre[i-1] + (str[i]=='0');
+		}
+		
+		int ans = 0;
+		for(int i = 0; i < n; i++){
+			
+			bool b0 = i==0 ? true : pre[i-1]==0;
+			bool b1 = i==n-1 ? true : suf[i+1]==0;
+			
+			if(b0&&b1){
+				
+				// cout << ' ' <<  i << endl;
+				
+				ans++;
+			}
+		}
+		
+		cout << ans << endl;
+    }		
 }
