@@ -75,7 +75,6 @@ codeforces unsolved problems
 https://codeforces.com/problemset/gymProblem/102947/C
 https://codeforces.com/problemset/problem/1537/E1
 https://codeforces.com/problemset/problem/1538/G
-مسالة نهاد العربية
 https://codeforces.com/gym/101908/problem/C
 and the aleppo similar problem
 
@@ -85,13 +84,6 @@ https://codeforces.com/problemset/problem/863/D
 https://codeforces.com/gym/342521/
 https://codeforces.com/contest/1592/problem/E
 
-divide and con
-beats
-
-convix hull
-splay tree
-automata - kmp - zfun
-fft nnt
 
 https://codeforces.com/contest/1592/problem/D
 https://codeforces.com/contest/1592/problem/E
@@ -100,4 +92,12 @@ https://codeforces.com/contest/1594/problem/E2
 
 https://codeforces.com/contest/1657/problem/D
 
+
+
+2/6/2022
+https://codeforces.com/contest/1670/problem/E
+https://vjudge.net/contest/490713#problem/H
+https://codeforces.com/problemset/problem/1667/B
+https://codeforces.com/contest/817/problem/D
+https://codeforces.com/problemset/problem/815/C
 

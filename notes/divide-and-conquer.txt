@@ -1,0 +1,11 @@
+https://mzhang2021.github.io/cp-blog/divide-and-conquer/
+
+https://codeforces.com/problemset/problem/1400/E
+https://codeforces.com/contest/1400/submission/128855457
+
+https://binarysearch.com/problems/Every-Sublist-Containing-Unique-Element
+https://ideone.com/3etYZw
+
+https://www.codechef.com/problems/SEGPROD
+https://www.codechef.com/viewsolution/51477360
+

@@ -58,6 +58,8 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
+typedef double dtype;
+
 int32_t main(){
     
     fastIO;
@@ -74,10 +76,10 @@ int32_t main(){
     	int n;
     	cin >> n;
     	
-    	vector<double> vec(n);
+    	vector<dtype> vec(n);
     	for(auto &d : vec) cin >> d;
     	
-    	vector<vector<double>> tmp(n, vector<double>(2));
+    	vector<vector<dtype>> tmp(n, vector<dtype>(2));
     	
     	// tmp[i] : propability of having i alternations	
     	// tmp[i][1] : ends with one
@@ -99,15 +101,17 @@ int32_t main(){
     		}
     	}
     	
-    	double ans_0 = 0;
-    	double ans_1 = 0;
+    	dtype ans_0 = 0;
+    	dtype ans_1 = 0;
     	
     	for(int i = 1; i < n; i++){
     		ans_0 += (tmp[i][0]+tmp[i][1]) * i;
     		ans_1 += (tmp[i][0]+tmp[i][1]) * i*i;
     	}
     	
-    	double ans = ans_1 - ans_0*ans_0;
+    	// cout << ans_0 << ' ' << ans_1 << endl;
+    	
+    	dtype ans = ans_1 - ans_0*ans_0;
     	cout << fixed << setprecision(6) << ans << endl;
     }	
 }
