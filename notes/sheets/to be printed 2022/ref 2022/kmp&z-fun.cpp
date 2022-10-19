@@ -36,8 +36,11 @@ void computePrefix(){
 	for(int i = 1; i < pat.size(); i++){
 		pat_pre[i] = nxtL(pat_pre[i-1], pat[i]);
 	}
-1
 }
+
+
+// don't forget
+computePrefix()
 int j = 0;
 for(int i = 0; i < str.size(); i++){
 	j = nxtL(j, str[i]);

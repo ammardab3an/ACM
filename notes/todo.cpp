@@ -101,3 +101,18 @@ https://codeforces.com/problemset/problem/1667/B
 https://codeforces.com/contest/817/problem/D
 https://codeforces.com/problemset/problem/815/C
 
+
+12/8/2022
+https://vjudge.net/contest/490538#problem/C
+https://codeforces.com/contest/573/problem/D?f0a28=1
+https://www.spoj.com/problems/NKLEAVES/en/
+https://vjudge.net/contest/490713#problem/F
+https://codeforces.com/problemset/problem/815/C
+https://codeforces.com/gym/102215/problem/G
+https://www.codechef.com/problems/PRIMEDST
+https://codeforces.com/problemset/problem/1366/D
+https://codeforces.com/contest/1716/problem/A
+https://codeforces.com/contest/1716/problem/B
+https://codeforces.com/problemset/problem/1620/E
+https://codeforces.com/problemset/problem/1365/E
+https://codeforces.com/contest/1370/problem/E
