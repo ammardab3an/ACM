@@ -1,3 +1,5 @@
+// ntt 
+
 // mod = 2**k * c + 1
 // ASSERT: root_pw(2**k) > 2*N
 

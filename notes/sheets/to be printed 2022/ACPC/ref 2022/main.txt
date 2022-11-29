@@ -1,0 +1,112 @@
+data structurs:
+
+segment tree: normal, lazy, modified lazy, bs on seg, maximum positive subarray, 
+persistent seg: on array, on tree, query with 2 segs, query with 3 segs, lazy(history), 
+seg with pointers:
+beats:
+2 times pre  sum:
+2d segment tree: normal, with pointers
+non recursive:
+
+xor segment tree:
+https://github.com/ShahjalalShohag/code-library/blob/master/Data%20Structures/XOR%20Segment%20Tree.cpp
+
+bit: 1d, 1d ranges, 1d max-min, 2d, 2d ranges, 2d max-min
+
+trie: chars, integers(xor)
+
+trees:
+lca: normal, kth, o(1), min-max
+hld: normal(query up), with seg, with seg lazy, on edges
+centroid: normal(query up), counting
+
+lca o(1):
+https://github.com/ShahjalalShohag/code-library/blob/master/Graph%20Theory/LCA%20in%20O(1).cpp
+
+dsu: normal, with rollback, parallel bs, 
+
+sparse table: min-max, sum
+
+d&q:
+
+mo: normal, on tree, with update
+
+ordered set:
+https://github.com/ShahjalalShohag/code-library/blob/master/Data%20Structures/Ordered%20Set.cpp
+
+aho dynamic:
+https://github.com/ShahjalalShohag/code-library/blob/master/Data%20Structures/Static%20to%20Dynamic%20Trick.cpp
+
+
+small to large: normal, with sqrt,  
+
+mono que, maximum rectangle
+
+-------------------------------------------------------------------------------------------
+
+dp:
+
+on digit, bitmasks, on trees, with ternary search, inc-exc
+
+cht: trees, pointers, 
+fft: normal, fast, ntt, priority_queue, power, 
+
+fft any 32bit prime:
+https://github.com/ShahjalalShohag/code-library/blob/master/Math/NTT%20With%20Any%20Prime%20MOD.cpp
+
+sos:
+
+SOS convolution:
+https://github.com/ShahjalalShohag/code-library/blob/master/Dynamic%20Programming%20Optimizations/SOS%20convolutions.cpp
+https://codeforces.com/contest/914/submission/34392096
+
+2 sat:
+
+-------------------------------------------------------------------------------------------
+indexed set
+
+int nxt = vec[p]/(vec[p]/i+1);
+
+
+strings:
+kmp, z-function, kmp+dp, hash, bs on palandrom, fast longest palandrom algo, 
+fft+characters, kmp tree, 
+
+
+hashing segment tree, 
+
+fast longest:
+https://github.com/ShahjalalShohag/code-library/blob/master/Strings/Manachers.cpp
+
+-------------------------------------------------------------------------------------------
+
+xor guass
+matrix expo
+fft with any 32bit base
+
+
+-------------------------------------------------------------------------------------------
+
+div&con
+
+-------------------------------------------------------------------------------------------
+
+o3
+fast hash
+bitset 64 bit
+io
+stress
+__lg, if == 0 return 1
+list of important equations
+indexed set
+sqrtl
+
+-------------------------------------------------------------------------------------------
+
+sqrt on bits with sos:
+https://dmoj.ca/src/4884165
+
+
+__asm__(R"(
+)");
+
