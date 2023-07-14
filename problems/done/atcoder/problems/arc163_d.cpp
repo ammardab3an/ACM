@@ -1,3 +1,11 @@
+// Problem: D - Sum of SCC
+// Contest: AtCoder - AtCoder Regular Contest 163
+// URL: https://atcoder.jp/contests/arc163/tasks/arc163_d
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353; // 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -95,10 +103,43 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n, m;
+	cin >> n >> m;
+	
+	/*
+		dp[n][i][j] = 
+			sum(choose(i, k) * dp[n+1][i+1][j+k]) : k=0...i
+			+
+			sum(choose(n-i, k) * dp[n+1][i][j+i+k]) : k=0...n-i
+	*/
+	
+	vector<vector<vi>> dp(n+1, vector<vi>(n+1, vi(m+1)));
+	
+	dp[0][0][0] = 1;
+	
+	for(int i = 1; i <= n; i++)
+	for(int j = 0; j <= i; j++)
+	for(int k = 0; k <= m; k++){
+		
+		int cans = 0;
+		
+		if(j) for(int l = 0; l < j && l <= k; l++){
+			cans = add(cans, mul(choose(j-1, l), dp[i-1][j-1][k-l]));
+		}
+		
+		if(i-j) for(int l = 0; l < i-j && j+l <= k; l++){
+			cans = add(cans, mul(choose(i-j-1, l), dp[i-1][j][k-j-l]));
+		}
+		
+		dp[i][j][k] = cans;
+	}
+	
+	int ans = 0;
+	for(int i = 1; i <= n; i++){
+		ans = add(ans, dp[n][i][m]);
+	}
+	
+	cout << ans << endl;
 }

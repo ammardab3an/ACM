@@ -1,3 +1,11 @@
+// Problem: B. Stoned Game
+// Contest: Codeforces - Codeforces Round 666 (Div. 1)
+// URL: https://codeforces.com/problemset/problem/1396/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,33 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, i *= -1;
+		
+		multiset<int> st(vec.begin(), vec.end());
+		
+		bool ans = false;
+		
+		while(!st.empty()){
+			
+			int a = -(*st.begin());
+			st.erase(st.begin());
+			
+			if(st.empty()){
+				ans = true;
+				break;
+			}
+			
+			int b = -(*st.begin());
+			st.erase(st.begin());
+			
+			if(a-1) st.insert(-(a-1));
+			if(b-1) st.insert(-(b-1));
+		}
+		
+		cout << (ans ? "T" : "HL") << endl;
     }	
 }

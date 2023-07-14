@@ -1,3 +1,11 @@
+// Problem: B. Little Elephant and Array
+// Contest: Codeforces - Codeforces Round #136 (Div. 1)
+// URL: https://codeforces.com/problemset/problem/220/B
+// Memory Limit: 256 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -5,12 +13,12 @@
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,52 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, m;
+    cin >> n >> m;
+    
+    vi vec(n);
+    for(auto &i : vec) cin >> i;
+    
+    vi frq(n+1);
+    for(auto i : vec){
+    	if(i <= n){
+    		frq[i]++;
+    	}
+    }
+    
+    vi good;
+    for(int i = 1; i <= n; i++) if(frq[i] >= i){
+    	good.push_back(i);
+    }
+    
+    vector<vi> pre(good.size(), vi(n));
+    for(int i = 0; i < good.size(); i++){
+    	
+    	int g = good[i];
+    	
+    	pre[i][0] = vec[0]==g;
+    	for(int j = 1; j < n; j++){
+    		pre[i][j] = pre[i][j-1] + (vec[j]==g);
+    	}
+    }
+    
+    while(m--){
+    	
+    	int l, r;
+    	cin >> l >> r;
+    	l--, r--;
+    	
+    	int ans = 0;
+    	
+    	for(int i = 0; i < good.size(); i++){
+    		
+    		int sm = pre[i][r]-pre[i][l]+(vec[l]==good[i]);
+    		
+    		if(sm == good[i]){
+    			ans++;
+    		}
+    	}
+    	
+    	cout << ans << endl;
+    }
 }

@@ -1,3 +1,11 @@
+// Problem: E. Boxes and Balls
+// Contest: Codeforces - Educational Codeforces Round 151 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1845/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 5000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -5,12 +13,12 @@
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -84,6 +92,12 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+void rem_mod(int &x){
+	if(x >= MOD) x -= MOD;
+}
+
+int dp[2][121][1515];
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +111,41 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n, kk;
+	cin >> n >> kk;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	// dp[i][j][k] = 
+	// 	              dp[i-1][j+1-ai][k-(j+1-ai)]
+	//              + dp[i-1][j-ai][k-(j-ai)]
+	
+	dp[0][55 + 0][0] = 1;
+	
+	for(int i = 0; i < n; i++)
+	for(int j = -55; j <= 55; j++)
+	for(int k = 0; k <= kk; k++){
+		
+		int ai = vec[i];
+		
+		dp[(i+1)&1][55 + j][k] = 0;
+		
+		if(abs(j+1-ai) <= 55) if(abs(j+1-ai) <= k){
+			dp[(i+1)&1][55 + j][k] += dp[i&1][55 + j+1-ai][k-abs(j+1-ai)];
+			rem_mod(dp[(i+1)&1][55 + j][k]);
+		}	
+		
+		if(abs(j-ai) <= 55) if(abs(j-ai) <= k){
+			dp[(i+1)&1][55 + j][k] += dp[i&1][55 + j-ai][k-abs(j-ai)];
+			rem_mod(dp[(i+1)&1][55 + j][k]);
+		}
+	}
+	
+	int ans = 0;
+	for(int k = kk&1; k <= kk; k+=2){
+		ans = add(ans, dp[n&1][55 + 0][k]);
+	}
+	
+	cout << ans << endl;
 }

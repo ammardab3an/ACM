@@ -1,3 +1,11 @@
+// Problem: A. Blackboard List
+// Contest: Codeforces - Codeforces Round 877 (Div. 2)
+// URL: https://codeforces.com/contest/1838/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,17 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		sort(vec.begin(), vec.end());
+		
+		int ans = vec.back();
+		if(vec.front() < 0) ans = vec.front();
+		
+		cout << ans << endl;
     }	
 }

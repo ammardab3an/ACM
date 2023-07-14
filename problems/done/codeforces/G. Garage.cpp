@@ -1,3 +1,11 @@
+// Problem: G. Garage
+// Contest: Codeforces - COMPFEST 14 - Preliminary Online Mirror (Unrated, ICPC Rules, Teams Preferred)
+// URL: https://codeforces.com/problemset/problem/1725/G
+// Memory Limit: 128 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,35 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    auto test = [](int x){
+    	int ret = (x-1)/2;
+    	if(x >= 8){
+    		ret += (x-8)/4 + 1;
+    	}
+    	return ret;
+    };
+    
+    
+    int l = 3;
+    int r = 2e9;
+    
+    int ans = -1;
+    
+    while(l <= r){
+    	
+    	int mid = (l+r)/2;
+    	
+    	if(test(mid) >= n){
+    		ans = mid;
+    		r = mid-1;
+    	}
+    	else{
+    		l = mid+1;
+    	}
+    }
+    
+    cout << ans << endl;
 }

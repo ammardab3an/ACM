@@ -1,3 +1,11 @@
+// Problem: F.  Weird Koko
+// Contest: Codeforces - Btunis beek
+// URL: https://codeforces.com/group/rKyL0A9Cab/contest/447953/problem/F
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -80,9 +88,71 @@ void init(){
 }
 
 int choose(int n, int c){
-	assert(n >= c);
+	if(n < c) return 0;
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
+
+auto calc = [](int n, int m){
+			
+	vector<vi> dp(n+1, vi(m*n+1));
+	
+	for(int i = 1; i <= m; i++){
+		dp[1][i] = 1;
+	}
+	
+	for(int i = 2; i <= n; i++)
+	for(int j = 0; j <= i*m; j++)
+	for(int k = 1; k <= m; k++){
+		if(j-k < 0) break;
+		dp[i][j] = add(dp[i][j], dp[i-1][j-k]);
+	}
+	
+	int ret = 0;
+	
+	for(int i = 2; i <= n; i++)
+	for(int j = 2; j <= i; j++){
+		
+		int a0 = choose(n, i);
+		int a1 = pow_exp(m, n-i);
+		int a2 = dp[i][j*m];
+		
+		ret = add(ret, mul(a0, mul(a1, a2)));
+	}
+	
+	ret = mul(ret, inv(pow_exp(m, n)));
+	ret = add(ret, 1);
+		
+	return ret;
+};
+
+auto calc2 = [](int n, int m){
+
+	int ans = 0;
+	for(int i = 2; i <= n; i++){
+		
+		int cans = 0;
+		
+		for(int j = 2; j <= i; j++){
+			
+			for(int k = 0; k < j; k++){
+				
+				int a0 = k%2==0 ? 1 : -1;
+				int a1 = choose(i, k);
+				int a2 = choose((j-k)*m-1, i-1);
+				
+				cans = add(cans, mul(a0, mul(a1, a2)));
+			}
+		}
+		
+		ans = add(ans, mul(mul(pow_exp(m, n-i), choose(n, i)), cans));
+	}
+	
+	
+	ans = mul(ans, inv(pow_exp(m, n)));
+	ans = add(ans, 1);
+		
+	return ans;
+};
 
 int32_t main(){
     
@@ -95,10 +165,33 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		int ans0 = mul(pow_exp(m, n-1), pow_exp(2, n)-1);
+		int ans1 = pow_exp(m, n);
+		int ans2 = 0;
+		
+		for(int i = 1; i <= n; i++){
+			
+			int a0 = choose(n, i);
+			int a1 = pow_exp(m, n-i);
+			int a2 = choose(m-1, i-1);
+			
+			int a = mul(a0, mul(a1, a2));
+			ans2 = add(ans2, a);
+		}
+		
+		int ans = add(ans0, add(ans1, -ans2));
+		ans = mul(ans, inv(pow_exp(m, n)));
+		
+		cout << ans << endl;
+		
+		// cout << calc(n, m) << endl;
+		// cout << calc2(n, m) << endl;
     }	
 }

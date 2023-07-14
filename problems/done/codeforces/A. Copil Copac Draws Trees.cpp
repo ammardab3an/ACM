@@ -1,3 +1,11 @@
+// Problem: A. Copil Copac Draws Trees
+// Contest: Codeforces - Codeforces Round 875 (Div. 1)
+// URL: https://codeforces.com/contest/1830/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,21 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int n;
+vpii adj[NMAX];
+
+int dfs(int u, int p, int lst=-1){
+	
+	int ans = 0;
+	
+	for(auto [v, i] : adj[u]) if(v != p){
+		int cans = (lst > i) + dfs(v, u, i);
+		ans = max(ans, cans);
+	}
+	
+	return ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -99,6 +122,21 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		cin >> n;
+		
+		for(int i = 0; i <= n; i++){
+			adj[i].clear();
+		}
+		
+		for(int i = 0; i < n-1; i++){
+			int u, v;
+			cin >> u >> v;
+			u--, v--;
+			adj[u].push_back({v, i});
+			adj[v].push_back({u, i});
+		}
+		
+		int ans = 1 + dfs(0, -1);
+		cout << ans << endl;
     }	
 }

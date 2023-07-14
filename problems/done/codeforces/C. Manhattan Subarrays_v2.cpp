@@ -1,3 +1,11 @@
+// Problem: C. Manhattan Subarrays
+// Contest: Codeforces - Educational Codeforces Round 111 (Rated for Div. 2)
+// URL: https://codeforces.com/problemset/problem/1550/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,62 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		int ans = 0;
+		
+		multiset<pii> mst;
+		
+		auto check = [&](){
+			
+			if(mst.size() < 3){
+				return true;
+			}	
+			
+			for(auto i = mst.begin(); i != mst.end(); i++)
+			for(auto j = mst.begin(); j != i; j++)
+			for(auto k = mst.begin(); k != j; k++){
+				
+				int a = i->second;
+				int b = j->second;
+				int c = k->second;
+				
+				if(a <= b && b <= c){
+					return false;
+				}
+				
+				if(a >= b && b >= c){
+					return false;
+				}
+			}
+			
+			return true;
+		};
+		
+		int j = 0;
+		for(int i = 0; i < n; i++){
+			
+			if(i){
+				mst.erase(mst.find({i-1, vec[i-1]}));
+			}
+			
+			while(j < n && check()){
+				mst.insert({j, vec[j]});
+				j++;
+			}
+			
+			if(!check()){
+				j--;
+				mst.erase(mst.find({j, vec[j]}));
+			}
+			
+			ans += (j-i);
+		}
+		
+		cout << ans << endl;
     }	
 }

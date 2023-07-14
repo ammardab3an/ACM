@@ -1,3 +1,11 @@
+// Problem: C. Arpa and a game with Mojtaba
+// Contest: Codeforces - Codeforces Round 432 (Div. 1, based on IndiaHacks Final Round 2017)
+// URL: https://codeforces.com/problemset/problem/850/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,35 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+map<int, int> mem;
+
+int go(int msk){
+	
+	auto it = mem.insert({msk, -1}).first;
+	if(it->second != -1) return it->second;
+	
+	set<int> st;
+	
+	for(int i = 0; i < 30; i++){
+		int nmsk = (msk & ((1<<i)-1)) | (msk >> (i+1));
+		if(msk != nmsk){		
+			st.insert(go(nmsk));
+		}
+	}
+	
+	int i = 0;
+	for(auto e : st){
+		if(e==i){
+			i++;
+		}
+		else{
+			break;
+		}
+	}
+	
+	return it->second = i;
+}
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +134,36 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	map<int, int> mp;
+	
+	for(auto e : vec){
+		
+		for(int i = 2; i*i <= e; i++){
+			int cnt = 0;
+			while(e%i==0){
+				cnt++;
+				e /= i;
+			}
+			if(cnt){
+				mp[i] |= 1<<(cnt-1);
+			}
+		}
+		
+		if(e > 1){
+			mp[e] |= 1;
+		}
+	}
+	
+	int x = 0;
+	for(auto [k, v] : mp){
+		x ^= go(v);
+	}
+	
+	cout << (x ? "Mojtaba" : "Arpa") << endl;
 }

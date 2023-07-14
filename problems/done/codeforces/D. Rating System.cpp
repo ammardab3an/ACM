@@ -1,3 +1,11 @@
+// Problem: D. Rating System
+// Contest: Codeforces - Educational Codeforces Round 151 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1845/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,51 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		vi pre = vec;
+		for(int i = 1; i < n; i++){
+			pre[i] += pre[i-1];
+		}
+		
+		vi suf(n);
+		stack<pii> st;
+		
+		for(int i = n-1; i >= 0; i--){
+			
+			while(!st.empty() && st.top().first > pre[i]){
+				st.pop();
+			}	
+			
+			if(!st.empty()){
+				suf[i] = pre[i]-st.top().first + suf[st.top().second];
+			}
+			
+			st.push({pre[i], i});
+		}
+		
+		int ans = 0;
+		int ans_k = 0;
+		for(auto e : vec){
+			ans += e;
+			if(ans < 0) ans = 0;
+		}
+		
+		for(int i = 0; i+1 < n; i++) if(vec[i] > 0) if(vec[i+1] < 0){
+			
+			int cans = pre.back() + (pre[i]-pre[i+1]) + suf[i+1];
+			
+			if(cans > ans){
+				ans = cans;
+				ans_k = pre[i];
+			}
+		}
+		
+		cout << ans_k << endl;
+		// cout << ans << endl;
     }	
 }

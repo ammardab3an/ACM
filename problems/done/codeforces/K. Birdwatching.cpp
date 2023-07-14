@@ -1,3 +1,11 @@
+// Problem: K. Birdwatching
+// Contest: Codeforces
+// URL: https://codeforces.com/problemset/gymProblem/102501/K
+// Memory Limit: 256 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,16 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+vi adj[NMAX];
+bool vis[NMAX];
+
+void dfs(int u){
+	vis[u] = true;
+	for(auto v : adj[u]) if(!vis[v]){
+		dfs(v);
+	}	
+}
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +115,47 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n, m, t;
+	cin >> n >> m >> t;
+	
+	vi tmp;
+	for(int i = 0; i < m; i++){ 
+		
+		int u, v;
+		cin >> u >> v;
+		
+		swap(u, v);
+		
+		if(u==t){
+			tmp.push_back(v);
+		}
+		else{
+			adj[u].push_back(v);
+		}
+	}
+	
+	sort(tmp.begin(), tmp.end());
+	
+	set<int> ans;
+	for(auto e : tmp){
+		ans.insert(e);
+	}
+	
+	for(auto k : {0, 1}){
+		
+		for(auto u : tmp){
+			if(vis[u]){
+				ans.erase(u);
+			}
+			else{
+				dfs(u);
+			}
+		}
+		
+		memset(vis, 0, sizeof vis);
+		reverse(tmp.begin(), tmp.end());
+	}
+	
+	cout << ans.size() << endl;
+	for(auto e : ans) cout << e << endl;
 }

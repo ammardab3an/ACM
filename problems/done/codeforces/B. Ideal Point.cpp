@@ -1,3 +1,11 @@
+// Problem: B. Ideal Point
+// Contest: Codeforces - Educational Codeforces Round 143 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1795/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,28 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		int n, x;
+		cin >> n >> x;
+		
+		int l = -INF;
+		int r = INF;
+		
+		for(int i = 0; i < n; i++){
+			
+			int cl, cr;
+			cin >> cl >> cr;
+			
+			if(cl <= x && x <= cr){
+				l = max(l, cl);
+				r = min(r, cr);
+			}	
+		}
+				
+		// cout << l << ' ' << r << endl;
+		
+		bool ans = (l==r && l==x);
+		cout << (ans ? "YES" : "NO") << endl;
     }	
 }

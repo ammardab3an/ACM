@@ -1,3 +1,11 @@
+// Problem: D. XOR Counting
+// Contest: Codeforces - Codeforces Round 865 (Div. 1)
+// URL: https://codeforces.com/problemset/problem/1815/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353; // 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -53,10 +61,6 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
@@ -64,24 +68,40 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-int fac[NMAX], ifac[NMAX];
+int n;
+int mem[66][66][11];
 
-void init(){
+int go(int i, int j, int rm){
 	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
+	if(rm < 0){
+		return 0;
 	}
 	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
+	if(i==-1){
+		return rm==0;
 	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+	
+	if((n>>i)&1){
+		rm++;
+	}
+	
+	if(rm > 4){
+		return 0;
+	}
+	
+	int &ret = mem[j][i][rm];
+	if(ret+1) return ret;
+	
+	if(i==j){
+		int st_path = go(i-1, j, (rm-1)*2);
+		return ret = st_path;
+	}
+	else{
+		int st_path = go(i-1, j, rm*2);
+		int nd_path = go(i-1, j, (rm-2)*2);
+		int rd_path = go(i-1, j, (rm-1)*2);
+		return ret = (st_path + nd_path + rd_path) % MOD;
+	}
 }
 
 int32_t main(){
@@ -95,10 +115,40 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
+    int _2 = pow_exp(2, MOD-2);
+    
     int t; cin >> t; while(t--){
-
-
-    }	
+    	
+	 	int n, m;
+	 	cin >> n >> m;
+	 	
+	 	// n = 576460752303423488ll;
+	 	// m = 2;
+	 	
+	 	if(m==1){
+	 		cout << n%MOD << endl;
+	 	}   
+	 	else if(m>=3){
+	 		
+	 		int a = n%2;
+	 		int b = n;
+	 		int cnt = (b-a)/2 + 1;
+	 		
+	 		int ans = mul(add(a, b), mul(cnt, _2));
+	 		cout << ans << endl;
+	 	}
+	 	else{
+	 		
+	 		::n = n;
+	 		memset(mem, -1, sizeof mem);
+	 		
+	 		int ans = 0;
+	 		for(int i = 60; i >= 0; i--){
+	 			int cans = mul(1ll<<i, go(60, i, 0));
+	 			ans = add(ans, cans);
+	 		}
+	 		
+	 		cout << ans << endl;
+	 	}
+    }
 }

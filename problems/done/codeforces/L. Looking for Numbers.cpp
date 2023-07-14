@@ -1,3 +1,11 @@
+// Problem: L. Looking for Numbers
+// Contest: Codeforces - ACPC 2022
+// URL: https://codeforces.com/gym/417678/problem/L
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,19 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n, m;
+	cin >> n >> m;
+	
+	vpii vec(m);
+	for(auto &[u, v] : vec){
+		cin >> u >> v;
+	}
+	
+	set<pii> st(vec.begin(), vec.end());
+	
+	for(int i = 1; i < n; i++){
+		cout << (st.count({i, i+1}) ? 0 : 1) << ' ';
+	}
+	
+	cout << 0 << endl;
 }

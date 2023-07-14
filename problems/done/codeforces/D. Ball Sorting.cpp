@@ -1,3 +1,11 @@
+// Problem: D. Ball Sorting
+// Contest: Codeforces - Codeforces Round 876 (Div. 2)
+// URL: https://codeforces.com/contest/1839/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -59,7 +67,7 @@ int inv(int x){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 500 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
@@ -84,6 +92,70 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int n;
+int arr[NMAX];
+int mem[NMAX][NMAX][2];
+
+int go(int i, int k, bool b){
+	
+	if(k < 0){
+		return INF;
+	}
+	
+	if(i==n){
+		return 0;
+	}
+	
+	int &ret = mem[i][k][b];
+	if(ret+1) return ret;
+	
+	int cnt = 0;
+	bool good = true;
+	
+	int ans = n-i;
+	int lst = i > 0 ? arr[i-1] : 0;
+	
+	if(!b){
+		int cans = go(i, k-1, 1);
+		ans = min(ans, cans);
+	}
+	
+	for(int j = i; j < n; j++){
+		
+		if(arr[j] > lst){
+			if(good){
+				if(arr[j-1] < arr[j]){				
+					cnt++;
+				}
+				else{
+					cnt = 1;
+				}
+			}
+			else{
+				good = true;
+				cnt = 1;
+			}
+		}	
+		else{
+			cnt = 0;
+			good = false;
+		}
+		
+		if(j-i+1 != cnt) if(!b){
+			break;
+		}
+		
+		if(good){
+			if(k>1 || j+1==n){
+				int cans = (j-i+1) - cnt + go(j+1, k-1, 1);
+				ans = min(ans, cans);
+			}
+		}
+	}
+	
+	return ret = ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -99,6 +171,16 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		cin >> n;
+		for(int i = 0; i < n; i++){
+			cin >> arr[i];
+		}
+		
+		memset(mem, -1, sizeof mem);
+		
+		for(int k = 1; k <= n; k++){
+			cout << go(0, k+1, 0) << ' ';
+		}
+		cout << endl;
     }	
 }

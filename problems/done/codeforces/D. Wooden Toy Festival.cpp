@@ -1,3 +1,11 @@
+// Problem: D. Wooden Toy Festival
+// Contest: Codeforces - Codeforces Round 878 (Div. 3)
+// URL: https://codeforces.com/contest/1840/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,49 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		sort(vec.begin(), vec.end());
+		
+		int l = 0;
+		int r = 1e9;
+		
+		int ans = r;
+		
+		auto check = [&](int x){
+			
+			int cnt = 0;
+			int lst = -INF;
+			
+			for(auto i : vec){
+				if(i-lst > x){
+					cnt++;
+					lst = i+x;
+				}
+			}	
+			
+			// cout << x << ' ' << cnt << endl;
+			
+			return cnt <= 3;
+		};
+		
+		while(l <= r){
+			
+			int mid = (l+r)/2;
+			
+			if(check(mid)){
+				ans = mid;
+				r = mid-1;
+			}
+			else{
+				l = mid+1;
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }

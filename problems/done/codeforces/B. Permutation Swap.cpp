@@ -1,3 +1,11 @@
+// Problem: B. Permutation Swap
+// Contest: Codeforces - Codeforces Round 873 (Div. 2)
+// URL: https://codeforces.com/contest/1828/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,21 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n), pos(n);
+		for(auto &i : vec) cin >> i, --i;
+		
+		for(int i = 0; i < n; i++){
+			pos[vec[i]] = i;
+		}
+		
+		int ans = 0;
+		for(int i = 0; i < n; i++) if(pos[i] != i){
+			ans = __gcd(ans, abs(pos[i]-i));
+		}
+		
+		cout << ans << endl;
     }	
 }

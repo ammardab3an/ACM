@@ -1,3 +1,11 @@
+// Problem: A - Divide String
+// Contest: AtCoder - AtCoder Regular Contest 163
+// URL: https://atcoder.jp/contests/arc163/tasks/arc163_a
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,27 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		string str;
+		cin >> str;
+		
+		n = str.size();
+		
+		bool ans = false;
+		
+		for(int i = 1; i < n; i++){
+			
+			string a = str.substr(0, i);
+			string b = str.substr(i);
+			
+			if(a < b){
+				ans = true;
+				break;
+			}
+		}
+		
+		cout << (ans ? "Yes" : "No") << endl;
     }	
 }

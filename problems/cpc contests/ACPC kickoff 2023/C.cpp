@@ -53,35 +53,58 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+const int NMAX = 5e5 + 10;
 
-int fac[NMAX], ifac[NMAX];
+int n, m;
+vector<string> grid;
+vector<vector<bool>> vis;
+pii mvArr[] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+pii mvArr2[] = {{0, 0}, {0, 1}, {1, 0}, {1, 1}};
 
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
+bool in(int i, int j){
+	return 0 <= i && i < n && 0 <= j && j < m;
 }
 
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+bool check(int i, int j){
+	
+	for(auto [di, dj] : mvArr2){
+		int ni = i+di;
+		int nj = j+dj;
+		if(!in(ni, nj) || grid[ni][nj]!='.'){
+			return false;
+		}
+	}	
+	
+	return true;
+}
+
+int bfs(int i, int j){
+	
+	queue<pii> que;
+	que.push({i, j});
+	vis[i][j] = true;
+	
+	int ret = 0;
+	
+	while(!que.empty()){
+		
+		auto [i, j] = que.front();
+		que.pop();
+		
+		ret++;
+		
+		for(auto [di, dj] : mvArr){
+			int ni = i+di;
+			int nj = j+dj;
+			if(check(ni, nj) && grid[ni][nj]=='.' && !vis[ni][nj]){
+				vis[ni][nj] = true;
+				que.push({ni, nj});
+			}
+		}
+	}	
+	
+	return ret;
 }
 
 int32_t main(){
@@ -95,10 +118,21 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> n >> m;
+    
+    grid.resize(n);
+    vis.resize(n, vector<bool>(m));
+    
+    for(int i = 0; i < n; i++){
+    	cin >> grid[i];
+    }
+    
+    int ans = 0;
+    
+    for(int i = 0; i < n; i++)
+    for(int j = 0; j < m; j++) if(!vis[i][j]) if(check(i, j)){
+    	ans = max(ans, bfs(i, j));	
+    }
+    
+    cout << ans << endl;
 }

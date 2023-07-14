@@ -1,3 +1,11 @@
+// Problem: G - Sort from 1 to 4
+// Contest: AtCoder - TOYOTA MOTOR CORPORATION Programming Contest 2023#2 (AtCoder Beginner Contest 302)
+// URL: https://atcoder.jp/contests/abc302/tasks/abc302_g
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,63 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	vi vec(n), cnt(4);
+	for(auto &i : vec) cin >> i, cnt[--i]++;
+	
+	for(int i = 1; i < 4; i++){
+		cnt[i] += cnt[i-1];
+	}
+	
+	vector<vi> frq(4, vi(4));
+	for(int j = 0; j < 4; j++){
+		for(int i = j ? cnt[j-1] : 0; i < cnt[j]; i++){
+			frq[j][vec[i]]++;
+		}
+	}
+	
+	// for(auto v : frq){
+		// for(auto e : v) cout << e << ' ';
+		// cout << endl;
+	// }
+	
+	for(int i = 0; i < 4; i++){
+		frq[i][i] = 0;
+	}
+	
+	int ans = 0;
+	
+	for(int i = 0; i < 4; i++)
+	for(int j = 0; j < 4; j++){
+		int mn = min(frq[i][j], frq[j][i]);
+		ans += mn;
+		frq[i][j] -= mn;
+		frq[j][i] -= mn;
+	}
+	
+	for(int i = 0; i < 4; i++)
+	for(int j = 0; j < 4; j++)
+	for(int k = 0; k < 4; k++){
+		int mn = min({frq[i][j], frq[j][k], frq[k][i]});
+		ans += mn*2;
+		frq[i][j] -= mn;
+		frq[j][k] -= mn;
+		frq[k][i] -= mn;
+	}
+	
+	for(int i = 0; i < 4; i++)
+	for(int j = 0; j < 4; j++)
+	for(int k = 0; k < 4; k++)
+	for(int l = 0; l < 4; l++){
+		int mn = min({frq[i][j], frq[j][k], frq[k][l], frq[l][i]});
+		ans += mn*3;
+		frq[i][j] -= mn;
+		frq[j][k] -= mn;
+		frq[k][l] -= mn;
+		frq[l][i] -= mn;
+	}
+	
+	cout << ans << endl;
 }

@@ -1,3 +1,11 @@
+// Problem: B. Come Together
+// Contest: Codeforces - Educational Codeforces Round 151 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1845/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,48 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		vector<array<int, 2>> pnts(3);
+		for(auto &[i, j] : pnts){
+			cin >> i >> j;
+		}
+		
+		auto A = pnts[0];
+		for(auto &[i, j] : pnts){
+			i -= A[0];
+			j -= A[1];
+		}
+		
+		int dist_i = 0;
+		int dist_j = 0;
+		
+		auto B = pnts[1];
+		auto C = pnts[2];
+		
+		if(B[0]>=0 && C[0]>=0){
+			int mn = min(B[0], C[0]);
+			if(abs(mn) > abs(dist_i)){
+				dist_i = mn;
+			}
+		}
+		if(B[0]<=0 && C[0]<=0){
+			int mn = max(B[0], C[0]);
+			if(abs(mn) > abs(dist_i)){
+				dist_i = mn;
+			}
+		}
+		if(B[1]>=0 && C[1]>=0){
+			int mn = min(B[1], C[1]);
+			if(abs(mn) > abs(dist_j)){
+				dist_j = mn;
+			}
+		}
+		if(B[1]<=0 && C[1]<=0){
+			int mn = max(B[1], C[1]);
+			if(abs(mn) > abs(dist_j)){
+				dist_j = mn;
+			}
+		}
+		
+		cout << abs(dist_i) + abs(dist_j) + 1 << endl;
     }	
 }

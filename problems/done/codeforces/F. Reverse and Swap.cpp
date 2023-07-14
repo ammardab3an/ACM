@@ -1,3 +1,11 @@
+// Problem: F. Reverse and Swap
+// Contest: Codeforces - Codeforces Round 665 (Div. 2)
+// URL: https://codeforces.com/contest/1401/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -59,7 +67,7 @@ int inv(int x){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = (1<<18) + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
@@ -84,6 +92,68 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int arr[NMAX];
+int tree[NMAX << 2];
+
+void build(int nd, int l, int r, int p){
+	
+	if(l==r){
+		tree[nd] = arr[l];
+		return;
+	}	
+	
+	int mid = (l+r)/2;
+	build(nd*2, l, mid, p-1);
+	build(nd*2+1, mid+1, r, p-1);
+	
+	tree[nd] = tree[nd*2] + tree[nd*2+1];
+}
+
+void update(int nd, int l, int r, int p, int i, int v){
+	
+	if(l==r){
+		tree[nd] = arr[l] = v;
+		return;
+	}	
+	
+	int mid = (l+r)/2;
+	
+	if(i <= mid){
+		update(nd*2, l, mid, p-1, i, v);
+	}
+	else{
+		update(nd*2+1, mid+1, r, p-1, i, v);
+	}
+	
+	tree[nd] = tree[nd*2] + tree[nd*2+1];
+}
+
+int query(int nd, int l, int r, int p, int q_l, int q_r, int x){
+		
+	if(r < q_l || q_r < l){
+		return 0;
+	}	
+	
+	if(q_l <= l && r <= q_r){
+		return tree[nd];
+	}
+	
+	int mid = (l+r)/2;
+	int nd_lf = nd*2;
+	int nd_ri = nd*2+1;
+	
+	if((x>>(p-1))&1){
+		x ^= 1<<(p-1);
+		nd_lf ^= 1;
+		nd_ri ^= 1;	
+	}
+	
+	int st_path = query(nd_lf, l, mid, p-1, q_l, q_r, x);
+	int nd_path = query(nd_ri, mid+1, r, p-1, q_l, q_r, x);
+	
+	return st_path + nd_path;
+}
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +167,53 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n, q;
+	cin >> n >> q;
+	
+	int m = 1<<n;
+	for(int i = 0; i < m; i++){
+		cin >> arr[i];
+	}
+	
+	build(1, 0, m-1, n);
+	
+	int x = 0;
+	
+	while(q--){
+		
+		int k;
+		cin >> k;
+		
+		if(k==1){
+			
+			int p, v;
+			cin >> p >> v;
+			p--;
+			
+			update(1, 0, m-1, n, p^x, v);
+		}
+		else if(k==2){
+			
+			int p;
+			cin >> p;
+			
+			x ^= (1<<p)-1;
+		}
+		else if(k==3){
+			
+			int p;
+			cin >> p;
+			
+			x ^= 1<<p;
+		}
+		else{
+			
+			int l, r;
+			cin >> l >> r;
+			l--, r--;
+			
+			int ans = query(1, 0, m-1, n, l, r, x);
+			cout << ans << endl;
+		}
+	}
 }

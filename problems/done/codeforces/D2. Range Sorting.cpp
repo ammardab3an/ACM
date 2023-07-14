@@ -1,3 +1,11 @@
+// Problem: D2. Range Sorting (Hard Version)
+// Contest: Codeforces - Codeforces Round 873 (Div. 2)
+// URL: https://codeforces.com/contest/1828/problem/D2
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,108 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		vi nxt_mn(n), pre_mx(n), pre_mn(n);
+		{
+			stack<pii> st;
+			for(int i = n-1; i >= 0; i--){
+				
+				while(!st.empty() && st.top().first > vec[i]){
+					st.pop();
+				}
+				
+				if(!st.empty()){
+					nxt_mn[i] = st.top().second;
+				}
+				else{
+					nxt_mn[i] = n;
+				}
+				
+				st.push({vec[i], i});
+			}
+		}
+		{
+			stack<pii> st;
+			for(int i = 0; i < n; i++){
+				
+				while(!st.empty() && st.top().first < vec[i]){
+					st.pop();
+				}
+				
+				if(!st.empty()){
+					pre_mx[i] = st.top().second;
+				}
+				else{
+					pre_mx[i] = -1;
+				}
+				
+				st.push({vec[i], i});
+			}
+		}
+		{
+			stack<pii> st;
+			for(int i = 0; i < n; i++){
+				
+				while(!st.empty() && st.top().first > vec[i]){
+					st.pop();
+				}
+				
+				if(!st.empty()){
+					pre_mn[i] = st.top().second;
+				}
+				else{
+					pre_mn[i] = -1;
+				}
+				
+				st.push({vec[i], i});
+			}
+		}
+		
+		int log_n = ceil(log2(double(n)));
+		vector<vi> fst_pre_mx(n, vi(log_n, -1));
+		
+		for(int i = 1; i < n; i++){
+			fst_pre_mx[i][0] = pre_mx[i];
+			for(int j = 1; j < log_n; j++){
+				if(fst_pre_mx[i][j-1]==-1) break;
+				fst_pre_mx[i][j] = fst_pre_mx[fst_pre_mx[i][j-1]][j-1];
+			}
+		}
+		
+		
+		int ans = 0;
+		
+		// 1*(n-1) + 2*(n-2) + 3*(n-3) + ..
+		for(int i = 1; i < n; i++){
+			ans += i*(n-i);
+		}
+		
+		for(int i = 1; i < n; i++) if(pre_mn[i]!=-1) {
+			
+			int k = pre_mn[i];
+			int y = nxt_mn[i];
+			int x = k;
+			
+			for(int j = log_n-1; j >= 0; j--){
+				if(x==-1) break;
+				if(fst_pre_mx[x][j]==-1) continue;
+				if(vec[fst_pre_mx[x][j]] < vec[i]){
+					x = fst_pre_mx[x][j];
+				}
+			}
+			
+			if(x!=-1){
+				x = fst_pre_mx[x][0];
+			}
+			
+			ans -= (k-x)*(y-i);
+		}
+		
+		cout << ans << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: B. Minimize Permutation Subarrays
+// Contest: Codeforces - Codeforces Round 877 (Div. 2)
+// URL: https://codeforces.com/contest/1838/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,29 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, --i;
+		
+		vi pos(n);
+		for(int i = 0; i < n; i++){
+			pos[vec[i]] = i;
+		}
+		
+		int p = pos[0];
+		int q = pos[1];
+		if(p > q) swap(p, q);
+		
+		if(p < pos[n-1] && pos[n-1] < q){
+			cout << 1 << ' ' << 1 << endl;
+		}
+		else if(pos[n-1] < p){
+			cout << p+1 << ' ' << 1 << endl;
+		}
+		else{
+			cout << q+1 << ' ' << n << endl;
+		}
     }	
 }

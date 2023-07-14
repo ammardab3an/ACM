@@ -53,36 +53,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +71,66 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    int x0, y0;
+    cin >> x0 >> y0;
+    
+    map<int, vi> mp_i;
+    map<int, vi> mp_j;
+    
+    vector<pii> pnts(n);
+    for(int i = 0; i < n; i++){
+    	auto &[x, y] = pnts[i];
+    	cin >> x >> y;
+    	mp_i[x].push_back(y);
+    	mp_j[y].push_back(x);
+    }
+    
+    for(auto &[k, v] : mp_i){
+    	sort(v.begin(), v.end());
+    }
+    for(auto &[k, v] : mp_j){
+    	sort(v.begin(), v.end());
+    }
+    
+    int m; cin >> m; while(m--){
+    	
+    	char c;
+    	cin >> c;
+    	
+    	if(c=='R'){
+    		auto &v = mp_j[y0];
+    		auto it = upper_bound(v.begin(), v.end(), x0);
+    		if(it!=v.end()){
+    			x0 = *it;
+    		}
+    	}
+    	else if(c=='L'){
+    		auto &v = mp_j[y0];
+    		auto it = lower_bound(v.begin(), v.end(), x0);
+			if(!v.empty() && it!=v.begin()){
+				it--;
+				x0 = *it;
+			}
+    	}
+    	else if(c=='U'){
+    		auto &v = mp_i[x0];
+    		auto it = upper_bound(v.begin(), v.end(), y0);
+    		if(it!=v.end()){
+    			y0 = *it;
+    		}
+    	}
+    	else if(c=='D'){
+    		auto &v = mp_i[x0];
+    		auto it = lower_bound(v.begin(), v.end(), y0);
+			if(!v.empty() && it!=v.begin()){
+				it--;
+				y0 = *it;
+			}
+    	}
+    	
+    	cout << x0 << ' ' << y0 << endl;
+    }
 }

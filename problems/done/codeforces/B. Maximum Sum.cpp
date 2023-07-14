@@ -1,3 +1,11 @@
+// Problem: B. Maximum Sum
+// Contest: Codeforces - Educational Codeforces Round 148 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1832/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,40 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		sort(vec.begin(), vec.end());
+		
+		vi pre = vec;
+		for(int i = 1; i < n; i++){
+			pre[i] += pre[i-1];
+		}
+		
+		vi suf = vec;
+		for(int i = n-2; i >= 0; i--){
+			suf[i] += suf[i+1];
+		}
+		
+		int ans = 0;
+		int sm = pre.back();
+		
+		for(int i = 0; i <= k; i++){
+			
+			if(k+i > n) break;
+			
+			int cans = sm;
+			if(i) cans -= pre[i*2-1];
+			if(i<k) cans -= suf[n-(k-i)];
+			
+			// cout << i << ' ' << k-i << ' ' << cans << endl;
+			
+			ans = max(ans, cans);
+		}
+		
+		cout << ans << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: C. Counting Orders
+// Contest: Codeforces - Codeforces Round 873 (Div. 2)
+// URL: https://codeforces.com/contest/1828/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,34 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec_a(n), vec_b(n);
+		for(auto &i : vec_a) cin >> i;
+		for(auto &i : vec_b) cin >> i;
+		
+		sort(vec_a.begin(), vec_a.end());
+		sort(vec_b.begin(), vec_b.end());
+		
+		// for(auto i : vec_a) cout << i << ' '; cout << endl;
+		// for(auto i : vec_b) cout << i << ' '; cout << endl;
+		// cout << endl;
+		
+		int ans = 1;
+		
+		int j = 0;
+		for(int i = 0; i < n; i++){
+			
+			while(j < n && (vec_a[i] > vec_b[j])){
+				j++;
+			}
+			
+			// cout << i << ' ' << j << endl;
+			
+			ans = mul(ans, j-i);
+		}
+		
+		cout << ans << endl;
     }	
 }

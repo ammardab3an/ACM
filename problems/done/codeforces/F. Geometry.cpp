@@ -1,3 +1,11 @@
+// Problem: F. Geometry
+// Contest: Codeforces - Training Teams 5
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/447848/problem/F
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,9 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int a, b;
+		cin >> a >> b;
+		
+		cout << (a==b ? "Square" : "Rectangle") << endl;
     }	
 }

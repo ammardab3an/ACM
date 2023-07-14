@@ -1,3 +1,11 @@
+// Problem: E. Fill the Matrix
+// Contest: Codeforces - Educational Codeforces Round 150 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1841/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,69 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+struct sparse_table{
+    
+    vector<vi> st;
+    vector<int> lg2;
+    vi arr;
+    
+    sparse_table(){};
+    
+    sparse_table(int n, vi arr) : arr(arr){
+        
+        int k = ceil(log2(double(n)));
+        st.resize(n, vi(k+1));
+        
+        for (int i = 0; i < n; i++){
+            st[i][0] = i;
+        }
+
+        for (int j = 1; j <= k; j++)
+        for (int i = 0; i + (1 << j) <= n; i++){
+            if(arr[st[i][j-1]] < arr[st[i+(1<<(j-1))][j-1]]){
+                st[i][j] = st[i][j-1];
+            }
+            else{
+                st[i][j] = st[i+(1<<(j-1))][j-1];
+            }
+        }
+        
+        lg2.resize(n+1);
+        
+        lg2[1] = 0;
+        for(int i = 2; i <= n; i++){
+            lg2[i] = lg2[i/2] + 1;
+        }
+    }
+        
+    int query_range(int l, int r){
+        int j = lg2[r-l+1];
+        if(arr[st[l][j]] < arr[st[r-(1<<j)+1][j]]){
+            return st[l][j];
+        }
+        else{
+            return st[r-(1<<j)+1][j];
+        }
+    }
+    
+} st;
+
+int frq[NMAX];
+
+void go(int l, int r, int lst, const vi &vec){
+	
+	if(l > r){
+		return;
+	}	
+	
+	int p = st.query_range(l, r);
+	
+	frq[r-l+1] += vec[p]-lst;
+	
+	go(l, p-1, vec[p], vec);
+	go(p+1, r, vec[p], vec);
+}
+
 int32_t main(){
     
     fastIO;
@@ -99,6 +170,38 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, i = n-i;
+		
+		int m;
+		cin >> m;
+		
+		for(int i = 1; i <= n; i++){
+			frq[i] = 0;
+		}
+		
+		st = sparse_table(n, vec);
+		
+		go(0, n-1, 0, vec);
+		
+		int ans = 0;
+		for(int i = n; i >= 1; i--){
+		
+			int mn = min(frq[i], m/i);
+			
+			m -= i * mn;
+			ans += mn * (i-1);
+			
+			if(frq[i] > mn){
+				ans += max(0ll, m-1);
+				break;
+			}
+		}
+		
+		cout << ans << endl;
     }	
+    
 }

@@ -1,3 +1,11 @@
+// Problem: B. Astrophysicists
+// Contest: Codeforces - Codeforces Round 880 (Div. 2)
+// URL: https://codeforces.com/contest/1836/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,23 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k, g;
+		cin >> n >> k >> g;
+		
+		int tot = k*g;
+		
+		int x = (g-1)/2;
+		tot -= min(tot, x*(n-1));
+		
+		int rm = tot%g;
+		
+		if(rm < (g+1)/2){
+			tot -= rm;
+		}
+		else{
+			tot += g-rm;
+		}
+		
+		cout << k*g - tot << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: C. Strong Password
+// Contest: Codeforces - Educational Codeforces Round 151 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1845/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -59,7 +67,7 @@ int inv(int x){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 3e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
@@ -84,6 +92,44 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int n, m;
+string str, str_l, str_r;
+int lst[NMAX][11];
+bool mem[NMAX][11];
+int vis[NMAX][11], vid;
+
+bool go(int i, int j){
+	
+	if(i==n){
+		return true;
+	}
+	
+	if(j==m){
+		return false;
+	}	
+	
+	bool &ret = mem[i+1][j];
+	if(vis[i+1][j]==vid) return ret;
+	vis[i+1][j] = vid;
+	ret = false;
+	
+	int l = str_l[j]-'0';
+	int r = str_r[j]-'0';
+	
+	for(int d = l; d <= r; d++){
+		
+		int ni = (i==-1) ? lst[0][d] : lst[i+1][d];
+		bool cans = go(ni, j+1);
+		
+		if(cans){
+			ret = true;
+			break;
+		}
+	}
+	
+	return ret;
+}
+
 int32_t main(){
     
     fastIO;
@@ -99,6 +145,28 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		cin >> str;
+		n = str.size();
+		
+		cin >> m;
+		cin >> str_l >> str_r;
+		
+		for(int i = 0; i < 10; i++){
+			lst[n][i] = n;
+		}
+		
+		for(int i = n-1; i >= 0; i--){
+			
+			for(int j = 0; j < 10; j++){
+				lst[i][j] = lst[i+1][j];
+			}
+			
+			lst[i][str[i]-'0'] = i;
+		}
+		
+		vid++;
+		
+		bool ans = go(-1, 0);
+		cout << (ans ? "YES" : "NO") << endl;
     }	
 }

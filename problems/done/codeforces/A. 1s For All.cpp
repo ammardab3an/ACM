@@ -1,3 +1,11 @@
+// Problem: A. 1s For All
+// Contest: Codeforces - 2021-2022 ICPC East Central North America Regional Contest (ECNA 2021)
+// URL: https://codeforces.com/gym/104196/problem/A
+// Memory Limit: 1024 MB
+// Time Limit: 15000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,47 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	vi dp(n+1);
+	for(int i = 1; i <= n; i++){
+		
+		int cans = 1 + dp[i-1];
+		
+		// sm
+		for(int a = i/2; a > 0; a--){
+			cans = min(cans, dp[a] + dp[i-a]);	
+		}
+		// ml
+		for(int a = 2; a*a <= i; a++) if(i%a==0){
+			cans = min(cans, dp[a] + dp[i/a]);
+		}
+		// concat
+		
+		int a = i;
+		int x = 1;
+		
+		while(a){
+			
+			int d = a%10;
+			a /= 10;
+			x *= 10;
+			
+			if(d!=0){
+				
+				int i0 = i%x;
+				int i1 = i/x;
+							
+				if(i0 && i1){				
+					// if(i > 1111) cout << i << ' ' << i0 << ' ' << i1 << endl;
+					cans = min(cans, dp[i0] + dp[i1]);
+				}
+			}
+		}
+		
+		dp[i] = cans;
+	}
+	
+	cout << dp[n] << endl;
 }

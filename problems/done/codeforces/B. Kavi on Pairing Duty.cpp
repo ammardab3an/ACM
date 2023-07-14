@@ -1,3 +1,11 @@
+// Problem: B. Kavi on Pairing Duty
+// Contest: Codeforces - Codeforces Round 722 (Div. 1)
+// URL: https://codeforces.com/problemset/problem/1528/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353; // 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -97,8 +105,31 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	// https://t.me/c/1491629215/137587
+	
+	int n;
+	cin >> n;
+	
+	int ans = pow_exp(2, n-1);
+	
+	vi cnt(2*n+1);
+	for(int i = 2; i <= 2*n; i += 2){
+		for(int j = i; j <= 2*n; j += i){
+			cnt[j]++;
+		}
+	}
+	
+	for(int i = 0; i <= n-2; i++){
+		
+		int pp = 1;
+		
+		if(i){
+			pp = pow_exp(2, i-1);
+		}
+		
+		int m = 2*n-i*2;
+		ans = add(ans, mul(cnt[m]-1, pp));
+	}
+	
+	cout << ans << endl;
 }

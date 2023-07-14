@@ -1,3 +1,11 @@
+// Problem: C. Sequence Master
+// Contest: Codeforces - Codeforces Round 858 (Div. 2)
+// URL: https://codeforces.com/contest/1806/problem/C
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,77 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		int m = n;
+		n *= 2;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		sort(vec.begin(), vec.end());
+		
+		vi pre(n);
+		pre[0] = vec[0];
+		for(int i = 1; i < n; i++){
+			pre[i] = pre[i-1] + vec[i];
+		}
+		
+		int ans = INFLL;
+		
+		{
+			int i = 0;
+			int p = lower_bound(vec.begin(), vec.end(), i)-vec.begin();
+			
+			int pr = p==0 ? 0 : pre[p-1];
+			int sf = pre[n-1] - pr;
+			
+			int cans = (p*i - pr) + (sf - (n-p)*i);
+			
+			ans = min(ans, cans);
+		}
+		
+		if(m==1){
+			ans = min(ans, vec.back()-vec.front());	
+		}
+		
+		if(m >= 2){
+			
+			int i = round(pow(double(10), (log10(m)/double(m-1))));
+			
+			double a = log(m);
+			double b = log(i)*(m-1);
+			
+			if(abs(a-b) < 1e-7){
+				
+				int p = lower_bound(vec.begin(), vec.end(), i)-vec.begin();
+				
+				int pr = p==0 ? 0 : pre[p-1];
+				int sf = pre[n-1] - pr;
+				
+				int cans = (p*i - pr) + (sf - (n-p)*i);
+				
+				ans = min(ans, cans);
+			}
+		}
+		
+		if(m >= 2 && m%2==0){
+			
+			int i = -1;	
+			int p = lower_bound(vec.begin(), vec.end(), i)-vec.begin();
+			int pr = p==0 ? 0 : pre[p-1];
+			int sf = pre[n-1] - pr;
+			int cans = (p*i - pr) + (sf - (n-p)*i);
+			
+			cans -= abs(vec.back()+1);
+			cans += abs(vec.back()-m);
+			
+			ans = min(ans, cans);
+		}
+		
+		cout << ans << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: F1. Survival of the Weakest (easy version)
+// Contest: Codeforces - Codeforces Round 862 (Div. 2)
+// URL: https://codeforces.com/contest/1805/problem/F1
+// Memory Limit: 256 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -94,11 +78,46 @@ int32_t main(){
 #endif
 
     // freopen("name.in", "r", stdin);
-    
-	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    vi vec(n);
+    for(auto &i : vec) cin >> i;
+    
+    sort(vec.begin(), vec.end());
+    
+    int ans_add = 0;
+    
+    while(vec.size() > 1){
+    	
+    	int mn = vec.front();
+    	ans_add = mul(add(ans_add, mn), 2);
+    	for(auto &i : vec) i -= mn;
+    	
+    	priority_queue<iii> que;
+    	for(int i = 0; i+1 < vec.size(); i++){
+    		que.push({-(vec[i]+vec[i+1]), {i, i+1}});
+    	}
+    	
+    	vi nvec;
+    	while(nvec.size()+1 < vec.size()){
+    		
+    		auto tp = que.top();
+    		que.pop();
+    		
+    		nvec.push_back(-tp.first);
+    		
+    		auto [i, j] = tp.second;
+    		
+    		if(j+1 < vec.size()){
+    			que.push({-(vec[i]+vec[j+1]), {i, j+1}});
+    		}
+    	}
+    	
+		vec = nvec;	
+    }
+    
+	int ans = add(vec.front(), ans_add);
+	cout << ans << endl;
 }

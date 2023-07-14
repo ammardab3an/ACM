@@ -1,3 +1,11 @@
+// Problem: K. Do you believe that this is a real story?
+// Contest: Codeforces - Al-Baath Collegiate Programming Contest 2023
+// URL: https://codeforces.com/gym/104447/problem/K
+// Memory Limit: 1024 MB
+// Time Limit: 1500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,41 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi tmp;
+		vi vis(n);
+		for(int i = 0; !vis[i]; i = (i+3)%n){
+			tmp.push_back(i);
+			vis[i] = true;
+		}
+		
+		if(tmp.size() != n){
+			cout << "NO" << endl;
+			continue;
+		}
+		
+		int l = 1;
+		int r = tmp.size()-1;
+		
+		vi ans;
+		ans.push_back(0);
+		
+		while(l < r){
+			
+			if(tmp[l] < tmp[r]){
+				ans.push_back(tmp[l++]);
+			}
+			else{
+				ans.push_back(tmp[r--]);
+			}
+		}
+		
+		cout << "YES" << endl;
+		for(auto e : ans){
+			cout << e+1 << ' ';
+		}
+		cout << endl;
     }	
 }

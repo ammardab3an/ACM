@@ -1,3 +1,11 @@
+// Problem: C. Ski Resort
+// Contest: Codeforces - Codeforces Round 878 (Div. 3)
+// URL: https://codeforces.com/contest/1840/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,27 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k, d;
+		cin >> n >> k >> d;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		int ans = 0;
+		
+		int j = 0;
+		for(int i = 0; i < n; i++){
+			
+			j = max(j, i);
+			while(j < n && vec[j] <= d){
+				j++;
+			}
+			
+			if(j-i >= k){
+				ans += (j-i)-(k-1);
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }

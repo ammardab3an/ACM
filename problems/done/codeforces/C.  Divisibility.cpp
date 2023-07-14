@@ -1,3 +1,11 @@
+// Problem: C.  Divisibility
+// Contest: Codeforces - Btunis beek
+// URL: https://codeforces.com/group/rKyL0A9Cab/contest/447953/problem/C
+// Memory Limit: 1024 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,11 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+const int AMAX = 2e6 + 10;
+
+bool vis[AMAX];
+vi factors[AMAX];
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +110,34 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	for(int i = 1; i < AMAX; i++)
+	for(int j = i; j < AMAX; j += i){
+		factors[j].push_back(i);
+	}
+	
+	int n;
+	cin >> n;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	if(n==0){
+    	n = 1e6;
+    	vec = vi(n);
+    	iota(vec.begin(), vec.end(), 1);
+	}
+	
+	for(auto i : vec){
+		vis[i] = true;
+	}
+	
+	int ans = 0;
+	
+	for(auto e : vec){
+		for(auto f : factors[2*e]){
+			ans += vis[e+f];
+		}
+	}
+	
+	cout << ans << endl;
 }

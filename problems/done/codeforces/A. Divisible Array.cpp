@@ -1,3 +1,11 @@
+// Problem: A. Divisible Array
+// Contest: Codeforces - Codeforces Round 873 (Div. 2)
+// URL: https://codeforces.com/contest/1828/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,12 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		for(int i = 1; i <= n; i++){
+			cout << 2*i << ' ';
+		}
+		cout << endl;
     }	
 }

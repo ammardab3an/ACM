@@ -1,3 +1,11 @@
+// Problem: C. Tenzing and Balls
+// Contest: Codeforces - CodeTON Round 5 (Div. 1 + Div. 2, Rated, Prizes!)
+// URL: https://codeforces.com/contest/1842/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,37 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, --i;
+		
+		vector<vi> pos(n);
+		for(int i = 0; i < n; i++){
+			pos[vec[i]].push_back(i);
+		}
+		
+		vi dp(n);
+		dp[0] = 1;
+		
+		for(int i = 1; i < n; i++){
+			
+			dp[i] = 1 + dp[i-1];
+			
+			auto it = lower_bound(pos[vec[i]].begin(), pos[vec[i]].end(), i);
+			
+			if(it != pos[vec[i]].begin()){
+				
+				int p = *--it;
+				dp[i] = min(dp[i], dp[p]);
+				dp[i] = min(dp[i], p ? dp[p-1] : 0);
+			}
+		}
+		
+		// for(auto i : dp) cout << i << ' '; cout << endl;
+		
+		int ans = n-dp[n-1];
+		cout << ans << endl;
     }	
 }

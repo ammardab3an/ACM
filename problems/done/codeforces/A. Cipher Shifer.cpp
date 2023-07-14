@@ -1,3 +1,11 @@
+// Problem: A. Cipher Shifer
+// Contest: Codeforces - Codeforces Round 878 (Div. 3)
+// URL: https://codeforces.com/contest/1840/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,24 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		string str;
+		cin >> str;
+		
+		string ans;
+		ans.push_back(str[0]);
+		
+		for(int i = 1; i < n; i++){
+			if(str[i]==ans.back()){
+				if(i+1 < n){
+					ans.push_back(str[i+1]);
+					i++;
+				}
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }

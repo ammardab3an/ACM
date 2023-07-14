@@ -1,3 +1,11 @@
+// Problem: G1. Magic Triples (Easy Version)
+// Contest: Codeforces - Codeforces Round 867 (Div. 3)
+// URL: https://codeforces.com/contest/1822/problem/G1
+// Memory Limit: 256 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,10 +61,6 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
@@ -64,25 +68,9 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-int fac[NMAX], ifac[NMAX];
+const int AMAX = 1e7 + 10;
 
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
+int frq[2][AMAX];
 
 int32_t main(){
     
@@ -95,10 +83,57 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		sort(vec.begin(), vec.end());
+		
+		for(auto i : vec){
+			frq[1][i]++;
+		}
+		
+		int ans = 0;
+		
+		for(auto i : vec){
+			
+			vi factors;
+			
+			{
+				int x = i;			
+				for(int i = 1; i*i <= x; i++) if(x%i==0){
+					factors.push_back(i);
+					if(x/i != i) factors.push_back(x/i);
+				}
+			}
+			
+			
+			for(auto f : factors){
+				if(f==1) continue;
+				if(i*f < AMAX){				
+					ans += frq[0][i/f] * frq[1][i*f];
+				}
+			}
+			
+			frq[1][i]--;
+			frq[0][i]++;
+		}
+		
+		for(auto i : vec){
+			
+			auto &f = frq[0][i];
+			
+			if(f >= 3){
+				ans += f*(f-1)*(f-2);			
+			}
+			
+			f = 0;
+		}
+		
+		cout << ans << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: E. Playoff Fixing
+// Contest: Codeforces - Educational Codeforces Round 149 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1837/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353; // 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -59,7 +67,7 @@ int inv(int x){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 1e6 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
@@ -80,7 +88,8 @@ void init(){
 }
 
 int choose(int n, int c){
-	assert(n >= c);
+	// assert(n >= c);
+	if(n < c) return 0;
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
@@ -95,10 +104,91 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int m;
+	cin >> m;
+	
+	int n = 1<<m;
+	
+	vi vec(n);
+	for(auto &i : vec){
+		cin >> i;
+		if(i != -1) i--;
+	}
+	
+	if(n==1){
+		cout << 1 << endl;
+		return 0;
+	}
+	
+	vi pos(n, -1);
+	for(int i = 0; i < n; i++){
+		if(vec[i] != -1){		
+			pos[vec[i]] = i;
+		}
+	}
+	
+	vi cur(n/2);
+	for(int i = 0; i < n; i++){
+		cur[i/2] += vec[i]==-1;
+	}
+	
+	int ans = 1;
+	
+	for(int k = 0; k < m; k++){
+		
+		
+		vector<bool> vis(cur.size());
+		
+		int sz = cur.size();
+		int rm = cur.size();
+		bool bad = false;
+		
+		for(int i = 0; i < cur.size(); i++){
+			int p = pos[sz*2-1 - i];
+			if(p != -1){
+				if(vis[p>>(k+1)]){
+					bad = true;
+					break;
+				}
+				else{
+					vis[p>>(k+1)] = true;
+					rm--;
+				}
+			}
+		}
+		
+		if(bad){
+			ans = 0;
+			break;
+		}
+		
+		vi nxt(sz/2);
+		
+		for(int i = 0; i < sz/2; i++){
+			nxt[i] = cur[i*2]+cur[i*2+1]-2+vis[i*2]+vis[i*2+1];
+		}
+		
+		
+		int cans = 1;
+		for(int i = 0; i < sz; i++) if(!vis[i]){
+			cans = mul(cans, cur[i]);
+		}
+		
+		cans = mul(cans, fac[rm]);
+		ans = mul(ans, cans);
+		
+		cur = nxt;
+	}
+	
+	cout << ans << endl;
 }
+
+
+
+
+
+
+
+

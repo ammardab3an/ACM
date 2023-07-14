@@ -1,3 +1,11 @@
+// Problem: C. Insert Zero and Invert Prefix
+// Contest: Codeforces - Codeforces Round 876 (Div. 2)
+// URL: https://codeforces.com/contest/1839/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,54 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		vi ans;
+		bool good = true;
+		
+		while(!vec.empty()){
+			
+			if(vec.back()==1){
+				good = false;
+				break;
+			}
+			
+			int cnt_0 = 0;
+			int cnt_1 = 0;
+			
+			while(!vec.empty() && vec.back()==0){
+				vec.pop_back();
+				cnt_0++;
+			}
+			
+			while(!vec.empty() && vec.back()==1){
+				vec.pop_back();
+				cnt_1++;
+			}
+			
+			while(--cnt_0){
+				ans.push_back(0);
+			}
+			
+			int p = cnt_1;
+			
+			while(cnt_1--){
+				ans.push_back(0);
+			}
+			
+			ans.push_back(p);
+		}
+		
+		if(good){
+			cout << "YES" << endl;
+			for(auto i : ans) cout << i << ' '; cout << endl;
+		}
+		else{
+			cout << "NO" << endl;
+		}
     }	
 }

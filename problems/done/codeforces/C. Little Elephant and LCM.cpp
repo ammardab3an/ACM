@@ -1,3 +1,11 @@
+// Problem: C. Little Elephant and LCM
+// Contest: Codeforces - Codeforces Round 157 (Div. 1)
+// URL: https://codeforces.com/problemset/problem/258/C
+// Memory Limit: 256 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,47 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	sort(vec.begin(), vec.end());
+	
+	int ans = 0;
+	
+	const int AMAX = 1e5;
+	for(int i = 1; i <= AMAX; i++){
+		
+		vi factors;
+		for(int j = 1; j*j <= i; j++) if(i%j==0){ 
+			factors.push_back(j);
+			if(i/j != j) factors.push_back(i/j);
+		}
+		
+		sort(factors.begin(), factors.end());
+		factors.pop_back();
+		reverse(factors.begin(), factors.end());
+		
+		int m = factors.size();
+		
+		int c = vec.end() - lower_bound(vec.begin(), vec.end(), i);
+		if(!c) break;	
+		
+		int cans = 0;
+		cans = add(cans, pow_exp(m+1, c));
+		cans = add(cans, -pow_exp(m, c));
+		
+		int lst = c;
+		for(int j = 0; j < m; j++){
+			int c = vec.end() - lower_bound(vec.begin(), vec.end(), factors[j]);
+			cans = mul(cans, pow_exp(m-j, c-lst));
+			lst = c;
+		}
+		
+		ans = add(ans, cans);
+	}
+	
+	cout << ans << endl;
 }

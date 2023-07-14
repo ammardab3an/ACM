@@ -1,3 +1,11 @@
+// Problem: D. Could you help the judges?
+// Contest: Codeforces - Al-Baath Collegiate Programming Contest 2023
+// URL: https://codeforces.com/gym/104447/problem/D
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -5,12 +13,12 @@
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -97,8 +105,64 @@ int32_t main(){
     
 	// init();
 	
+	vector<vi> tmp(11);
+	for(int x = 0; x < (1<<10); x++){
+		tmp[__builtin_popcount(x)].push_back(x);
+	}
+	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		if(n==0){
+			n = 1e5;
+			vec = vi(n);
+			for(auto &e : vec) e = rand(0, 1023);
+			k = 5;
+		}
+		
+		vi pre = vec;
+		for(int i = 1; i < n; i++){
+			pre[i] ^= pre[i-1];
+		}
+		
+		vi st0, st1;
+		vi cnt(1<<10);
+		vector<bool> vis0(1<<10), vis1(1<<10);
+		
+		vis0[0] = true;
+		st0.push_back(0);
+		
+		for(auto i : pre){
+			
+			for(int p = cnt[i]; p < st0.size(); p++){
+				int e = st0[p];
+				if(!vis1[e^i]){
+					vis1[e^i] = true;
+					st1.push_back(e^i);
+				}
+			}
+			
+			if(!vis0[i]){
+				vis0[i] = true;
+				st0.push_back(i);
+			}
+			
+			cnt[i] = st0.size();
+		}
+		
+		int ans = tmp[k].back();
+		ans = max(ans, *max_element(st1.begin(), st1.end()));
+		
+		for(auto i : tmp[k])
+		for(auto j : st1){
+			ans = max(ans, i^j);
+		}
+		
+		cout << ans << endl;
     }	
 }

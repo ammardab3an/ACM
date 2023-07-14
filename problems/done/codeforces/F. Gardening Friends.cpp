@@ -1,3 +1,11 @@
+// Problem: F. Gardening Friends
+// Contest: Codeforces - Codeforces Round 867 (Div. 3)
+// URL: https://codeforces.com/contest/1822/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,10 +61,6 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
@@ -64,24 +68,24 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-int fac[NMAX], ifac[NMAX];
+int n, k, c;
+vi adj[NMAX];
+int dist[2][NMAX];
 
-void init(){
+int x, dx;
+
+void dfs(int u, int p, int dis, bool b){
 	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
+	dist[b][u] = dis;
+	
+	if(dis > dx){
+		x = u;
+		dx = dis;
 	}
 	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
+	for(auto v : adj[u]) if(v != p){
+		dfs(v, u, dis+1, b);
 	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
 int32_t main(){
@@ -95,10 +99,40 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		cin >> n >> k >> c;
+		
+		for(int i = 0; i < n; i++){
+			adj[i].clear();
+		}
+		
+		for(int i = 0; i < n-1; i++){
+			int u, v;
+			cin >> u >> v;
+			u--, v--;
+			adj[u].push_back(v);
+			adj[v].push_back(u);
+		}
+		
+		x = dx = -1;
+		dfs(0, -1, 0, 0);
+		
+		if(k < c){
+			cout << dx*k << endl;
+			continue;
+		}
+		
+		dx = -1;
+		dfs(x, -1, 0, 1);
+		
+		int ans = 0;
+		for(int i = 0; i < n; i++){
+			
+			int cans = dist[1][i]*k - dist[0][i]*c;
+			ans = max(ans, cans);
+		}
+		
+		cout << ans << endl;
     }	
 }

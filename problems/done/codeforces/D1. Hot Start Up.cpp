@@ -1,3 +1,11 @@
+// Problem: D1. Hot Start Up (easy version)
+// Contest: Codeforces - Codeforces Round #854 by cybercats (Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1799/problem/D1
+// Memory Limit: 512 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,35 +61,30 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+const int NMAX = 5e3 + 10;
 
-int fac[NMAX], ifac[NMAX];
+int n, m;
+int arr[NMAX];
+int val[NMAX][2];
+int mem[NMAX][NMAX];
+int vis[NMAX][NMAX], vid;
 
-void init(){
+int go(int i, int j){
 	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
+	if(j==n-1){
+		return 0;
+	}	
 	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+	int &ret = mem[i+1][j+1];
+	int &vis = ::vis[i+1][j+1];
+	if(vis==vid) return ret;
+	vis = vid;
+	
+	int st_path = go(i, j+1) + (j==-1 ? val[arr[j+1]][0] : (arr[j]==arr[j+1] ? val[arr[j+1]][1] : val[arr[j+1]][0]));
+	int nd_path = go(j, j+1) + (i==-1 ? val[arr[j+1]][0] : (arr[i]==arr[j+1] ? val[arr[j+1]][1] : val[arr[j+1]][0]));
+	
+	return ret = min(st_path, nd_path);
 }
 
 int32_t main(){
@@ -95,10 +98,19 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		cin >> n >> m;
+		for(int i = 0; i < n; i++){
+			cin >> arr[i], --arr[i];
+		}
+		
+		for(int i = 0; i < m; i++) cin >> val[i][0];
+		for(int i = 0; i < m; i++) cin >> val[i][1];
+		
+		vid++;
+		
+		int ans = go(-1, -1);
+		cout << ans << endl;
     }	
 }

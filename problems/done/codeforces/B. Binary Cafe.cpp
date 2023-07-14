@@ -1,3 +1,11 @@
+// Problem: B. Binary Cafe
+// Contest: Codeforces - Codeforces Round 878 (Div. 3)
+// URL: https://codeforces.com/contest/1840/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,30 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		int p = 0;
+		int x = 0;
+		
+		while(x+(1ll<<p) <= n){
+			p++;
+			x += 1ll<<p;
+		}
+		
+		k = min(k, p+2);
+		
+		if((1ll<<k)-1 <= n){
+			cout << (1ll<<k) << endl;
+			continue;
+		}
+		
+		int ans = 1;
+		
+		for(int i = 0; i <= k; i++) if((n>>i)&1){
+			ans += (1ll<<i);
+		}
+		
+		cout << ans << endl;
     }	
 }

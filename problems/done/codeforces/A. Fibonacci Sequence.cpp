@@ -1,3 +1,11 @@
+// Problem: A. Fibonacci Sequence
+// Contest: Codeforces - Btunis beek
+// URL: https://codeforces.com/group/rKyL0A9Cab/contest/447953/problem/A
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,75 @@ int32_t main(){
     
 	// init();
 	
+	auto check2 = [](int i, int n) {
+		
+		int j = 2*i;
+		
+		while(j < n){
+			int t = j;
+			j = i+j;
+			i = t;
+		}
+		
+		return j==n;
+	};
+	
+	auto check = [](string a, string b, int n) -> string{
+		
+		string c = a+b;
+		
+		while(c.size() < n){
+			string t = c;
+			c = b+c;
+			b = t;
+		}
+		
+		assert(c.size()==n);
+		
+		return c;
+	};
+	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		string str;
+		cin >> str;
+		
+		n = str.size();
+		
+		bool found = false;
+		string ans_a, ans_b;
+		
+		for(int i = 1; i*2 <= n; i++){
+			
+			if(!check2(i, n)){
+				continue;
+			}
+			
+			string b(str.rbegin(), str.rbegin()+i);
+			string a(str.rbegin()+i, str.rbegin()+2*i);
+			
+			reverse(a.begin(), a.end());
+			reverse(b.begin(), b.end());
+			
+			// cout << a << ' ' << b << endl;
+			
+			if(check(a, b, n) == str){
+				found = true;
+				ans_a = a;
+				ans_b = b;
+				break;
+			}
+		}
+		
+		if(!found){
+			cout << -1 << endl;
+		}
+		else{
+			cout << ans_a.size() << endl;
+			cout << ans_a << endl << ans_b << endl;
+		}
     }	
 }

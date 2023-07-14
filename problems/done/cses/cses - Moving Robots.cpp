@@ -1,3 +1,11 @@
+// Problem: Moving Robots
+// Contest: CSES - CSES Problem Set
+// URL: https://cses.fi/problemset/task/1726
+// Memory Limit: 512 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,10 +61,6 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
@@ -64,24 +68,47 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-int fac[NMAX], ifac[NMAX];
+typedef long double dt;
 
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
+const int n = 8;
+pii mvArr[] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+bool vis[n][n][n][n][111];
+dt mem[n][n][n][n][111];
+
+bool good(int i, int j){
+	return 0 <= i && i < n && 0 <= j && j < n;	
 }
 
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+dt go(int i, int j, int x, int y, int rem){
+	
+	if(!rem){
+		return (i!=x) || (j!=y);
+	}
+	
+	auto &ret = mem[x][y][i][j][rem];
+	auto &vis = ::vis[x][y][i][j][rem];
+	if(vis) return ret;
+	vis = true;
+	
+	dt ans = 0;
+	
+	int cnt = 0;
+	if(i) cnt++;
+	if(j) cnt++;
+	if(i < n-1) cnt++;
+	if(j < n-1) cnt++;
+	
+	for(auto [di, dj] : mvArr){
+		
+		int ni = i + di;
+		int nj = j + dj;
+		
+		if(good(ni, nj)){
+			ans += go(ni, nj, x, y, rem-1) / dt(cnt);
+		}
+	}
+	
+	return ret = ans;
 }
 
 int32_t main(){
@@ -94,11 +121,24 @@ int32_t main(){
 #endif
 
     // freopen("name.in", "r", stdin);
-    
-	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int k;
+	cin >> k;
+	
+	dt ans = 0;
+	
+	for(int i = 0; i < n; i++)
+	for(int j = 0; j < n; j++){
+		
+		dt p = 1;
+			
+		for(int x = 0; x < n; x++)
+		for(int y = 0; y < n; y++){
+			p *= go(x, y, i, j, k);
+		}
+		
+		ans += p;
+	}
+	
+	cout << fixed << setprecision(6) << ans << endl;
 }

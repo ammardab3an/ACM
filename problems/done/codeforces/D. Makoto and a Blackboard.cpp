@@ -1,3 +1,11 @@
+// Problem: D. Makoto and a Blackboard
+// Contest: Codeforces - Hello 2019
+// URL: https://codeforces.com/problemset/problem/1097/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,10 +61,6 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
@@ -64,24 +68,30 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-int fac[NMAX], ifac[NMAX];
+int inv[55];
+int ppp[55];
+int mem[10010][55];
+int vis[10010][55], vid;
 
-void init(){
+int go(int i, int rm){
 	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
+	if(!i){
+		return ppp[rm];
+	}	
+	
+	int &ret = mem[i][rm];
+	int &vis = ::vis[i][rm];
+	if(vis==vid) return ret;
+	vis=vid;
+	
+	int ans = 0;
+	
+	int q = inv[rm+1];
+	for(int j = 0; j <= rm; j++){
+		ans = add(ans, mul(q, go(i-1, j)));
 	}
 	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+	return ret = ans;
 }
 
 int32_t main(){
@@ -95,10 +105,45 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, k;
+    cin >> n >> k;
+    
+    for(int i = 1; i < 55; i++){
+    	inv[i] = pow_exp(i, MOD-2);
+    }
+    
+    vpii tmp;
+    for(int i = 2; i*i <= n; i++){
+    	
+    	int cnt = 0;
+    	while(n%i==0){
+    		n /= i;
+    		cnt++;
+    	}	
+    	
+    	if(cnt){
+    		tmp.push_back({i, cnt});
+    	}
+    }
+    
+    if(n > 1){
+    	tmp.push_back({n, 1});
+    }
+    
+    int ans = 1;
+    
+    for(auto [v, f] : tmp){
+    	
+    	ppp[0] = 1;
+    	for(int i = 1; i <= f+1; i++){
+    		ppp[i] = mul(ppp[i-1], v);
+    	}
+    	
+    	vid++;
+    	
+    	int cans = go(k, f);
+    	ans = mul(ans, cans);
+    }
+    
+    cout << ans << endl;
 }

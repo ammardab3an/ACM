@@ -1,3 +1,11 @@
+// Problem: B. Abridged Reading
+// Contest: Codeforces - 2021-2022 ICPC East Central North America Regional Contest (ECNA 2021)
+// URL: https://codeforces.com/gym/104196/problem/B
+// Memory Limit: 1024 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,13 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int n, m;
+bool bad[NMAX];
+int arr[NMAX];
+int par[NMAX];
+int vis[NMAX];
+int vid;
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +112,43 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	cin >> n >> m;
+	for(int i = 0; i < n; i++){
+		cin >> arr[i];
+		par[i] = -1;
+	}
+	
+	for(int i = 0; i < m; i++){
+		int u, v;
+		cin >> u >> v;
+		u--, v--;
+		par[v] = u;
+		bad[u] = true;
+	}
+	
+	int ans = INF;
+	
+	for(int i = 0; i < n; i++) if(!bad[i])
+	for(int j = 0; j < i; j++) if(!bad[j]){
+		
+		vid++;
+		int cans = 0;
+		
+		for(auto u : {i, j}){
+			
+			while(u != -1){
+				
+				if(vis[u] != vid){
+					cans += arr[u];
+					vis[u] = vid;
+				}
+				
+				u = par[u];
+			}
+		}
+		
+		ans = min(ans, cans);
+	}
+	
+	cout << ans << endl;
 }

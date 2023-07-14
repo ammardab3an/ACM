@@ -1,3 +1,11 @@
+// Problem: F - Distributing Integers
+// Contest: AtCoder - AtCoder Beginner Contest 160
+// URL: https://atcoder.jp/contests/abc160/tasks/abc160_f
+// Memory Limit: 1024 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,11 +61,11 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
+ 
 int inv(int x){
 	return pow_exp(x, MOD-2);
 }
- 
+
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
@@ -79,9 +87,54 @@ void init(){
 	}
 }
 
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+vi adj[NMAX];
+int sz[NMAX];
+int val[NMAX];
+int ans[NMAX];
+
+void dfs(int u, int p){
+	
+	sz[u] = 1;
+	int cval = 1;
+	
+	for(auto v : adj[u]) if(v != p){
+		dfs(v, u);
+		sz[u] += sz[v];
+		cval = mul(cval, mul(val[v], ifac[sz[v]]));
+	}	
+	
+	cval = mul(cval, fac[sz[u]-1]);
+	val[u] = cval;
+}
+
+void go(int u, int p){
+	
+	ans[u] = val[u];
+	
+	for(auto v : adj[u]) if(v != p){
+		
+		val[u] = mul(val[u], ifac[sz[u]-1]);
+		sz[u] -= sz[v];
+		val[u] = mul(val[u], fac[sz[u]-1]);
+		val[u] = mul(val[u], mul(inv(val[v]), fac[sz[v]]));
+		
+		val[v] = mul(val[v], ifac[sz[v]-1]);
+		sz[v] += sz[u];
+		val[v] = mul(val[v], fac[sz[v]-1]);
+		val[v] = mul(val[v], mul(val[u], ifac[sz[u]]));
+		
+		go(v, u);
+		
+		val[v] = mul(val[v], ifac[sz[v]-1]);
+		sz[v] -= sz[u];
+		val[v] = mul(val[v], fac[sz[v]-1]);
+		val[v] = mul(val[v], mul(inv(val[u]), fac[sz[u]]));
+		
+		val[u] = mul(val[u], ifac[sz[u]-1]);
+		sz[u] += sz[v];
+		val[u] = mul(val[u], fac[sz[u]-1]);
+		val[u] = mul(val[u], mul(val[v], ifac[sz[v]]));
+	}
 }
 
 int32_t main(){
@@ -95,10 +148,23 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    init();
+    
+    int n;
+    cin >> n;
+    
+    for(int i = 0; i < n-1; i++){
+    	int u, v;
+    	cin >> u >> v;
+    	u--, v--;
+    	adj[u].push_back(v);
+    	adj[v].push_back(u);
+    }
+    
+    dfs(0, -1);
+    go(0, -1);
+    
+    for(int i = 0; i < n; i++){
+    	cout << ans[i] << endl;
+    }
 }

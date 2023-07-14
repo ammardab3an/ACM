@@ -1,3 +1,11 @@
+// Problem: F. Editorial for Two
+// Contest: Codeforces - Educational Codeforces Round 149 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1837/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,99 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+bool check(const vi &vec, int sm, int k){
+	
+	int n = vec.size();
+	vi rm(n+1);
+
+	{
+		
+		int cur_sum = 0;
+		priority_queue<int> que;
+		
+		for(int i = 0; i <= n; i++){
+	
+			if(i){
+				
+				int ai = vec[i-1];
+				
+				if(cur_sum+ai <= sm){
+					que.push(ai);
+					cur_sum += ai;
+				}
+				else if(!que.empty()) if(que.top() > ai){
+					cur_sum -= que.top();
+					cur_sum += ai;
+					que.pop();
+					que.push(ai);
+				}
+			}
+			
+			rm[i] = k-que.size();
+			
+			if(rm[i] <= 0){
+				return true;
+			}
+		}
+	}
+	
+	{
+		
+		int cur_sum = 0;
+		priority_queue<int> que;
+		
+		for(int i = n; i >= 0; i--){
+	
+			if(i < n){
+				
+				int ai = vec[i];
+				
+				if(que.size() < rm[i]){
+					que.push(ai);
+					cur_sum += ai;
+				}
+				else if(!que.empty()) if(que.top() > ai){
+					cur_sum -= que.top();
+					cur_sum += ai;
+					que.pop();
+					que.push(ai);
+				}
+			}
+			
+			if(que.size() >= rm[i]){
+				if(cur_sum <= sm){
+					return true;
+				}
+			}
+		}
+	}
+	
+	return false;
+}
+
+int go(const vi &vec, int k){
+	
+	int l = 0;
+	int r = 1e18;
+	
+	int ans = -1;
+	
+	while(l <= r){
+		
+		int mid = (l+r)/2;
+		
+		if(check(vec, mid, k)){
+			ans = mid;
+			r = mid-1;
+		}
+		else{
+			l = mid+1;
+		}
+	}
+	
+	return ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -99,6 +200,13 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		int ans = go(vec, k);
+		cout << ans << endl;
     }	
 }

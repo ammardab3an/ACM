@@ -1,3 +1,5 @@
+//
+// https://codeforces.com/gym/103061/submit/F
 
 // By AmmarDab3an 
 
@@ -53,36 +55,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +73,43 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, m;
+    cin >> n >> m;
+    
+    vector<pair<double, double>> vec(n);
+    for(auto &[a, b] : vec) cin >> a >> b;
+    
+    double l = 0;
+    double r = 1e9;
+    
+    double ans = r;
+    
+    int iter_cnt = 100;
+    while(iter_cnt--){
+    	
+    	double mid = (l+r)/2;
+    	
+    	double ex = 0;
+    	for(auto [l, r] : vec){
+    		if(r < mid){
+    			ex += 1;
+    		}
+    		else if(mid < l){
+    			ex += 0;
+    		}
+    		else{
+    			ex += (mid-l)/(r-l);
+    		}
+    	}
+    	
+    	if(ex >= m){
+    		ans = mid;
+    		r = mid;
+    	}
+    	else{
+    		l = mid;
+    	}
+    }
+    
+    cout << fixed << setprecision(10) << ans << endl;
 }

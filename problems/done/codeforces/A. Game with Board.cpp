@@ -1,3 +1,11 @@
+// Problem: A. Game with Board
+// Contest: Codeforces - Educational Codeforces Round 150 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1841/problem/A
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,14 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		if(n > 4){
+			cout << "Alice" << endl;
+		}
+		else {
+			cout << "Bob" << endl;
+		}
     }	
 }

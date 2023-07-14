@@ -1,3 +1,11 @@
+// Problem: B. Bitwise Beautiful Arrays
+// Contest: Codeforces - Btunis beek
+// URL: https://codeforces.com/group/rKyL0A9Cab/contest/447953/problem/B
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,20 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+void sos_or(vi &F, int N){
+	for(int i = 0;i < N; ++i) for(int mask = 0; mask < (1<<N); ++mask){
+		if(mask & (1<<i))
+			F[mask] |= F[mask^(1<<i)];
+	}	
+}
+
+void sos_sum(vi &F, int N){
+	for(int i = 0;i < N; ++i) for(int mask = 0; mask < (1<<N); ++mask){
+		if(mask & (1<<i))
+			F[mask] += F[mask^(1<<i)];
+	}	
+}
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +119,29 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	vi F1(1<<20);
+	for(auto i : vec) F1[i] = i;
+	
+	sos_or(F1, 20);
+	
+	vi F2(1<<20);
+	for(int i = 0; i < (1<<20); i++){
+		F2[i] = F1[i]==i;
+	}
+	
+	sos_sum(F2, 20);
+	
+	int q;
+	cin >> q; 
+	while(q--){
+		int x;
+		cin >> x;
+		cout << F2[x]-1 << ' ';
+	}
 }

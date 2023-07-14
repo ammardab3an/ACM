@@ -1,3 +1,11 @@
+// Problem: C. Serval and Toxel's Arrays
+// Contest: Codeforces - Codeforces Round #853 (Div. 2)
+// URL: https://codeforces.com/contest/1789/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,54 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, --i;
+		
+		vi frq(n+m);
+		int sm = n;
+		int ans = 0;
+		
+		for(auto i : vec){
+			frq[i]++;
+		}
+		
+		map<int, int> mp;
+		for(auto i : vec) mp[i] = 0;
+		int mp_add = 0;
+		
+		for(int i = 0; i < m; i++){
+			
+			int p, v;
+			cin >> p >> v;
+			p--, v--;
+			
+			// cout << sm << endl;
+			
+			{
+				auto it = mp.find(vec[p]);
+				if(it != mp.end()){
+					frq[vec[p]] += it->second + mp_add;
+					mp.erase(it);
+				}
+			}
+			
+			sm -= frq[vec[p]];
+			vec[p] = v;
+			sm += frq[vec[p]];
+			
+			ans += n*(i+1);
+			ans += n*(i+1)-sm;
+			
+			mp[v] = -mp_add;
+			mp_add++;
+			sm += n;
+		}
+		
+		cout << ans << endl;
     }	
 }

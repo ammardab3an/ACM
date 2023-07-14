@@ -1,3 +1,11 @@
+// Problem: D. Powerful Ksenia
+// Contest: Codeforces - Codeforces Round 682 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/1438/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,32 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	if(n%2==0){
+		int x = 0;
+		for(auto i : vec) x ^= i;
+		if(x != 0){
+			cout << "NO" << endl;
+			return 0;
+		}
+	}
+	
+	vector<array<int, 3>> ans;
+	for(int i = 1; i+1 < n; i+=2){
+		ans.push_back({0, i, i+1});
+	}
+	for(int i = 1; i+1 < n; i+=2){
+		ans.push_back({0, i, i+1});
+	}
+	
+	cout << "YES" << endl;
+	cout << ans.size() << endl;
+	for(auto [i, j, k] : ans){
+		cout << i+1 << ' ' << j+1 << ' ' << k+1 << endl;
+	}
 }

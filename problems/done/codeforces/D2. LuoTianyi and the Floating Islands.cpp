@@ -1,3 +1,11 @@
+// Problem: D2. LuoTianyi and the Floating Islands (Hard Version)
+// Contest: Codeforces - Codeforces Round 872 (Div. 2)
+// URL: https://codeforces.com/contest/1825/problem/D2
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,35 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int n, k;
+vi adj[NMAX];
+int sz[NMAX];
+int ans;
+
+void dfs(int u, int p){
+	
+	sz[u] = 1;
+	
+	for(auto v : adj[u]) if(v != p){
+		dfs(v, u);
+		sz[u] += sz[v];
+	}
+	
+	for(auto v : adj[u]) if(v != p){
+		
+		int a = n-sz[v];
+		int b = sz[v];
+		
+		int cans = 0;
+		
+		if(a >= k/2 && b >= k/2){			
+			cans = add(cans, mul(choose(a, k/2), choose(b, k/2)));
+		}
+		
+		ans = add(ans, cans);
+	}
+}
+
 int32_t main(){
     
     fastIO;
@@ -95,10 +132,23 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	cin >> n >> k;
+	for(int i = 0; i < n-1; i++){
+		int u, v;
+		cin >> u >> v;
+		u--, v--;
+		adj[u].push_back(v);
+		adj[v].push_back(u);
+	}
+	
+	if(k%2==0){	
+		dfs(0, -1);
+	}
+	
+	ans = mul(ans, inv(choose(n, k)));
+	ans = add(ans, +1);
+	
+	cout << ans << endl;
 }

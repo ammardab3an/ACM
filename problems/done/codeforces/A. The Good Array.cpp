@@ -1,3 +1,11 @@
+// Problem: A. The Good Array
+// Contest: Codeforces - Codeforces Round 876 (Div. 2)
+// URL: https://codeforces.com/contest/1839/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,32 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		if(k==1){
+			cout << n << endl;
+			continue;
+		}
+		
+		int ans = (n+k-1)/k;
+		
+		int cnt = 0;
+		
+		for(int i = n; i >= 1; i--){
+			
+			if(i%k==1){
+				cnt++;
+			}	
+			
+			int s = n-i+1;
+			
+			if((s+k-1)/k > cnt){
+				ans++;
+				cnt++;
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }

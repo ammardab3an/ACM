@@ -1,3 +1,11 @@
+// Problem: A. Grasshopper on a Line
+// Contest: Codeforces - Educational Codeforces Round 149 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1837/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,17 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		
+		int n, k;
+		cin >> n >> k;
+		
+		if(n%k==0){
+			cout << 2 << endl;
+			cout << n-1 << ' ' << 1 << endl;
+		}
+		else{
+			cout << 1 << endl;
+			cout << n << endl;
+		}
     }	
 }

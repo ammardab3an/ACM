@@ -1,3 +1,11 @@
+// Problem: C. Best Binary String
+// Contest: Codeforces - Educational Codeforces Round 149 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1837/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -98,7 +106,51 @@ int32_t main(){
 	// init();
 	
     int t; cin >> t; while(t--){
-
-
+	
+		string str;
+		cin >> str;
+		
+		int n = str.size();
+		
+		vi pre(n, -1), suf(n, -1);
+		
+		for(int i = 0; i < n; i++){
+			if(i){
+				pre[i] = pre[i-1];
+			}
+			if(str[i] != '?'){
+				pre[i] = str[i]-'0';
+			}
+		}
+		
+		for(int i = n-1; i >= 0; i--){
+			if(i+1 < n){
+				suf[i] = suf[i+1];
+			}
+			if(str[i] != '?'){
+				suf[i] = str[i]-'0';
+			}
+		}
+		
+		for(int i = 0; i < n; i++) if(str[i]=='?'){
+			
+			int l = pre[i];
+			int r = suf[i];
+			
+			if(l==-1 && r==-1){
+				str[i] = '0';
+			}
+			else if(l==-1){
+				str[i] = '0' + r;
+			}
+			else if(r==-1){
+				str[i] = '0' + l;
+			}
+			else{
+				str[i] = '0' + l;
+			}
+		}
+		
+		cout << str << endl;
     }	
 }

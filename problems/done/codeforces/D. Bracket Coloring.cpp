@@ -1,3 +1,11 @@
+// Problem: D. Bracket Coloring
+// Contest: Codeforces - Educational Codeforces Round 149 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1837/problem/D
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,75 @@ int32_t main(){
     
 	// init();
 	
+	auto check = [](const string &str){
+		
+		int sm = 0;
+		for(auto c : str){
+			if(c=='('){
+				sm++;
+			}
+			else{
+				sm--;
+				if(sm < 0){
+					return false;
+				}
+			}
+		}
+		
+		return sm==0;
+	};
+	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		string str;
+		cin >> str;
+		
+		n = str.size();
+		
+		string rstr = str;
+		reverse(rstr.begin(), rstr.end());
+		
+		if(check(str) || check(rstr)){
+			cout << 1 << endl;
+			for(int i = 0; i < n; i++){
+				cout << 1 << ' ';
+			}
+			cout << endl;
+			continue;
+		}
+		
+		vi ans(n, 2);
+		
+		int sm = 0;
+		stack<int> st;
+		
+		for(int i = 0; i < n; i++){
+			if(str[i]=='('){
+				st.push(i);
+			}
+			else{
+				if(!st.empty()){
+					ans[st.top()] = 1;
+					ans[i] = 1;
+					st.pop();
+				}
+				else{
+					ans[i] = 2;
+					sm++;
+				}
+			}
+		}
+		
+		if(st.size() != sm){
+			cout << -1 << endl;
+		}
+		else{
+			cout << 2 << endl;
+			for(auto i : ans) cout << i << ' '; 
+			cout << endl;
+		}
     }	
 }

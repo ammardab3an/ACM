@@ -1,3 +1,11 @@
+// Problem: D2. Half of Same
+// Contest: Codeforces - Codeforces Round #748 (Div. 3)
+// URL: https://codeforces.com/contest/1593/problem/D2
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,75 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
-
-
+	
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		sort(vec.begin(), vec.end());
+		
+		int mx = 1;
+		int cnt = 1;
+		for(int i = 1; i < n; i++){
+			if(vec[i]==vec[i-1]){
+				mx = max(mx, ++cnt);
+			}
+			else{
+				cnt = 1;
+			}
+		}
+		
+		if(mx >= n/2){
+			cout << -1 << endl;
+			continue;
+		}
+		
+		int ans = 0;
+		
+		for(int i = 0; i < n; i++)
+		for(int j = 0; j < i; j++) if(vec[i] != vec[j]){
+			
+			int x = abs(vec[i]-vec[j]);
+			
+			vi factors;
+			for(int i = 1; i*i <= x; i++) if(x%i==0){
+				factors.push_back(i);
+				if(x/i != i) factors.push_back(x/i);
+			}
+			
+			for(auto f : factors){
+				
+				vi tmp(n);
+				for(int i = 0; i < n; i++){
+					tmp[i] = vec[i]%f;
+					if(tmp[i] < 0) tmp[i] += f;
+				}
+				
+				sort(tmp.begin(), tmp.end());
+				
+				int mx = 1;
+				int cnt = 1;
+				for(int i = 1; i < n; i++){
+					if(tmp[i]==tmp[i-1]){
+						mx = max(mx, ++cnt);
+					}
+					else{
+						cnt = 1;
+					}
+				}
+				
+				// cout << f << ' ';
+				// for(auto i : tmp) cout << i << ' '; cout << endl;
+				
+				if(mx >= n/2){
+					ans = max(ans, f);
+				}
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }

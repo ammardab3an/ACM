@@ -1,3 +1,11 @@
+// Problem: B. Comparison String
+// Contest: Codeforces - Educational Codeforces Round 149 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1837/problem/B
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,24 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		string str;
+		cin >> str;
+		
+		int mx = 1;
+		
+		int cnt = 1;
+		for(int i = 1; i < n; i++){
+			if(str[i] != str[i-1]){
+				mx = max(cnt, mx);
+				cnt = 0;
+			}
+			cnt++;
+		}
+		mx = max(cnt, mx);
+		
+		cout << mx+1 << endl;
     }	
 }

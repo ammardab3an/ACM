@@ -1,3 +1,11 @@
+// Problem: B. Unlucky Teacher
+// Contest: Codeforces - Training Teams 5
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/447848/problem/B
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,31 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		vector<char> ans(n, '?');
+		vector<int> tmp(n, (1<<4)-1);
+		
+		while(m--){
+			for(int i = 0; i < n; i++){
+				char a, b;
+				cin >> a >> b;
+				if(b=='T') ans[i] = a;
+				else tmp[i] &= ~(1<<(a-'A'));
+			}
+		}
+		
+		for(int i = 0; i < n; i++) if(ans[i]=='?'){
+			if(__builtin_popcount(tmp[i])==1){
+				ans[i] = 'A' + (__lg(tmp[i]));
+			}	
+		}
+		
+		for(int i = 0; i < n; i++){
+			if(i) cout << ' ';
+			cout << ans[i];
+		}
+		cout << endl;
     }	
 }

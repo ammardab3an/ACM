@@ -1,3 +1,11 @@
+// Problem: C. Contrast Value
+// Contest: Codeforces - Educational Codeforces Round 148 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1832/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,47 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		int ans = n;
+		
+		vi tmp;
+		for(auto i : vec){
+			
+			if(tmp.size() < 2){
+				if(tmp.empty() || tmp.back() != i){				
+					tmp.push_back(i);
+				}
+				continue;
+			}
+			
+			int a = tmp[tmp.size()-2];
+			int b = tmp[tmp.size()-1];
+			int c = i;
+			
+			if((a <= b && b <= c) ||
+				(a >= b && b >= c)){
+				tmp.pop_back();
+				if(tmp.back() != i){
+					tmp.push_back(i);
+				}
+			}
+			else{
+				if(tmp.back() != i){
+					tmp.push_back(i);
+				}
+			}
+		}
+		
+		// for(auto i : tmp){
+			// cout << i << ' ';
+		// }
+		// cout << endl;
+		
+		cout << tmp.size() << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: D. Vanya and Triangles
+// Contest: Codeforces - Codeforces Round 308 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/552/D
+// Memory Limit: 512 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,72 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	vpii pnts(n);
+	for(auto &[i, j] : pnts){
+		cin >> i >> j;
+	}
+	
+	sort(pnts.begin(), pnts.end());
+	
+	int ans = n*(n-1)*(n-2)/3/2;
+	
+	{
+		map<int, int> tmp;
+		
+		for(auto [i, j] : pnts){
+			tmp[i]++;
+		}	
+		
+		for(auto [k, v] : tmp) if(v >= 3){
+			ans -= v*(v-1)*(v-2)/3/2;
+		}
+	}
+	
+	map<array<int, 4>, int> mp;
+	
+	for(int i = 0; i < n; i++){
+		
+		map<array<int, 4>, int> tmp;
+		
+		for(int j = 0; j < i; j++){
+			
+			auto [x0, y0] = pnts[i];
+			auto [x1, y1] = pnts[j];
+			
+			if(x0 != x1){
+				
+				int m0 = y0-y1;
+				int m1 = x0-x1;
+				
+				int gm = __gcd(m0, m1);
+				m0 /= gm, m1 /= gm;
+				
+				int c0 = y0*m1 - m0*x0;
+				int c1 = m1;
+				
+				int gc = __gcd(c0, c1);
+				c0 /= gc, c1 /= gc;
+				
+				array<int, 4> cur = {m0, m1, c0, c1};
+				
+				tmp[cur]++;
+			}
+		}
+		
+		for(auto [k, v] : tmp){
+			ans -= mp[k];
+			mp[k] += v;
+		}
+	}
+	
+	cout << ans << endl;
 }
+
+// (y-y0) = m(x-x0)
+// y = mx - mx0 + y0
+// c = y0-mx0
+// c = y0 - m0.x0 / m1
+// c = (y0.m1 - m0.x0)/m1

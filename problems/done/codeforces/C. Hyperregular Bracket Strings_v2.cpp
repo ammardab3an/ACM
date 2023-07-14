@@ -1,3 +1,11 @@
+// Problem: C. Hyperregular Bracket Strings
+// Contest: Codeforces - Codeforces Round 875 (Div. 1)
+// URL: https://codeforces.com/contest/1830/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353; // 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -59,7 +67,7 @@ int inv(int x){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 3e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
@@ -84,6 +92,10 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int catalan(int i){
+	return mul(fac[i*2], mul(ifac[i+1], ifac[i]));
+}
+
 int32_t main(){
     
     fastIO;
@@ -95,10 +107,41 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		vpii vec(k);
+		for(auto &[f, s] : vec) cin >> f >> s;
+		
+		vi tmp(n+10);
+		
+		for(auto [f, s] : vec){
+			int x = rand(0ll, 1ll<<60);
+			tmp[f] ^= x;
+			tmp[s+1] ^= x;
+		}
+		
+		map<int, int> mp;
+		for(int i = 1; i <= n; i++){
+			tmp[i] ^= tmp[i-1];
+			mp[tmp[i]]++;
+		}
+		
+		int ans = 1;
+		for(auto [k, v] : mp){
+			
+			if(v%2==1){
+				ans = 0;
+				break;
+			}
+			
+			ans = mul(ans, catalan(v/2));
+		}
+		
+		cout << ans << endl;
     }	
 }

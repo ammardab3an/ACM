@@ -1,3 +1,11 @@
+// Problem: G. Castle Defense
+// Contest: Codeforces - Educational Codeforces Round 40 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/954/problem/G
+// Memory Limit: 256 MB
+// Time Limit: 1500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,67 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n, rr, k;
+    cin >> n >> rr >> k;
+    
+    vi vec(n);
+    for(auto &i : vec) cin >> i;
+    
+    vi cur(n+1);
+    
+    for(int i = 0; i < n; i++){
+    	int l = max(i-rr, int(0));
+    	int r = min(i+rr, n-1);
+    	cur[l] += vec[i];
+    	cur[r+1] -= vec[i];
+    }
+    
+    for(int i = 1; i < n; i++){
+    	cur[i] += cur[i-1];
+    }
+    
+    auto test = [&](int x){
+    	
+    	vi tmp(n+1);
+    	int ret = 0;
+    	
+    	for(int i = 0; i < n; i++){
+    		
+    		if(i) tmp[i] += tmp[i-1];
+    		int val = cur[i] + tmp[i];
+    		
+    		if(val < x){
+    			int dif = x-val;
+    			tmp[i] += dif;
+    			int r = min(i+2*rr, n-1);
+    			tmp[r+1] -= dif;
+    			ret += dif;
+    			if(ret > k) break;
+    		}
+    	}
+    	
+    	// cout << x << ' ' << ret << endl << flush;
+    	
+    	return ret;
+    };
+    
+    int l = 1;
+    int r = INFLL;
+    
+    int ans = *min_element(cur.begin(), cur.end());
+    
+    while(l <= r){
+    	
+    	int mid = (l+r)/2;
+    	
+    	if(test(mid) <= k){
+    		ans = mid;
+    		l = mid+1;
+    	}
+    	else{
+    		r = mid-1;
+    	}
+    }
+    
+    cout << ans << endl;
 }

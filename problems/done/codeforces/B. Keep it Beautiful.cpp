@@ -1,3 +1,11 @@
+// Problem: B. Keep it Beautiful
+// Contest: Codeforces - Educational Codeforces Round 150 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1841/problem/B
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,45 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		bool b = false;
+		
+		int l = 0;
+		int r = INF;
+		
+		for(auto e : vec){
+			
+			if(!b){
+				if(l <= e && e <= r){
+					cout << '1';
+					l = e;
+				}
+				else if(e <= vec.front()){
+					cout << '1';
+					b = true;
+					l = e;
+					r = vec.front();
+				}
+				else{
+					cout << '0';
+				}
+			}
+			else{
+				if(l <= e && e <= r){
+					cout << '1';
+					l = e;
+				}
+				else{
+					cout << '0';
+				}
+			}
+		}
+		
+		cout << endl;
     }	
 }

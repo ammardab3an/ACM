@@ -1,3 +1,11 @@
+// Problem: A. Destroyer
+// Contest: Codeforces - Codeforces Round 880 (Div. 2)
+// URL: https://codeforces.com/contest/1836/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,31 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		map<int, int> mp;
+		for(auto i : vec) mp[i]++;
+		
+		bool ans = true;
+		
+		int lst = -1;
+		int lst_cnt = INF;
+		
+		for(auto [v, f] : mp){
+		
+			if(v != lst+1 || lst_cnt < f){
+				ans = false;
+				break;
+			}	
+			
+			lst = v;
+			lst_cnt = f;
+		}
+		
+		cout << (ans ? "YES" : "NO") << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: B - Favorite Game
+// Contest: AtCoder - AtCoder Regular Contest 163
+// URL: https://atcoder.jp/contests/arc163/tasks/arc163_b
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,31 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
+	int n, m;
+	cin >> n >> m;
+	
+	int a, b;
+	cin >> a >> b;
+	
+	n -= 2;
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	sort(vec.begin(), vec.end());
+	
+	int ans = INFLL;
 
-
-    }	
+	for(int i = 0; i+m-1 < n; i++){
+		
+		int na = vec[i];
+		int nb = vec[i+m-1];
+		
+		int cans = 0;
+		if(na < a) cans += a-na;
+		if(nb > b) cans += nb-b;
+		
+		ans = min(ans, cans);
+	}
+	
+	cout << ans << endl;
 }

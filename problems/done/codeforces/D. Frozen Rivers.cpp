@@ -1,3 +1,11 @@
+// Problem: D. Frozen Rivers
+// Contest: Codeforces - Training Teams 5
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/447848/problem/D
+// Memory Limit: 1024 MB
+// Time Limit: 10000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,66 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi par(n);
+		vector<vpii> adj(n);
+		
+		for(int i = 1; i < n; i++){
+			int p, c;
+			cin >> p >> c;
+			p--;
+			par[i] = p;
+			adj[p].push_back({i, c});
+		}
+		
+		vi tmp;
+		vector<bool> rate(n);
+		set<pair<int, int>> st;
+		vector<int> tmp_tim(n, -1);
+		
+		for(auto [v, c] : adj[0]){
+			tmp_tim[v] = c;
+			st.insert({tmp_tim[v], v});
+		}
+		
+		while(!st.empty()){
+			
+			auto [tim, v] = *st.begin();
+			st.erase(st.begin());
+			tmp_tim[v] = -1;
+			
+			if(adj[v].empty()){
+				tmp.push_back(tim);
+			}
+			
+			if(!rate[par[v]]){
+				rate[par[v]] = true;
+				
+				for(auto [w, c] : adj[par[v]]) {
+					if(tmp_tim[w] != -1){
+						st.erase({tmp_tim[w], w});
+						tmp_tim[w] = tim + (tmp_tim[w]-tim)*2;
+						st.insert({tmp_tim[w], w});
+					}
+				}
+			}
+			
+			for(auto [w, c] : adj[v]){
+				tmp_tim[w] = tim + c;
+				st.insert({tmp_tim[w], w});
+			}
+		}
+		
+		int q; cin >> q; while(q--){
+			
+			int x;
+			cin >> x;
+			
+			int ans = upper_bound(tmp.begin(), tmp.end(), x) - tmp.begin();
+			
+			cout << ans << endl;
+		}
     }	
 }

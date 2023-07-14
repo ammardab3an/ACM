@@ -1,3 +1,11 @@
+// Problem: A. The Brand New Function
+// Contest: Codeforces - Codeforces Round #150 (Div. 1)
+// URL: https://codeforces.com/contest/243/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,42 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    int n;
+    cin >> n;
+    
+    vi vec(n);
+    for(auto &i : vec) cin >> i;
+    
+    vector<vi> lst(n, vi(30, n));
+    for(int i = n-1; i >= 0; i--){
+    	if(i < n-1){
+    		lst[i] = lst[i+1];
+    	}
+    	for(int j = 0; j < 30; j++) if((vec[i]>>j)&1){
+    		lst[i][j] = i;
+    	}
+    }
+    
+    set<int> st;
+    
+    for(int i = 0; i < n; i++){
+    	
+    	int cur = 0;
+    	
+    	int j = i;
+    	while(j < n){
+    		
+    		cur |= vec[j];
+    		st.insert(cur);
+    		
+    		int mn = n;
+    		for(int k = 0; k < 30; k++) if(!((cur>>k)&1)){
+    			mn = min(mn, lst[j][k]);
+    		}
+    		
+    		j = mn;
+    	}
+    }
+    
+    cout << st.size() << endl;
 }

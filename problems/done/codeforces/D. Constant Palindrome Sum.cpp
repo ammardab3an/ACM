@@ -1,3 +1,11 @@
+// Problem: D. Constant Palindrome Sum
+// Contest: Codeforces - Codeforces Round 636 (Div. 3)
+// URL: https://codeforces.com/contest/1343/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,48 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		vi tmp(2*k + 2);
+		
+		for(int i = 0; i < n/2; i++){
+			
+			int a = vec[i];
+			int b = vec[n-i-1];
+			
+			if(a > b) swap(a, b);
+			
+			// 1+1 ... a+1 ... a+b ... b+k ... k+k
+			
+			tmp[2] += 2;
+			tmp[a+1] -= 2;
+			
+			tmp[a+1] += 1;
+			tmp[a+b] -= 1;
+			
+			tmp[a+b+1] += 1;
+			tmp[b+k+1] -= 1;
+			
+			tmp[b+k+1] += 2;
+			tmp[k+k+1] -= 2;
+		}
+		
+		int ans = INF;
+		
+		for(int i = 1; i < tmp.size(); i++){
+			tmp[i] += tmp[i-1];
+		}
+		
+		for(int i = 2; i <= 2*k; i++){
+			ans = min(ans, tmp[i]);
+		}
+		
+		cout << ans << endl;
     }	
 }

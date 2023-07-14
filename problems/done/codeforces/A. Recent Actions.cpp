@@ -1,3 +1,11 @@
+// Problem: A. Recent Actions
+// Contest: Codeforces - Codeforces Round #854 by cybercats (Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1799/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,70 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		vi vec(m);
+		for(auto &i : vec) cin >> i, --i;
+		
+		vi ans(n, INF);
+		
+		set<pii> st, ts;
+		vector<bool> in_st(n+m);
+		
+		for(int i = 0; i < n; i++){
+			st.insert({i, i});
+			ts.insert({i, i});
+			in_st[i] = 1;
+		}
+		
+		int tim = 0;
+		for(auto x : vec){
+			tim++;
+			
+			if(in_st[x]){
+				
+				// for(auto [a, b] : ts){
+					// cout << a+1 << ' ' << b+1 << endl << flush;
+				// }
+				// cout << x+1 << endl << flush;
+				
+				auto it = ts.lower_bound({x, -INF});
+				assert(it != ts.end());
+				auto p = *it;
+				ts.erase(it);
+				swap(p.first, p.second);
+				st.erase(st.find(p));
+				
+				int mn = (st.empty() ? -1 : (st.begin()->first-1));
+				p.first = mn;
+				
+				st.insert(p);
+				swap(p.first, p.second);
+				ts.insert(p);
+			}
+			else{
+				
+				auto p = *st.rbegin();
+				st.erase(st.find(p));
+				swap(p.first, p.second);
+				ts.erase(ts.find(p));
+				in_st[p.first] = false;
+				
+				if(p.first < n){
+					ans[p.first] = min(ans[p.first], tim);
+				}
+				
+				int mn = (st.empty() ? -1 : (st.begin()->first-1));
+				in_st[x] = true;
+				st.insert({mn, x});
+				ts.insert({x, mn});
+			}
+		}
+		
+		for(auto &i : ans) if(i==INF) i = -1;
+		for(auto i : ans) cout << i << ' '; cout << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: B. Benford's Law
+// Contest: Codeforces - 2021 ICPC Gran Premio de Mexico 2da Fecha
+// URL: https://codeforces.com/gym/103306/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353; // 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -95,10 +103,73 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n, m;
+	cin >> n >> m;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	int pro0 = mul(n-1, inv(n));
+	int pro1 = mul(1, inv(n));
+	
+	vi tmp(m+1);
+	
+	for(int i = 0; i <= m; i++){
+		
+		int cans0 = choose(m, i);
+		int cans1 = pow_exp(pro1, i);
+		int cans2 = pow_exp(pro0, m-i);
+		int cans = mul(cans0, mul(cans1, cans2));
+		
+		if(i) tmp[i] = tmp[i-1];
+		tmp[i] = add(tmp[i], cans);
+	}
+	
+	auto calc = [&](int x, int d){
+		
+		int p = 1;
+		while(p*10 <= x){
+			p *= 10;
+		}
+		
+		int ret = 0;
+		
+		while(x+m >= p*d){
+			
+			int l = p*d;
+			int r = p*(d+1)-1;
+			l = max(l, x);
+			r = min(r, x+m);
+			
+			if(l > r){
+				p *= 10;
+				continue;
+			}
+			
+			int dl = l-x;
+			int dr = r-x;
+			
+			int cans0 = tmp[dr];
+			int cans1 = !dl ? 0 : tmp[dl-1];
+			int cans = add(cans0, mul(-1, cans1));
+			ret = add(ret, cans);
+			
+			p *= 10;
+		}
+		
+		return ret;
+	};
+	
+	vi ans(10);
+	for(auto e : vec){
+		for(int i = 1; i < 10; i++){
+			ans[i] = add(ans[i], calc(e, i));
+		}
+	}		
+	
+	for(int i = 1; i < 10; i++){
+		cout << ans[i] << endl;
+	}
 }

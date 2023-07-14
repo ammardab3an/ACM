@@ -1,3 +1,11 @@
+// Problem: D. Pairs of Segments
+// Contest: Codeforces - Educational Codeforces Round 150 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1841/problem/D
+// Memory Limit: 512 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,55 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vpii vec(n);
+		for(auto &[l, r] : vec){
+			cin >> l >> r;
+		}
+		
+		sort(vec.begin(), vec.end(), [](const pii &a, const pii &b){
+			return a.second > b.second;
+		});
+		
+		auto check = [](const pii &a, const pii &b){
+			
+			auto [l, r] = a;
+			l = max(l, b.first);
+			r = min(r, b.second);
+			
+			return l <= r;	
+		};
+		
+		int ans = 0;
+		
+		int mx = -INF;
+		
+		while(vec.size() > 1){
+			
+			pii a = vec.back();
+			vec.pop_back();
+			pii b = vec.back();
+			vec.pop_back();
+			
+			if(!check(a, b) || a.first <= mx){
+				ans++;
+				vec.push_back(b);
+				continue;
+			}
+			
+			if(b.first <= mx){
+				ans++;
+				vec.push_back(a);
+				continue;
+			}
+			
+			mx = max(mx, b.second);
+		}
+		
+		ans += vec.size();
+		
+		cout << ans << endl;
     }	
 }

@@ -1,3 +1,11 @@
+// Problem: C. Connecting Graph
+// Contest: Codeforces - Training Teams 5
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/447848/problem/C
+// Memory Limit: 1024 MB
+// Time Limit: 6000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,12 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int par[NMAX];
+
+int get_par(int u){
+	return par[u] = (par[u]==u) ? u : get_par(par[u]);
+}
+
 int32_t main(){
     
     fastIO;
@@ -99,6 +113,74 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, q;
+		cin >> n >> q;
+		
+		vector<array<int, 3>> queries(q);
+		
+		for(auto &[k, u, v] : queries){
+			cin >> k >> u >> v;
+			u--, v--;
+		}
+		
+		vector<set<int>> tmp(n);
+		
+		for(int i = 0; i < q; i++){
+			auto [k, u, v] = queries[i];
+			if(k==2){
+				tmp[u].insert(i);
+				tmp[v].insert(i);
+			}
+		}
+		
+		for(int i = 0; i < n; i++){
+			par[i] = i;
+		}
+		
+		vi ans(q, INF);
+		
+		for(int i = 0; i < q; i++){
+			
+			
+			auto [k, u, v] = queries[i];
+			if(k != 1) continue;
+						
+			int pu = get_par(u);
+			int pv = get_par(v);
+			
+			if(pu != pv){
+				
+				auto &v0 = tmp[pu];
+				auto &v1 = tmp[pv];
+				
+				if(v0.size() > v1.size()){
+					swap(v0, v1);
+				}
+				
+				for(auto e : v0){
+					if(v1.count(e)){
+						ans[e] = min(ans[e], i);
+						v1.erase(e);
+					}
+					else{
+						v1.insert(e);
+					}
+				}
+				
+				par[pu] = pv;
+				
+			}	
+		}
+		
+		for(int i = 0; i < q; i++){
+			if(queries[i][0]==2){
+				if(ans[i] < i){
+					cout << ans[i]+1 << endl;
+				}
+				else{
+					cout << -1 << endl;
+				}
+			}
+		}
     }	
 }

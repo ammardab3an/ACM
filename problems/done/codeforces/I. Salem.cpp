@@ -1,3 +1,11 @@
+// Problem: I. Salem
+// Contest: Codeforces - Training Teams 5
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/447848/problem/I
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,18 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		int ans = 0;
+		for(int i = 0; i < n; i++)
+		for(int j = 0; j < i; j++){
+			ans = max(ans, (int)__builtin_popcount(vec[i]^vec[j]));
+		}
+		
+		cout << ans << endl;
     }	
 }

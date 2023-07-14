@@ -1,3 +1,11 @@
+// Problem: C - Harmonic Mean
+// Contest: AtCoder - AtCoder Regular Contest 163
+// URL: https://atcoder.jp/contests/arc163/tasks/arc163_c
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,44 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		if(n==1){
+			cout << "Yes" << endl;
+			cout << 1 << endl;
+			continue;
+		}
+		
+		if(n==2){
+			cout << "No" << endl;
+			continue;
+		}
+		
+		set<int> cur = {2, 3, 6};
+		
+		while(cur.size() < n){
+			
+			int x = -1;
+			
+			for(auto e : cur){
+				if(!cur.count(e+1) && !cur.count(e*(e+1))){
+					x = e;
+					break;
+				}
+			}
+			
+			assert(x != -1);
+			
+			cur.erase(x);
+			cur.insert(x+1);
+			cur.insert(x*(x+1));
+		}
+		
+		cout << "Yes" << endl;
+		for(auto e : cur){
+			cout << e << ' ';
+		}
+		cout << endl;
     }	
 }

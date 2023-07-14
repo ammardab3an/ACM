@@ -1,3 +1,11 @@
+// Problem: C. No Prime Differences
+// Contest: Codeforces - Codeforces Round 877 (Div. 2)
+// URL: https://codeforces.com/contest/1838/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,12 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+pii mvArr[] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+
+bool in(int i, int j, int n, int m){
+	return 0 <= i && i < n && 0 <= j && j < m;	
+}
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +111,92 @@ int32_t main(){
     
 	// init();
 	
+	auto is_prime = [](int x){
+		
+		if(x==1) return false;
+		
+		for(int i = 2; i*i <= x; i++) if(x%i==0){
+			return false;
+		}
+		return true;
+	};
+	
     int t; cin >> t; while(t--){
 
-
+		int n, m;
+		cin >> n >> m;
+		
+		
+		vector<vi> grid(n, vi(m));
+		
+		if(n==4 && is_prime(m)){
+			
+			vector<vi> tgrid(n, vi(m));
+		
+			int p = 1;
+			for(int j = 0; j < m; j++)
+			for(int i = 0; i < n; i++){
+				tgrid[i][j] = p++;
+			}
+			
+			vi pos;
+			for(int i = 1; i <= m; i+=2)
+				pos.push_back(i-1);
+			for(int i = 2; i <= m; i+=2)
+				pos.push_back(i-1);
+				
+			for(int i = 0; i < n; i++)
+			for(int j = 0; j < m; j++){
+				grid[i][j] = tgrid[i][pos[j]];
+			}
+		}
+		else{
+			
+			vector<vi> tgrid(n, vi(m));
+		
+			int p = 1;
+			for(int i = 0; i < n; i++)
+			for(int j = 0; j < m; j++){
+				tgrid[i][j] = p++;
+			}
+			
+			vi pos;
+			for(int i = 1; i <= n; i+=2)
+				pos.push_back(i-1);
+			for(int i = 2; i <= n; i+=2)
+				pos.push_back(i-1);
+				
+			for(int i = 0; i < n; i++){
+				grid[i] = tgrid[pos[i]];
+			}
+		}
+		
+		// for(int i = 0; i < n; i++)
+		// for(int j = 0; j < m; j++){
+// 			
+			// for(auto [di, dj] : mvArr){
+// 				
+				// int ni = i+di;
+				// int nj = j+dj;
+// 				
+				// if(!in(ni, nj, n, m)) continue;
+// 				
+				// int dif = abs(grid[i][j]-grid[ni][nj]);
+// 				
+				// if(is_prime(dif)){
+					// cout << i << ' ' << j << ' ' << ni << ' ' << nj << endl;
+					// cout << grid[i][j] << ' ' << grid[ni][nj] << ' ' << dif << endl;
+					// exit(0);
+				// }
+			// }
+		// }
+		
+		for(auto v : grid){
+			for(auto i : v){
+				cout << i << ' ';
+			}
+			cout << endl;
+		}
+		cout << endl;
     }	
 }

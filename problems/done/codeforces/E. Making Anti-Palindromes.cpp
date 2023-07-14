@@ -1,3 +1,11 @@
+// Problem: E. Making Anti-Palindromes
+// Contest: Codeforces - Codeforces Round 867 (Div. 3)
+// URL: https://codeforces.com/contest/1822/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -53,36 +61,12 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
-
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
-}
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
-}
 
 int32_t main(){
     
@@ -95,10 +79,51 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		string str;
+		cin >> str;
+		
+		if(n%2==1){
+			cout << -1 << endl;
+			continue;
+		}
+		
+		int sm0 = 0, sm1 = 0;
+		vi cnt0(26), cnt1(26);
+		
+		for(int i = 0; i < n/2; i++){
+			
+			if(str[i]==str[n-i-1]){
+				sm0++;
+				cnt0[str[i]-'a']++;	
+			}
+			else{
+				sm1+=2;
+				cnt1[str[i]-'a']++;
+				cnt1[str[n-i-1]-'a']++;
+			}
+		}
+		
+		int mx0 = max_element(cnt0.begin(), cnt0.end())-cnt0.begin();
+		
+		if(cnt0[mx0]*2 <= sm0){
+			cout << (sm0+1)/2 << endl;
+		}
+		else{
+			
+			int rm = cnt0[mx0]*2 - sm0;
+			int x = sm1/2 - cnt1[mx0];
+			
+			if(x >= rm){
+				cout << rm+(sm0-cnt0[mx0]) << endl;
+			}
+			else{
+				cout << -1 << endl;
+			}
+		}
     }	
 }

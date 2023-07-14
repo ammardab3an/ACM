@@ -1,3 +1,11 @@
+// Problem: C. Prefix Sum Array
+// Contest: Codeforces - TheForces Round #14 (Cool-Forces)
+// URL: https://codeforces.com/gym/104386/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -95,10 +103,15 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		int ans = choose(n+k-1, k);
+		cout << ans << endl;
     }	
 }
+

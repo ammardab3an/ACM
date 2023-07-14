@@ -1,3 +1,11 @@
+// Problem: C. Ranom Numbers
+// Contest: Codeforces - Educational Codeforces Round 150 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1841/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,94 @@ int32_t main(){
     
 	// init();
 	
+	vi p10(8);
+	
+	p10[0] = 1;
+	for(int i = 1; i < 8; i++){
+		p10[i] = p10[i-1] * 10;
+	}
+	
     int t; cin >> t; while(t--){
 
-
+		string str;
+		cin >> str;
+		
+		int n = str.size();
+		
+		vi suf(n);
+		char mx = 'A';
+		for(int i = n-1; i >= 0; i--){
+			
+			if(i+1 < n){
+				suf[i] = suf[i+1];
+			}
+			
+			if(str[i] >= mx){
+				mx = str[i];
+				suf[i] += p10[str[i]-'A'];
+			}
+			else{
+				suf[i] -= p10[str[i]-'A'];
+			}
+		}
+		
+		vi suf_msk(n);
+		for(int i = n-1; i >= 0; i--){
+			
+			if(i+1 < n){
+				suf_msk[i] = suf_msk[i+1];
+			}	
+			
+			suf_msk[i] |= 1 << (str[i]-'A');
+		}
+		
+		int ans = suf[0];
+		
+		vi frq(5);
+		int pre_neg = 0;
+		
+		for(int i = 0; i < n; i++){
+			
+			for(int j = 0; j < 5; j++){
+				
+				int cans = pre_neg;
+				if(i+1 < n) cans += suf[i+1];
+				
+				int cur_msk = 1<<j;
+				if(i+1 < n) cur_msk |= suf_msk[i+1];
+				
+				for(int k = 0; k < 5; k++){
+					if((cur_msk>>(k+1))==0){
+						cans += frq[k] * p10[k];
+					}
+					else{
+						cans -= frq[k] * p10[k];
+					}
+				}
+				
+				int x = cans;
+				if(i+1 < n) x -= suf[i+1];
+				
+				if(i==n-1 || (suf_msk[i+1]>>(j+1))==0){
+					cans += p10[j];
+				}
+				else{
+					cans -= p10[j];
+				}
+				
+				ans = max(ans, cans);
+			}
+			
+			int j = str[i]-'A';
+			
+			for(int k = 0; k < j; k++){
+				pre_neg -= frq[k] * p10[k];
+				frq[k] = 0;
+			}
+			
+			frq[j]++;
+		}
+		
+		cout << ans << endl;
     }	
 }

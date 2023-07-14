@@ -1,3 +1,11 @@
+// Problem: A. New Palindrome
+// Contest: Codeforces - Educational Codeforces Round 148 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1832/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,20 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		string str;
+		cin >> str;
+		
+		int n = str.size();
+		
+		bool ans = false;
+		
+		for(int i = 1; i < n/2; i++){
+			if(str[i] != str[0]){
+				ans = true;
+				break;
+			}
+		}
+		
+		cout << (ans ? "YES" : "NO") << endl;
     }	
 }

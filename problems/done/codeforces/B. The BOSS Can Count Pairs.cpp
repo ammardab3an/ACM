@@ -1,3 +1,11 @@
+// Problem: B. The BOSS Can Count Pairs
+// Contest: Codeforces - Codeforces Round 875 (Div. 1)
+// URL: https://codeforces.com/contest/1830/problem/B
+// Memory Limit: 512 MB
+// Time Limit: 4000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -59,7 +67,7 @@ int inv(int x){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 4e5 + 10;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
@@ -99,6 +107,62 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		map<int, vi> mp;
+		
+		{
+			vi tmp(n);
+			for(auto &i : tmp) cin >> i;
+			for(auto i : tmp){
+				int j;
+				cin >> j;
+				mp[i].push_back(j);
+			}
+		}
+		
+		for(auto &[k, v] : mp){
+			sort(v.begin(), v.end());
+		}
+		
+		vector<pair<int, vi>> vec(mp.begin(), mp.end());
+		int sz = vec.size();
+		
+		const int blk = 650;
+		
+		int p = 0;
+		while(p < sz && vec[p].first < blk){
+			p++;
+		}
+		
+		int ans = 0;
+		for(int i = 0; i < sz; i++){
+			
+			int ai = vec[i].first;
+			for(auto bi : vec[i].second){
+				for(int j = 0; j < i && j < p; j++){
+					int rm = ai*vec[j].first - bi;
+					auto it0 = lower_bound(vec[j].second.begin(), vec[j].second.end(), rm);
+					auto it1 = upper_bound(vec[j].second.begin(), vec[j].second.end(), rm);
+					ans += it1-it0;
+				}
+			}
+			
+			{
+				int cans = 0;
+				for(auto bi : vec[i].second){
+					int rm = ai*ai-bi;
+					auto it0 = lower_bound(vec[i].second.begin(), vec[i].second.end(), rm);
+					auto it1 = upper_bound(vec[i].second.begin(), vec[i].second.end(), rm);
+					cans += it1-it0;
+					if(rm==bi) cans--;
+				}
+				// cout << ' ' << cans << endl;
+				ans += cans/2;
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }

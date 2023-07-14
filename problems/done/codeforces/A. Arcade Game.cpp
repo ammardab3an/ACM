@@ -1,3 +1,11 @@
+// Problem: A. Arcade Game
+// Contest: Codeforces - Training Teams 5
+// URL: https://codeforces.com/group/FqtJd4zMPb/contest/447848/problem/A
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -97,8 +105,44 @@ int32_t main(){
     
 	// init();
 	
+	vi f(15);
+	f[0] = 1;
+	for(int i = 1; i < 15; i++){
+		f[i] = f[i-1] * i;
+	}
+	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi digits;
+		while(n){
+			digits.push_back(n%10);
+			n /= 10;
+		}
+		
+		reverse(digits.begin(), digits.end());
+		int m = digits.size();
+		
+		int cnt = 0;
+		for(int i = 0; i < m; i++)
+		for(int j = i; j < m; j++){
+			if(digits[j] > digits[i]){			
+				cnt += f[m-i-1];
+			}
+		}
+		
+		double ans;
+		
+		if(!cnt){
+			ans = 0;
+		}
+		else{
+			double p = double(1) / double(f[m]);
+			ans = p * pow(double(1) + p, cnt-1);
+		}
+		
+		cout << fixed << setprecision(9) << ans << endl;
     }	
 }

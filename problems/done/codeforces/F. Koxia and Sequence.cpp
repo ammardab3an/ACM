@@ -1,3 +1,11 @@
+// Problem: F. Koxia and Sequence
+// Contest: Codeforces - Good Bye 2022: 2023 is NEAR
+// URL: https://codeforces.com/problemset/problem/1770/F
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,11 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+bool choose2(int n, int c){
+	if(n < c) return 0;
+	return (n&c)==c;	
+}
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +110,28 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n, x, y;
+	cin >> n >> x >> y;
+	
+	if(n%2==0){
+		cout << 0 << endl;
+		return 0;
+	}
+	
+	int ans = 0;
+	
+	for(int msk = y; msk > 0; msk = (msk-1)&y){
+		
+		for(int i = 0; i < 20; i++) if((msk>>i)&1){
+			
+			int a = n*msk - (1<<i);
+			int b = x - (1<<i);
+			
+			if(choose2(a, b)){
+				ans ^= 1<<i;
+			}
+		}
+	}
+	
+	cout << ans << endl;
 }

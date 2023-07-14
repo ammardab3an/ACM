@@ -53,10 +53,6 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
@@ -73,7 +69,7 @@ void init(){
 		fac[i] = mul(fac[i-1], i);
 	}
 	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	ifac[NMAX-1] = pow_exp(fac[NMAX-1], MOD-2);
 	for(int i = NMAX-2; i >= 0; i--){
 		ifac[i] = mul(ifac[i+1], i+1);
 	}
@@ -82,6 +78,34 @@ void init(){
 int choose(int n, int c){
 	assert(n >= c);
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
+
+int n;
+int mem[11][NMAX][11];
+
+int go(int i, int c0, int c1){
+	
+	if(c0 > c1){
+		return 0;
+	}
+	
+	if(i==n){
+		return c0==c1;
+	}	
+	
+	if(i==0){
+		return go(i+1, 1, c1);	
+	}
+	
+	int &ret = mem[c1][i][c0];
+	if(ret+1) return ret;
+	
+	int st_path = mul(c0, go(i+1, c0, c1));
+	int nd_path = go(i+1, c0+1, c1);
+	
+	int ans = add(st_path, nd_path);
+	
+	return ret = ans;
 }
 
 int32_t main(){
@@ -95,10 +119,27 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    init();
+ 
+ 	int m;
+    cin >> n >> m;
+    
+    vector<char> vec(m);
+    for(auto &i : vec) cin >> i;   
+    
+    int ans = 0;
+    
+    memset(mem, -1, sizeof mem);
+    
+    for(int i = 0; i < (1<<m); i++){
+    	int cnt = __builtin_popcount(i);
+    	int cans = go(0, 0, cnt);
+    	ans = add(ans, cans);
+    }
+    
+    // for(int i = 0; i <= m; i++){
+    	// cout << i << ' ' << go(0, 0, i) << endl;
+    // }
+    
+    cout << ans << endl;
 }

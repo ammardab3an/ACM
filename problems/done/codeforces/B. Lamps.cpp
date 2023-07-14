@@ -1,3 +1,11 @@
+// Problem: B. Lamps
+// Contest: Codeforces - Codeforces Round 876 (Div. 2)
+// URL: https://codeforces.com/contest/1839/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -99,6 +107,28 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		map<int, vi> mp;
+		
+		vpii vec(n);
+		for(auto &[a, b] : vec){
+			cin >> a >> b;
+			mp[a].push_back(b);
+		}
+		
+		int ans = 0;
+		
+		for(auto &[k, v] : mp){
+			
+			sort(v.rbegin(), v.rend());
+			
+			for(int i = 0; i < k && i < v.size(); i++){
+				ans += v[i];
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }

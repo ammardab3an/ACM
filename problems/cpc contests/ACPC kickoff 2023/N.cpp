@@ -53,10 +53,6 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
 const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
@@ -64,24 +60,53 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-int fac[NMAX], ifac[NMAX];
-
-void init(){
-	
-	fac[0] = 1;
-	for(int i = 1; i < NMAX; i++){
-		fac[i] = mul(fac[i-1], i);
-	}
-	
-	ifac[NMAX-1] = inv(fac[NMAX-1]);
-	for(int i = NMAX-2; i >= 0; i--){
-		ifac[i] = mul(ifac[i+1], i+1);
-	}
+#define MAXN 10001000
+ 
+int spf[MAXN];
+int idx[MAXN], pp = 1;
+ 
+void sieve()
+{
+    spf[1] = 1;
+    for (int i = 2; i < MAXN; i++)
+        spf[i] = i;
+ 
+ 	
+ 	idx[2] = pp++;
+    for (int i = 4; i < MAXN; i += 2)
+        spf[i] = 2;
+    
+ 
+    for (int i = 3; i < MAXN; i++) {
+    	
+        if (spf[i] == i) {
+        	
+        	idx[i] = pp++;
+            
+            for (int j = i * i; j < MAXN; j += i)
+                if (spf[j] == j)
+                    spf[j] = i;
+        }
+    }
 }
-
-int choose(int n, int c){
-	assert(n >= c);
-	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+ 
+vector<pii> getFactorization(int x)
+{
+    vector<pii> ret;
+    
+    while (x > 1) {
+    	
+    	if(ret.empty() || ret.back().first != spf[x]){
+    		ret.push_back({spf[x], 1});
+    	}
+    	else{
+    		ret.back().second++;
+    	}
+    	
+        x = x / spf[x];
+    }
+    
+    return ret;
 }
 
 int32_t main(){
@@ -95,10 +120,39 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+    sieve();
+    
+    int n, d;
+    cin >> n >> d;
+    
+    vi vec(n);
+    for(auto &i : vec) cin >> i;
+    
+    vector<vpii> fvec(n);
+    
+    for(int i = 0; i < n; i++){
+    	fvec[i] = getFactorization(vec[i]);
+    }
+    
+    vi vals(2);
+    
+    for(int j = 0; j < d; j++){
+    	
+    	int i = j%n;
+    	
+		if(!fvec[i].empty()){
+			
+			int p = idx[fvec[i].back().first];
+			vals[p%2] += fvec[i].back().first;
+			
+			fvec[i].back().second--;
+			
+			if(!fvec[i].back().second){
+				fvec[i].pop_back();
+			}
+		}
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	    cout << (vals[0] <= vals[1] ? 'R' : 'B') << endl;
+    }
+    
 }

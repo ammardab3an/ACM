@@ -1,3 +1,11 @@
+// Problem: G. Noonerized Spumbers
+// Contest: Codeforces - 2021-2022 ICPC East Central North America Regional Contest (ECNA 2021)
+// URL: https://codeforces.com/gym/104196/problem/G
+// Memory Limit: 1024 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,6 +92,57 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+vpii gen(int a, int b){
+	
+	vpii ret;
+	int lena=0, lenb=0;
+	
+	{
+		int aa = a;
+		while(aa){
+			lena++;
+			aa /= 10;
+		}
+		
+		int bb = b;
+		while(bb){
+			lenb++;
+			bb /= 10;
+		}
+	}
+	
+	int pa = 10;
+	
+	for(int i = 1; i < lena; i++){
+		
+		int pb = 10;
+		
+		for(int j = 1; j < lenb; j++){
+			
+			int na = (a%pa) + (b/pb)*pa;
+			int nb = (b%pb) + (a/pa)*pb;
+			
+			ret.emplace_back(na, nb);
+			
+			pb *= 10;
+		}
+		
+		pa *= 10;
+	}
+	
+	return ret;
+}
+
+int calc(int a, int b, char op){
+	
+	if(op=='+'){
+		return a+b;
+	}
+	else{
+		return a*b;
+	}
+}
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +156,45 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int a, b, c;
+	char op, eq;
+	
+	cin >> a >> op >> b >> eq >> c;
+	
+	bool found = false;
+	
+	for(auto [na, nb] : gen(a, b)){
+		
+		// cout << na << ' ' << nb << endl;
+		
+		if(calc(na, nb, op) == c){
+			found = true;
+			a = na;
+			b = nb;
+			break;
+		}
+	}
+	
+	if(!found)
+	for(auto [na, nc] : gen(a, c)){
+		if(calc(na, b, op) == nc){
+			found = true;
+			a = na;
+			c = nc;
+			break;
+		}
+	}
+	
+	if(!found)
+	for(auto [nb, nc] : gen(b, c)){
+		if(calc(a, nb, op) == nc){
+			found = true;
+			b = nb;
+			c = nc;
+			break;
+		}
+	}
+	
+	assert(calc(a, b, op) == c);
+	cout << a << ' ' << op << ' ' << b << ' ' << eq << ' ' << c << endl;
 }

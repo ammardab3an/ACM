@@ -1,3 +1,11 @@
+// Problem: C - Power Up
+// Contest: AtCoder - AtCoder Regular Contest 160
+// URL: https://atcoder.jp/contests/arc160/tasks/arc160_c
+// Memory Limit: 1024 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353; // 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -59,7 +67,7 @@ int inv(int x){
 }
  
 const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
+const int NMAX = 2e5 + 100;
 const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
@@ -84,6 +92,29 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
+int frq[NMAX+1];
+unordered_map<int, int> mem[NMAX];
+
+int go(int i, int cnt){
+	
+	if(i==NMAX){
+		return 1;
+	}	
+	
+	auto it = mem[i].insert({cnt, -1});
+	if(!it.second) return it.first->second;
+	
+	int ans = 0;
+	if(cnt){
+		ans = add(ans, go(i, cnt-1));
+	}
+	if(cnt%2==0){
+		ans = add(ans, go(i+1, cnt/2 + frq[i+1]));
+	}
+	
+	return it.first->second = ans;
+}
+
 int32_t main(){
     
     fastIO;
@@ -97,8 +128,15 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	for(int i = 0; i < n; i++){
+		int ai;
+		cin >> ai;
+		frq[ai]++;
+	}
+	
+	int ans = go(0, 0);
+	cout << ans << endl;
 }
