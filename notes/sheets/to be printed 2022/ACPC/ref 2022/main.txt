@@ -67,6 +67,18 @@ indexed set
 
 int nxt = vec[p]/(vec[p]/i+1);
 
+----------------------------------------
+
+int n;
+cin >> n;
+
+int cur = n;
+while(cur >= 1){
+	cout << cur << endl;
+	cur = n/(n/cur + 1);
+}
+
+----------------------------------------
 
 strings:
 kmp, z-function, kmp+dp, hash, bs on palandrom, fast longest palandrom algo, 
