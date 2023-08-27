@@ -1,3 +1,11 @@
+// Problem: B. Time to reap the harvest
+// Contest: Codeforces - ICPC Central Russia Regional Contest - 2020
+// URL: https://codeforces.com/gym/104452/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 2500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -103,36 +111,26 @@ int32_t main(){
 	vi vec(n);
 	for(auto &i : vec) cin >> i;
 	
-	vi ans(n, 20);
+	sort(vec.begin(), vec.end());
 	
-	for(int msk = 0; msk < (1<<10); msk++){
-		
-		int mx = 0;
-		vi lst(10);
-		vi vis(10);
-		
-		int cnt_del = 0;
-		
-		for(int i = 0; i < n; i++){
-			
-			int d = vec[i];
-			if(!((msk>>d)&1)){
-				
-				if(vis[d]){
-					mx = max(mx, i - lst[d] - cnt_del);
-				}
-				
-				lst[d] = i - cnt_del;
-				vis[d] = true;
-			}	
-			else{
-				cnt_del++;
-			}
-		}
-		
-		ans[mx] = min(ans[mx], (int)__builtin_popcount(msk));
+	vi suf = vec;
+	for(int i = n-2; i >= 0; i--){
+		suf[i] += suf[i+1];
 	}
 	
-	for(int i = 2; i < n; i++) ans[i] = min(ans[i], ans[i-1]);
-	for(int i = 1; i < n; i++) cout << ans[i] << ' '; cout << endl;
+	vec.push_back(INF);
+	suf.push_back(0);
+	
+	int m;
+	cin >> m;
+	while(m--){
+		
+		int l;
+		cin >> l;
+		
+		int p = upper_bound(vec.begin(), vec.end(), l) - vec.begin();
+		
+		int cans = suf[p] - (n-p)*l;
+		cout << cans << endl;
+	}
 }

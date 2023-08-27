@@ -1,3 +1,11 @@
+// Problem: D. Professor R's. Median
+// Contest: Codeforces - ICPC Central Russia Regional Contest - 2020
+// URL: https://codeforces.com/gym/104452/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
@@ -84,54 +92,6 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
-vi primes;
-bool is_prime(int x){
-	for(int i = 2; i*i <= x; i++) if(x%i==0){
-		return false;
-	}
-	return true;
-}
-
-int mem[55][1<<16];
-
-int go(int rm, int msk){
-	
-	if(!rm){
-		return 1;
-	}	
-	
-	int &ret = mem[rm][msk];
-	if(ret+1) return ret;
-	
-	int ans = 0;
-	
-	for(int i = 1; i <= rm; i++){
-		
-		int nmsk = msk;
-		bool good = true;
-		
-		for(int j = 0; j < 16; j++){
-			if(i%primes[j]==0){
-				if((msk>>j)&1){
-					good = false;
-					break;
-				}
-				else{
-					nmsk ^= 1<<j;
-				}
-			}
-		}
-		
-		// cout << bitset<16>(msk) << ' ' << i << ' ' << good << endl;
-		
-		if(good){
-			ans += go(rm-i, nmsk);
-		}
-	}
-	
-	return ret = ans;
-}
-
 int32_t main(){
     
     fastIO;
@@ -143,40 +103,32 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    // for(int i = 543921323; ; i++){
-    	// if(is_prime(i)){
-    		// cout << i << endl;
-    		// break;
-    	// }
-    // }
-    
 	// init();
 	
-	for(int i = 2; i <= 50; i++){
-		if(is_prime(i)){
-			primes.push_back(i);
+	int n;
+	cin >> n;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i, i*=2;
+	
+	sort(vec.begin(), vec.end());
+	
+	int x = (vec.front() + vec.back())/2;
+	
+	auto it = lower_bound(vec.begin(), vec.end(), x);
+	
+	int ans = -INF;
+	
+	if(it != vec.end()){
+		ans = *it;
+	}
+	
+	if(it != vec.begin()){
+		it--;
+		if(abs(x-ans) >= abs(x-*it)){
+			ans = *it;
 		}
 	}
 	
-	// cout << primes.size() << endl;
-	// for(auto e : primes) cout << e << ' '; cout << endl;
-	
-	memset(mem, -1, sizeof mem);
-	
-	vi tmp(51);
-	for(int i = 0; i <= 50; i++){
-		tmp[i] = go(i, 0);
-		if(i) tmp[i] += tmp[i-1];
-	}
-	
-    int t; cin >> t; while(t--){
-
-		int l, r;
-		cin >> l >> r;
-		
-		int ans = tmp[r];
-		if(l) ans -= tmp[l-1];
-		
-		cout << ans << endl;
-    }	
+	cout << ans/2 << endl;
 }

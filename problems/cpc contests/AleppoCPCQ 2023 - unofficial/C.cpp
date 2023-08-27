@@ -84,8 +84,53 @@ int choose(int n, int c){
 	return mul(fac[n], mul(ifac[c], ifac[n-c]));
 }
 
-const int AMAX = 5e5 + 10;
-int frq[AMAX];
+vi primes;
+bool is_prime(int x){
+	for(int i = 2; i*i <= x; i++) if(x%i==0){
+		return false;
+	}
+	return true;
+}
+
+int mem[55][1<<16];
+
+int go(int rm, int msk){
+	
+	if(!rm){
+		return 1;
+	}	
+	
+	int &ret = mem[rm][msk];
+	if(ret+1) return ret;
+	
+	int ans = 0;
+	
+	for(int i = 1; i <= rm; i++){
+		
+		int nmsk = msk;
+		bool good = true;
+		
+		for(int j = 0; j < 15; j++){
+			if(i%primes[j]==0){
+				if((msk>>j)&1){
+					good = false;
+					break;
+				}
+				else{
+					nmsk ^= 1<<j;
+				}
+			}
+		}
+		
+		// cout << bitset<16>(msk) << ' ' << i << ' ' << good << endl;
+		
+		if(good){
+			ans += go(rm-i, nmsk);
+		}
+	}
+	
+	return ret = ans;
+}
 
 int32_t main(){
     
@@ -98,70 +143,40 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
+    // for(int i = 543921323; ; i++){
+    	// if(is_prime(i)){
+    		// cout << i << endl;
+    		// break;
+    	// }
+    // }
+    
 	// init();
 	
-	int n, x, k;
-	cin >> n >> x >> k;
-	
-	vi vec(n);
-	for(auto &e : vec) cin >> e;
-	
-	vi tmp;
-	for(int i = 1; ; i++){
-		int i_x = 1;
-		for(int j = 0; j < x; j++){
-			i_x *= i;
-			if(i_x > AMAX) break;
-		}
-		if(i_x > AMAX) break;
-		tmp.push_back(i_x);
-	}
-	
-	// for(auto e : tmp) cout << e << endl;
-	
-	vi ans;
-	ans.push_back(0);
-	
-	int j = 0;
-	int cur = 0;
-	for(int i = 0; i < n; i++){
-		
-		int v = vec[i];
-		
-		int ncnt = 0;
-		
-		for(auto e : tmp) if(e%v==0){
-			ncnt += frq[e/v];
-		}
-	
-		if(v==1){
-			int f = frq[1];
-			ncnt += f*(f-1)/2;
-		}
-		
-		if(ncnt + cur <= k){
-			cur += ncnt;
-			frq[v]++;
-		}
-		else{
-			
-			cur = 0;
-			for(int k = j; k < i; k++){
-				frq[vec[k]]--;
-			}
-			
-			frq[v]++;		
-			ans.push_back(i);
-			j = i;
+	for(int i = 2; i <= 50; i++){
+		if(is_prime(i)){
+			primes.push_back(i);
 		}
 	}
 	
-	ans.push_back(n);
+	// cout << primes.size() << endl;
+	// for(auto e : primes) cout << e << ' '; cout << endl;
 	
-	// for(auto e : ans) cout << e << ' '; cout << endl;
+	memset(mem, -1, sizeof mem);
 	
-	cout << (int)ans.size()-1 << endl;
-	for(int i = 1; i < ans.size(); i++){
-		cout << ans[i]-ans[i-1] << ' ';
+	vi tmp(51);
+	for(int i = 0; i <= 50; i++){
+		tmp[i] = go(i, 0);
+		if(i) tmp[i] += tmp[i-1];
 	}
+	
+    int t; cin >> t; while(t--){
+
+		int l, r;
+		cin >> l >> r;
+		
+		int ans = tmp[r];
+		if(l) ans -= tmp[l-1];
+		
+		cout << ans << endl;
+    }	
 }
