@@ -1,7 +1,15 @@
+// Problem: F. Divide, XOR, and Conquer
+// Contest: Codeforces - Pinely Round 2 (Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1863/problem/F
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,41 +72,51 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
-
 int32_t main(){
     
     fastIO;
-    
-#ifdef LOCAL
-    freopenI;
-    freopenO;
-#endif
-
-    // freopen("name.in", "r", stdin);
-    
-	// init();
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		vi pre = vec;
+		for(int i = 1; i < n; i++){
+			pre[i] ^= pre[i-1];
+		}
+		
+		auto calc = [&](int i, int j)->int{
+			int cxor = pre[j]^pre[i]^vec[i];
+			if(!cxor) return (1ll<<61)-1;
+			int b = 64 - __builtin_clzll(cxor);
+			return 1ll << (b-1);
+		};
+		
+		vi msk_lf(n);
+		vi msk_ri(n);
+		msk_lf[0] ^= calc(0, n-1);
+		msk_ri[n-1] ^= calc(0, n-1);
+		
+		vector<bool> ans(n);
+		if(n==1) ans[0] = 1;
+		
+		for(int len = n-1; len >= 1; len--){
+			
+			for(int i = 0, j = len-1; j < n; i++, j++){
+				int cxor = pre[j]^pre[i]^vec[i];
+				if((msk_lf[i]&cxor) || (msk_ri[j]&cxor) || (msk_lf[i]==((1ll<<61)-1)) || (msk_ri[j]==((1ll<<61)-1))){
+					int tmp = calc(i, j);
+					msk_lf[i] |= tmp;
+					msk_ri[j] |= tmp;
+					if(len==1) ans[i] = true;
+				}
+			}	
+		}
+		
+		for(auto e : ans) cout << e; cout << endl;
     }	
 }

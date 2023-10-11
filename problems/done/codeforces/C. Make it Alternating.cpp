@@ -1,7 +1,15 @@
+// Problem: C. Make it Alternating
+// Contest: Codeforces - Educational Codeforces Round 155 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1879/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -27,7 +35,7 @@ typedef vector<pll>       vpll;
 
 const int INF = 0x3f3f3f3f;
 const ll INFLL = 0x3f3f3f3f3f3f3f3f;
-const int MOD = 1e9 + 7;
+const int MOD = 998244353; // 1e9 + 7;
 const double EPS = 1e-9;
 const double  PI = acos(-1);
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -95,10 +103,39 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
     int t; cin >> t; while(t--){
 
-
+		string str;
+		cin >> str;
+		
+		vi tmp;
+		int n = str.size();
+		
+		char lst = str[0];
+		int cnt = 1;
+		
+		for(int i = 1; i < n; i++){
+			
+			if(str[i] != lst){
+				tmp.push_back(cnt);
+				lst = str[i];
+				cnt = 1;
+			}
+			else{
+				cnt++;
+			}
+		}
+		
+		tmp.push_back(cnt);
+		
+		int ans = 1;
+		for(auto e : tmp){
+			ans = mul(ans, e);
+		}
+		
+		ans = mul(ans, fac[n-(int)tmp.size()]);
+		cout << n-(int)tmp.size() << ' ' << ans << endl;
     }	
 }

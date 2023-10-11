@@ -1,7 +1,15 @@
+// Problem: C. Anu Has a Function
+// Contest: Codeforces - Codeforces Round 618 (Div. 2)
+// URL: https://codeforces.com/contest/1300/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -97,8 +105,42 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	vi vec(n);
+	for(auto &i : vec) cin >> i;
+	
+	vi pre = vec;
+	for(int i = 1; i < n; i++){
+		pre[i] |= pre[i-1];
+	}
+	
+	vi suf = vec;
+	for(int i = n-2; i >= 0; i--){
+		suf[i] |= suf[i+1];
+	}
+	
+	int mx = -1;
+	int mx_i = -1;
+	
+	for(int i = 0; i < n; i++){
+		
+		int x = vec[i];
+		
+		int y = 0;
+		if(i) y |= pre[i-1];
+		if(i+1 < n) y |= suf[i+1];
+		
+		x ^= x&y;
+		
+		if(x > mx){
+			mx = x;
+			mx_i = i;
+		}
+	}
+	
+	cout << vec[mx_i] << ' ';
+	for(int i = 0; i < n; i++) if(i != mx_i) cout << vec[i] << ' ';
+	cout << endl;
 }

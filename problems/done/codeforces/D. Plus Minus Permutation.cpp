@@ -1,7 +1,15 @@
+// Problem: D. Plus Minus Permutation
+// Contest: Codeforces - Codeforces Round 895 (Div. 3)
+// URL: https://codeforces.com/contest/1872/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,35 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
+
+int calc_sm(int n){
+	return n*(n+1)/2;	
+}
+
+int calc(int r, int l){
+	int ret = calc_sm(r);
+	if(l) ret -= calc_sm(l-1);
+	return ret;	
+}
 
 int32_t main(){
     
@@ -99,6 +117,27 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, x, y;
+		cin >> n >> x >> y;
+		
+		int l = (x*y)/__gcd(x, y);
+		
+		int cnt_p = n/x - n/l;
+		int cnt_n = n/y - n/l;
+		int cnt_z = n/l;
+		
+		cnt_z += (n-cnt_p-cnt_n-cnt_z);
+		
+		// cout << cnt_p << ' ' << cnt_n << ' ' << cnt_z << endl;
+		
+		int ans = 0;
+		
+		// cout << n << ' ' << n-cnt_p+1 << endl;
+		
+		ans += calc(n, n-cnt_p+1);
+		// ans += 0 * calc(n-cnt_p, n-cnt_p-cnt_z+1);
+		ans -= calc(n-cnt_p-cnt_z, 1);
+		
+		cout << ans << endl;
     }	
 }

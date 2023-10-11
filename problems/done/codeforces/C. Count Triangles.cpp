@@ -1,7 +1,15 @@
+// Problem: C. Count Triangles
+// Contest: Codeforces - Codeforces Round 643 (Div. 2)
+// URL: https://codeforces.com/problemset/problem/1355/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -97,8 +105,68 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int a, b, c, d;
+	cin >> a >> b >> c >> d;
+	
+	int ans = 0;
+	
+	for(int z = c; z <= d; z++){
+		
+		
+		int i = z-a+1;
+		int j = c;
+		
+		i = max(i, b);
+		
+		if(i <= j){
+			int cans = (j-i+1) * (b-a+1);
+			ans += cans;
+			// cout << ' ' << z << ' ' << i << ' ' << j << ' ' << cans << endl;
+		}		
+		
+		int l = max(b, z-b+1);
+		int r = min(c, z-a);
+		
+		int cans = 0;
+		
+		if(l <= r){
+			cans += (r-l+1) * (b-z-1);
+			cans += (r+l)*(r-l+1)/2;
+			cans += r-l+1;
+		}
+		
+		if(l <= r){		
+			// cout << z << ' ' << l << ' ' << r << ' ' << cans << endl;
+			ans += cans;
+		}
+	}
+	
+	cout << ans << endl;
 }
+
+/*
+c <= z <= d
+b <= y <= c
+max(a, z-y+1) <= x <= b
+
+z-y+1 <= a
+z-a+1 <= y -> b-a+1
+b <= y <= c
+
+z-y+1 > a
+b <= y < z-a+1
+b <= y <= z-a
+z-y+1 <= b
+z-b+1 <= y
+
+max(b, z-b+1) <= y <= z-a
+
+-> b-(z-y+1)
+-> b-z+y-1
+-> (b-z-1) + y
+
+
+4 (2) (1, 2) -> 0
+
+
+*/

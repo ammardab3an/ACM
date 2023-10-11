@@ -1,7 +1,15 @@
+// Problem: C. MEX Repetition
+// Contest: Codeforces - Pinely Round 2 (Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1863/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -99,6 +107,26 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		vi vis(n+1);
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, vis[i] = true;
+		
+		n++;
+		for(int i = 0; i < n; i++) if(!vis[i]){
+			 vec.push_back(i);
+			 break;
+		}
+		
+		int p = (0-k)%n;
+		p = (p+n)%n;
+		
+		for(int i = 0; i < n-1; i++){
+			cout << vec[(p+i)%n] << ' ';
+		}
+		cout << endl;
     }	
 }

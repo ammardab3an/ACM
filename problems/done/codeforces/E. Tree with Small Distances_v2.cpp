@@ -1,7 +1,15 @@
+// Problem: E. Tree with Small Distances
+// Contest: Codeforces - Codeforces Round 506 (Div. 3)
+// URL: https://codeforces.com/problemset/problem/1029/E
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,64 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
+
+vi adj[NMAX];
+int mem[NMAX][2][2];
+
+int go(int u, int p, int b, int pb){
+	
+	int &ret = mem[u][b][pb];
+	if(ret+1) return ret;
+	
+	int ans = INF;
+	
+	if(!b) ans = 1 + go(u, p, 1, pb);
+	
+	if(b || pb){
+		int cans = 0;
+		for(auto v : adj[u]) if(v != p){
+			cans += go(v, u, 0, b);
+		}
+		ans = min(ans, cans);
+	}
+	else{
+		
+		int cans = 0;
+		int mn = INF;
+		
+		for(auto v : adj[u]) if(v != p){
+			int st_path = go(v, u, 0, 0);
+			int nd_path = 1 + go(v, u, 1, 0);
+			cans += st_path;
+			mn = min(mn, nd_path-st_path);
+		}
+		
+		ans = min(ans, cans+mn);
+	}
+	
+	// cout << u << ' ' << p << ' ' << b << ' ' << pb << ' ' << ans << endl;
+	
+	return ret = ans;
+}
 
 int32_t main(){
     
@@ -97,8 +144,23 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+	int n;
+	cin >> n;
+	
+	for(int i = 1; i < n; i++){
+		int u, v;
+		cin >> u >> v;
+		u--, v--;
+		adj[u].push_back(v);
+		adj[v].push_back(u);
+	}
+	
+	memset(mem, -1, sizeof mem);
+	
+	int ans = 0;
+	for(auto v : adj[0]){
+		ans += go(v, 0, 1, 1);
+	}
+	
+	cout << ans << endl;
 }

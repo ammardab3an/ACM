@@ -1,7 +1,15 @@
+// Problem: A. Careful Thief
+// Contest: Codeforces - ACM International Collegiate Programming Contest, Amman Collegiate Programming Contest (2018)
+// URL: https://codeforces.com/gym/101810/problem/A
+// Memory Limit: 256 MB
+// Time Limit: 2500 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,41 +72,76 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
-
 int32_t main(){
     
     fastIO;
     
-#ifdef LOCAL
-    freopenI;
-    freopenO;
-#endif
-
-    // freopen("name.in", "r", stdin);
-    
-	// init();
-	
     int t; cin >> t; while(t--){
-
-
-    }	
+		
+		int n, k;
+		cin >> n >> k;
+		
+		vector<iii> vec(n);
+		for(auto &[l, rv] : vec){
+			auto &[r, v] = rv;
+			cin >> l >> r >> v;
+		}
+		
+		sort(vec.begin(), vec.end());
+		
+		vector<iii> tmp;
+		tmp.push_back({0, {0, 0}});
+		
+		for(int i = 0; i < n; i++){
+			if(tmp.back().second.first+1 < vec[i].first){
+				tmp.push_back({tmp.back().second.first+1, {vec[i].first-1, 0}});
+			}
+			tmp.push_back(vec[i]);
+		}
+		
+		int ans = 0;
+		
+		for(auto [l, rv] : tmp){
+			auto [r, v] = rv;
+			int cans = min(r-l+1, k) * v;
+			ans = max(ans, cans);
+		}
+		
+		auto calc = [&](int i){
+			auto [l, rv] = tmp[i];
+			auto [r, v] = rv;
+			return (r-l+1);	
+		};
+		
+		n = tmp.size();
+		
+		for(auto _ : {0, 1}){
+			
+			int j = 0;
+			int sz = 0;
+			int sm = 0;
+			
+			for(int i = 0; i < n; i++){
+				
+				if(i){
+					sz -= calc(i-1);
+					sm -= calc(i-1) * tmp[i-1].second.second;
+				}
+				
+				while(j < n && sz+calc(j) <= k){
+					sz += calc(j);
+					sm += calc(j) * tmp[j].second.second;
+					j++;
+				}
+				
+				int cans = sm;
+				if(j < n) cans += min(calc(j), k-sz) * tmp[j].second.second;
+				ans = max(ans, cans);
+			}
+			
+			reverse(tmp.begin(), tmp.end());
+		}
+		
+		cout << ans << endl;
+   }
 }

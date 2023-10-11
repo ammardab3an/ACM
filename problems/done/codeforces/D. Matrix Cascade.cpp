@@ -1,7 +1,15 @@
+// Problem: D. Matrix Cascade
+// Contest: Codeforces - Harbour.Space Scholarship Contest 2023-2024 (Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1864/problem/D
+// Memory Limit: 512 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,29 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
+
+char grid[3030][3030];
+bool pre[3030][3030];
+bool tmp[3030][3030];
 
 int32_t main(){
     
@@ -99,6 +111,46 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		for(int i = 0; i < n; i++) cin >> grid[i];
+		
+		int ans = 0;
+		
+		for(int i = 0; i < n; i++){
+			for(int j = 0; j < n; j++){
+				
+				pre[i][j] = 0;
+				tmp[i][j] = 0;
+				
+				if(i > 0){				
+					if(j) pre[i][j] ^= pre[i-1][j-1];
+					if(j+1 < n) pre[i][j] ^= pre[i-1][j+1];
+					pre[i][j] ^= tmp[i-1][j];
+				}
+				
+				if(i > 1 && j && (j+1<n)){
+					pre[i][j] ^= pre[i-2][j];
+				}
+				
+				if((grid[i][j] - '0') ^ pre[i][j]){
+					tmp[i][j] = 1;
+					pre[i][j] ^= 1;
+					ans++;
+				}
+			}
+		}
+		
+		cout << ans << endl;
     }	
 }
+
+/*
+00000000000
+11000001100
+01100011000
+00110110000
+00010100000
+00000000000
+*/

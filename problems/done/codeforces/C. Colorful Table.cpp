@@ -1,7 +1,15 @@
+// Problem: C. Colorful Table
+// Contest: Codeforces - CodeTON Round 6 (Div. 1 + Div. 2, Rated, Prizes!)
+// URL: https://codeforces.com/contest/1870/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -99,6 +107,34 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i, --i;
+		
+		vector<vi> pos(k);
+		for(int i = 0; i < n; i++){
+			pos[vec[i]].push_back(i);
+		}
+		
+		vi ans(k);
+		
+		{
+			int mx_p = -1;
+			for(int i = k-1; i >= 0; i--) if(pos[i].size()){
+				mx_p = max(mx_p, pos[i].back());
+				ans[i] += mx_p;
+			}
+		}
+		{
+			int mn_p = n;
+			for(int i = k-1; i >= 0; i--) if(pos[i].size()){
+				mn_p = min(mn_p, pos[i].front());
+				ans[i] -= mn_p-1;
+			}
+		}
+		
+		for(auto e : ans) cout << e*2 << ' '; cout << endl;
     }	
 }

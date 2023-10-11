@@ -1,7 +1,15 @@
+// Problem: G. Power of String
+// Contest: Codeforces - ACM International Collegiate Programming Contest, Amman Collegiate Programming Contest (2018)
+// URL: https://codeforces.com/gym/101810/problem/G
+// Memory Limit: 256 MB
+// Time Limit: 15000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,41 +72,75 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int K;
+int cnt[26];
+int mem[26][5050];
+int vis[26][5050], vid;
+int fr, to;
+
+int calc(int c, int i){
+	return (c*(c-1)/2) * ('a'+i);	
+}
+
+int go(int i, int k){
+	
+	if(i==fr || i==to){
+		return go(i+1, k);
+	}	
+	
+	if(i==26){
+		int mn = min(k, cnt[fr]);
+		int c_fr = cnt[fr] - mn;
+		int c_to = cnt[to] + (K - (k-mn));
+		return calc(c_fr, fr) + calc(c_to, to);
+	}
+	
+	int &ret = mem[i][k];
+	int &vis = ::vis[i][k];
+	if(vis==vid) return ret;
+	vis = vid;
+	
+	int mn = min(cnt[i], k);
+	int st_path = calc(cnt[i], i) + go(i+1, k);
+	int nd_path = calc(cnt[i]-mn, i) + go(i+1, k-mn);
+	
+	return ret = max(st_path, nd_path);
+}
 
 int32_t main(){
     
     fastIO;
-    
-#ifdef LOCAL
-    freopenI;
-    freopenO;
-#endif
-
-    // freopen("name.in", "r", stdin);
-    
-	// init();
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n >> K;
+		
+		string str;
+		cin >> str;
+		
+		for(int i = 0; i < 26; i++){
+			cnt[i] = 0;
+		}
+		
+		for(auto c : str){
+			cnt[c-'a']++;
+		}
+		
+		// for(auto c : cnt) cout << c << ' ' ; cout << endl;
+		
+		int ans = 0;
+		for(int i = 0; i < 26; i++)
+		for(int j = 0; j < 26; j++) if(i != j){
+			
+			vid++;
+			fr = i;
+			to = j;
+			
+			int cans = go(0, K);
+			ans = max(ans, cans);
+		}
+		
+		cout << ans << endl;
     }	
 }

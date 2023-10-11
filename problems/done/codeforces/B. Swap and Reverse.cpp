@@ -1,7 +1,15 @@
+// Problem: B. Swap and Reverse
+// Contest: Codeforces - Harbour.Space Scholarship Contest 2023-2024 (Div. 1 + Div. 2)
+// URL: https://codeforces.com/contest/1864/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -99,6 +107,46 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n, k;
+		cin >> n >> k;
+		
+		string str;
+		cin >> str;
+		
+		if(k > 1 && k%2==0){
+			sort(str.begin(), str.end());
+			cout << str << endl;
+			continue;
+		}
+		
+		string str0, str1;
+		for(int i = 0; i < n; i++){
+			
+			if(i&1){
+				str1.push_back(str[i]);
+			}
+			else{
+				str0.push_back(str[i]);
+			}
+		}
+		
+		sort(str0.begin(), str0.end());
+		sort(str1.begin(), str1.end());
+		reverse(str0.begin(), str0.end());
+		reverse(str1.begin(), str1.end());
+		
+		string ans;
+		while(str0.size() && str1.size()){
+			ans.push_back(str0.back());
+			ans.push_back(str1.back());
+			str0.pop_back();
+			str1.pop_back();
+		}
+		
+		if(str0.size()){
+			ans.push_back(str0.back());
+		}
+		
+		cout << ans << endl;
     }	
 }

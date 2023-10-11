@@ -1,7 +1,15 @@
+// Problem: F - Breaking Strings
+// Contest: Virtual Judge - Dynamic Programming Sheet 2 Week 4
+// URL: https://vjudge.net/contest/490713#problem/F
+// Memory Limit: 64 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -53,36 +61,13 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
-
-int inv(int x){
-	return pow_exp(x, MOD-2);
-}
  
-const int  MAX = 2e5 + 10;
-const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
+const int NMAX = 1e3 + 10;
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int n, m;
+int arr[NMAX];
+int mem[NMAX][NMAX];
+int pos[NMAX][NMAX];
 
 int32_t main(){
     
@@ -95,10 +80,52 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
-	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    while(cin >> n >> m){
+    	
+	    // cin >> n >> m;
+	    
+	    m+=2;
+	    arr[0] = 0;
+	    arr[m-1] = n;
+	    
+	    for(int i = 1; i < m-1; i++){
+	    	cin >> arr[i];
+	    }
+	    
+	    for(int l = 0; l < m; l++)
+	    for(int i = 0; i+l < m; i++){
+	    	
+	    	int j = i+l;
+	    	
+	    	if(i+1 >= j){
+	    		mem[i][j] = 0;
+	    		pos[i][j] = -1;
+	    		continue;	
+	    	}
+	    	
+	    	int p0 = pos[i][j-1];
+	    	int p1 = pos[i+1][j];
+	    	
+	    	if(p0==-1) p0 = i+1;
+	    	if(p1==-1) p1 = j-1;
+	    	
+	    	int cans = INFLL;
+	    	int cpos = -1;
+	    	
+	    	for(int k = p0; k <= p1; k++){
+	    		
+	    		int cur = mem[i][k] + mem[k][j];
+	    		
+	    		if(cur < cans){
+	    			cans = cur;
+	    			cpos = k;
+	    		}
+	    	}
+	    	
+	    	mem[i][j] = (arr[j]-arr[i]) + cans;
+	    	pos[i][j] = cpos;
+	    }
+	    
+	    cout << mem[0][m-1] << endl;
+    }
 }

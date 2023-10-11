@@ -1,7 +1,15 @@
+// Problem: B. Putting Bricks in the Wall
+// Contest: Codeforces - Codeforces Round 676 (Div. 2)
+// URL: https://codeforces.com/contest/1421/problem/B
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,27 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
+
+char grid[222][222];
 
 int32_t main(){
     
@@ -99,6 +109,54 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		for(int i = 0; i < n; i++){
+			cin >> grid[i];
+		}
+		
+		vpii ans;
+		
+		bool b0 = grid[0][1]-'0';
+		bool b1 = grid[1][0]-'0';
+		bool d0 = grid[n-1][n-2]-'0';
+		bool d1 = grid[n-2][n-1]-'0';
+		
+		if(b0==b1){
+			if(d0 == b0){
+				ans.push_back({n, n-1});
+			}
+			if(d1 == b0){
+				ans.push_back({n-1, n});
+			}
+		}
+		else if(d0==d1){
+			if(b0 == d0){
+				ans.push_back({1, 2});
+			}
+			if(b1 == d0){
+				ans.push_back({2, 1});
+			}
+		}
+		else{
+			if(b0 != 0){
+				ans.push_back({1, 2});
+			}
+			if(b1 != 0){
+				ans.push_back({2, 1});
+			}
+			if(d0 != 1){
+				ans.push_back({n, n-1});
+			}
+			if(d1 != 1){
+				ans.push_back({n-1, n});
+			}
+		}
+		
+		cout << ans.size() << endl;
+		for(auto [i, j] : ans){
+			cout << i << ' ' << j << endl;
+		}
     }	
 }

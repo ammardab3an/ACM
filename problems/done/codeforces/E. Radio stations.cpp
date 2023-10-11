@@ -1,7 +1,7 @@
-// Problem: Breaking Strings
-// Contest: ZOJ
-// URL: https://zoj.pintia.cn/problem-sets/91827364500/problems/91827366359
-// Memory Limit: 64 MB
+// Problem: E. Radio stations
+// Contest: Codeforces - Educational Codeforces Round 17
+// URL: https://codeforces.com/contest/762/problem/E
+// Memory Limit: 256 MB
 // Time Limit: 2000 ms
 // 
 // Powered by CP Editor (https://cpeditor.org)
@@ -61,13 +61,65 @@ int pow_exp(int n, int p){
 	int tmp = pow_exp(n, p/2);
 	return mul(tmp, tmp);
 }
- 
-const int NMAX = 1e3 + 10;
 
-int n, m;
-int arr[NMAX];
-int mem[NMAX][NMAX];
-int pos[NMAX][NMAX];
+int inv(int x){
+	return pow_exp(x, MOD-2);
+}
+ 
+const int  MAX = 2e5 + 10;
+const int NMAX = 2e5 + 10;
+const int MMAX = 2e5 + 10;
+const int LOG_MAX = ceil(log2(double(NMAX)));
+const int BLOCK = ceil(sqrt(double(NMAX)));
+
+struct node{
+	
+	int sm;
+	node *lf, *ri;
+	
+	node(){
+		sm = 0;
+		lf = ri = nullptr;
+	}
+	
+	void update(int l, int r, int p, int d){
+		
+		sm += d;
+		
+		if(l==r){
+			return;
+		}
+		
+		int mid = (l+r)/2;
+		if(p <= mid){
+			if(!lf) lf = new node();
+			lf->update(l, mid, p, d);
+		}
+		else{
+			if(!ri) ri = new node();
+			ri->update(mid+1, r, p, d);
+		}
+	}
+	
+	int query(int l, int r, int q_l, int q_r){
+		
+		if(r < q_l || q_r < l){
+			return 0;
+		}
+		
+		if(q_l <= l && r <= q_r){
+			return sm;
+		}
+		
+		int mid = (l+r)/2;
+		int st_path = !lf ? 0 : lf->query(l, mid, q_l, q_r);
+		int nd_path = !ri ? 0 : ri->query(mid+1, r, q_l, q_r);
+		
+		return st_path + nd_path;
+	}
+};
+
+node tree[10100];
 
 int32_t main(){
     
@@ -80,52 +132,31 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-    while(cin >> n >> m){
-    	
-	    // cin >> n >> m;
-	    
-	    m+=2;
-	    arr[0] = 0;
-	    arr[m-1] = n;
-	    
-	    for(int i = 1; i < m-1; i++){
-	    	cin >> arr[i];
-	    }
-	    
-	    for(int l = 0; l < m; l++)
-	    for(int i = 0; i+l < m; i++){
-	    	
-	    	int j = i+l;
-	    	
-	    	if(i+1 >= j){
-	    		mem[i][j] = 0;
-	    		pos[i][j] = -1;
-	    		continue;	
-	    	}
-	    	
-	    	int p0 = pos[i][j-1];
-	    	int p1 = pos[i+1][j];
-	    	
-	    	if(p0==-1) p0 = i+1;
-	    	if(p1==-1) p1 = j-1;
-	    	
-	    	int cans = INFLL;
-	    	int cpos = -1;
-	    	
-	    	for(int k = p0; k <= p1; k++){
-	    		
-	    		int cur = mem[i][k] + mem[k][j];
-	    		
-	    		if(cur < cans){
-	    			cans = cur;
-	    			cpos = k;
-	    		}
-	    	}
-	    	
-	    	mem[i][j] = (arr[j]-arr[i]) + cans;
-	    	pos[i][j] = cpos;
-	    }
-	    
-	    cout << mem[0][m-1] << endl;
-    }
+	// init();
+	
+	int n, k;
+	cin >> n >> k;
+	
+	vector<iii> vec(n);
+	for(auto &[r, xf] : vec){
+		auto &[x, f] = xf;
+		cin >> x >> r >> f;
+	}
+	
+	sort(vec.begin(), vec.end());
+	reverse(vec.begin(), vec.end());
+	
+	int ans = 0;
+	
+	for(auto [r, xf] : vec){
+		auto [x, f] = xf;
+		
+		for(int i = max((int)1, f-k); i <= f+k; i++){
+			ans += tree[i].query(1, 1e9, x-r, x+r);
+		}
+		
+		tree[f].update(1, 1e9, x, 1);
+	}
+	
+	cout << ans << endl;
 }

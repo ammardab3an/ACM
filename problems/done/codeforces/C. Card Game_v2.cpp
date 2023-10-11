@@ -1,7 +1,15 @@
+// Problem: C. Card Game
+// Contest: Codeforces - Codeforces Round 899 (Div. 2)
+// URL: https://codeforces.com/contest/1882/problem/C
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,57 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
+
+int n;
+int arr[NMAX];
+int mem[NMAX][2];
+
+int go(int i, bool b){
+	
+	if(i==n){
+		return 0;
+	}
+	
+	int &ret = mem[i][b];
+	if(ret+1) return ret;
+	
+	int ans = 0;
+	
+	if(!b){
+		int st_path = arr[i] + go(i+1, 0);
+		int nd_path = arr[i] + go(i+1, 1);
+		int rd_path = go(i+1, 1);
+		int cans = max(st_path, max(nd_path, rd_path));	
+		ans = max(ans, cans);
+	}
+	else{
+		int st_path = go(i+1, 1);
+		int nd_path = go(i+1, 0);	
+		int cans = max(st_path, nd_path);
+		ans = max(ans, cans);
+	}
+	
+	return ret = ans;
+}
 
 int32_t main(){
     
@@ -99,6 +139,14 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		cin >> n;
+		for(int i = 0; i < n; i++) cin >> arr[i];
+		
+		for(int i = 0; i < n; i++){
+			mem[i][0] = mem[i][1] = -1;
+		}
+		
+		int ans = go(0, 0);
+		cout << ans << endl;
     }	
 }

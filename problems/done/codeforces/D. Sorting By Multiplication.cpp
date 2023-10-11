@@ -1,7 +1,15 @@
+// Problem: D. Sorting By Multiplication
+// Contest: Codeforces - Educational Codeforces Round 154 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1861/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -99,6 +107,33 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		vi pre(n), suf(n);
+		
+		for(int i = n-2; i >= 0; i--){
+			suf[i] = suf[i+1];
+			if(vec[i] >= vec[i+1]) suf[i]++;
+		}
+		
+		for(int i = 1; i < n; i++){
+			pre[i] = pre[i-1];
+			if(vec[i] >= vec[i-1]) pre[i]++;
+		}
+		
+		int ans = min(1 + pre[n-1], suf[0]);
+		
+		for(int i = 0; i+1 < n; i++){
+			int cans = 1 + pre[i] + suf[i+1];
+			ans = min(ans, cans);
+			
+			// cout << i << ' ' << i+1 << ' ' << cans << endl;
+		}
+		
+		cout << ans << endl;
     }	
 }

@@ -1,7 +1,15 @@
+// Problem: E. Count Supersequences
+// Contest: Codeforces - Codeforces Round 877 (Div. 2)
+// URL: https://codeforces.com/contest/1838/problem/E
+// Memory Limit: 256 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -58,31 +66,40 @@ int inv(int x){
 	return pow_exp(x, MOD-2);
 }
  
-const int  MAX = 2e5 + 10;
 const int NMAX = 2e5 + 10;
-const int MMAX = 2e5 + 10;
-const int LOG_MAX = ceil(log2(double(NMAX)));
-const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
 // int choose(int n, int c){
+	// assert(n < NMAX);
 	// assert(n >= c);
 	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
 // }
+
+int choose2(int n, int c){
+	
+	int ans = 1;
+	
+	for(int i = 1; i <= c; i++){
+		ans = mul(ans, n-i+1);
+		ans = mul(ans, inv(i));
+	}
+	
+	return ans;
+}
 
 int32_t main(){
     
@@ -95,10 +112,35 @@ int32_t main(){
 
     // freopen("name.in", "r", stdin);
     
-	// init();
+	init();
 	
     int t; cin >> t; while(t--){
 
-
+		int n, m, k;
+		cin >> n >> m >> k;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		int ans = 0;
+		
+		int cho = 1;
+		for(int i = 0; i < n; i++){
+			
+			int a = m-i;
+			int b = i+1;
+			
+			int s0 = cho; // choose2(m, i); // choose2(a+b-1, b-1);
+			int s1 = pow_exp(k-1, a);
+			
+			ans = add(ans, mul(s0, s1));
+			cho = mul(mul(cho, m-i), inv(i+1));
+		}
+		
+		// choose(m, i) = fac[m] / fac[i] / fac[m-i]
+		// choose(m, i+1) = fac[m] / fac[i+1] / fac[m-i-1] = choose(m, i) * ((m-i) / (i+1))
+		
+		ans = add(pow_exp(k, m), mul(-1, ans));
+		cout << ans << endl;
     }	
 }

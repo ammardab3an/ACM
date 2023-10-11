@@ -1,7 +1,15 @@
+// Problem: D. Prefix Purchase
+// Contest: Codeforces - CodeTON Round 6 (Div. 1 + Div. 2, Rated, Prizes!)
+// URL: https://codeforces.com/contest/1870/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 1000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -99,6 +107,44 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int n;
+		cin >> n;
+		
+		vi vec(n);
+		for(auto &i : vec) cin >> i;
+		
+		int k;
+		cin >> k;
+		
+		for(int i = n-2; i >= 0; i--){
+			vec[i] = min(vec[i], vec[i+1]);
+		}
+		
+		vi ans(n);
+		
+		ans[0] = k/vec[0];
+		int rem = k%vec[0];
+		
+		for(int i = 1; i < n; i++){
+			
+			int dif = vec[i]-vec[i-1];
+			
+			if(!dif){
+				ans[i] = ans[i-1];
+				ans[i-1] = 0;
+			}
+			else{
+				int mn = min(ans[i-1], rem/dif);
+				rem -= mn*dif;
+				ans[i-1] -= mn;
+				ans[i] += mn;
+			}
+		}
+		
+		for(int i = n-2; i >= 0; i--){
+			ans[i] += ans[i+1];
+		}
+		
+		for(auto e : ans) cout << e << ' '; cout << endl;
     }	
 }

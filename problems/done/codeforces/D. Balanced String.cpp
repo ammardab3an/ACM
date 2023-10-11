@@ -1,16 +1,24 @@
+// Problem: D. Balanced String
+// Contest: Codeforces - Educational Codeforces Round 153 (Rated for Div. 2)
+// URL: https://codeforces.com/contest/1860/problem/D
+// Memory Limit: 256 MB
+// Time Limit: 2000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
-#define int int64_t
-#define ll  int64_t
+// #define int int64_t
+// #define ll  int64_t
 
-// typedef unsigned int        uint;
-// typedef long long int       ll;
-// typedef unsigned long long  ull;
+typedef unsigned int        uint;
+typedef long long int       ll;
+typedef unsigned long long  ull;
 typedef pair<int, int>    pii;
 typedef pair<ll, ll>      pll;
 typedef pair<int, pii>    iii;
@@ -64,25 +72,31 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int n, dif;
+string str;
+uint16_t mem[101][101][5050];
+bool vis[101][101][5050];
+
+uint16_t go(int i, int cnt_b, int cnt_w, int sm){
+	
+	if(sm > 2500 || sm < -2500){
+		return 100;
+	}
+	
+	if(i==n){
+		return (!sm && (cnt_b-cnt_w==dif)) ? 0 : 100;
+	}
+	
+	auto &ret = mem[i][cnt_b][sm+2500];
+	auto &clc = vis[i][cnt_b][sm+2500];
+	if(clc) return ret;
+	clc = true;
+	
+	uint16_t st_path = go(i+1, cnt_b+1, cnt_w, sm+cnt_w) + (str[i]!='0');
+	uint16_t nd_path = go(i+1, cnt_b, cnt_w+1, sm-cnt_b) + (str[i]!='1');
+	
+	return ret = min(st_path, nd_path);
+}
 
 int32_t main(){
     
@@ -97,8 +111,18 @@ int32_t main(){
     
 	// init();
 	
-    int t; cin >> t; while(t--){
-
-
-    }	
+    cin >> str;
+    n = str.size();
+    
+    for(auto c : str){
+    	if(c=='0'){
+    		dif++;
+    	}
+    	else{
+    		dif--;
+    	}
+    }
+    
+    int ans = go(0, 0, 0, 0);
+    cout << ans/2 << endl;
 }

@@ -1,7 +1,15 @@
+// Problem: J. T-Shirts Dilemma
+// Contest: Codeforces - ACM International Collegiate Programming Contest, Amman Collegiate Programming Contest (2018)
+// URL: https://codeforces.com/gym/101810/problem/J
+// Memory Limit: 256 MB
+// Time Limit: 3000 ms
+// 
+// Powered by CP Editor (https://cpeditor.org)
+
 
 // By AmmarDab3an 
 
-#include <bits/stdc++.h>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -64,25 +72,25 @@ const int MMAX = 2e5 + 10;
 const int LOG_MAX = ceil(log2(double(NMAX)));
 const int BLOCK = ceil(sqrt(double(NMAX)));
 
-// int fac[NMAX], ifac[NMAX];
-// 
-// void init(){
-// 	
-	// fac[0] = 1;
-	// for(int i = 1; i < NMAX; i++){
-		// fac[i] = mul(fac[i-1], i);
-	// }
-// 	
-	// ifac[NMAX-1] = inv(fac[NMAX-1]);
-	// for(int i = NMAX-2; i >= 0; i--){
-		// ifac[i] = mul(ifac[i+1], i+1);
-	// }
-// }
-// 
-// int choose(int n, int c){
-	// assert(n >= c);
-	// return mul(fac[n], mul(ifac[c], ifac[n-c]));
-// }
+int fac[NMAX], ifac[NMAX];
+
+void init(){
+	
+	fac[0] = 1;
+	for(int i = 1; i < NMAX; i++){
+		fac[i] = mul(fac[i-1], i);
+	}
+	
+	ifac[NMAX-1] = inv(fac[NMAX-1]);
+	for(int i = NMAX-2; i >= 0; i--){
+		ifac[i] = mul(ifac[i+1], i+1);
+	}
+}
+
+int choose(int n, int c){
+	assert(n >= c);
+	return mul(fac[n], mul(ifac[c], ifac[n-c]));
+}
 
 int32_t main(){
     
@@ -99,6 +107,49 @@ int32_t main(){
 	
     int t; cin >> t; while(t--){
 
-
+		int a, b, v;
+		cin >> a >> b >> v;
+		
+		auto calc = [&](int l, int r)->int{
+			l = max(l, a);
+			r = min(r, b);
+			if(l > r) return 0;
+			return (r-l+1);
+		};
+		
+		int pst = 0;
+		int ans = calc(v, v);
+		
+		// cout << bitset<61>(a) << endl;
+		// cout << bitset<61>(b) << endl;
+		// cout << bitset<61>(v) << endl;
+		// cout << endl;
+		
+		for(int i = 60; i >= 0; i--) if((v>>i)&1){
+			
+			int x = v & ((1ll<<(i+1))-1);
+			
+			int nv;
+			if((x&(x+1))==0){
+				nv = pst + x;
+			}
+			else{
+				nv = pst + ((1ll<<i)-1);
+			}
+			
+			int l = pst;
+			int r = nv;
+			
+			// cout << bitset<61>(l) << endl;
+			// cout << bitset<61>(r) << endl;
+			// cout << calc(l, r) << endl;
+			
+			ans = max(ans, calc(l, r));
+			
+			pst |= 1ll<<i;
+		}
+		
+		// cout << a << ' ' << b << ' ' << v << endl;
+		cout << ans << endl;
     }	
 }
