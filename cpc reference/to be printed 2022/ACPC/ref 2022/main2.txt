@@ -1,0 +1,73 @@
+// notes
+
+nxt = vec[p]/(vec[p]/i+1);
+fft: while(a.back()==0) a.pop_back()
+(1+1)^n = sum of choose
+__asm__(R"(
+
+)");
+
+-------------------------------------------------------------------------------------------
+
+ulimit -s unlimited
+/etc/security/limits.conf
+my_username soft stack 262144
+
+-------------------------------------------------------------------------------------------
+
+fib[i] = sum(fib[j]) 
+    for i is odd
+    (j < i) && (j is even)
+fib[i] = sum(fib[j])+1
+    for i is even
+    (j < i) && (j is odd)
+
+-------------------------------------------------------------------------------------------
+
+for (int x = 2; x < N; x++) {
+    if (primes[x].empty()) {
+        for (int y = x; y < N; y += x) {
+            primes[y].push_back(x);
+        }
+    }
+}
+
+-------------------------------------------------------------------------------------------
+
+for(auto p : primes){
+    for(int i = AMAX/p; i >= 0; i--){
+        frq[i] += frq[i*p];
+    }	
+}
+    
+-------------------------------------------------------------------------------------------
+
+long long solve(long long n) // finds sum d(1) + d(2) + ... + d(n), d(i) is number of divisors of i
+{
+    long long s = sqrt(n);
+    // x * y <= n
+    long long ret = 0;
+    for (int i = 1; i <= s; ++ i)
+    {
+        ret += n / i;
+    }
+    ret *= 2; // cases: x <= sqrt(n) and y <= sqrt(n)
+    ret -= s * s; // both x and y <= sqrt(n)
+    return ret;
+}
+
+-------------------------------------------------------------------------------------------
+
+vector<vector<ll>> matrix_mul(vector<vector<ll>> a, vector<vector<ll>> b) {
+    int r1 = a.size()-1 , c2 = b[0].size()-1 , r2 = b.size()-1;
+    vector<vector<ll>> ans(r1+1 , vector<ll> (r1+1,0));
+    for(int i = 1 ; i <= r1 ; i++) {
+        for(int j = 1 ; j <= c2 ; j++) {
+            for(int q = 1 ; q <= r2 ; q++) {
+                ans[i][j] = (ans[i][j] + a[i][q]*b[q][j]%mod)%mod;
+            }
+        }
+    }
+    return ans;
+}
+
