@@ -55,8 +55,8 @@ int binaryLifting(int val){
 
     for(int i = bitSz/2; i >= 1; i /= 2) {
 
-        if(sum + bit[i] < val){
-            sum += bit[i];
+        if(sum + bit[ptr+i] < val){
+            sum += bit[ptr+i];
             ptr += i;
         }
     }
